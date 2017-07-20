@@ -126,7 +126,7 @@ class TagListViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
-        
+        persist(self.request!)
     }
     
     @IBAction func conditionalUnwind(_ sender: UIBarButtonItem) {
