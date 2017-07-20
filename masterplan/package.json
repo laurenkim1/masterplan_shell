@@ -1,0 +1,23 @@
+{
+  "name": "masterplan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurenkim1/masterplan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laurenkim1/masterplan/issues"
+  },
+  "homepage": "https://github.com/laurenkim1/masterplan#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "mongoose": "^4.5.8"
+  }
+}
