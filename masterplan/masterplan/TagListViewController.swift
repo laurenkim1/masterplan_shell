@@ -127,6 +127,7 @@ class TagListViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBAction func done(_ sender: UIBarButtonItem) {
         persist(self.request!)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func conditionalUnwind(_ sender: UIBarButtonItem) {
