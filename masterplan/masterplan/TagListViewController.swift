@@ -114,14 +114,14 @@ class TagListViewController: UIViewController, UINavigationControllerDelegate, U
         //4
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
-        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data, _ response: URLResponse, _ error: Error?) -> Void in
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
             //5
             if error == nil {
                 os_log("Success")
-                var responseArray: NSMutableArray = [try? JSONSerialization.jsonObject(with: data, options: [])]
+                // var responseArray: NSMutableArray = [try? JSONSerialization.jsonObject(with: data, options: [])]
                 // self.parseAndAddRequests(responseArray, toArray: objects)
             }
-        } as! (Data?, URLResponse?, Error?) -> Void)
+        })
         dataTask?.resume()
     }
     

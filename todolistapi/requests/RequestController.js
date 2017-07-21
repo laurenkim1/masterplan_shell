@@ -9,19 +9,7 @@ var Request = require('./Request');
 
 // CREATES A NEW REQUEST
 router.post('/', function (req, res) {
-    Request.create({
-            userID: req.body.userID,
-            requestTitle: req.body.requestTitle,
-            requestPrice: req.body.requestPrice,
-            requestID: req.body.requestID,
-            fulfilled: req.body.fulfilled,
-            fulfillerID: req.body.fulfillerID,
-            requestTags: req.body.reqestTags,
-            pickUp: req.body.pickUp,
-            distance: req.body.distance,
-            xCoordinate: req.body.xCoordinate,
-            yCoordinate: req.body.yCoordinate
-        },
+    Request.create(req.body,
         function (err, request) {
             if (err) return res.status(500).send("There was a problem adding the information to the database.");
             res.status(200).send(request);

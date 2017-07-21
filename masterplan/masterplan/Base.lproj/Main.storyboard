@@ -276,7 +276,11 @@
                                 <action selector="conditionalUnwind:" destination="oft-Nl-PHI" id="e6p-Kt-Agr"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2vA-Nl-dOC"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2vA-Nl-dOC">
+                            <connections>
+                                <action selector="done:" destination="oft-Nl-PHI" id="1Yj-RQ-0hD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="backButton" destination="0YZ-UA-fmU" id="h30-na-qPV"/>
@@ -495,7 +499,7 @@
                                 <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Js-TP-cAd" id="3GU-Qa-u7U">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

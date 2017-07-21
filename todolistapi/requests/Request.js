@@ -4,14 +4,14 @@ var RequestSchema = new mongoose.Schema({
   userID: Number,
   requestTitle: String,
   requestPrice: Number,
-  requestID: Number,
+  requestID: String,
   fulfilled: Boolean,
   fulfillerID: Number,
   requestTags: [String],
   pickUp: Boolean,
   distance: Number,
   xCoordinate: Number,
-  yCoordinate: Number
+  yCoordinate: Number 
 });
 mongoose.model('Request', RequestSchema);
 module.exports = mongoose.model('Request');
