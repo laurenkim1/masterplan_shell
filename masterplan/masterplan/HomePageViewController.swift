@@ -101,12 +101,12 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             
             searchItemsPredicate.append(titleSearchComparisonPredicate)
             
-            let _tagList: NSArray = value(forKeyPath: "requestTags") as! NSArray
-            for _tag in _tagList {
-                let tagExpression = NSExpression(forConstantValue: _tag)
-                let tagSearchComparisonPredicate = NSComparisonPredicate(leftExpression: tagExpression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
-                searchItemsPredicate.append(tagSearchComparisonPredicate)
-            }
+            // Name field matching.
+            let tagsExpression = NSExpression(forKeyPath: "tagString")
+            
+            let tagSearchComparisonPredicate = NSComparisonPredicate(leftExpression: tagsExpression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
+            
+            searchItemsPredicate.append(tagSearchComparisonPredicate)
             
             /*
             

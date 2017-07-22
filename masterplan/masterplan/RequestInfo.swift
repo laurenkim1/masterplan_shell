@@ -21,6 +21,7 @@ class requestInfo: NSObject, NSCoding {
     var fulfilled: Bool
     var fulfillerID: Int
     var requestTags: [String]
+    var tagString: String
     var pickUp: Int
     var distance: Float
     var location: CLLocation
@@ -38,6 +39,7 @@ class requestInfo: NSObject, NSCoding {
         static let requestTags = "requestags"
         static let distance = "distance"
         static let location = "location"
+        static let tagString = "tagString"
     }
     
     
@@ -62,6 +64,7 @@ class requestInfo: NSObject, NSCoding {
         self.fulfilled = false
         self.fulfillerID = -1
         self.requestTags = []
+        self.tagString = ""
         self.distance = 0.0
     }
     
@@ -69,10 +72,10 @@ class requestInfo: NSObject, NSCoding {
     
     public func toDictionary() -> NSDictionary! {
         let jsonable = NSMutableDictionary()
-        var tagString: String = ""
+        var tags: String = ""
         for tag in requestTags {
-            tagString.append(tag)
-            tagString.append(" ")
+            tags.append(tag)
+            tags.append(" ")
         }
         jsonable.setValue(userID, forKey: "userID")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
@@ -82,7 +85,7 @@ class requestInfo: NSObject, NSCoding {
         jsonable.setValue(location.coordinate.longitude, forKey: "yCoordinate")
         jsonable.setValue(fulfilled, forKey: "fulfilled")
         jsonable.setValue(fulfillerID, forKey: "fulfillerID")
-        jsonable.setValue(tagString, forKey: "requstTags")
+        jsonable.setValue(tags, forKey: "requstTags")
         jsonable.setValue(distance, forKey: "distance")
         return jsonable
     }
