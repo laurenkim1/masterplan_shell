@@ -117,8 +117,8 @@ class TagListViewController: UIViewController, UINavigationControllerDelegate, U
             //5
             if error == nil {
                 os_log("Success")
-                // var responseArray: NSMutableArray = [try? JSONSerialization.jsonObject(with: data, options: [])]
-                // self.parseAndAddRequests(responseArray, toArray: objects)
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                request.requestID = response?["_id"] as! String
             }
         })
         dataTask?.resume()

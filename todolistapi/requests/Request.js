@@ -4,7 +4,6 @@ var RequestSchema = new mongoose.Schema({
   userID: Number,
   requestTitle: String,
   requestPrice: Number,
-  requestID: String,
   fulfilled: Boolean,
   fulfillerID: Number,
   requestTags: String,

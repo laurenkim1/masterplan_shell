@@ -14,7 +14,6 @@ router.post('/', function (req, res) {
             userID: req.body.userID,
             requestTitle: req.body.requestTitle,
             requestPrice: req.body.requestPrice,
-            requestID: req.body.requestID,
             fulfilled: req.body.fulfilled,
             fulfillerID: req.body.fulfillerID,
             requestTags: req.body.reqestTags,

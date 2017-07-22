@@ -17,7 +17,7 @@ class requestInfo: NSObject, NSCoding {
     var userID: Int
     var requestTitle: String
     var requestPrice: Float
-    var requestID: String
+    var requestID: String?
     var fulfilled: Bool
     var fulfillerID: Int
     var requestTags: [String]
@@ -43,7 +43,7 @@ class requestInfo: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init?(userID: Int, requestTitle: String, requestPrice: Float, requestID: String, pickUp: Int, location: CLLocation) {
+    init?(userID: Int, requestTitle: String, requestPrice: Float, pickUp: Int, location: CLLocation) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -57,7 +57,6 @@ class requestInfo: NSObject, NSCoding {
         self.userID = userID
         self.requestTitle = requestTitle
         self.requestPrice = requestPrice
-        self.requestID = requestID
         self.pickUp = pickUp
         self.location = location
         self.fulfilled = false
@@ -78,7 +77,6 @@ class requestInfo: NSObject, NSCoding {
         jsonable.setValue(userID, forKey: "userID")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")
-        jsonable.setValue(requestID, forKey: "requestID")
         jsonable.setValue(pickUp, forKey: "pickUp")
         jsonable.setValue(location.coordinate.latitude, forKey: "xCoordinate")
         jsonable.setValue(location.coordinate.longitude, forKey: "yCoordinate")
@@ -122,11 +120,6 @@ class requestInfo: NSObject, NSCoding {
             return nil
         }
         
-        guard let requestID = aDecoder.decodeObject(forKey: PropertyKey.requestID) as? String else {
-            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
-            return nil
-        }
-        
         guard let pickUp = aDecoder.decodeObject(forKey: PropertyKey.pickUp) as? Int else {
             os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
             return nil
@@ -138,7 +131,7 @@ class requestInfo: NSObject, NSCoding {
         }
         
         // Must call designated initializer.
-        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, requestID: requestID, pickUp: pickUp, location: location)
+        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
         
     }
 }
