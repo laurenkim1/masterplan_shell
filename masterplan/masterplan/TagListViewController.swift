@@ -110,7 +110,8 @@ class TagListViewController: UIViewController, UINavigationControllerDelegate, U
         let data: Data? = try? JSONSerialization.data(withJSONObject: request.toDictionary(), options: [])
         //3
         networkrequest.httpBody = data
-        //4
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
