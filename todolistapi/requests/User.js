@@ -7,5 +7,5 @@ var UserSchema = new mongoose.Schema({
   xCoordinate: req.body.xCoordinate,
   yCoordinate: req.body.yCoordinate
 });
-mongoose.model('User', RequestSchema);
+mongoose.model('User', UserSchema);
 module.exports = mongoose.model('User');
