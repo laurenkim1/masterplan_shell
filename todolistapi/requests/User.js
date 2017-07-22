@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
   userName: String,
   userPassword: String
-  xCoordinate: req.body.xCoordinate,
-  yCoordinate: req.body.yCoordinate
+  xCoordinate: Number,
+  yCoordinate: Number
 });
 mongoose.model('User', UserSchema);
 module.exports = mongoose.model('User');
