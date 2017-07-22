@@ -23,7 +23,7 @@ router.post('/', function (req, res) {
             yCoordinate: req.body.yCoordinate
         },
         function (err, request) {
-            if (err) return res.status(500).send("There was a problem adding the information to the database.");
+            if (err) return res.status(500).send("There was a problem adding the information to the request database.");
             res.status(200).send(request);
         });
 });
