@@ -7,8 +7,8 @@ var RequestSchema = new mongoose.Schema({
   requestID: String,
   fulfilled: Boolean,
   fulfillerID: Number,
-  requestTags: [String],
-  pickUp: Boolean,
+  requestTags: String,
+  pickUp: Number,
   distance: Number,
   xCoordinate: Number,
   yCoordinate: Number 

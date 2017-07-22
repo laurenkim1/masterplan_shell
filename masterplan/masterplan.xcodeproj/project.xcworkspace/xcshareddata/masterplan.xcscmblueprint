@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "415AA30030360710AA4A1E4B3852513AFF52D1B7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "415AA30030360710AA4A1E4B3852513AFF52D1B7" : 9223372036854775807,
+    "1C1848E8C4DF76B5379CDF5852B2DA59648F946A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "80592A6A-2E97-4856-B3D9-E7524D3A8CAF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "415AA30030360710AA4A1E4B3852513AFF52D1B7" : "masterplan\/",
+    "1C1848E8C4DF76B5379CDF5852B2DA59648F946A" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "masterplan",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "masterplan.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/laurenkim1\/masterplan_shell.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C1848E8C4DF76B5379CDF5852B2DA59648F946A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/laurenkim1\/masterplan.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "415AA30030360710AA4A1E4B3852513AFF52D1B7"
+    }
+  ]
+}

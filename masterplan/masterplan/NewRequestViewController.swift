@@ -98,10 +98,7 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate, UINavigat
         
         let _title = requestName.text ?? ""
         let _price = Float(price.text!)!
-        var _pickup = false
-        if pickUpBool.selectedSegmentIndex == 0 {
-            _pickup = true
-        }
+        let _pickup = pickUpBool.selectedSegmentIndex
         
         if request != nil {
         }

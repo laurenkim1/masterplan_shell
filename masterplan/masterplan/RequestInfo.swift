@@ -21,7 +21,7 @@ class requestInfo: NSObject, NSCoding {
     var fulfilled: Bool
     var fulfillerID: Int
     var requestTags: [String]
-    var pickUp: Bool
+    var pickUp: Int
     var distance: Float
     var location: CLLocation
     
@@ -43,7 +43,7 @@ class requestInfo: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init?(userID: Int, requestTitle: String, requestPrice: Float, requestID: String, pickUp: Bool, location: CLLocation) {
+    init?(userID: Int, requestTitle: String, requestPrice: Float, requestID: String, pickUp: Int, location: CLLocation) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -70,6 +70,11 @@ class requestInfo: NSObject, NSCoding {
     
     public func toDictionary() -> NSDictionary! {
         let jsonable = NSMutableDictionary()
+        var tagString: String = ""
+        for tag in requestTags {
+            tagString.append(tag)
+            tagString.append(" ")
+        }
         jsonable.setValue(userID, forKey: "userID")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")
@@ -79,7 +84,7 @@ class requestInfo: NSObject, NSCoding {
         jsonable.setValue(location.coordinate.longitude, forKey: "yCoordinate")
         jsonable.setValue(fulfilled, forKey: "fulfilled")
         jsonable.setValue(fulfillerID, forKey: "fulfillerID")
-        jsonable.setValue(requestTags, forKey: "requstTags")
+        jsonable.setValue(tagString, forKey: "requstTags")
         jsonable.setValue(distance, forKey: "distance")
         return jsonable
     }
@@ -122,7 +127,7 @@ class requestInfo: NSObject, NSCoding {
             return nil
         }
         
-        guard let pickUp = aDecoder.decodeObject(forKey: PropertyKey.requestTitle) as? Bool else {
+        guard let pickUp = aDecoder.decodeObject(forKey: PropertyKey.pickUp) as? Int else {
             os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
             return nil
         }
