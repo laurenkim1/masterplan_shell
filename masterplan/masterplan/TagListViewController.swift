@@ -119,7 +119,7 @@ class TagListViewController: UIViewController, UINavigationControllerDelegate, U
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                request.requestID = response?["_id"] as! String
+                request.requestID = response?["_id"] as? String
             }
         })
         dataTask?.resume()

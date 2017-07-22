@@ -1,7 +1,8 @@
 // Request.js
+
 var mongoose = require('mongoose');
 var RequestSchema = new mongoose.Schema({
-  userID: Number,
+  userID: String,
   requestTitle: String,
   requestPrice: Number,
   fulfilled: Boolean,

@@ -103,7 +103,7 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate, UINavigat
         if request != nil {
         }
         else {
-            request = requestInfo(userID: 0, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
+            request = requestInfo(userID: "", requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
             request?.requestTags.append("Add Tags")
         }
         

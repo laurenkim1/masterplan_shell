@@ -14,7 +14,7 @@ class requestInfo: NSObject, NSCoding {
     
     //MARK: Properties
     
-    var userID: Int
+    var userID: String
     var requestTitle: String
     var requestPrice: Float
     var requestID: String?
@@ -43,7 +43,7 @@ class requestInfo: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init?(userID: Int, requestTitle: String, requestPrice: Float, pickUp: Int, location: CLLocation) {
+    init?(userID: String, requestTitle: String, requestPrice: Float, pickUp: Int, location: CLLocation) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -104,7 +104,7 @@ class requestInfo: NSObject, NSCoding {
     
     required convenience init?(coder aDecoder: NSCoder) {
         
-        guard let userID = aDecoder.decodeObject(forKey: PropertyKey.userID) as? Int else {
+        guard let userID = aDecoder.decodeObject(forKey: PropertyKey.userID) as? String else {
             os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
             return nil
         }
