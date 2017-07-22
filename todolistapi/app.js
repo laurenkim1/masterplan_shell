@@ -10,10 +10,11 @@ app.use('/requests', RequestController);
 var UserController = require('./user/UserController');
 app.use('/users', UserController);
 
-(deleteoldrequests(){
-    // do some stuff
-    console.log("delete")
-    setTimeout(arguments.callee, 60000);
-})();
+function deleteoldrequests() {
+	console.log("delete")
+}
+
+var timerID = setInterval(deleteoldrequests, 60000); 
+clearInterval(timerID);
 
 module.exports = app;
