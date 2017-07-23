@@ -10,8 +10,7 @@ var RequestSchema = new mongoose.Schema({
   requestTags: String,
   pickUp: Number,
   distance: Number,
-  xCoordinate: Number,
-  yCoordinate: Number 
+  location: Object
 });
 mongoose.model('Request', RequestSchema);
 module.exports = mongoose.model('Request');

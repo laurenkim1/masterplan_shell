@@ -19,10 +19,10 @@ router.post('/', function (req, res) {
             requestTags: req.body.reqestTags,
             pickUp: req.body.pickUp,
             distance: req.body.distance,
-            xCoordinate: req.body.xCoordinate,
-            yCoordinate: req.body.yCoordinate
+            location: req.body.location
         },
         function (err, request) {
+            console.log(err)
             if (err) return res.status(500).send("There was a problem adding the information to the request database.");
             res.status(200).send(request);
         });

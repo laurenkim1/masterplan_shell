@@ -70,6 +70,14 @@ class requestInfo: NSObject, NSCoding {
     
     // MARK: Public Methods
     
+    public func toLocation() -> NSDictionary! {
+        let geoloc = NSMutableDictionary()
+        let coordinates: NSArray = [location.coordinate.latitude, location.coordinate.longitude]
+        geoloc.setValue("Point", forKey: "type")
+        geoloc.setValue(coordinates, forKey: "coordinates")
+        return geoloc
+    }
+    
     public func toDictionary() -> NSDictionary! {
         let jsonable = NSMutableDictionary()
         var tags: String = ""
@@ -77,12 +85,12 @@ class requestInfo: NSObject, NSCoding {
             tags.append(tag)
             tags.append(" ")
         }
+        let geoloc: NSDictionary = self.toLocation()
         jsonable.setValue(userID, forKey: "userID")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")
         jsonable.setValue(pickUp, forKey: "pickUp")
-        jsonable.setValue(location.coordinate.latitude, forKey: "xCoordinate")
-        jsonable.setValue(location.coordinate.longitude, forKey: "yCoordinate")
+        jsonable.setValue(geoloc, forKey: "location")
         jsonable.setValue(fulfilled, forKey: "fulfilled")
         jsonable.setValue(fulfillerID, forKey: "fulfillerID")
         jsonable.setValue(tags, forKey: "requstTags")
