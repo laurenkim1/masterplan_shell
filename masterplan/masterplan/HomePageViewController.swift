@@ -218,20 +218,17 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         //2
         networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
         //3
-        var config = URLSessionConfiguration.default
+        let config = URLSessionConfiguration.default
         //4
-        var session = URLSession(configuration: config)
-        var dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data, _ response: URLResponse, _ error: Error?) -> Void in
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
             //5
             if error == nil {
-                var responseArray: [Any]? = try? JSONSerialization.jsonObject(with: data, options: [])
-                //6
-                self.parseAndAddLocations(responseArray, toArray: objects)
-                //7
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
             }
         })
         dataTask?.resume()
-        //8
     }
 
     
