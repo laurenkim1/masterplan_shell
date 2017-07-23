@@ -45,9 +45,12 @@ router.get('/:id', function (req, res) {
 });
 
 // GETS REQUESTS WITHIN RADIUS OF LOCATION FROM THE DATABASE
-router.get('/:location', function (req, res) {
+router.get('/', function (req, res) {
     Request.createIndex({ location: "2dsphere" })
-    Request.find({ location: { $nearSphere: { $geometry: req.params.geoloc, $maxDistance: req.params.radius * METERS_PER_MILE } } }, function (err, request) {
+    var lat = req.query.lat
+    var lon = req.query.lon
+    var geoloc = { type: "Point", coordinates: [ lon, lat ] }
+    Request.find({ location: { $nearSphere: { $geometry: geoloc, $maxDistance: req.params.radius * METERS_PER_MILE } } }, function (err, request) {
         if (err) return res.status(500).send("There was a problem finding the request.");
         if (!request) return res.status(404).send("No request found.");
         res.status(200).send(request);
