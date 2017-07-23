@@ -231,6 +231,14 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         })
         dataTask?.resume()
     }
+    
+    func parseAndAddRequest(requestlist: Array<Any>) -> Void {
+        for item in requestlist {
+            var location = Location(dictionary: item)
+            //2
+            destinationArray.append(location)
+        }
+    }
 
     
     // MARK: Actions

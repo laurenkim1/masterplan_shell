@@ -36,6 +36,7 @@ router.get('/', function (req, res) {
 });
 
 // GETS A SINGLE REQUEST FROM THE DATABASE
+/*
 router.get('/:id', function (req, res) {
     Request.findById(req.params.id, function (err, request) {
         if (err) return res.status(500).send("There was a problem finding the request.");
@@ -43,14 +44,19 @@ router.get('/:id', function (req, res) {
         res.status(200).send(request);
     });
 });
+*/
 
 // GETS REQUESTS WITHIN RADIUS OF LOCATION FROM THE DATABASE
 router.get('/:radius', function (req, res) {
-    Request.createIndex({ location: "2dsphere" })
-    var lat = req.query.lat
-    var lon = req.query.lon
-    var geoloc = { type: "Point", coordinates: [ lon, lat ] }
-    Request.find({ location: { $nearSphere: { $geometry: geoloc, $maxDistance: req.params.radius * METERS_PER_MILE } } }, function (err, request) {
+    var lat = parseFloat(req.query.lat)
+    var lon = parseFloat(req.query.lon)
+    var rad = parseFloat(req.params.radius)
+    console.log(lat)
+    console.log(lon)
+    console.log(rad)
+    var geoloc = [ lon, lat ]
+    Request.find({ location: { $geoWithin: { $centerSphere: [ geoloc, rad * 1609.34 ] } } }, function (err, request) {
+        console.log(err)
         if (err) return res.status(500).send("There was a problem finding the request.");
         if (!request) return res.status(404).send("No request found.");
         res.status(200).send(request);
