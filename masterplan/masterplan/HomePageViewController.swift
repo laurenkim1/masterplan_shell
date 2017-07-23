@@ -39,6 +39,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
+        
+        nearbyRequestList = 
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,7 +137,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
                 searchItemsPredicate.append(finalPredicate)
             }
  
-             */
+
             
             let requestLocation: CLLocation = value(forKeyPath: "location") as! CLLocation
             let distanceBetween: CLLocationDistance = userLocation.distance(from: requestLocation)
@@ -143,6 +145,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             let NSDistanceCeiling = NSExpression(forConstantValue: distanceCeiling)
             let distancePredicate = NSComparisonPredicate(leftExpression: NSDistanceBetween, rightExpression: NSDistanceCeiling, modifier: .direct, type: .lessThanOrEqualTo, options: .caseInsensitive)
             searchItemsPredicate.append(distancePredicate)
+ */
             
             // Add this OR predicate to our master AND predicate.
             let orMatchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates:searchItemsPredicate)
@@ -180,7 +183,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             fatalError("The dequeued cell is not an instance of NearbyRequestTableViewCell.")
         }
         
-        // Fetches the appropriate meal for the data source layout.
+        // Fetches the appropriate request for the data source layout.
         let nearbyRequest: requestInfo
         if searchController.isActive && searchController.searchBar.text != "" {
             nearbyRequest = filteredNearbyRequestList[indexPath.row]
