@@ -12,7 +12,7 @@ import MapKit
 import CoreLocation
 
 private let kBaseURL: String = "http://localhost:3000/"
-private let kRequests: String = "requests"
+private let kRequests: String = "requests/"
 
 class HomePageViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, CLLocationManagerDelegate {
     
@@ -206,11 +206,12 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Mark: Private Methods
     
-    func getNearbyRequests(_ loc: CLLocation) -> NSArray {
+    func getNearbyRequests(_ loc: CLLocation, _ rad: Float) -> NSArray {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
         let lon: String = String(format:"%f", loc.coordinate.longitude)
         let lat: String = String(format:"%f", loc.coordinate.latitude)
-        let parameterString: String = "?lat=" + lat + "&lon=" + lon
+        let radius: String = String(format:"%f", rad)
+        let parameterString: String = radius + "?lat=" + lat + "&lon=" + lon
         let url = URL(string: (requests + parameterString))
         //1
         var networkrequest = URLRequest(url: url!)

@@ -45,7 +45,7 @@ router.get('/:id', function (req, res) {
 });
 
 // GETS REQUESTS WITHIN RADIUS OF LOCATION FROM THE DATABASE
-router.get('/', function (req, res) {
+router.get('/:radius', function (req, res) {
     Request.createIndex({ location: "2dsphere" })
     var lat = req.query.lat
     var lon = req.query.lon
