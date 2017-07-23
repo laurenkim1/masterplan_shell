@@ -11,6 +11,9 @@ import os.log
 import MapKit
 import CoreLocation
 
+private let kBaseURL: String = "http://localhost:3000/"
+private let kRequests: String = "requests"
+
 class HomePageViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, CLLocationManagerDelegate {
     
     // MARK: Properties
@@ -199,6 +202,36 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         cell.distanceLabel.text = _distanceString
         
         return cell
+    }
+    
+    // Mark: Private Methods
+    
+    func getNearbyRequests(_ loc: CLLocation) -> NSArray {
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let lon: String = String(format:"%f", loc.coordinate.longitude)
+        let lat: String = String(format:"%f", loc.coordinate.latitude)
+        let parameterString: String = "?lat=" + lat + "&lon=" + lon
+        let url = URL(string: (requests + parameterString))
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "GET"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        var config = URLSessionConfiguration.default
+        //4
+        var session = URLSession(configuration: config)
+        var dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data, _ response: URLResponse, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                var responseArray: [Any]? = try? JSONSerialization.jsonObject(with: data, options: [])
+                //6
+                self.parseAndAddLocations(responseArray, toArray: objects)
+                //7
+            }
+        })
+        dataTask?.resume()
+        //8
     }
 
     

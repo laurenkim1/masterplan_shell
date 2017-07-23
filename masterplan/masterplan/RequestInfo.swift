@@ -72,7 +72,7 @@ class requestInfo: NSObject, NSCoding {
     
     public func toLocation() -> NSDictionary! {
         let geoloc = NSMutableDictionary()
-        let coordinates: NSArray = [location.coordinate.latitude, location.coordinate.longitude]
+        let coordinates: NSArray = [location.coordinate.longitude, location.coordinate.latitude]
         geoloc.setValue("Point", forKey: "type")
         geoloc.setValue(coordinates, forKey: "coordinates")
         return geoloc
