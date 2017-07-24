@@ -68,6 +68,35 @@ class requestInfo: NSObject, NSCoding {
         self.distance = 0.0
     }
     
+    convenience init?(dict: NSDictionary) {
+        guard let userID = dict["userID"] as? String else {
+            os_log("Unable to decode the userID for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let requestTitle = dict["requestTitle"] as? String else {
+            os_log("Unable to decode the name for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let requestPrice = dict["requestPrice"] as? Float else {
+            os_log("Unable to decode the price for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let pickUp = dict["pickUp"] as? Int else {
+            os_log("Unable to decode the pickUp bool for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let geoloc = dict["location"] as? NSDictionary else {
+            os_log("Unable to decode the location for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let coordinates = geoloc["coordinates"] as? Array<Double> else {
+            os_log("Unable to decode the coordinates for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        let location = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
+        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
+    }
+    
     // MARK: Public Methods
     
     public func toLocation() -> NSDictionary! {

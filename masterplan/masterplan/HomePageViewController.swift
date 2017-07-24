@@ -43,7 +43,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             locationManager.startUpdatingLocation()
         }
         
-        nearbyRequestList = 
+        self.getNearbyRequests(userLocation, 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -206,7 +206,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // Mark: Private Methods
     
-    func getNearbyRequests(_ loc: CLLocation, _ rad: Float) -> NSArray {
+    func getNearbyRequests(_ loc: CLLocation, _ rad: Float) -> Void {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
         let lon: String = String(format:"%f", loc.coordinate.longitude)
         let lat: String = String(format:"%f", loc.coordinate.latitude)
@@ -226,7 +226,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                self.parseAndAddRequest(requestlist: response!)
             }
         })
         dataTask?.resume()
@@ -234,12 +235,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func parseAndAddRequest(requestlist: Array<Any>) -> Void {
         for item in requestlist {
-            var location = Location(dictionary: item)
+            let request = requestInfo(dict: item as! NSDictionary)
             //2
-            destinationArray.append(location)
+            nearbyRequestList.append(request!)
         }
     }
-
     
     // MARK: Actions
 
