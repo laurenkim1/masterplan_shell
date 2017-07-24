@@ -29,6 +29,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getNearbyRequests(userLocation, 1)
+        
+        print(nearbyRequestList.count)
 
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -46,6 +48,9 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        clearsSelectionOnViewWillAppear = true
+        self.tableView.reloadData()
+        super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
