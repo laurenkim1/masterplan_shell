@@ -28,6 +28,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getNearbyRequests(userLocation, 1)
 
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -42,8 +43,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
-        
-        self.getNearbyRequests(userLocation, 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -194,7 +193,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             nearbyRequest = nearbyRequestList[indexPath.row]
         }
         
-        
         // change these parameters to match a request table cell
         cell.nameLabel.text = nearbyRequest.requestTitle
         let _distance: CLLocationDistance = userLocation.distance(from: nearbyRequest.location)
@@ -235,10 +233,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func parseAndAddRequest(requestlist: Array<Any>) -> Void {
         for item in requestlist {
-            let request = requestInfo(dict: item as! NSDictionary)
-            print(request!)
-            //2
-            nearbyRequestList.append(request!)
+            if let request = requestInfo(dict: item as! NSDictionary) {
+                print(request)
+                //2
+                nearbyRequestList += [request]
+            }
         }
     }
     
