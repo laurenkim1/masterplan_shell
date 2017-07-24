@@ -44,6 +44,9 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             locationManager.startUpdatingLocation()
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

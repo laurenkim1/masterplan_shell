@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		470EDFAE1F25A1C200480147 /* HomePageSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470EDFAD1F25A1C200480147 /* HomePageSceneViewController.swift */; };
 		47408CA21F188A3C0097C957 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA11F188A3C0097C957 /* HomePageViewController.swift */; };
 		47408CA41F188FC60097C957 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA31F188FC60097C957 /* TabBarController.swift */; };
 		47408CA61F19F69F0097C957 /* NewRequestPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */; };
@@ -35,7 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		470EDFAD1F25A1C200480147 /* HomePageSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageSceneViewController.swift; sourceTree = "<group>"; };
 		47408CA11F188A3C0097C957 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		47408CA31F188FC60097C957 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../TabBarController.swift; sourceTree = "<group>"; };
 		47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestPlaceholder.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 			children = (
 				47C888F51F0A169D003ED4F7 /* AppDelegate.swift */,
 				47408CA31F188FC60097C957 /* TabBarController.swift */,
-				470EDFAD1F25A1C200480147 /* HomePageSceneViewController.swift */,
 				47408CA11F188A3C0097C957 /* HomePageViewController.swift */,
 				47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */,
 				47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */,
@@ -229,7 +226,6 @@
 				47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */,
 				47C889181F0F3E13003ED4F7 /* DistancePageViewController.swift in Sources */,
 				47408CA61F19F69F0097C957 /* NewRequestPlaceholder.swift in Sources */,
-				470EDFAE1F25A1C200480147 /* HomePageSceneViewController.swift in Sources */,
 				47408CA41F188FC60097C957 /* TabBarController.swift in Sources */,
 				47408CA21F188A3C0097C957 /* HomePageViewController.swift in Sources */,
 				47C8891A1F10873B003ED4F7 /* NewRequestViewController.swift in Sources */,
