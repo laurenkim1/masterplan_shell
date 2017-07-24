@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
             requestPrice: req.body.requestPrice,
             fulfilled: req.body.fulfilled,
             fulfillerID: req.body.fulfillerID,
-            requestTags: req.body.reqestTags,
+            requestTags: req.body.requestTags,
             pickUp: req.body.pickUp,
             distance: req.body.distance,
             location: req.body.location
