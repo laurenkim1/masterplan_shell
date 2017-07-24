@@ -234,6 +234,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
                 self.parseAndAddRequest(requestlist: response!)
+                self.tableView.reloadData()
             }
         })
         dataTask?.resume()
