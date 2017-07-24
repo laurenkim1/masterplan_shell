@@ -407,7 +407,7 @@
         <!--Home Page-->
         <scene sceneID="W49-kx-KgW">
             <objects>
-                <viewController title="Home Page" id="dol-ld-gmi" sceneMemberID="viewController">
+                <viewController title="Home Page" id="dol-ld-gmi" customClass="HomePageSceneViewController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JJW-eY-ihM"/>
                         <viewControllerLayoutGuide type="bottom" id="2FY-hK-D59"/>
@@ -499,7 +499,7 @@
                                 <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Js-TP-cAd" id="3GU-Qa-u7U">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQJ-64-8oC">
