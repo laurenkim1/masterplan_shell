@@ -495,7 +495,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nearbyRequestTableCell" id="6Js-TP-cAd" customClass="NearbyRequestTableViewCell" customModule="masterplan" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NearbyRequestTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NearbyRequestTableViewCell" id="6Js-TP-cAd" customClass="NearbyRequestTableViewCell" customModule="masterplan" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Js-TP-cAd" id="3GU-Qa-u7U">

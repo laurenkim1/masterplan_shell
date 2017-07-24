@@ -85,6 +85,10 @@ class requestInfo: NSObject, NSCoding {
             os_log("Unable to decode the pickUp bool for a request.", log: OSLog.default, type: .debug)
             return nil
         }
+        guard let tagString = dict["requestTags"] as? String else {
+            os_log("Unable to decode the tags for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
         guard let geoloc = dict["location"] as? NSDictionary else {
             os_log("Unable to decode the location for a request.", log: OSLog.default, type: .debug)
             return nil
@@ -95,6 +99,7 @@ class requestInfo: NSObject, NSCoding {
         }
         let location = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
         self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
+        self.tagString = tagString
     }
     
     // MARK: Public Methods
@@ -122,7 +127,7 @@ class requestInfo: NSObject, NSCoding {
         jsonable.setValue(geoloc, forKey: "location")
         jsonable.setValue(fulfilled, forKey: "fulfilled")
         jsonable.setValue(fulfillerID, forKey: "fulfillerID")
-        jsonable.setValue(tags, forKey: "requstTags")
+        jsonable.setValue(tags, forKey: "requestTags")
         jsonable.setValue(distance, forKey: "distance")
         return jsonable
     }

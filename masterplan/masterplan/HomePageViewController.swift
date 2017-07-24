@@ -236,6 +236,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     func parseAndAddRequest(requestlist: Array<Any>) -> Void {
         for item in requestlist {
             let request = requestInfo(dict: item as! NSDictionary)
+            print(request!)
             //2
             nearbyRequestList.append(request!)
         }
