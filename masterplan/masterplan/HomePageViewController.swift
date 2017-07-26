@@ -28,14 +28,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getNearbyRequests(userLocation, 1)
-        
-        print(nearbyRequestList.count)
-
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -46,6 +38,14 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             locationManager.startUpdatingLocation()
         }
         
+        self.getNearbyRequests(userLocation, 1)
+
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        self.tableView.reloadData()
         self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
     }
     
@@ -205,7 +205,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         
         // change these parameters to match a request table cell
         cell.nameLabel.text = nearbyRequest.requestTitle
-        let _distance: CLLocationDistance = userLocation.distance(from: nearbyRequest.location)
+        
+        userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
+        
+        let _meterDistance: CLLocationDistance = userLocation.distance(from: nearbyRequest.location)
+        let _distance: Double = _meterDistance/1609.34
         let _distanceString: String = String(format:"%.2f", _distance)
         cell.distanceLabel.text = _distanceString
         
