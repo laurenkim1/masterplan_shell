@@ -45,6 +45,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
+        
+        self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -248,6 +250,16 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
                 nearbyRequestList += [request]
             }
         }
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) -> Void {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        self.nearbyRequestList = []
+        self.getNearbyRequests(userLocation, 1)
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     // MARK: Actions
