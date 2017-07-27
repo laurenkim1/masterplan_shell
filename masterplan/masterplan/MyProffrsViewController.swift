@@ -16,15 +16,21 @@ class MyProffrsViewController: UITableViewController {
     
     var senderDisplayName: String? // 1
     private var channels: [ProffrChannel] = []
+    
+    private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
+    private var channelRefHandle: DatabaseHandle?
 
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        title = "RW RIC"
+        observeChannels()
+    }
+    
+    deinit {
+        if let refHandle = channelRefHandle {
+            channelRef.removeObserver(withHandle: refHandle)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +63,29 @@ class MyProffrsViewController: UITableViewController {
         return cell
     }
     
+    // MARK: UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let channel = channels[(indexPath as NSIndexPath).row]
+        self.performSegue(withIdentifier: "ShowProffr", sender: channel)
+    }
+    
+    // MARK: Firebase related methods
+    
+    private func observeChannels() {
+        // Use the observe method to listen for new
+        // channels being written to the Firebase DB
+        channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
+            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+            let id = snapshot.key
+            if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
+                self.channels.append(ProffrChannel(id: id, name: name))
+                self.tableView.reloadData()
+            } else {
+                print("Error! Could not decode channel data")
+            }
+        })
+    }
 
     /*
     // Override to support conditional editing of the table view.

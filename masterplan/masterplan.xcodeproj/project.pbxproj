@@ -19,6 +19,7 @@
 		47C37F041F29847F007FC639 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C37F031F29847F007FC639 /* LoginViewController.swift */; };
 		47C57A8C1F29A78900BC1D06 /* MyProffrsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */; };
 		47C57A8E1F29AA4200BC1D06 /* ProffrChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */; };
+		47C57A901F29AF5700BC1D06 /* CreateProffrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */; };
 		47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C888F51F0A169D003ED4F7 /* AppDelegate.swift */; };
 		47C888FB1F0A169D003ED4F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47C888F91F0A169D003ED4F7 /* Main.storyboard */; };
 		47C888FD1F0A169D003ED4F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47C888FC1F0A169D003ED4F7 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		47C37F031F29847F007FC639 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProffrsViewController.swift; sourceTree = "<group>"; };
 		47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProffrChannel.swift; sourceTree = "<group>"; };
+		47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProffrViewController.swift; sourceTree = "<group>"; };
 		47C888F21F0A169D003ED4F7 /* masterplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = masterplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47C888F51F0A169D003ED4F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47C888FA1F0A169D003ED4F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
 				47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */,
 				47C37F011F2981AA007FC639 /* ChatViewController.swift */,
+				47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */,
 				47C889151F0C8939003ED4F7 /* RequestInfo.swift */,
 				47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
@@ -385,6 +388,7 @@
 				47C57A8C1F29A78900BC1D06 /* MyProffrsViewController.swift in Sources */,
 				47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */,
 				47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */,
+				47C57A901F29AF5700BC1D06 /* CreateProffrViewController.swift in Sources */,
 				47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
