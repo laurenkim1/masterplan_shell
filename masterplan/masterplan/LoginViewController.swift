@@ -13,6 +13,8 @@ import FacebookLogin
 
 class LogInViewController: UIViewController {
     
+    // MARK: Properties
+    @IBOutlet weak var nameField: UITextField!
     var loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
 
     override func viewDidLoad() {
@@ -49,6 +51,9 @@ class LogInViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         let navVc = segue.destination as! UITabBarController
+        let channelVc = navVc.viewControllers?[1] as! MyProffrsViewController
+        
+        channelVc.senderDisplayName = nameField?.text
     }
     
 

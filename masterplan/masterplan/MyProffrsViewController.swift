@@ -23,7 +23,7 @@ class MyProffrsViewController: UITableViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "RW RIC"
+        title = "Proffrs"
         observeChannels()
     }
     
@@ -51,7 +51,7 @@ class MyProffrsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellIdentifier = "ProffrChannel"
+        let cellIdentifier = "proffrChannel"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? NearbyRequestTableViewCell else {
             fatalError("The dequeued cell is not an instance of ProffrChannel.")

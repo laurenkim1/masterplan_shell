@@ -12,6 +12,7 @@ class NewRequestPlaceholderVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "New"
 
         // Do any additional setup after loading the view.
     }

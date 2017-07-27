@@ -28,6 +28,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Home"
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
