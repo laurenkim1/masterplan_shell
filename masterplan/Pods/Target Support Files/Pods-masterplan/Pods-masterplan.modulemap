@@ -1,0 +1,6 @@
+framework module Pods_masterplan {
+  umbrella header "Pods-masterplan-umbrella.h"
+
+  export *
+  module * { export * }
+}
