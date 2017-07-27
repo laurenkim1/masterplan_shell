@@ -12,19 +12,22 @@ import FacebookCore
 import FacebookLogin
 
 class LogInViewController: UIViewController {
+    
+    var loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let accessToken = AccessToken.current {
             // User is logged in, use 'accessToken' here.
             // User is logged in, do work such as go to next view controller.
-            performSegue(withIdentifier: "loggedIn", sender: self)
+            self.performSegue(withIdentifier: "loggedIn", sender: nil)
         }
         
-        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
         loginButton.center = view.center
-        
         view.addSubview(loginButton)
     }
 
@@ -33,12 +36,19 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Private Methods
+    
+    /*
+    func toggleHiddenState(_ shouldHide: Bool) {
+        loginButton.isHidden = shouldHide
+    }
+ */
     
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        let navVc = segue.destination as! TabBarController
+        let navVc = segue.destination as! UITabBarController
     }
     
 

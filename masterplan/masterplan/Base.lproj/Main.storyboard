@@ -418,7 +418,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="WJV-gp-VjN" kind="presentation" identifier="loggedIn" id="70C-Vz-giT"/>
+                        <segue destination="WJV-gp-VjN" kind="presentation" identifier="loggedIn" id="EEB-gC-aMw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6J-mL-uCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
