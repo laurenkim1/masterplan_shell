@@ -15,7 +15,7 @@ class MyProffrsViewController: UITableViewController {
     // MARK: Properties
     
     var senderDisplayName: String? // 1
-    private var channels: [ProffrChannel] = [] // 3
+    private var channels: [ProffrChannel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
