@@ -27,7 +27,7 @@ class CreateProffrViewController: UIViewController {
     
     // MARK :Actions
     @IBAction func createChannel(_ sender: AnyObject) {
-        if let name = newChannelTextField?.text { // 1
+        if let name = newProffrTextField?.text { // 1
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem = [ // 3
                 "name": name
