@@ -16,6 +16,7 @@
 		47C37EFF1F298174007FC639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47C37EFE1F298174007FC639 /* GoogleService-Info.plist */; };
 		47C37F001F298174007FC639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47C37EFE1F298174007FC639 /* GoogleService-Info.plist */; };
 		47C37F021F2981AA007FC639 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C37F011F2981AA007FC639 /* ChatViewController.swift */; };
+		47C37F041F29847F007FC639 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C37F031F29847F007FC639 /* LoginViewController.swift */; };
 		47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C888F51F0A169D003ED4F7 /* AppDelegate.swift */; };
 		47C888FB1F0A169D003ED4F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47C888F91F0A169D003ED4F7 /* Main.storyboard */; };
 		47C888FD1F0A169D003ED4F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47C888FC1F0A169D003ED4F7 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListItemViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		47C37EFE1F298174007FC639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47C37F011F2981AA007FC639 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		47C37F031F29847F007FC639 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47C888F21F0A169D003ED4F7 /* masterplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = masterplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47C888F51F0A169D003ED4F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47C888FA1F0A169D003ED4F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				47C888F51F0A169D003ED4F7 /* AppDelegate.swift */,
+				47C37F031F29847F007FC639 /* LoginViewController.swift */,
 				47408CA31F188FC60097C957 /* TabBarController.swift */,
 				47408CA11F188A3C0097C957 /* HomePageViewController.swift */,
 				47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */,
@@ -371,6 +374,7 @@
 				47408CA21F188A3C0097C957 /* HomePageViewController.swift in Sources */,
 				47C8891A1F10873B003ED4F7 /* NewRequestViewController.swift in Sources */,
 				47C889161F0C8939003ED4F7 /* RequestInfo.swift in Sources */,
+				47C37F041F29847F007FC639 /* LoginViewController.swift in Sources */,
 				47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */,
 				47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */,
 				47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */,
