@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal class Channel {
+internal class ProffrChannel {
     internal let id: String
     internal let name: String
     
