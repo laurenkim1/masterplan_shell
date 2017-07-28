@@ -552,15 +552,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="fWT-tQ-1xb" kind="presentation" identifier="OpenProffrChat" id="pj9-LH-Ziz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fax-Nj-JFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3447" y="-2133"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="eXl-68-SO5">
             <objects>
-                <viewController id="fWT-tQ-1xb" sceneMemberID="viewController">
+                <viewController id="fWT-tQ-1xb" customClass="ChatViewController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vbm-wj-YZF"/>
                         <viewControllerLayoutGuide type="bottom" id="KgJ-t3-w26"/>
