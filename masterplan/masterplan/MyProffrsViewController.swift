@@ -79,7 +79,7 @@ class MyProffrsViewController: UITableViewController {
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
             if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
-                self.channels.append(ProffrChannel(id: id, name: name))
+                self.channels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String))
                 self.tableView.reloadData()
             } else {
                 print("Error! Could not decode channel data")

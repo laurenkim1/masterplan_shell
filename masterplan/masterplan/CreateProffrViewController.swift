@@ -28,10 +28,11 @@ class CreateProffrViewController: UIViewController {
     
     // MARK :Actions
     @IBAction func createChannel(_ sender: AnyObject) {
-        if let name = request?.requestTitle { // username actually
+        if let subTitle = request?.requestTitle { // username actually
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem = [ // 3
-                "name": name
+                "name": name,
+                "subTitle": subTitle
             ]
             newChannelRef.setValue(channelItem) // 4
         }

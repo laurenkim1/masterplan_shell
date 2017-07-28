@@ -15,20 +15,22 @@ class LogInViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var nameField: UITextField!
-    var loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
         if let accessToken = AccessToken.current {
             // User is logged in, use 'accessToken' here.
             // User is logged in, do work such as go to next view controller.
-            self.performSegue(withIdentifier: "loggedIn", sender: nil)
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
+            Auth.auth().signIn(with: credential) { (user, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                self.performSegue(withIdentifier: "loggedIn", sender: nil)
+            }
         }
-        
         loginButton.center = view.center
         view.addSubview(loginButton)
     }
