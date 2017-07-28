@@ -540,12 +540,40 @@
                     <view key="view" contentMode="scaleToFill" id="ywe-DW-bkN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkO-9Y-vA3">
+                                <rect key="frame" x="137" y="294" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Proffr"/>
+                                <connections>
+                                    <action selector="createProffr:" destination="MWA-fT-M9l" eventType="touchUpInside" id="ME6-cf-H4j"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fax-Nj-JFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3447" y="-2133"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eXl-68-SO5">
+            <objects>
+                <viewController id="fWT-tQ-1xb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vbm-wj-YZF"/>
+                        <viewControllerLayoutGuide type="bottom" id="KgJ-t3-w26"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PaQ-6f-hVz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vg6-Y8-cRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2559" y="-2133"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

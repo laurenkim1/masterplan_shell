@@ -28,7 +28,7 @@ class CreateProffrViewController: UIViewController {
     }
     
     // MARK :Actions
-    @IBAction func createChannel(_ sender: UIButton) {
+    @IBAction func createProffr(_ sender: UIButton) {
         if let subTitle = request?.requestTitle { // username actually
             let newChannelRef = channelRef.childByAutoId() // 2
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
@@ -36,7 +36,7 @@ class CreateProffrViewController: UIViewController {
                 let id = snapshot.key
                 if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
                     let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
-                    self.performSegue(withIdentifier: "ShowProffr", sender: channel)
+                    self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
                 } else {
                     print("Error! Could not decode channel data")
                 }
