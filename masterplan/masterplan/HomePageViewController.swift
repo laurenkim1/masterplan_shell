@@ -269,14 +269,30 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // MARK: Actions
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let CreateProffrViewController = segue.destination as? CreateProffrViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
+        guard let selectedRequestCell = sender as? NearbyRequestTableViewCell else {
+            fatalError("Unexpected sender: \(sender)")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedRequestCell) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        let selectedRequest: requestInfo
+        if searchController.isActive && searchController.searchBar.text != "" {
+            selectedRequest = nearbyRequestList[indexPath.row]
+        } else {
+            selectedRequest = nearbyRequestList[indexPath.row]
+        }
+        
+        CreateProffrViewController.request = selectedRequest
     }
-    */
 
 }

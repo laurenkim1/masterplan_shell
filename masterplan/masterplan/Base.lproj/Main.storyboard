@@ -510,6 +510,7 @@
                                 <connections>
                                     <outlet property="distanceLabel" destination="3s2-pq-tUf" id="sGP-K5-x1B"/>
                                     <outlet property="nameLabel" destination="GQJ-64-8oC" id="hhR-aA-HR3"/>
+                                    <segue destination="MWA-fT-M9l" kind="show" id="Ey9-Q4-alj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -527,6 +528,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SsI-09-cVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4322" y="-2133"/>
+        </scene>
+        <!--Create Proffr View Controller-->
+        <scene sceneID="Jge-yM-2Eu">
+            <objects>
+                <viewController id="MWA-fT-M9l" customClass="CreateProffrViewController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RPD-hQ-WVG"/>
+                        <viewControllerLayoutGuide type="bottom" id="JkI-pb-KqV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ywe-DW-bkN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fax-Nj-JFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3447" y="-2133"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
