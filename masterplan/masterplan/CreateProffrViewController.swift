@@ -13,6 +13,7 @@ class CreateProffrViewController: UIViewController {
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     private var channelRefHandle: DatabaseHandle?
+    var senderDisplayName: String?
     var request: requestInfo?
 
     override func viewDidLoad() {
@@ -31,7 +32,7 @@ class CreateProffrViewController: UIViewController {
         if let subTitle = request?.requestTitle { // username actually
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem = [ // 3
-                "name": name,
+                "name": senderDisplayName,
                 "subTitle": subTitle
             ]
             newChannelRef.setValue(channelItem) // 4
