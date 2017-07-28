@@ -28,7 +28,7 @@ class CreateProffrViewController: UIViewController {
     }
     
     // MARK :Actions
-    @IBAction func createChannel(_ sender: AnyObject) {
+    @IBAction func createChannel(_ sender: UIButton) {
         if let subTitle = request?.requestTitle { // username actually
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem = [ // 3
@@ -36,6 +36,15 @@ class CreateProffrViewController: UIViewController {
                 "subTitle": subTitle
             ]
             newChannelRef.setValue(channelItem) // 4
+            let channelData = newChannelRef.value as! Dictionary<String, AnyObject>
+            let id = newChannelRef.key
+            if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
+                var channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
+            } else {
+                print("Error! Could not decode channel data")
+            }
+            
+            self.performSegue(withIdentifier: "ShowProffr", sender: channel)
         }
     }
 
