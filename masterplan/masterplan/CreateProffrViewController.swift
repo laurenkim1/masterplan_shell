@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import Photos
 
+private let kBaseURL: String = "https://"
+
 class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
@@ -70,8 +72,10 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
         
-        // 1
-        self.photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL
+        let photoReferenceURLString: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        let photoReferenceString: String = photoReferenceURLString.absoluteString!
+        
+        self.photoReferenceUrl = URL(fileURLWithPath: kBaseURL).appendingPathComponent(photoReferenceString)
 
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
@@ -170,9 +174,10 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     private func sendPhotoMessage(messageRef: DatabaseReference) -> String? {
         let itemRef = messageRef.childByAutoId()
         
-        let messageItem = [
+        let messageItem: NSDictionary = [
             "photoURL": imageURLNotSetKey,
             "senderId": senderId!,
+            "text": messageTextField.text!
             ]
         
         itemRef.setValue(messageItem)
