@@ -296,6 +296,23 @@
             </objects>
             <point key="canvasLocation" x="1360.8" y="2276.3118440779613"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="uXz-wD-HhI">
+            <objects>
+                <navigationController id="3Aa-8q-c6k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="9Tm-7j-DQ3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2V9-Ss-NTg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Aqv-9X-yoZ" kind="relationship" relationship="rootViewController" id="PsB-V5-Hyk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UH7-LX-FIx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6383" y="627"/>
+        </scene>
         <!--MyProffrsList-->
         <scene sceneID="C6y-KH-Ef1">
             <objects>
@@ -331,6 +348,7 @@
                                 <connections>
                                     <outlet property="senderLabel" destination="jJA-QM-4Yl" id="wEn-05-9Bn"/>
                                     <outlet property="subTitle" destination="331-YC-Ucm" id="r3j-LY-UjU"/>
+                                    <segue destination="fkJ-PF-zxo" kind="show" identifier="ShowProffr" id="OKr-Dz-DP7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -340,10 +358,29 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="ad7-U5-gvC"/>
+                    <navigationItem key="navigationItem" title="My Proffrs" id="Hme-Xs-6Ex"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8b2-BS-Fgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2954.5" y="880.5"/>
+            <point key="canvasLocation" x="-5063" y="627"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="dgb-Yx-3xL">
+            <objects>
+                <viewController id="fkJ-PF-zxo" customClass="ChatViewController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lY1-kn-0Pc"/>
+                        <viewControllerLayoutGuide type="bottom" id="uCL-D4-JEZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YAu-e7-kwH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ieO-bV-k8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3991" y="627"/>
         </scene>
         <!--NewRequestPlaceHolder-->
         <scene sceneID="nVq-Qp-hea">
@@ -466,10 +503,10 @@
                     </tabBar>
                     <connections>
                         <segue destination="uEy-TV-aUB" kind="relationship" relationship="viewControllers" id="9cF-l8-kzW"/>
-                        <segue destination="Aqv-9X-yoZ" kind="relationship" relationship="viewControllers" id="t95-yL-wNf"/>
-                        <segue destination="ubh-FT-2aw" kind="relationship" relationship="viewControllers" id="a8O-EA-ReI"/>
-                        <segue destination="YKH-0C-4dr" kind="relationship" relationship="viewControllers" id="np1-9h-U6f"/>
-                        <segue destination="fFG-pR-cqY" kind="relationship" relationship="viewControllers" id="3nN-Iq-pnb"/>
+                        <segue destination="3Aa-8q-c6k" kind="relationship" relationship="viewControllers" id="hgo-BE-4tn"/>
+                        <segue destination="ubh-FT-2aw" kind="relationship" relationship="viewControllers" id="hqd-F4-oqd"/>
+                        <segue destination="YKH-0C-4dr" kind="relationship" relationship="viewControllers" id="s6t-ra-c7R"/>
+                        <segue destination="fFG-pR-cqY" kind="relationship" relationship="viewControllers" id="vjX-kK-7kq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njb-ii-U29" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -600,6 +637,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oYG-3c-WOm"/>
+        <segue reference="yDC-xa-2uZ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -97,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47C57A931F2C28C200BC1D06 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				47C889151F0C8939003ED4F7 /* RequestInfo.swift */,
+				47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		47C888E91F0A169D003ED4F7 = {
 			isa = PBXGroup;
 			children = (
@@ -127,15 +136,14 @@
 				47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */,
 				47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */,
 				47C57A911F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift */,
+				47C37F011F2981AA007FC639 /* ChatViewController.swift */,
 				47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */,
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
 				47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */,
 				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
 				47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */,
-				47C37F011F2981AA007FC639 /* ChatViewController.swift */,
 				47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */,
-				47C889151F0C8939003ED4F7 /* RequestInfo.swift */,
-				47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */,
+				47C57A931F2C28C200BC1D06 /* Models */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
 				47C888FC1F0A169D003ED4F7 /* Assets.xcassets */,
 				47C888FE1F0A169D003ED4F7 /* LaunchScreen.storyboard */,

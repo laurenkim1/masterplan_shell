@@ -132,7 +132,7 @@ class MyProffrsViewController: UITableViewController {
             
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel = channel
-            chatVc.channelRef = channelRef.child(channel.id)
+            chatVc.channelRef = self.channelRef.child(channel.id)
         }
     }
 
