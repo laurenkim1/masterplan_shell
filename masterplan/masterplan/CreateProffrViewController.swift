@@ -12,8 +12,16 @@ import Photos
 
 class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // MARK: Properties
+    
+    private let imageURLNotSetKey = "NOTSET"
+    var senderId: String!
+    var photoReferenceUrl: URL!
+    
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
-    private var channelRefHandle: DatabaseHandle?
+    
+    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://chatchat-rw-cf107.appspot.com")
+    
     var senderDisplayName: String?
     var request: requestInfo?
     
@@ -22,6 +30,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.senderId = Auth.auth().currentUser?.uid
 
         // Handle the text field’s user input through delegate callbacks.
         messageTextField.delegate = self
@@ -61,9 +70,13 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
         
+        // 1
+        self.photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL
+
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
+
     
     
     // MARK: Actions
@@ -86,8 +99,33 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     
     @IBAction func createProffr(_ sender: UIButton) {
-        if let subTitle = request?.requestTitle { // username actually
+        if let subTitle = request?.requestTitle {
             let newChannelRef = channelRef.childByAutoId() // 2
+            let messageRef: DatabaseReference = newChannelRef.child("messages")
+            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
+            let asset = assets.firstObject
+            
+            // 3
+            if let key = sendPhotoMessage(messageRef: messageRef) {
+                // 4
+                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+                    let imageFileURL = contentEditingInput?.fullSizeImageURL
+                    
+                    // 5
+                    let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(self.photoReferenceUrl.lastPathComponent)"
+                    
+                    // 6
+                    self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
+                        if let error = error {
+                            print("Error uploading photo: \(error.localizedDescription)")
+                            return
+                        }
+                        // 7
+                        self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key, messageRef: messageRef)
+                    }
+                })
+            }
+            
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
                 let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
                 let id = snapshot.key
@@ -114,9 +152,6 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         if let channel = sender as? ProffrChannel {
             let chatVc = segue.destination as! ChatViewController
             
-            let message = messageTextField.text ?? ""
-            let photo = photoImageView.image
-            
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel = channel
             chatVc.channelRef = channelRef.child(channel.id)
@@ -130,6 +165,24 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         // Disable the Save button if the text field is empty.
         let text = messageTextField.text ?? ""
         // createProffrButton.isEnabled = !text.isEmpty
+    }
+    
+    private func sendPhotoMessage(messageRef: DatabaseReference) -> String? {
+        let itemRef = messageRef.childByAutoId()
+        
+        let messageItem = [
+            "photoURL": imageURLNotSetKey,
+            "senderId": senderId!,
+            ]
+        
+        itemRef.setValue(messageItem)
+        
+        return itemRef.key
+    }
+    
+    private func setImageURL(_ url: String, forPhotoMessageWithKey key: String, messageRef: DatabaseReference) {
+        let itemRef = messageRef.child(key)
+        itemRef.updateChildValues(["photoURL": url])
     }
 
 }
