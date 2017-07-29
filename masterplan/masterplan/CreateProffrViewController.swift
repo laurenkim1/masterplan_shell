@@ -60,6 +60,7 @@ class CreateProffrViewController: UIViewController {
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel = channel
             chatVc.channelRef = channelRef.child(channel.id)
+            chatVc.hidesBottomBarWhenPushed = true
         }
     }
 

@@ -132,6 +132,7 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.channel = channel
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref
+        proffrChatVc.hidesBottomBarWhenPushed = true
     }
 
 }

@@ -326,18 +326,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="proffrChannel" tableViewCell="Oqt-AI-RhE" id="eFZ-Qg-mah">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJA-QM-4Yl">
-                                            <rect key="frame" x="42" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="42" y="0.0" width="205" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="331-YC-Ucm">
-                                            <rect key="frame" x="42" y="22" width="42" height="21"/>
+                                            <rect key="frame" x="42" y="22" width="205" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -362,7 +362,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8b2-BS-Fgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5063" y="627"/>
+            <point key="canvasLocation" x="-5063.1999999999998" y="626.53673163418296"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="dgb-Yx-3xL">
@@ -380,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieO-bV-k8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3991" y="627"/>
+            <point key="canvasLocation" x="-3994" y="634"/>
         </scene>
         <!--NewRequestPlaceHolder-->
         <scene sceneID="nVq-Qp-hea">
@@ -610,7 +610,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="fWT-tQ-1xb" kind="presentation" identifier="OpenProffrChat" id="pj9-LH-Ziz"/>
+                        <segue destination="fWT-tQ-1xb" kind="show" identifier="OpenProffrChat" id="pj9-LH-Ziz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fax-Nj-JFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
