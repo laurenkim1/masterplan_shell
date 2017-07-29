@@ -20,7 +20,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     
-    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://chatchat-rw-cf107.appspot.com")
+    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "proffr-d0848.appspot.com")
     
     var senderDisplayName: String?
     var request: requestInfo?
