@@ -53,12 +53,13 @@ class MyProffrsViewController: UITableViewController {
         
         let cellIdentifier = "proffrChannel"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? NearbyRequestTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MyProffrsTableViewCell else {
             fatalError("The dequeued cell is not an instance of ProffrChannel.")
         }
 
         // Configure the cell...
-        cell.textLabel?.text = channels[(indexPath as NSIndexPath).row].name
+        cell.senderLabel?.text = channels[(indexPath as NSIndexPath).row].name
+        cell.subTitle?.text = channels[(indexPath as NSIndexPath).row].subTitle
 
         return cell
     }
