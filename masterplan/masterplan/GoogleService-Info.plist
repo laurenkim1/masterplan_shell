@@ -35,6 +35,6 @@
 	<key>GOOGLE_APP_ID</key>
 	<string>1:163697920778:ios:2c4d49ac70177a0c</string>
 	<key>DATABASE_URL</key>
-	<string>https://proffr-d0848.firebaseio.com</string>
+	<string>https://proffr-d0848.firebaseio.com/</string>
 </dict>
 </plist>

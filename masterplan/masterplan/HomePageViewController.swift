@@ -293,6 +293,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         }
         
         CreateProffrViewController.request = selectedRequest
+        CreateProffrViewController.senderDisplayName = "Lauren Kim"
     }
 
 }

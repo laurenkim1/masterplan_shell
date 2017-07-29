@@ -38,12 +38,12 @@ class CreateProffrViewController: UIViewController {
                     let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
                     self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
                 } else {
-                    print("Error! Could not decode channel data")
+                    print("Error! Could not decode channel data in Create Proffr")
                 }
                 
             })
-            let channelItem = [ // 3
-                "name": senderDisplayName,
+            let channelItem: NSDictionary = [ // 3
+                "name": senderDisplayName!,
                 "subTitle": subTitle
             ]
             newChannelRef.setValue(channelItem) // 4
