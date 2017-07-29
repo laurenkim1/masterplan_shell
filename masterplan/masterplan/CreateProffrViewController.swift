@@ -124,7 +124,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
             })
             
             let messageRef: DatabaseReference = newChannelRef.child("messages")
-            let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
+            let assets = PHAsset.fetchAssets(withALAssetURLs: [self.photoReferenceUrl], options: nil)
             let asset = assets.firstObject
             
             // 3
@@ -178,11 +178,10 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         let messageItem: NSDictionary = [
             "photoURL": imageURLNotSetKey,
             "senderId": senderId!,
-            "text": messageTextField.text!
+            "senderName": "Lauren Kim - hardcoded"
             ]
         
         itemRef.setValue(messageItem)
-        
         return itemRef.key
     }
     
