@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Photos
 
 class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -112,6 +113,9 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         
         if let channel = sender as? ProffrChannel {
             let chatVc = segue.destination as! ChatViewController
+            
+            let message = messageTextField.text ?? ""
+            let photo = photoImageView.image
             
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel = channel

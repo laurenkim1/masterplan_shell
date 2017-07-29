@@ -19,7 +19,7 @@ class ChatViewController: JSQMessagesViewController {
     var channelRef: DatabaseReference?
     
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
-    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://chatchat-rw-cf107.appspot.com")
+    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
     private lazy var userIsTypingRef: DatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
     private lazy var usersTypingQuery: DatabaseQuery = self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
     
@@ -133,8 +133,6 @@ class ChatViewController: JSQMessagesViewController {
     // MARK: Firebase related methods
     
     private func observeMessages() {
-        print(self.channelRef!)
-        
         messageRef = self.channelRef!.child("messages")
         let messageQuery = messageRef.queryLimited(toLast:25)
         

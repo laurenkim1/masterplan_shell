@@ -599,23 +599,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkO-9Y-vA3">
-                                <rect key="frame" x="137" y="294" width="40" height="30"/>
+                                <rect key="frame" x="167" y="522" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Proffr"/>
                                 <connections>
                                     <action selector="createProffr:" destination="MWA-fT-M9l" eventType="touchUpInside" id="ME6-cf-H4j"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DefaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="4fc-Uv-YQ6">
+                                <rect key="frame" x="16" y="191" width="343" height="323"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="enI-ft-y86" appends="YES" id="P8Q-PO-u13"/>
+                                </connections>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5f2-Ys-YEt">
+                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="messageTextField" destination="5f2-Ys-YEt" id="58C-5U-CZe"/>
+                        <outlet property="photoImageView" destination="4fc-Uv-YQ6" id="c1l-yJ-5Cy"/>
                         <segue destination="fWT-tQ-1xb" kind="show" identifier="OpenProffrChat" id="pj9-LH-Ziz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fax-Nj-JFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="enI-ft-y86">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="MWA-fT-M9l" id="tGk-8F-ovW"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-3447" y="-2133"/>
+            <point key="canvasLocation" x="-3447.1999999999998" y="-2133.2833583208399"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="eXl-68-SO5">
@@ -636,6 +658,9 @@
             <point key="canvasLocation" x="-2559" y="-2133"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DefaultPhoto" width="320" height="320"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yDC-xa-2uZ"/>
     </inferredMetricsTieBreakers>
