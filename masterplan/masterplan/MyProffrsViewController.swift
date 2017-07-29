@@ -33,11 +33,6 @@ class MyProffrsViewController: UITableViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,13 +57,6 @@ class MyProffrsViewController: UITableViewController {
         cell.subTitle?.text = channels[(indexPath as NSIndexPath).row].subTitle
 
         return cell
-    }
-    
-    // MARK: UITableViewDelegate
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let channel = channels[(indexPath as NSIndexPath).row]
-        self.performSegue(withIdentifier: "ShowProffr", sender: channel)
     }
     
     // MARK: Firebase related methods
@@ -125,15 +113,25 @@ class MyProffrsViewController: UITableViewController {
 
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
         
-        if let channel = sender as? ProffrChannel {
-            let chatVc = segue.destination as! ChatViewController
-            
-            chatVc.senderDisplayName = senderDisplayName
-            chatVc.channel = channel
-            chatVc.channelRef = self.channelRef.child(channel.id)
+        guard let proffrChatVc = segue.destination as? ChatViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
         }
+        
+        guard let selectedProffrCell = sender as? MyProffrsTableViewCell else {
+            fatalError("Unexpected sender: \(sender)")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedProffrCell) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        let channel = channels[indexPath.row]
+        
+        proffrChatVc.senderDisplayName = channel.name
+        proffrChatVc.channel = channel
+        let channeldataref = channelRef.child(channel.id)
+        proffrChatVc.channelRef = channeldataref
     }
 
 }
