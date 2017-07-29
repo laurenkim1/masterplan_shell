@@ -105,6 +105,24 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBAction func createProffr(_ sender: UIButton) {
         if let subTitle = request?.requestTitle {
             let newChannelRef = channelRef.childByAutoId() // 2
+            let channelItem: NSDictionary = [ // 3
+                "name": senderDisplayName!,
+                "subTitle": subTitle
+            ]
+            newChannelRef.setValue(channelItem) // 4
+            
+            newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+                let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+                let id = snapshot.key
+                if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
+                    let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
+                    self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
+                } else {
+                    print("Error! Could not decode channel data in Create Proffr")
+                }
+                
+            })
+            
             let messageRef: DatabaseReference = newChannelRef.child("messages")
             let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
             let asset = assets.firstObject
@@ -129,23 +147,6 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
                     }
                 })
             }
-            
-            newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
-                let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                let id = snapshot.key
-                if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
-                    let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
-                    self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
-                } else {
-                    print("Error! Could not decode channel data in Create Proffr")
-                }
-                
-            })
-            let channelItem: NSDictionary = [ // 3
-                "name": senderDisplayName!,
-                "subTitle": subTitle
-            ]
-            newChannelRef.setValue(channelItem) // 4
         }
     }
 
