@@ -18,7 +18,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     private let imageURLNotSetKey = "NOTSET"
     var senderId: String!
-    var photoReferenceUrl: URL!
+    var photoReferenceUrl: String = ""
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     
@@ -37,6 +37,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
 
         // Handle the text field’s user input through delegate callbacks.
         messageTextField.delegate = self
+        updateCreateProffrButtonState()
     }
     
     //MARK: UITextFieldDelegate
@@ -55,6 +56,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     func textFieldDidEndEditing(_ textField: UITextField) {
         // updateCreateButtonState()
         navigationItem.title = textField.text
+        self.updateCreateProffrButtonState()
     }
 
     // MARK: UIImagePickerControllerDelegate
@@ -73,7 +75,9 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
         
-        self.photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as! URL
+        self.photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as! String
+        
+        self.updateCreateProffrButtonState()
 
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
@@ -160,7 +164,9 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel = channel
             chatVc.channelRef = channelRef.child(channel.id)
-            chatVc.proffrPhotoURL = self.photoReferenceUrl
+            if !self.photoReferenceUrl.isEmpty {
+                chatVc.proffrPhotoUrlString = self.photoReferenceUrl
+            }
             chatVc.hidesBottomBarWhenPushed = true
         }
     }

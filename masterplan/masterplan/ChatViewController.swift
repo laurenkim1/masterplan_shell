@@ -17,7 +17,7 @@ class ChatViewController: JSQMessagesViewController {
     private let imageURLNotSetKey = "NOTSET"
 
     var channelRef: DatabaseReference?
-    var proffrPhotoURL: URL?
+    var proffrPhotoUrlString: String?
     
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
@@ -64,29 +64,32 @@ class ChatViewController: JSQMessagesViewController {
         if let navController = self.parent as! UINavigationController? {
             let parentVCIndex = navController.viewControllers.count - 2
             if navController.viewControllers[parentVCIndex] is CreateProffrViewController {
-                let assets = PHAsset.fetchAssets(withALAssetURLs: [self.proffrPhotoURL!], options: nil)
-                let asset = assets.firstObject
-                
-                if let key = sendPhotoMessage() {
-                    // 4
-                    asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
-                        let imageFileURL = contentEditingInput?.fullSizeImageURL
-                        
-                        // 5
-                        let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(self.proffrPhotoURL!.lastPathComponent)"
-                        
-                        // 6
-                        self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
-                            if let error = error {
-                                print("Error uploading photo: \(error.localizedDescription)")
-                                return
+                let proffrPhotoUrl = URL(string: self.proffrPhotoUrlString!)
+                if proffrPhotoUrl != nil {
+                    let assets = PHAsset.fetchAssets(withALAssetURLs: [proffrPhotoUrl!], options: nil)
+                    let asset = assets.firstObject
+                    
+                    if let key = sendPhotoMessage() {
+                        // 4
+                        asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+                            let imageFileURL = contentEditingInput?.fullSizeImageURL
+                            
+                            // 5
+                            let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(proffrPhotoUrl?.lastPathComponent)"
+                            
+                            // 6
+                            self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
+                                if let error = error {
+                                    print("Error uploading photo: \(error.localizedDescription)")
+                                    return
+                                }
+                                // 7
+                                self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
                             }
-                            // 7
-                            self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
-                        }
-                    })
-                }
+                        })
+                    }
 
+                }
             }
         }
     }
