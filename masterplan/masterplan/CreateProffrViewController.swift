@@ -18,7 +18,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     private let imageURLNotSetKey = "NOTSET"
     var senderId: String!
-    var photoReferenceUrl: String = ""
+    var photoReferenceUrl: String!
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     
@@ -176,7 +176,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     private func updateCreateProffrButtonState() {
         // Disable the Save button if the text field is empty.
         let text = messageTextField.text ?? ""
-        self.createProffrButton.isEnabled = !text.isEmpty && !self.photoReferenceUrl.isEmpty
+        let photoRefString = self.photoReferenceUrl ?? ""
+        self.createProffrButton.isEnabled = !text.isEmpty && !photoRefString.isEmpty
     }
 /*
     private func sendPhotoMessage(messageRef: DatabaseReference) -> String? {

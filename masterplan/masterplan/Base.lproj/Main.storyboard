@@ -625,6 +625,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="createProffrButton" destination="LkO-9Y-vA3" id="LGi-Of-tDb"/>
                         <outlet property="messageTextField" destination="5f2-Ys-YEt" id="58C-5U-CZe"/>
                         <outlet property="photoImageView" destination="4fc-Uv-YQ6" id="c1l-yJ-5Cy"/>
                         <segue destination="fWT-tQ-1xb" kind="show" identifier="OpenProffrChat" id="pj9-LH-Ziz"/>
