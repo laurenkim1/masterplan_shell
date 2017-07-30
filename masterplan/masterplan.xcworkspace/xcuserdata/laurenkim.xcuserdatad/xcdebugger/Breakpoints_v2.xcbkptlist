@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "522998707.726678"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "observeMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "522988840.165126"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "ChatViewController"
             landmarkType = "3">
             <Locations>
@@ -121,11 +121,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "522988870.950902"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "ChatViewController"
             landmarkType = "3">
             <Locations>
@@ -199,11 +199,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "522988892.281379"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "ChatViewController"
             landmarkType = "3">
             <Locations>
@@ -277,7 +277,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "522988893.514128"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
@@ -372,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "createProffr(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -388,11 +388,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "createProffr(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/CreateProffrViewController.swift"
+            timestampString = "523141716.611336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "createProffr(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/CreateProffrViewController.swift"
+            timestampString = "523141716.611336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "createProffr(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -404,39 +436,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "createProffr(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "createProffr(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
@@ -452,27 +452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "createProffr(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "createProffr(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -500,11 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523126110.548989"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -532,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523129860.50631"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "createProffr(_:)"
             landmarkType = "7">
             <Locations>
@@ -580,11 +564,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/CreateProffrViewController.swift"
-            timestampString = "523128400.611683"
+            timestampString = "523141716.611336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "createProffr(_:)"
             landmarkType = "7">
          </BreakpointContent>

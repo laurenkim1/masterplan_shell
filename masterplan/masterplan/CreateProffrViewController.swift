@@ -29,6 +29,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var createProffrButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +74,6 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         photoImageView.image = selectedImage
         
         self.photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as! URL
-        print(photoReferenceUrl)
 
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
@@ -107,9 +107,22 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
                 "name": senderDisplayName!,
                 "subTitle": subTitle
             ]
+            
+            newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+                let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+                let id = snapshot.key
+                if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
+                    let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
+                    self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
+                } else {
+                    print("Error! Could not decode channel data in Create Proffr")
+                }
+                
+            })
+            
             newChannelRef.setValue(channelItem) // 4
             
-            let messageRef: DatabaseReference = newChannelRef.child("messages")
+            /* let messageRef: DatabaseReference = newChannelRef.child("messages")
             let assets = PHAsset.fetchAssets(withALAssetURLs: [self.photoReferenceUrl], options: nil)
             let asset = assets.firstObject
             
@@ -129,23 +142,11 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
                             return
                         }
                         // 7
-                        
-                        newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
-                            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                            let id = snapshot.key
-                            if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
-                                let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
-                                self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
-                            } else {
-                                print("Error! Could not decode channel data in Create Proffr")
-                            }
-                            
-                        })
-                        
                         self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key, messageRef: messageRef)
                     }
                 })
             }
+ */
         }
     }
 
@@ -159,6 +160,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel = channel
             chatVc.channelRef = channelRef.child(channel.id)
+            chatVc.proffrPhotoURL = self.photoReferenceUrl
             chatVc.hidesBottomBarWhenPushed = true
         }
     }
@@ -168,9 +170,9 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     private func updateCreateProffrButtonState() {
         // Disable the Save button if the text field is empty.
         let text = messageTextField.text ?? ""
-        // createProffrButton.isEnabled = !text.isEmpty
+        self.createProffrButton.isEnabled = !text.isEmpty && !self.photoReferenceUrl.isEmpty
     }
-    
+/*
     private func sendPhotoMessage(messageRef: DatabaseReference) -> String? {
         let itemRef = messageRef.childByAutoId()
         
@@ -188,5 +190,6 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         let itemRef = messageRef.child(key)
         itemRef.updateChildValues(["photoURL": url])
     }
+ */
 
 }
