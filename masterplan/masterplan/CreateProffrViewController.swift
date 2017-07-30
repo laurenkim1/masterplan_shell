@@ -22,7 +22,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     
-    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "proffr-d0848.appspot.com")
+    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com")
     
     var senderDisplayName: String?
     var request: requestInfo?
@@ -141,6 +141,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
                             return
                         }
                         // 7
+                        print(self.storageRef)
                         self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key, messageRef: messageRef)
                     }
                 })
