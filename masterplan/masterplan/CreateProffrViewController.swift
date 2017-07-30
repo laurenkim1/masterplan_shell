@@ -72,10 +72,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
         
-        let photoReferenceURLString: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        let photoReferenceString: String = photoReferenceURLString.absoluteString!
-        
-        self.photoReferenceUrl = URL(fileURLWithPath: kBaseURL).appendingPathComponent(photoReferenceString)
+        self.photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as! URL
+        print(photoReferenceUrl)
 
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
