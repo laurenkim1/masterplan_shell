@@ -586,7 +586,7 @@
             </objects>
             <point key="canvasLocation" x="-4322" y="-2133"/>
         </scene>
-        <!--Create Proffr View Controller-->
+        <!--New Proffr-->
         <scene sceneID="Jge-yM-2Eu">
             <objects>
                 <viewController id="MWA-fT-M9l" customClass="CreateProffrViewController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
@@ -624,6 +624,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="New Proffr" id="oxS-TW-ZcR">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="2O4-50-Bw8">
+                            <connections>
+                                <action selector="back:" destination="MWA-fT-M9l" id="gkt-Rj-NX5"/>
+                                <segue destination="ml8-fy-PwF" kind="unwind" unwindAction="unwindToHomePageWithSender:" id="THP-Df-xDM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="createProffrButton" destination="LkO-9Y-vA3" id="LGi-Of-tDb"/>
                         <outlet property="messageTextField" destination="5f2-Ys-YEt" id="58C-5U-CZe"/>
@@ -632,6 +640,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fax-Nj-JFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ml8-fy-PwF" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="enI-ft-y86">
                     <connections>
                         <action selector="selectImageFromPhotoLibrary:" destination="MWA-fT-M9l" id="tGk-8F-ovW"/>
@@ -653,8 +662,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Abt-5I-IWX">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="qk2-D0-UlO">
+                            <connections>
+                                <action selector="done:" destination="fWT-tQ-1xb" id="Igh-US-OxK"/>
+                                <segue destination="wUX-xT-BLE" kind="unwind" unwindAction="unwindToHomePageWithSender:" id="aeX-M4-boB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg6-Y8-cRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wUX-xT-BLE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2559" y="-2133"/>
         </scene>
@@ -663,6 +681,6 @@
         <image name="DefaultPhoto" width="320" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yDC-xa-2uZ"/>
+        <segue reference="oYG-3c-WOm"/>
     </inferredMetricsTieBreakers>
 </document>

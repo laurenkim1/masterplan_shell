@@ -269,6 +269,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     // MARK: Actions
 
+    @IBAction func unwindToHomePage(sender: UIStoryboardSegue) {
+    }
     
     // MARK: - Navigation
 

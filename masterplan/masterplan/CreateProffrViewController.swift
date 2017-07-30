@@ -75,7 +75,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
         
-        self.photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as! String
+        let photoRefNSUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+        self.photoReferenceUrl = photoRefNSUrl.absoluteString
         
         self.updateCreateProffrButtonState()
 
@@ -153,6 +154,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
  */
         }
     }
+    
 
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
