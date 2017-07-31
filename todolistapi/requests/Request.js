@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var RequestSchema = new mongoose.Schema({
+  createdAt: Object,
   userID: String,
   requestTitle: String,
   requestPrice: Number,

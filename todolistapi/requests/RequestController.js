@@ -11,6 +11,7 @@ var Request = require('./Request');
 router.post('/', function (req, res) {
     console.log(req.body)
     Request.create({
+            createdAt: new Date(),
             userID: req.body.userID,
             requestTitle: req.body.requestTitle,
             requestPrice: req.body.requestPrice,
