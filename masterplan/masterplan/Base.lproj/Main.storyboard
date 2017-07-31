@@ -377,6 +377,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="1VR-95-h5g">
+                        <barButtonItem key="rightBarButtonItem" title="Accept" id="zzl-yS-S7G"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieO-bV-k8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -669,7 +672,6 @@
                                 <segue destination="wUX-xT-BLE" kind="unwind" unwindAction="unwindToHomePageWithSender:" id="aeX-M4-boB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Accept" id="Mpp-Ec-0wF"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg6-Y8-cRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
