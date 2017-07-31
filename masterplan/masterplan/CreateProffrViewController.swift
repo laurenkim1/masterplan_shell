@@ -110,7 +110,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem: NSDictionary = [ // 3
                 "name": senderDisplayName!,
-                "subTitle": subTitle
+                "subTitle": subTitle,
+                "requestPostTime": self.request!.postTime
             ]
             
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1

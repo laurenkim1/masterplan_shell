@@ -25,6 +25,7 @@ class requestInfo: NSObject, NSCoding {
     var pickUp: Int
     var distance: Float
     var location: CLLocation
+    var postTime: NSDate
     
     //MARK: Types
     
@@ -98,8 +99,30 @@ class requestInfo: NSObject, NSCoding {
             return nil
         }
         let location = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
+        guard let dateObject = dict["dateObject"] as? NSDictionary else {
+            os_log("Unable to decode the date object for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let date = dateObject["$date"] as? String else {
+            os_log("Unable to decode the date for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
+        func stringToDate(date:String) -> NSDate {
+            let formatter = DateFormatter()
+            
+            // Format 1
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            if let parsedDate = formatter.date(from: date) {
+                return parsedDate as NSDate
+            }
+            return NSDate()
+        }
+        
+        let dateTime = stringToDate(date: date)
         self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
         self.tagString = tagString
+        self.postTime = dateTime
     }
     
     // MARK: Public Methods
