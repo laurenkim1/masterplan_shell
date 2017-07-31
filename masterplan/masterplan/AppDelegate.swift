@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
+        UITabBar.appearance().barTintColor = UIColor.white
+        
         var tabBarController = TabBarController()
         
         let homePageVC = HomePageViewController()
