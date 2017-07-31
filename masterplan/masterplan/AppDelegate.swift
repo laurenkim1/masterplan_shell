@@ -22,6 +22,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         UINavigationBar.appearance().barTintColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        
+        var tabBarController = TabBarController()
+        
+        let homePageVC = HomePageViewController()
+        let tab1 = UINavigationController(rootViewController: homePageVC)
+        
+        let myProffrsVC = MyProffrsViewController()
+        let tab2 = UINavigationController(rootViewController: myProffrsVC)
+        
+        let tab3 = NewRequestPlaceholderVC()
+        
+        let tab4 = UIViewController()
+        let tab5 = UIViewController()
+        
+        tabBarController.viewControllers = [tab1, tab2, tab3, tab4, tab5]
+        
         return true
     }
     
