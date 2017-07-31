@@ -11,6 +11,7 @@
 		47408CA41F188FC60097C957 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA31F188FC60097C957 /* TabBarController.swift */; };
 		47408CA61F19F69F0097C957 /* NewRequestPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */; };
 		47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */; };
+		479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */; };
 		47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798921F1473FF00F67BEA /* TagListViewController.swift */; };
 		47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */; };
 		47C37EFF1F298174007FC639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47C37EFE1F298174007FC639 /* GoogleService-Info.plist */; };
@@ -49,6 +50,7 @@
 		47408CA31F188FC60097C957 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../TabBarController.swift; sourceTree = "<group>"; };
 		47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestPlaceholder.swift; sourceTree = "<group>"; };
 		47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyRequestTableViewCell.swift; sourceTree = "<group>"; };
+		479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		47B798921F1473FF00F67BEA /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListItemViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		47C37EFE1F298174007FC639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				47408CA11F188A3C0097C957 /* HomePageViewController.swift */,
 				47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */,
 				47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */,
+				479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */,
 				47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */,
 				47C57A911F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift */,
 				47C37F011F2981AA007FC639 /* ChatViewController.swift */,
@@ -402,6 +405,7 @@
 				47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */,
 				47C57A901F29AF5700BC1D06 /* CreateProffrViewController.swift in Sources */,
 				47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */,
+				479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

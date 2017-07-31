@@ -111,8 +111,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
             let channelItem: NSDictionary = [ // 3
                 "name": senderDisplayName!,
                 "subTitle": subTitle,
-                "requestId": self.request!.requestID!,
-                "requestPostTime": self.request!.postTime!
+                "requestId": self.request!.requestID!
             ]
             
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
@@ -163,7 +162,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         super.prepare(for: segue, sender: sender)
         
         if let channel = sender as? ProffrChannel {
-            let chatVc = segue.destination as! ChatViewController
+            let chatVc = segue.destination as! NewChatViewController
             
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel = channel

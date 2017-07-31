@@ -649,10 +649,10 @@
             </objects>
             <point key="canvasLocation" x="-3447.1999999999998" y="-2133.2833583208399"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--New Chat View Controller-->
         <scene sceneID="eXl-68-SO5">
             <objects>
-                <viewController id="fWT-tQ-1xb" customClass="ChatViewController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fWT-tQ-1xb" customClass="NewChatViewController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vbm-wj-YZF"/>
                         <viewControllerLayoutGuide type="bottom" id="KgJ-t3-w26"/>
@@ -669,6 +669,7 @@
                                 <segue destination="wUX-xT-BLE" kind="unwind" unwindAction="unwindToHomePageWithSender:" id="aeX-M4-boB"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Accept" id="Mpp-Ec-0wF"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg6-Y8-cRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
