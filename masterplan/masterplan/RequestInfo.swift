@@ -25,7 +25,7 @@ class requestInfo: NSObject, NSCoding {
     var pickUp: Int
     var distance: Float
     var location: CLLocation
-    var postTime: NSDate
+    var postTime: NSDate?
     
     //MARK: Types
     
@@ -70,6 +70,14 @@ class requestInfo: NSObject, NSCoding {
     }
     
     convenience init?(dict: NSDictionary) {
+        guard let id = dict["_id"] as? NSDictionary else {
+            os_log("Unable to decode the id for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let requestId = id["$oid"] as? String else {
+            os_log("Unable to decode the oid for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
         guard let userID = dict["userID"] as? String else {
             os_log("Unable to decode the userID for a request.", log: OSLog.default, type: .debug)
             return nil
@@ -123,6 +131,7 @@ class requestInfo: NSObject, NSCoding {
         self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
         self.tagString = tagString
         self.postTime = dateTime
+        self.requestID = requestId
     }
     
     // MARK: Public Methods
