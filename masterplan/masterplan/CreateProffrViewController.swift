@@ -111,7 +111,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
             let channelItem: NSDictionary = [ // 3
                 "name": senderDisplayName!,
                 "subTitle": subTitle,
-                "requestId": self.request!.requestID!
+                "requestId": self.request!.requestID!,
+                "Accepted": 0
             ]
             
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1

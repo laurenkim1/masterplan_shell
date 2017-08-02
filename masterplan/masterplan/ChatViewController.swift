@@ -8,8 +8,12 @@
 
 import UIKit
 import Photos
+import os.log
 import Firebase
 import JSQMessagesViewController
+
+private let kBaseURL: String = "http://localhost:3000/"
+private let kRequests: String = "requests/"
 
 class ChatViewController: JSQMessagesViewController {
 
@@ -18,6 +22,7 @@ class ChatViewController: JSQMessagesViewController {
 
     var channelRef: DatabaseReference?
     
+    private lazy var accepted: DatabaseReference = self.channelRef!.child("accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
     private lazy var userIsTypingRef: DatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
@@ -128,6 +133,47 @@ class ChatViewController: JSQMessagesViewController {
             }
             return NSAttributedString(string: senderDisplayName)
         }
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func acceptedBtton(_ sender: UIButton) {
+        self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+            let id = snapshot.key
+            if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
+                self.deleteAcceptedRequests(requestId: requestId)
+            } else {
+                print("Error! Could not decode channel data in Create Proffr")
+            }
+            
+        })
+
+        self.accepted.setValue(1)
+        
+    }
+    
+    // MARK: Network Request Methods
+    
+    func deleteAcceptedRequests(requestId: String) -> Void {
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let url = URL(string: (requests + requestId))
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "DELETE"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        let config = URLSessionConfiguration.default
+        //4
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+            }
+        })
+        dataTask?.resume()
     }
     
     // MARK: Firebase related methods
