@@ -54,9 +54,9 @@ class LogInViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         let navVc = segue.destination as! UITabBarController
-        let channelVc = navVc.viewControllers?[1] as! UINavigationController
-        let myProffrsVc = channelVc.viewControllers.first as! MyProffrsViewController
-        myProffrsVc.senderDisplayName = UserProfile.current?.firstName
+        let channelVc = navVc.viewControllers?[0] as! UINavigationController
+        let homeVc = channelVc.viewControllers.first as! HomePageViewController
+        homeVc.myDisplayName = (UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
     }
     
 

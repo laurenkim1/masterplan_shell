@@ -14,7 +14,6 @@ class MyProffrsViewController: UITableViewController {
     
     // MARK: Properties
     
-    var senderDisplayName: String? // 1
     private var channels: [ProffrChannel] = []
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
