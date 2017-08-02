@@ -14,7 +14,6 @@ import FacebookLogin
 class LogInViewController: UIViewController {
     
     // MARK: Properties
-    @IBOutlet weak var nameField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,7 @@ class LogInViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
-                self.performSegue(withIdentifier: "loggedIn", sender: nil)
+                UserProfile.fetch(userId: accessToken.userId!, completion: self.completion);                self.performSegue(withIdentifier: "loggedIn", sender: nil)
             }
         }
         loginButton.center = view.center
@@ -41,6 +40,8 @@ class LogInViewController: UIViewController {
     }
     
     // MARK: Private Methods
+    
+    func completion(fetchResult: UserProfile.FetchResult) {}
     
     /*
     func toggleHiddenState(_ shouldHide: Bool) {
@@ -55,7 +56,7 @@ class LogInViewController: UIViewController {
         let navVc = segue.destination as! UITabBarController
         let channelVc = navVc.viewControllers?[1] as! UINavigationController
         let myProffrsVc = channelVc.viewControllers.first as! MyProffrsViewController
-        myProffrsVc.senderDisplayName = nameField?.text
+        myProffrsVc.senderDisplayName = UserProfile.current?.firstName
     }
     
 

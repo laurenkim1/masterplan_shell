@@ -25,21 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBar.appearance().barTintColor = UIColor.white
         
-        var tabBarController = TabBarController()
-        
-        let homePageVC = HomePageViewController()
-        let tab1 = UINavigationController(rootViewController: homePageVC)
-        
-        let myProffrsVC = MyProffrsViewController()
-        let tab2 = UINavigationController(rootViewController: myProffrsVC)
-        
-        let tab3 = NewRequestPlaceholderVC()
-        
-        let tab4 = UIViewController()
-        let tab5 = UIViewController()
-        
-        tabBarController.viewControllers = [tab1, tab2, tab3, tab4, tab5]
-        
         return true
     }
     
