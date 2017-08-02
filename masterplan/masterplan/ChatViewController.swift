@@ -137,10 +137,9 @@ class ChatViewController: JSQMessagesViewController {
     
     // MARK: Actions
     
-    @IBAction func acceptedBtton(_ sender: UIButton) {
+    @IBAction func acceptedBtton(_ sender: UIBarButtonItem) {
         self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-            let id = snapshot.key
             if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
                 self.deleteAcceptedRequests(requestId: requestId)
             } else {
@@ -156,6 +155,7 @@ class ChatViewController: JSQMessagesViewController {
     // MARK: Network Request Methods
     
     func deleteAcceptedRequests(requestId: String) -> Void {
+        print(requestId)
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
         let url = URL(string: (requests + requestId))
         //1
