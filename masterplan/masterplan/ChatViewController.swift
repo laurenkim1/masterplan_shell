@@ -22,7 +22,7 @@ class ChatViewController: JSQMessagesViewController {
 
     var channelRef: DatabaseReference?
     
-    private lazy var accepted: DatabaseReference = self.channelRef!.child("accepted")
+    private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
     private lazy var userIsTypingRef: DatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)

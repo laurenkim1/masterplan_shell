@@ -23,6 +23,7 @@ class MyProffrsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Proffrs"
+        self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         observeChannels()
     }
     
@@ -73,6 +74,15 @@ class MyProffrsViewController: UITableViewController {
                 print("Error! Could not decode channel data")
             }
         })
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) -> Void {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        observeChannels()
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
     /*

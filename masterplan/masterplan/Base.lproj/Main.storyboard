@@ -359,6 +359,9 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="ad7-U5-gvC"/>
                     <navigationItem key="navigationItem" title="My Proffrs" id="Hme-Xs-6Ex"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="9ha-67-6k7">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8b2-BS-Fgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
