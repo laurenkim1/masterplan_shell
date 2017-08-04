@@ -141,7 +141,8 @@ class ChatViewController: JSQMessagesViewController {
         self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
-                self.deleteAcceptedRequests(requestId: requestId)
+                //self.deleteAcceptedRequests(requestId: requestId)
+                self.deleteOtherProffrs(requestId: requestId)
             } else {
                 print("Error! Could not decode channel data in Create Proffr")
             }
@@ -174,6 +175,22 @@ class ChatViewController: JSQMessagesViewController {
             }
         })
         dataTask?.resume()
+    }
+    
+    func deleteOtherProffrs(requestId: String) -> Void {
+        print(requestId)
+        let allChannels = channelRef?.parent
+        let sameRequestProffrs = allChannels?.queryEqual(toValue: requestId, childKey: "requestId")
+        let sameRequestRef = sameRequestProffrs?.ref
+        sameRequestRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+            for child in snapshot.children {
+                let childData = (child as! DataSnapshot).value as! NSDictionary
+                if (childData["requestId"] as! String) == requestId {
+                    sameRequestRef?.child((child as! DataSnapshot).key).removeValue()
+                }
+            }
+        })
+
     }
     
     // MARK: Firebase related methods
