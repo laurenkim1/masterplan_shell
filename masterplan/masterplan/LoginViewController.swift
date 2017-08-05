@@ -59,6 +59,9 @@ class LogInViewController: UIViewController {
         let homeVc = channelVc.viewControllers.first as! HomePageViewController
         homeVc.myDisplayName = (UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
         homeVc.myUserId = (UserProfile.current?.userId)!
+        let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
+        newVc.myDisplayName = (UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
+        newVc.myUserId = (UserProfile.current?.userId)!
     }
     
 

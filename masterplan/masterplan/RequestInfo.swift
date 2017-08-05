@@ -15,6 +15,7 @@ class requestInfo: NSObject, NSCoding {
     //MARK: Properties
     
     var userID: String
+    var userName: String
     var requestTitle: String
     var requestPrice: Float
     var requestID: String?
@@ -31,6 +32,7 @@ class requestInfo: NSObject, NSCoding {
     
     struct PropertyKey {
         static let userID = "userID"
+        static let userName = "userName"
         static let requestTitle = "requestTitle"
         static let requestPrice = "requestPrice"
         static let requestID = "requestID"
@@ -46,7 +48,7 @@ class requestInfo: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init?(userID: String, requestTitle: String, requestPrice: Float, pickUp: Int, location: CLLocation) {
+    init?(userID: String, userName: String, requestTitle: String, requestPrice: Float, pickUp: Int, location: CLLocation) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -58,6 +60,7 @@ class requestInfo: NSObject, NSCoding {
         
         // Initialize stored properties.
         self.userID = userID
+        self.userName = userName
         self.requestTitle = requestTitle
         self.requestPrice = requestPrice
         self.pickUp = pickUp
@@ -76,6 +79,10 @@ class requestInfo: NSObject, NSCoding {
         }
         guard let userID = dict["userID"] as? String else {
             os_log("Unable to decode the userID for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let userName = dict["userName"] as? String else {
+            os_log("Unable to decode the userName for a request.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let requestTitle = dict["requestTitle"] as? String else {
@@ -124,7 +131,7 @@ class requestInfo: NSObject, NSCoding {
         }
         
         //let dateTime = stringToDate(date: date)
-        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
+        self.init(userID: userID, userName: userName, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
         self.tagString = tagString
         //self.postTime = dateTime
         self.requestID = requestId
@@ -182,6 +189,11 @@ class requestInfo: NSObject, NSCoding {
             return nil
         }
         
+        guard let userName = aDecoder.decodeObject(forKey: PropertyKey.userName) as? String else {
+            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
         // The name is required. If we cannot decode a name string, the initializer should fail.
         guard let requestTitle = aDecoder.decodeObject(forKey: PropertyKey.requestTitle) as? String else {
             os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
@@ -204,7 +216,7 @@ class requestInfo: NSObject, NSCoding {
         }
         
         // Must call designated initializer.
-        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
+        self.init(userID: userID, userName: userName, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location)
         
     }
 }

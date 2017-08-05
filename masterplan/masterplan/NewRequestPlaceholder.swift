@@ -9,6 +9,9 @@
 import UIKit
 
 class NewRequestPlaceholderVC: UIViewController {
+    
+    var myDisplayName: String!
+    var myUserId: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +40,10 @@ class NewRequestPlaceholderVC: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let navVc = segue.destination as! UINavigationController
+        let newRequestVc = navVc.viewControllers.first as! NewRequestViewController
+        newRequestVc.myUserId = myUserId
+        newRequestVc.myDisplayName = myDisplayName
     }
 
 }

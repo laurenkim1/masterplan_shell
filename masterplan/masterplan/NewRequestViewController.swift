@@ -15,6 +15,9 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate, UINavigat
     
     //MARK: Properties
     
+    var myDisplayName: String!
+    var myUserId: String!
+    
     @IBOutlet weak var requestName: UITextField!
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var pickUpBool: UISegmentedControl!
@@ -103,7 +106,7 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate, UINavigat
         if request != nil {
         }
         else {
-            request = requestInfo(userID: "", requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
+            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
             request?.requestTags.append("Add Tags")
         }
         
