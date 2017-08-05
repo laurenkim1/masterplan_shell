@@ -27,7 +27,8 @@ class LogInViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
-                UserProfile.fetch(userId: accessToken.userId!, completion: self.completion);                self.performSegue(withIdentifier: "loggedIn", sender: nil)
+                UserProfile.fetch(userId: accessToken.userId!, completion: self.completion)
+                self.performSegue(withIdentifier: "loggedIn", sender: nil)
             }
         }
         loginButton.center = view.center

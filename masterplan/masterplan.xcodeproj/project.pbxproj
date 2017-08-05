@@ -30,6 +30,7 @@
 		47C889161F0C8939003ED4F7 /* RequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889151F0C8939003ED4F7 /* RequestInfo.swift */; };
 		47C889181F0F3E13003ED4F7 /* DistancePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */; };
 		47C8891A1F10873B003ED4F7 /* NewRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889191F10873B003ED4F7 /* NewRequestViewController.swift */; };
+		47E24B121F3577F800F0F723 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B111F3577F800F0F723 /* NotificationModel.swift */; };
 		DCCD3F82108AFF226F4B8EA3 /* Pods_masterplan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC686D5A35B06459E5A0D3F0 /* Pods_masterplan.framework */; };
 		E28C997371DC6FAAC6747834 /* Pods_masterplanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25092871A3E6A3EE250AB7E /* Pods_masterplanTests.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		47C889151F0C8939003ED4F7 /* RequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestInfo.swift; sourceTree = "<group>"; };
 		47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistancePageViewController.swift; sourceTree = "<group>"; };
 		47C889191F10873B003ED4F7 /* NewRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestViewController.swift; sourceTree = "<group>"; };
+		47E24B111F3577F800F0F723 /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		69AE117DCF2563F4EC66D6ED /* Pods-masterplan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-masterplan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-masterplan/Pods-masterplan.debug.xcconfig"; sourceTree = "<group>"; };
 		C79D2251CFAB117BCE915CCE /* Pods-masterplanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-masterplanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-masterplanTests/Pods-masterplanTests.release.xcconfig"; sourceTree = "<group>"; };
 		D25092871A3E6A3EE250AB7E /* Pods_masterplanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_masterplanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 			children = (
 				47C889151F0C8939003ED4F7 /* RequestInfo.swift */,
 				47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */,
+				47E24B111F3577F800F0F723 /* NotificationModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47E24B121F3577F800F0F723 /* NotificationModel.swift in Sources */,
 				47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */,
 				47C889181F0F3E13003ED4F7 /* DistancePageViewController.swift in Sources */,
 				47C57A921F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift in Sources */,

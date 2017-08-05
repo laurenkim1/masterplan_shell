@@ -14,6 +14,7 @@ import JSQMessagesViewController
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
+private let kNotifications: String = "notifications/"
 
 class ChatViewController: JSQMessagesViewController {
 
@@ -186,12 +187,43 @@ class ChatViewController: JSQMessagesViewController {
             for child in snapshot.children {
                 let childData = (child as! DataSnapshot).value as! NSDictionary
                 if (childData["requestId"] as! String) == requestId {
+                    self.sendNotifications(senderId: childData["senderId"] as! String, channelSnapshot: childData)
                     sameRequestRef?.child((child as! DataSnapshot).key).removeValue()
                 }
             }
         })
 
     }
+    
+    func sendNotifications(senderId: String, channelSnapshot: NSDictionary) {
+        if senderId == nil {
+            return
+            //input safety check
+        }
+        let notifications: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kNotifications).absoluteString
+        let url = URL(string: notifications)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "POST"
+        //2
+        let notification = notificationModel(userID: <#T##String#>, requestTitle: <#T##String#>, requestPrice: 0.0, requestId: <#T##String#>, requesterId: <#T##String#>, requesterName: <#T##String#>)
+        let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary(), options: [])
+        //3
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let notification = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+            }
+        })
+        dataTask?.resume()
+    }
+
     
     // MARK: Firebase related methods
     
