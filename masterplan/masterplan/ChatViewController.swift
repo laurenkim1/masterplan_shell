@@ -206,7 +206,15 @@ class ChatViewController: JSQMessagesViewController {
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "POST"
         //2
-        let notification = notificationModel(userID: <#T##String#>, requestTitle: <#T##String#>, requestPrice: 0.0, requestId: <#T##String#>, requesterId: <#T##String#>, requesterName: <#T##String#>)
+        
+        let userId = channelSnapshot["proffrerId"] as! String
+        let requesterName = channelSnapshot["requesterName"] as! String
+        let requesterId = channelSnapshot["requesterId"] as! String
+        let requestPrice = channelSnapshot["Price"] as! Float
+        let requestTitle = channelSnapshot["subTitle"] as! String
+        let requestId = channelSnapshot["requestId"] as! String
+        
+        let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName)
         let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary(), options: [])
         //3
         networkrequest.httpBody = data
@@ -218,7 +226,7 @@ class ChatViewController: JSQMessagesViewController {
             //5
             if error == nil {
                 os_log("Success")
-                let notification = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                let notificationmodel = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
             }
         })
         dataTask?.resume()

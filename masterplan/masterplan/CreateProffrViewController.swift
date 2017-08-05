@@ -112,6 +112,7 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
                 "proffrerId": senderId!,
                 "subTitle": subTitle,
                 "requestId": self.request!.requestID!,
+                "requestPrice": self.request!.requestPrice,
                 "requesterName": self.request!.userName,
                 "requesterId": self.request!.userID,
                 "Accepted": 0
