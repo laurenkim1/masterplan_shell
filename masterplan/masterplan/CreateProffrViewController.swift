@@ -112,13 +112,15 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
                 "proffrerId": senderId!,
                 "subTitle": subTitle,
                 "requestId": self.request!.requestID!,
+                "requesterName": self.request!.userName,
+                "requesterId": self.request!.userID,
                 "Accepted": 0
             ]
             
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
                 let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
                 let id = snapshot.key
-                if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
+                if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
                     let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
                     self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
                 } else {
