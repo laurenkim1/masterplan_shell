@@ -18,14 +18,13 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     private let imageURLNotSetKey = "NOTSET"
     var senderId: String!
+    var senderDisplayName: String?
+    var request: requestInfo?
     var photoReferenceUrl: String!
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com")
-    
-    var senderDisplayName: String?
-    var request: requestInfo?
     
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
@@ -109,7 +108,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         if let subTitle = request?.requestTitle {
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem: NSDictionary = [ // 3
-                "name": senderDisplayName!,
+                "proffererName": senderDisplayName!,
+                "proffrerId": senderId!,
                 "subTitle": subTitle,
                 "requestId": self.request!.requestID!,
                 "Accepted": 0

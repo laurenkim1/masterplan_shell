@@ -19,6 +19,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     // MARK: Properties
     
     var myDisplayName: String!
+    var myUserId: String!
     var nearbyRequestList = [requestInfo]()
     var filteredNearbyRequestList = [requestInfo]()
     var searchController = UISearchController(searchResultsController: nil)
@@ -296,6 +297,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         
         CreateProffrViewController.request = selectedRequest
         CreateProffrViewController.senderDisplayName = myDisplayName
+        CreateProffrViewController.senderId = myUserId
     }
 
 }
