@@ -54,14 +54,19 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        let myDisplayName = (UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
+        let myUserId = (UserProfile.current?.userId)!
         let navVc = segue.destination as! UITabBarController
         let channelVc = navVc.viewControllers?[0] as! UINavigationController
         let homeVc = channelVc.viewControllers.first as! HomePageViewController
-        homeVc.myDisplayName = (UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
-        homeVc.myUserId = (UserProfile.current?.userId)!
+        homeVc.myDisplayName = myDisplayName
+        homeVc.myUserId = myUserId
         let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
-        newVc.myDisplayName = (UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
-        newVc.myUserId = (UserProfile.current?.userId)!
+        newVc.myDisplayName = myDisplayName
+        newVc.myUserId = myUserId
+        let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
+        let notificationTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
+        notificationsTable.myUserId = myUserId
     }
     
 

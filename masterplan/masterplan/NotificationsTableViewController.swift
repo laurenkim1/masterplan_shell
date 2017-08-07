@@ -12,13 +12,13 @@ import os.log
 import Firebase
 
 private let kBaseURL: String = "http://localhost:3000/"
-private let kRequests: String = "requests/"
 private let kNotifications: String = "notifications/"
 
 class NotificationsTableViewController: UITableViewController {
     
     // MARK: Properties
     
+    var myUserId: String!
     private var notifications: [notificationModel] = []
 
     override func viewDidLoad() {
@@ -60,6 +60,42 @@ class NotificationsTableViewController: UITableViewController {
         cell.requestPrice?.text = NSString(format: "%.2f", price) as String
 
         return cell
+    }
+    
+    // Mark: Private Methods
+    
+    func getNearbyRequests(_ loc: CLLocation, _ rad: Float) -> Void {
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kNotifications).absoluteString
+        let parameterString: String = myUserId
+        let url = URL(string: (requests + parameterString))
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "GET"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        let config = URLSessionConfiguration.default
+        //4
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                self.parseAndAddNotification(notificationlist: response!)
+                self.tableView.reloadData()
+            }
+        })
+        dataTask?.resume()
+    }
+    
+    func parseAndAddNotification(notificationlist: Array<Any>) -> Void {
+        for item in notificationlist {
+            if let notification = notificationModel(dict: item as! NSDictionary) {
+                //2
+                notifications += [notification]
+            }
+        }
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {
