@@ -187,7 +187,7 @@ class ChatViewController: JSQMessagesViewController {
             for child in snapshot.children {
                 let childData = (child as! DataSnapshot).value as! NSDictionary
                 if (childData["requestId"] as! String) == requestId {
-                    self.sendNotifications(senderId: childData["senderId"] as! String, channelSnapshot: childData)
+                    self.sendNotifications(senderId: childData["proffrerId"] as! String, channelSnapshot: childData)
                     sameRequestRef?.child((child as! DataSnapshot).key).removeValue()
                 }
             }
@@ -210,7 +210,7 @@ class ChatViewController: JSQMessagesViewController {
         let userId = channelSnapshot["proffrerId"] as! String
         let requesterName = channelSnapshot["requesterName"] as! String
         let requesterId = channelSnapshot["requesterId"] as! String
-        let requestPrice = channelSnapshot["Price"] as! Float
+        let requestPrice = channelSnapshot["requestPrice"] as! Float
         let requestTitle = channelSnapshot["subTitle"] as! String
         let requestId = channelSnapshot["requestId"] as! String
         

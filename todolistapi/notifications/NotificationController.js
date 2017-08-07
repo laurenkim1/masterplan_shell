@@ -12,7 +12,7 @@ var Notification = require('./Notification');
 router.post('/', function (req, res) {
     let msg = req.body;
     let recipientId = req.body.userID
-    messagebroker.publish("", recipientId, new Buffer(msg));
+    //messagebroker.publish("", recipientId, new Buffer(msg));
     Notification.create({
             createdAt: new Date(),
             userID: recipientId,

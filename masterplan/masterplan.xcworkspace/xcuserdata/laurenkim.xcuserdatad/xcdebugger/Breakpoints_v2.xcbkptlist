@@ -704,7 +704,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
@@ -730,6 +730,166 @@
             startingLineNumber = "218"
             endingLineNumber = "218"
             landmarkName = "sendNotifications(senderId:channelSnapshot:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/ChatViewController.swift"
+            timestampString = "523768966.863343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "deleteOtherProffrs(requestId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.ChatViewController.deleteOtherProffrs (requestId : Swift.String) -&gt; ()"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/ChatViewController.swift"
+                  timestampString = "523769130.095652"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "885">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.ChatViewController.(deleteOtherProffrs (requestId : Swift.String) -&gt; ()).(closure #1)"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/ChatViewController.swift"
+                  timestampString = "523769130.098308"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/CreateProffrViewController.swift"
+            timestampString = "523769070.186026"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "createProffr(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.CreateProffrViewController.createProffr (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
+                  timestampString = "523769130.104537"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "3532">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.CreateProffrViewController.(createProffr (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
+                  timestampString = "523769130.106848"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/CreateProffrViewController.swift"
+            timestampString = "523769071.84708"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "createProffr(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.CreateProffrViewController.createProffr (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
+                  timestampString = "523769130.112174"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.CreateProffrViewController.createProffr (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
+                  timestampString = "523769130.114934"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "337">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/CreateProffrViewController.swift"
+            timestampString = "523769103.581699"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "createProffr(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

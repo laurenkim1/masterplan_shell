@@ -67,7 +67,7 @@ class MyProffrsViewController: UITableViewController {
         channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
-            if let name = channelData["name"] as! String!, name.characters.count > 0 { // 3
+            if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
                 self.channels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String))
                 self.tableView.reloadData()
             } else {
