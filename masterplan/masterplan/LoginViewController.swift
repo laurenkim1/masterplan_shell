@@ -65,7 +65,7 @@ class LogInViewController: UIViewController {
         newVc.myDisplayName = myDisplayName
         newVc.myUserId = myUserId
         let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
-        let notificationTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
+        let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
         notificationsTable.myUserId = myUserId
     }
     
