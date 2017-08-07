@@ -32,7 +32,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.senderId = Auth.auth().currentUser?.uid
+        //google auth
+        //self.senderId = Auth.auth().currentUser?.uid
 
         // Handle the text field’s user input through delegate callbacks.
         messageTextField.delegate = self

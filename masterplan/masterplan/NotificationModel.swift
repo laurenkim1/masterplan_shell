@@ -112,7 +112,7 @@ class notificationModel: NSObject {
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")
         jsonable.setValue(requestId, forKey: "requestId")
-        jsonable.setValue(requesterId, forKey: "requsterId")
+        jsonable.setValue(requesterId, forKey: "requesterId")
         jsonable.setValue(requesterName, forKey: "requesterName")
 
         return jsonable

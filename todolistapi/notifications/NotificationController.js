@@ -11,6 +11,7 @@ var Notification = require('./Notification');
 
 router.post('/', function (req, res) {
     let msg = req.body;
+    console.log(msg)
     let recipientId = req.body.userID
     //messagebroker.publish("", recipientId, new Buffer(msg));
     Notification.create({
@@ -31,9 +32,11 @@ router.post('/', function (req, res) {
 
 router.get('/:recipientId', function (req, res) {
     var userID = req.params.recipientId;
+    console.log(userID)
     Notification.find({ userID: userID }, function (err, notification) {
         if (err) return res.status(500).send("There was a problem finding the notification.");
         if (!notification) return res.status(404).send("No notification found.");
+        console.log(notification)
         res.status(200).send(notification);
     });
 });
