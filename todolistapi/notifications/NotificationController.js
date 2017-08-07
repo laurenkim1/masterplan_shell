@@ -30,7 +30,7 @@ router.post('/', function (req, res) {
 });
 
 router.get('/:recipientId', function (req, res) {
-    var userID = parseFloat(req.params.recipientId);
+    var userID = req.params.recipientId;
     Notification.find({ userID: userID }, function (err, notification) {
         if (err) return res.status(500).send("There was a problem finding the notification.");
         if (!notification) return res.status(404).send("No notification found.");
