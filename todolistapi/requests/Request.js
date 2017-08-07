@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var RequestSchema = new mongoose.Schema({
   createdAt: Object,
   userID: String,
+  userName: String,
   requestTitle: String,
   requestPrice: Number,
   fulfilled: Boolean,

@@ -13,6 +13,7 @@ router.post('/', function (req, res) {
     Request.create({
             createdAt: new Date(),
             userID: req.body.userID,
+            userName: req.body.userName,
             requestTitle: req.body.requestTitle,
             requestPrice: req.body.requestPrice,
             fulfilled: req.body.fulfilled,

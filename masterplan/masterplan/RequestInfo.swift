@@ -156,6 +156,7 @@ class requestInfo: NSObject, NSCoding {
         }
         let geoloc: NSDictionary = self.toLocation()
         jsonable.setValue(userID, forKey: "userID")
+        jsonable.setValue(userName, forKey: "userName")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")
         jsonable.setValue(pickUp, forKey: "pickUp")

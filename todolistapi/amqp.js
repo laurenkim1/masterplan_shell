@@ -5,7 +5,6 @@
 var express = require('express');
 var app = express();
 var db = require('./db');
-var Notification = require('./Notification');
 
 var amqp = require('amqplib/callback_api');
 var amqpConn = null;
@@ -49,6 +48,9 @@ function startPublisher() {
       console.log("[AMQP] channel closed");
     });
 
+    var ex = 'notifications';
+    ch.assertExchange(ex, 'direct', {durable: true});
+
     pubChannel = ch;
     while (true) {
       var m = offlinePubQueue.shift();
@@ -85,10 +87,13 @@ function startWorker(bindingKey) {
       console.log("[AMQP] channel closed");
     });
 
+    var ex = 'notifications';
+    ch.assertExchange(ex, 'direct', {durable: true});
+
     ch.prefetch(10);
     ch.assertQueue("", { durable: true }, function(err, q) {
       if (closeOnErr(err)) return;
-      ch.bindQueue(q.queue, "", bindingKey);
+      ch.bindQueue(q.queue, ex, bindingKey);
       ch.consume("", processMsg, { noAck: false });
       console.log("Worker is started");
     });
