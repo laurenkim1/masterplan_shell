@@ -23,6 +23,8 @@ class NotificationsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.getNotifications()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -64,7 +66,7 @@ class NotificationsTableViewController: UITableViewController {
     
     // Mark: Private Methods
     
-    func getNearbyRequests(_ loc: CLLocation, _ rad: Float) -> Void {
+    func getNotifications() -> Void {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kNotifications).absoluteString
         let parameterString: String = myUserId
         let url = URL(string: (requests + parameterString))
@@ -101,7 +103,7 @@ class NotificationsTableViewController: UITableViewController {
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
-        
+        self.getNotifications()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
