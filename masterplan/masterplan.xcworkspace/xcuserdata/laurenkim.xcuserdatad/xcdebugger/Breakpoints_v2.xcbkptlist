@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523429823.035626"
+            timestampString = "523770821.071062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "observeChannels()"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523767074.684096"
+            timestampString = "523770821.071062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -756,7 +756,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/ChatViewController.swift"
-                  timestampString = "523769130.095652"
+                  timestampString = "523770534.922517"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
@@ -771,7 +771,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/ChatViewController.swift"
-                  timestampString = "523769130.098308"
+                  timestampString = "523770534.92506"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "187"
@@ -804,7 +804,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
-                  timestampString = "523769130.104537"
+                  timestampString = "523770534.930019"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "121"
@@ -819,7 +819,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
-                  timestampString = "523769130.106848"
+                  timestampString = "523770534.932771"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "122"
@@ -852,7 +852,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
-                  timestampString = "523769130.112174"
+                  timestampString = "523770534.937607"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "108"
@@ -867,7 +867,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/CreateProffrViewController.swift"
-                  timestampString = "523769130.114934"
+                  timestampString = "523770534.939937"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "108"
@@ -891,6 +891,54 @@
             endingLineNumber = "133"
             landmarkName = "createProffr(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/MyProffrsViewController.swift"
+            timestampString = "523770821.071062"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "observeChannels()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.MyProffrsViewController.(observeChannels in _785C714F7B94E572B115AF20EB0C2F84) () -&gt; ()"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/MyProffrsViewController.swift"
+                  timestampString = "523770503.011023"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "masterplan.MyProffrsViewController.((observeChannels in _785C714F7B94E572B115AF20EB0C2F84) () -&gt; ()).(closure #1)"
+                  moduleName = "masterplan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/MyProffrsViewController.swift"
+                  timestampString = "523770503.012599"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
