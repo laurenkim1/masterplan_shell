@@ -61,6 +61,14 @@ class NotificationsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) -> Void {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
 
     /*
     // Override to support conditional editing of the table view.
