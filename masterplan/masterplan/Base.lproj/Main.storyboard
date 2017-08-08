@@ -564,7 +564,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="hKi-yy-unR">
             <objects>
-                <tabBarController id="WJV-gp-VjN" sceneMemberID="viewController">
+                <tabBarController id="WJV-gp-VjN" customClass="TabBarController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="x7P-xX-0a1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

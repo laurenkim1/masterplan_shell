@@ -22,7 +22,9 @@ class MyProffrsViewController: UITableViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Proffrs"
+        
+        tableView.register(MyProffrsTableViewCell.self, forCellReuseIdentifier: "proffrChannel")
+        
         self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         observeChannels()
     }

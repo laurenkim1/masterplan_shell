@@ -24,6 +24,8 @@ class NotificationsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(NotificationsTableViewCell.self, forCellReuseIdentifier: "notificationCell")
+        
         self.getNotifications()
 
         // Uncomment the following line to preserve selection between presentations

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523772783.433494"
+            timestampString = "523863611.660553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "observeChannels()"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523772783.433494"
+            timestampString = "523863611.660553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -900,11 +900,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523772783.433494"
+            timestampString = "523863611.660553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "observeChannels()"
             landmarkType = "7">
             <Locations>
@@ -1012,7 +1012,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/DistancePageViewController.swift"
-                  timestampString = "523776723.742314"
+                  timestampString = "523863846.691413"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -1027,7 +1027,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/DistancePageViewController.swift"
-                  timestampString = "523776723.745101"
+                  timestampString = "523863846.693987"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -1042,7 +1042,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/DistancePageViewController.swift"
-                  timestampString = "523776723.748737"
+                  timestampString = "523863846.696613"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -1057,7 +1057,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/DistancePageViewController.swift"
-                  timestampString = "523776723.751041"
+                  timestampString = "523863846.699548"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -1106,7 +1106,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/NewRequestViewController.swift"
-                  timestampString = "523776723.761878"
+                  timestampString = "523863846.711166"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
@@ -1121,7 +1121,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/NewRequestViewController.swift"
-                  timestampString = "523776723.763972"
+                  timestampString = "523863846.71357"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
@@ -1136,7 +1136,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/NewRequestViewController.swift"
-                  timestampString = "523776723.766165"
+                  timestampString = "523863846.716183"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
@@ -1151,7 +1151,7 @@
                   moduleName = "masterplan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/laurenkim/Desktop/masterplan_shell/masterplan/masterplan/NewRequestViewController.swift"
-                  timestampString = "523776723.769493"
+                  timestampString = "523863846.7182"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
@@ -1262,11 +1262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "523775596.87653"
+            timestampString = "523861883.949584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
             <Locations>
@@ -1310,11 +1310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "523775597.923584"
+            timestampString = "523862342.445036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1443,6 +1443,22 @@
                   offsetFromSymbolStart = "137">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/LoginViewController.swift"
+            timestampString = "523862342.445036"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

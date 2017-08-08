@@ -30,7 +30,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Home"
+        
+        tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
