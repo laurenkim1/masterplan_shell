@@ -36,6 +36,8 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
         //self.senderId = Auth.auth().currentUser?.uid
 
         // Handle the text field’s user input through delegate callbacks.
+        
+        addBackButton()
         messageTextField.delegate = self
         updateCreateProffrButtonState()
     }
@@ -87,6 +89,20 @@ class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImage
     
     
     // MARK: Actions
+    
+    func addBackButton() {
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(UIImage(named: "BackButton.png"), for: .normal) // Image can be downloaded from here below link
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(backButton.tintColor, for: .normal) // You can change the TitleColor
+        backButton.addTarget(self, action: #selector(self.backAction(_:)), for: .touchUpInside)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
+    @IBAction func backAction(_ sender: UIButton) {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         

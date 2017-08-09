@@ -31,6 +31,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Proffr"
+        
         tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
         
         locationManager.delegate = self

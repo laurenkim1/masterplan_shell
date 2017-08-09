@@ -12,12 +12,10 @@ class NewRequestPlaceholderVC: UIViewController {
     
     var myDisplayName: String!
     var myUserId: String!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "New"
-
-        // Do any additional setup after loading the view.
+        self.setNavigationBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +24,14 @@ class NewRequestPlaceholderVC: UIViewController {
     }
     
     // MARK: Actions
+    
+    func setNavigationBar() {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 50))
+        let navItem = UINavigationItem(title: "Proffr")
+        navBar.setItems([navItem], animated: false)
+        self.view.addSubview(navBar)
+    }
     
     @IBAction func unwindToNewRequestPlaceholder(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? TagListViewController, let request = sourceViewController.request {
