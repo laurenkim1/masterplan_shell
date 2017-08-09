@@ -992,7 +992,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/DistancePageViewController.swift"
@@ -1005,7 +1005,7 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.DistancePageViewController.request.getter : Swift.Optional&lt;masterplan.requestInfo&gt;"
@@ -1020,7 +1020,7 @@
                   offsetFromSymbolStart = "35">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.DistancePageViewController.request.setter : Swift.Optional&lt;masterplan.requestInfo&gt;"
@@ -1035,7 +1035,7 @@
                   offsetFromSymbolStart = "65">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.DistancePageViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; masterplan.DistancePageViewController"
@@ -1050,7 +1050,7 @@
                   offsetFromSymbolStart = "265">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.DistancePageViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;masterplan.DistancePageViewController&gt;"
@@ -1086,7 +1086,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NewRequestViewController.swift"
@@ -1099,7 +1099,7 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.NewRequestViewController.myUserId.getter : Swift.ImplicitlyUnwrappedOptional&lt;Swift.String&gt;"
@@ -1114,7 +1114,7 @@
                   offsetFromSymbolStart = "80">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.NewRequestViewController.myUserId.setter : Swift.ImplicitlyUnwrappedOptional&lt;Swift.String&gt;"
@@ -1129,7 +1129,7 @@
                   offsetFromSymbolStart = "162">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.NewRequestViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; masterplan.NewRequestViewController"
@@ -1144,7 +1144,7 @@
                   offsetFromSymbolStart = "178">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "masterplan.NewRequestViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;masterplan.NewRequestViewController&gt;"
@@ -1242,7 +1242,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NewRequestPlaceholder.swift"

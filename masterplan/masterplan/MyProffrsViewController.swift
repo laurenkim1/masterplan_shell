@@ -23,7 +23,7 @@ class MyProffrsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(MyProffrsTableViewCell.self, forCellReuseIdentifier: "proffrChannel")
+        // tableView.register(MyProffrsTableViewCell.self, forCellReuseIdentifier: "proffrChannel")
         
         self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         observeChannels()

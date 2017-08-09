@@ -24,7 +24,7 @@ class NotificationsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(NotificationsTableViewCell.self, forCellReuseIdentifier: "notificationCell")
+        //tableView.register(NotificationsTableViewCell.self, forCellReuseIdentifier: "notificationCell")
         
         self.getNotifications()
 
