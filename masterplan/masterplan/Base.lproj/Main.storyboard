@@ -360,6 +360,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="ad7-U5-gvC"/>
                     <navigationItem key="navigationItem" title="My Proffrs" id="Hme-Xs-6Ex"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="9ha-67-6k7">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
@@ -395,6 +396,7 @@
         <!--NewRequestPlaceHolder-->
         <scene sceneID="nVq-Qp-hea">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZt-Ci-Pcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="NewRequestPlaceHolder" id="ubh-FT-2aw" customClass="NewRequestPlaceholderVC" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gZG-gd-FkJ"/>
@@ -403,26 +405,10 @@
                     <view key="view" contentMode="scaleToFill" id="6HI-Zy-7q9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPd-Go-Uo0">
-                                <rect key="frame" x="233" y="505" width="60" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Tag"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9n-Hk-g4c">
-                                <rect key="frame" x="60" y="505" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Request"/>
-                                <connections>
-                                    <segue destination="96e-Nl-yeP" kind="presentation" id="1eX-S2-6ZZ"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="yOR-rf-iLz"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dZt-Ci-Pcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1892" y="856"/>
         </scene>
@@ -499,6 +485,7 @@
                     <tabBarItem key="tabBarItem" title="Notifications" id="OIy-Fc-VOa"/>
                     <navigationItem key="navigationItem" title="Notifications" id="IPT-5R-Gnc"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="6kb-LM-VFW">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
@@ -564,7 +551,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="hKi-yy-unR">
             <objects>
-                <tabBarController id="WJV-gp-VjN" sceneMemberID="viewController">
+                <tabBarController id="WJV-gp-VjN" customClass="TabBarController" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="x7P-xX-0a1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

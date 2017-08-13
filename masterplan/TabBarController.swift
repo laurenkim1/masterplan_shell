@@ -16,6 +16,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(myUserId)
         /*
         let button = UIButton(frame: CGRect(origin: CGPoint(x: 0, y: self.view.frame.minY), size: CGSize(width: self.view.frame.width/5, height: self.view.frame.height/9)));
         button.setTitle("Button", for: UIControlState.normal)
@@ -27,24 +28,35 @@ class TabBarController: UITabBarController {
         HomeVC.myUserId = myUserId
         nav1.viewControllers = [HomeVC]
         nav1.tabBarItem.title = "Home"
+        nav1.tabBarItem.image = UIImage(named: "icon_home")
         
         var nav2 = UINavigationController()
         var ProffrsVC = MyProffrsViewController()
         nav2.viewControllers = [ProffrsVC]
         nav2.tabBarItem.title = "Proffrs"
+        nav2.tabBarItem.image = UIImage(named: "icons8-Price Tag Filled-50")
         
         var nav3 = NewRequestPlaceholderVC()
         nav3.myDisplayName = myDisplayName
         nav3.myUserId = myUserId
         nav3.tabBarItem.title = "New"
+        nav3.tabBarItem.image = UIImage(named: "icons8-Add-50")
         
         var nav4 = UINavigationController()
         var NotificationsVC = NotificationsTableViewController()
         NotificationsVC.myUserId = myUserId
         nav4.viewControllers = [NotificationsVC]
         nav4.tabBarItem.title = "Notifications"
+        nav4.tabBarItem.image = UIImage(named: "notifications-btn")
         
-        let tabs = [nav1, nav2, nav3, nav4] as [UIViewController]
+        var nav5 = UINavigationController()
+        var ProfileVC = ProfileViewController()
+        NotificationsVC.myUserId = myUserId
+        nav5.viewControllers = [ProfileVC]
+        nav5.tabBarItem.title = "Profile"
+        nav5.tabBarItem.image = UIImage(named: "icons8-Badge-50")
+        
+        let tabs = [nav1, nav2, nav3, nav4, nav5] as [UIViewController]
         self.viewControllers = tabs
     }
 

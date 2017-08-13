@@ -24,7 +24,7 @@ class NotificationsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.register(NotificationsTableViewCell.self, forCellReuseIdentifier: "notificationCell")
+        tableView.register(NotificationsTableViewCell.self, forCellReuseIdentifier: "notificationCell")
         
         self.getNotifications()
 
@@ -70,7 +70,7 @@ class NotificationsTableViewController: UITableViewController {
     
     func getNotifications() -> Void {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kNotifications).absoluteString
-        let parameterString: String = myUserId
+        let parameterString: String = self.myUserId
         let url = URL(string: (requests + parameterString))
         //1
         var networkrequest = URLRequest(url: url!)
