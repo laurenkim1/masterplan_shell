@@ -6,6 +6,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - CircleMenu (2.0.5)
+  - EasyPeasy (1.4.2)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -62,19 +63,25 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - Material (2.6.3):
+    - Material/Core (= 2.6.3)
+  - Material/Core (2.6.3)
 
 DEPENDENCIES:
   - CircleMenu (~> 2.0.1)
+  - EasyPeasy
   - FacebookCore
   - FacebookLogin
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
   - JSQMessagesViewController
+  - Material (~> 2.0)
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
+  EasyPeasy: 50e7130b61f495ce105796e438d4136e2c8d2cc0
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
@@ -90,7 +97,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
 
-PODFILE CHECKSUM: ba9b0215f6e6ba79e75329002a8a2a14771dc161
+PODFILE CHECKSUM: 3a8aa4887da28b2d35f993f0a9860079b12529c6
 
 COCOAPODS: 1.2.1

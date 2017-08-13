@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import os.log
 import Firebase
+import Material
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kNotifications: String = "notifications/"
@@ -54,10 +55,11 @@ class NotificationsTableViewController: UITableViewController {
         let cellIdentifier = "notificationCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? NotificationsTableViewCell else {
-            fatalError("The dequeued cell is not an instance of NotificationsTableViewCell.")
+            fatalError("The dequeued cell is not an instance of TableViewCell.")
         }
 
         // Configure the cell...
+        
         cell.requestTitle?.text = notifications[(indexPath as NSIndexPath).row].requestTitle
         cell.requesterName?.text = notifications[(indexPath as NSIndexPath).row].requesterName
         let price = notifications[(indexPath as NSIndexPath).row].requestPrice 

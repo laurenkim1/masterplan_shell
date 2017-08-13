@@ -11,7 +11,7 @@ import os.log
 import MapKit
 import CoreLocation
 
-class NewRequestViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+class NewRequestViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
     

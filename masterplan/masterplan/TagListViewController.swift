@@ -13,7 +13,7 @@ private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests"
 private let kFiles: String = "files"
 
-class TagListViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class TagListViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let reuseIdentifier = "tag";
     

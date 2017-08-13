@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class DistancePageViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+class DistancePageViewController: UIViewController, UITextFieldDelegate {
     
     // Mark: Properties
     @IBOutlet weak var distanceInput: UITextField!

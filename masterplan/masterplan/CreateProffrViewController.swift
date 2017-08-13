@@ -12,7 +12,7 @@ import Photos
 
 private let kBaseURL: String = "https://"
 
-class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate {
     
     // MARK: Properties
     

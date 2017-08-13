@@ -347,7 +347,7 @@ class NewChatViewController: JSQMessagesViewController {
 }
 
 // MARK: Image Picker Delegate
-extension NewChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension NewChatViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         

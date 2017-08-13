@@ -13,6 +13,8 @@ target 'masterplan' do
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'CircleMenu', '~> 2.0.1'
+  pod 'Material', '~> 2.0'
+  pod "EasyPeasy"
 
   target 'masterplanTests' do
     inherit! :search_paths
