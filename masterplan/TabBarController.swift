@@ -40,7 +40,7 @@ class TabBarController: UITabBarController {
         nav3.myDisplayName = myDisplayName
         nav3.myUserId = myUserId
         nav3.tabBarItem.title = "New"
-        nav3.tabBarItem.image = UIImage(named: "icons8-Add-50")
+        nav3.tabBarItem.image = UIImage(named: "icons8-Plus 2 Math-50")
         
         var nav4 = UINavigationController()
         var NotificationsVC = NotificationsTableViewController()

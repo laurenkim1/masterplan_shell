@@ -18,10 +18,10 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
     var myDisplayName: String!
     var myUserId: String!
     
-    @IBOutlet weak var requestName: UITextField!
-    @IBOutlet weak var price: UITextField!
-    @IBOutlet weak var pickUpBool: UISegmentedControl!
-    @IBOutlet weak var nextPhaseButton: UIButton!
+    var requestName: UITextField!
+    var price: UITextField!
+    var pickUpBool: UISegmentedControl!
+    let nextPhaseButton: UIButton! = UIButton()
     
     let _location = CLLocation(latitude: 42.3770, longitude: -71.1167)
     
@@ -29,14 +29,8 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-        // Handle the text field’s user input through delegate callbacks.
-        requestName.delegate = self
-        price.delegate = self
-        
-        updateNextPhaseButtonState()
+        self.view.backgroundColor = UIColor.white
+        self.setUpSubViews()
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,24 +68,76 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func nextButtonPressed(_ sender: UIButton) {
-        if pickUpBool.selectedSegmentIndex == 0 {
-            performSegue(withIdentifier: "pickUpSegue", sender: self)
-        }
-        else {
-            performSegue(withIdentifier: "noPickUpSegue", sender: self)
-        }
-    }
-    
     @IBAction func unwindToNewRequestPage(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? DistancePageViewController {
         }
         else if let sourceViewController = sender.source as? TagListViewController {
         }
     }
+    
+    func setUpSubViews() {
+        requestName = UITextField(frame: CGRect(origin: CGPoint(x: self.view.center.x, y: 100), size: CGSize(width: 100, height: 30)))
+        price = UITextField(frame: CGRect(origin: CGPoint(x: self.view.center.x, y: 120), size: CGSize(width: 100, height: 30)))
+        pickUpBool = UISegmentedControl(items: ["Yes", "No"])
+        pickUpBool.selectedSegmentIndex = 0
+        pickUpBool.frame = (frame: CGRect(origin: CGPoint(x: self.view.center.x, y: 140), size: CGSize(width: 100, height: 30)))
+        
+        // Do any additional setup after loading the view.
+        
+        // Handle the text field’s user input through delegate callbacks.
+        requestName.delegate = self
+        price.delegate = self
+        
+        nextPhaseButton.frame = (frame: CGRect(origin: CGPoint(x: self.view.center.x, y: 160), size: CGSize(width: 30, height: 20)))
+        nextPhaseButton.tintColor = UIColor.blue
+        nextPhaseButton.setTitle("Next", for: UIControlState.normal)
+        nextPhaseButton.addTarget(self, action: #selector(buttonTapped),
+                                  for: .touchUpInside)
+        
+        updateNextPhaseButtonState()
+        
+        self.view.addSubview(requestName)
+        self.view.addSubview(price)
+        self.view.addSubview(pickUpBool)
+        self.view.addSubview(nextPhaseButton)
+    }
 
     
     // MARK: - Navigation
+    
+    func buttonTapped(){
+        let nextViewController: UIViewController!
+        if pickUpBool.selectedSegmentIndex == 0 {
+            nextViewController = DistancePageViewController()
+        }
+        else {
+            nextViewController = TagListViewController()
+        }
+        
+        let _title = requestName.text ?? ""
+        let _price = Float(price.text!)!
+        let _pickup = pickUpBool.selectedSegmentIndex
+        
+        if request != nil {
+        }
+        else {
+            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
+            request?.requestTags.append("Add Tags")
+        }
+        
+        if let destinationViewController = nextViewController as? TagListViewController {
+            destinationViewController.request = request
+        }
+            
+        else if let destinationViewController = nextViewController as? DistancePageViewController {
+            destinationViewController.request = request
+        }
+        
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: false)
+    }
+    
+    /*
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -119,5 +165,6 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+ */
 
 }

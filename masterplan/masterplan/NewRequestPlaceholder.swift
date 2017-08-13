@@ -15,12 +15,12 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     var myUserId: String!
     
     let items: [(icon: String, color: UIColor)] = [
-        ("icon_home", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
-        ("icon_search", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
-        ("notifications-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
-        ("settings-btn", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
+        ("icons8-Edit Filled-50", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
+        ("icons8-Update Tag Filled-50", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
+        //("notifications-btn", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
+        //("settings-btn", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
         ("nearby-btn", UIColor(red:1, green:0.39, blue:0, alpha:1)),
-        ]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +39,14 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     func setCircleMenu() {
         let button = CircleMenu(
             frame: CGRect(x: 200, y: 200, width: 50, height: 50),
-            normalIcon:"icon_menu",
+            normalIcon:"icons8-Add-50",
             selectedIcon:"icon_close",
-            buttonsCount: 2,
-            duration: 4,
+            buttonsCount: 3,
+            duration: 1,
             distance: 120)
         
         button.delegate = self
+        button.center = self.view.center
         button.layer.cornerRadius = button.frame.size.width / 2.0
         self.view.addSubview(button)
     }
@@ -86,7 +87,29 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     
     func circleMenu(_ circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
         print("button did selected: \(atIndex)")
+        
+        let navVc: UINavigationController! = UINavigationController()
+        if atIndex == 0 {
+            let newRequestVc = NewRequestViewController()
+            newRequestVc.myUserId = myUserId
+            newRequestVc.myDisplayName = myDisplayName
+            navVc.viewControllers = [newRequestVc]
+        } else if atIndex == 1 {
+            let newRequestVc = NewRequestViewController()
+            newRequestVc.myUserId = myUserId
+            newRequestVc.myDisplayName = myDisplayName
+            navVc.viewControllers = [newRequestVc]
+        } else if atIndex == 2 {
+            let newRequestVc = NewRequestViewController()
+            newRequestVc.myUserId = myUserId
+            newRequestVc.myDisplayName = myDisplayName
+            navVc.viewControllers = [newRequestVc]
+        }
+        
+        self.present(navVc, animated: true, completion: nil)
     }
+    
+    /*
 
     // MARK: - Navigation
 
@@ -96,5 +119,6 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
         newRequestVc.myUserId = myUserId
         newRequestVc.myDisplayName = myDisplayName
     }
+ */
 
 }
