@@ -13,7 +13,6 @@ target 'masterplan' do
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'CircleMenu', '~> 2.0.1'
-  pod 'IGListKit', '~> 3.0'
 
   target 'masterplanTests' do
     inherit! :search_paths
