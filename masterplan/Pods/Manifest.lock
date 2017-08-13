@@ -67,6 +67,7 @@ PODS:
   - Material (2.6.3):
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
+  - Neon (0.4.0)
 
 DEPENDENCIES:
   - CircleMenu (~> 2.0.1)
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - JSQMessagesViewController
   - Material (~> 2.0)
+  - Neon
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -101,7 +103,8 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
+  Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
 
-PODFILE CHECKSUM: 6875b5414a65b5a023b97d93922bbe92c529a0ed
+PODFILE CHECKSUM: 7e8f0923dbc6cfe85e3f9fdb4b50403620601716
 
 COCOAPODS: 1.2.1

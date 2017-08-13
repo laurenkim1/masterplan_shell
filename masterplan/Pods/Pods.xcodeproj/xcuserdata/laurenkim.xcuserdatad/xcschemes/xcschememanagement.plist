@@ -79,6 +79,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Neon.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-masterplan.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -93,11 +98,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>340741C34DD0E5A667CDF4EA921A0593</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -168,6 +168,16 @@
 			<true/>
 		</dict>
 		<key>DDBCFDE490CDFDABF6F16A26F346932D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1B0ACE9E646D15A2EF4D2C3F7F63BF3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF630AB9720279E0A1F904F21F31CF0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
