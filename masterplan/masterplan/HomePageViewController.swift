@@ -66,10 +66,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
     
-    deinit {
-        self.tableView.dg_removePullToRefresh()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = true
         self.tableView.reloadData()

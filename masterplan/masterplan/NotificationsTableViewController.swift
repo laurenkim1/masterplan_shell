@@ -52,10 +52,6 @@ class NotificationsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    deinit {
-        self.tableView.dg_removePullToRefresh()
-    }
 
     // MARK: - Table view data source
 
