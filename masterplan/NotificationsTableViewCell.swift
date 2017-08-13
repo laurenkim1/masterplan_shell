@@ -45,7 +45,7 @@ class NotificationsTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        CellHeight = 85
+        CellHeight = 80
         
         ProfilePhoto = UIImageView()
         ProfilePhoto.frame = CGRect(x: 20, y: CellHeight/2-20, width: 50, height: 50)
