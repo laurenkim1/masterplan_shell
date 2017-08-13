@@ -221,7 +221,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         }
         
         // change these parameters to match a request table cell
-        cell.nameLabel.text = nearbyRequest.requestTitle
+        cell.requestTitle.text = nearbyRequest.requestTitle
+        cell.nameLabel.text = nearbyRequest.userName
         
         userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
         
