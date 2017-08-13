@@ -10,6 +10,7 @@ import UIKit
 import os.log
 import MapKit
 import CoreLocation
+import DGElasticPullToRefresh
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
@@ -52,7 +53,21 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         tableView.tableHeaderView = searchController.searchBar
         
         self.tableView.reloadData()
-        self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        //self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.nearbyRequestList = []
+            self?.getNearbyRequests((self?.userLocation)!, 1)
+            self?.tableView.reloadData()
+            self?.tableView.dg_stopLoading()
+            }, loadingView: loadingView)
+        self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+    }
+    
+    deinit {
+        self.tableView.dg_removePullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -261,6 +276,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         }
     }
     
+    /*
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
@@ -270,6 +286,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
+    */
     
     // MARK: Actions
 

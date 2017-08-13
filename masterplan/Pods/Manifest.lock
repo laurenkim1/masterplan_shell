@@ -6,6 +6,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - CircleMenu (2.0.5)
+  - DGElasticPullToRefresh (1.1)
   - EasyPeasy (1.4.2)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
@@ -69,6 +70,7 @@ PODS:
 
 DEPENDENCIES:
   - CircleMenu (~> 2.0.1)
+  - DGElasticPullToRefresh
   - EasyPeasy
   - FacebookCore
   - FacebookLogin
@@ -81,6 +83,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   EasyPeasy: 50e7130b61f495ce105796e438d4136e2c8d2cc0
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
@@ -99,6 +102,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
 
-PODFILE CHECKSUM: 3a8aa4887da28b2d35f993f0a9860079b12529c6
+PODFILE CHECKSUM: 6875b5414a65b5a023b97d93922bbe92c529a0ed
 
 COCOAPODS: 1.2.1

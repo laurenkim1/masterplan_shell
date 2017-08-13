@@ -11,6 +11,7 @@ import Photos
 import os.log
 import Firebase
 import Material
+import DGElasticPullToRefresh
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kNotifications: String = "notifications/"
@@ -33,12 +34,27 @@ class NotificationsTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.getNotifications()
+            self?.tableView.reloadData()
+            self?.tableView.dg_stopLoading()
+            }, loadingView: loadingView)
+        self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        self.tableView.dg_removePullToRefresh()
     }
 
     // MARK: - Table view data source
@@ -104,6 +120,8 @@ class NotificationsTableViewController: UITableViewController {
         }
     }
     
+    
+    /*
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
@@ -111,6 +129,8 @@ class NotificationsTableViewController: UITableViewController {
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
+ 
+ */
 
     /*
     // Override to support conditional editing of the table view.
