@@ -60,7 +60,7 @@ class NotificationsTableViewCell: UITableViewCell {
         requesterName.textColor = UIColor.black
         contentView.addSubview(requesterName)
         
-        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: requesterName.frame.origin.y+requesterName.frame.size.height+10, width: 100, height: CellHeight/2-10)
+        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: requesterName.frame.origin.y+requesterName.frame.size.height, width: 100, height: CellHeight/2-10)
         requestTitle.textColor = UIColor.black
         contentView.addSubview(requestTitle)
     }
