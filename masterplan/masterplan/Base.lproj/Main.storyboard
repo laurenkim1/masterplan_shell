@@ -301,7 +301,7 @@
             <objects>
                 <navigationController id="3Aa-8q-c6k" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="9Tm-7j-DQ3"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2V9-Ss-NTg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2V9-Ss-NTg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -396,7 +396,6 @@
         <!--NewRequestPlaceHolder-->
         <scene sceneID="nVq-Qp-hea">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dZt-Ci-Pcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="NewRequestPlaceHolder" id="ubh-FT-2aw" customClass="NewRequestPlaceholderVC" customModule="masterplan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gZG-gd-FkJ"/>
@@ -409,6 +408,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="yOR-rf-iLz"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZt-Ci-Pcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1892" y="856"/>
         </scene>
@@ -498,7 +498,7 @@
             <objects>
                 <navigationController id="c6A-uS-IVP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="VYg-tv-F6K"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Fj-DO-LVh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9Fj-DO-LVh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -515,7 +515,7 @@
             <objects>
                 <navigationController title="Home Page Navigation Controller" id="uEy-TV-aUB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="ibx-8W-ycK"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7QX-q1-WGg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7QX-q1-WGg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -574,7 +574,7 @@
                 <navigationController title="New Request Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="96e-Nl-yeP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="sNR-bt-lLt"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Nv-1Z-EM4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3Nv-1Z-EM4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
