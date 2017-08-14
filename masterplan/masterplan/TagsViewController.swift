@@ -58,6 +58,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
         
         tagListView = AMTagListView(frame: CGRect(origin: self.view.center, size: CGSize(width: 200, height: 200)))
         
+        self.view.addSubview(textField)
         self.view.addSubview(tagListView)
         tagListView.addTag("my tag")
     }
