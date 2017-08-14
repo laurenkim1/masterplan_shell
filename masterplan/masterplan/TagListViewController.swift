@@ -18,17 +18,16 @@ class TagListViewController: UIViewController, UITextFieldDelegate, UICollection
     let reuseIdentifier = "tag";
     
     // Mark: Properties
-    @IBOutlet var tagList: UICollectionView!
-    @IBOutlet weak var newTag: UITextField!
-    @IBOutlet weak var doneButton: UIBarButtonItem!
-    @IBOutlet weak var backButton: UIBarButtonItem!
+    var tagList: UICollectionView!
+    var newTag: UITextField!
+    var doneButton: UIBarButtonItem!
+    var backButton: UIBarButtonItem!
     var request: requestInfo?
     var objects: NSMutableArray = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,21 +36,19 @@ class TagListViewController: UIViewController, UITextFieldDelegate, UICollection
     }
     
     //UICollectionViewDelegateFlowLayout methods
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
     {
-        
         return 4;
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
     {
-        
         return 1;
     }
     
     
     //UICollectionViewDatasource methods
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        
         return 1
     }
     

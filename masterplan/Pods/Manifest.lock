@@ -69,6 +69,7 @@ PODS:
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
   - Neon (0.4.0)
+  - TagListView (1.2.0)
 
 DEPENDENCIES:
   - CircleMenu (~> 2.0.1)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - Material (~> 2.0)
   - Neon
+  - TagListView (~> 1.0)
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -107,7 +109,8 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
+  TagListView: 999e1df50c0f6b9ca927fae705c86a7e3b6ee9ba
 
-PODFILE CHECKSUM: 04555ee34afd010905c948906111d31d92829e46
+PODFILE CHECKSUM: d019d486f211a6b980370b310c1f72988cd2eb97
 
 COCOAPODS: 1.2.1

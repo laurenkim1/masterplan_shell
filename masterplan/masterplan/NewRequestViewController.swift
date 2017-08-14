@@ -46,8 +46,8 @@ class NewRequestViewController: FormViewController {
                 $0.options = ["Yes", "No"]
                 $0.value = "Yes"
         }
-            +++ Section("Distance")
-            <<< DecimalRow() {
+            +++ Section("PickUpDistance")
+            <<< DecimalRow("Distance") {
                 $0.title = "I am willing to travel (mi):"
                 $0.placeholder = "0.5"
                 $0.disabled = Eureka.Condition.function(["pickUp"], { (form) -> Bool in
@@ -98,9 +98,6 @@ class NewRequestViewController: FormViewController {
         let pricerow: DecimalRow = form.rowBy(tag: "price")!
         let _price: Double! = pricerow.value
         
-        let distancerow: DecimalRow = form.rowBy(tag: "Distance")!
-        let _distance: Double! = distancerow.value
-        
         let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!
         let _pickup: Int!
         if row.value == "Yes" {
@@ -114,16 +111,23 @@ class NewRequestViewController: FormViewController {
         else {
             request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
             request?.requestTags.append("Add Tags")
-            request?.distance = _distance
+            
+            if _pickup == 0 {
+                let distancerow: DecimalRow = form.rowBy(tag: "Distance")!
+                let _distance: Double! = distancerow.value
+                request?.distance = _distance
+            }
         }
         
-        if let destinationViewController = nextViewController as? TagListViewController {
+        if let destinationViewController = nextViewController as? TagsViewController {
             destinationViewController.request = request
         }
             
+            /*
         else if let destinationViewController = nextViewController as? DistancePageViewController {
             destinationViewController.request = request
         }
+ */
         
         navigationController?.pushViewController(nextViewController,
                                                  animated: false)
