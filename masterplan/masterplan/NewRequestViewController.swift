@@ -30,7 +30,11 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        
+        self.title = "New Request"
+        
         self.setUpSubViews()
+        self.setNavigationBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,7 +68,7 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Actions
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
+    func cancel() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -73,6 +77,16 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
         }
         else if let sourceViewController = sender.source as? TagListViewController {
         }
+    }
+    
+    func setNavigationBar() {
+        // let cancelImage = UIButton(type: .custom)
+        // cancelImage.setImage(UIImage(named: "icon_close"), for: .normal)
+        let cancelButton = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(cancel))
+        //let cancelButton = UIBarButtonItem(customView: cancelImage)
+        //cancelButton.target = self
+        //cancelButton.action = #selector(cancel)
+        self.navigationItem.leftBarButtonItem = cancelButton
     }
     
     func setUpSubViews() {
@@ -88,9 +102,9 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
         requestName.delegate = self
         price.delegate = self
         
-        nextPhaseButton.frame = (frame: CGRect(origin: CGPoint(x: self.view.center.x, y: 160), size: CGSize(width: 30, height: 20)))
+        nextPhaseButton.frame = (frame: CGRect(origin: CGPoint(x: self.view.center.x, y: self.view.center.y), size: CGSize(width: 30, height: 20)))
         nextPhaseButton.tintColor = UIColor.blue
-        nextPhaseButton.setTitle("Next", for: UIControlState.normal)
+        nextPhaseButton.setTitle("Next", for: .normal)
         nextPhaseButton.addTarget(self, action: #selector(buttonTapped),
                                   for: .touchUpInside)
         

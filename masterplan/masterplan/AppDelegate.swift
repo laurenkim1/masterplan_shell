@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         UINavigationBar.appearance().barTintColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.black
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
         UITabBar.appearance().barTintColor = UIColor.white

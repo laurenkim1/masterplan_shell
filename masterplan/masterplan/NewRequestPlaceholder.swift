@@ -13,6 +13,7 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     
     var myDisplayName: String!
     var myUserId: String!
+    var button: CircleMenu!
     
     let items: [(icon: String, color: UIColor)] = [
         ("icons8-Edit Filled-50", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
@@ -37,7 +38,7 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     // MARK: Actions
     
     func setCircleMenu() {
-        let button = CircleMenu(
+        button = CircleMenu(
             frame: CGRect(x: 200, y: 200, width: 50, height: 50),
             normalIcon:"icons8-Add-50",
             selectedIcon:"icon_close",
@@ -93,7 +94,8 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
             let newRequestVc = NewRequestViewController()
             newRequestVc.myUserId = myUserId
             newRequestVc.myDisplayName = myDisplayName
-            navVc.viewControllers = [newRequestVc]
+            navVc.viewControllers.append(newRequestVc)
+            //navVc.viewControllers = [newRequestVc]
         } else if atIndex == 1 {
             let newRequestVc = NewRequestViewController()
             newRequestVc.myUserId = myUserId
