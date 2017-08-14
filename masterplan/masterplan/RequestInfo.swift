@@ -17,14 +17,14 @@ class requestInfo: NSObject, NSCoding {
     var userID: String
     var userName: String
     var requestTitle: String
-    var requestPrice: Float
+    var requestPrice: Double
     var requestID: String?
     var fulfilled: Bool
     var fulfillerID: Int
     var requestTags: [String]
     var tagString: String
     var pickUp: Int
-    var distance: Float
+    var distance: Double
     var location: CLLocation
     var postTime: NSDate?
     
@@ -48,7 +48,7 @@ class requestInfo: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init?(userID: String, userName: String, requestTitle: String, requestPrice: Float, pickUp: Int, location: CLLocation) {
+    init?(userID: String, userName: String, requestTitle: String, requestPrice: Double, pickUp: Int, location: CLLocation) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -89,7 +89,7 @@ class requestInfo: NSObject, NSCoding {
             os_log("Unable to decode the name for a request.", log: OSLog.default, type: .debug)
             return nil
         }
-        guard let requestPrice = dict["requestPrice"] as? Float else {
+        guard let requestPrice = dict["requestPrice"] as? Double else {
             os_log("Unable to decode the price for a request.", log: OSLog.default, type: .debug)
             return nil
         }
@@ -201,7 +201,7 @@ class requestInfo: NSObject, NSCoding {
             return nil
         }
         
-        guard let requestPrice = aDecoder.decodeObject(forKey: PropertyKey.requestPrice) as? Float else {
+        guard let requestPrice = aDecoder.decodeObject(forKey: PropertyKey.requestPrice) as? Double else {
             os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
             return nil
         }

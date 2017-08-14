@@ -71,7 +71,7 @@ class DistancePageViewController: UIViewController, UITextFieldDelegate {
             os_log("The next phase button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
         }
-        let _distance = Float(distanceInput.text!)!
+        let _distance = Double(distanceInput.text!)!
         request?.distance = _distance
         
         let tagCount : Int = (self.request?.requestTags.count)!

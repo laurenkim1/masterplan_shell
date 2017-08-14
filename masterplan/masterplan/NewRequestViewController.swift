@@ -21,8 +21,7 @@ class NewRequestViewController: FormViewController {
     
     var requestName: UITextField!
     var price: UITextField!
-    var pickUpBool: UISegmentedControl!
-    let nextPhaseButton: UIButton! = UIButton(type: .system)
+    var nextPhaseButton: UIBarButtonItem!
     
     let _location = CLLocation(latitude: 42.3770, longitude: -71.1167)
     
@@ -30,9 +29,6 @@ class NewRequestViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.pickUpBool = UISegmentedControl(items: ["Yes", "No"])
-        self.pickUpBool.selectedSegmentIndex = 0
         
         self.setNavigationBar()
         
@@ -69,11 +65,64 @@ class NewRequestViewController: FormViewController {
     func setNavigationBar() {
         // let cancelImage = UIButton(type: .custom)
         // cancelImage.setImage(UIImage(named: "icon_close"), for: .normal)
-        let cancelButton = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(cancel))
         //let cancelButton = UIBarButtonItem(customView: cancelImage)
         //cancelButton.target = self
         //cancelButton.action = #selector(cancel)
+        let cancelButton = UIBarButtonItem(image: UIImage(named: "icons8-Cancel-50"), style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem = cancelButton
+        
+        self.nextPhaseButton = UIBarButtonItem(image: UIImage(named: "icons8-Next page-50"), style: .plain, target: self, action: #selector(buttonTapped))
+        self.navigationItem.rightBarButtonItem = nextPhaseButton
+    }
+    
+    private func updateNextPhaseButtonState() {
+        // Disable the Save button if the text field is empty.
+        
+        let titlerow: TextRow = form.rowBy(tag: "requestTitle")!
+        let titleText = titlerow.value ?? ""
+        
+        let pricerow: DecimalRow = form.rowBy(tag: "price")!
+        let priceText: Double! = pricerow.value
+
+        nextPhaseButton.isEnabled = !titleText.isEmpty && (priceText>0.0)
+    }
+    
+    // MARK: - Navigation
+    
+    func buttonTapped(){
+        let nextViewController: UIViewController = TagListViewController()
+        
+        let titlerow: TextRow = form.rowBy(tag: "requestTitle")!
+        let _title = titlerow.value ?? ""
+        
+        let pricerow: DecimalRow = form.rowBy(tag: "price")!
+        let _price: Double! = pricerow.value
+        
+        let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!
+        let _pickup: Int!
+        if row.value == "Yes" {
+            _pickup = 0
+        } else {
+            _pickup = 1
+        }
+        
+        if request != nil {
+        }
+        else {
+            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
+            request?.requestTags.append("Add Tags")
+        }
+        
+        if let destinationViewController = nextViewController as? TagListViewController {
+            destinationViewController.request = request
+        }
+            
+        else if let destinationViewController = nextViewController as? DistancePageViewController {
+            destinationViewController.request = request
+        }
+        
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: false)
     }
 }
 
