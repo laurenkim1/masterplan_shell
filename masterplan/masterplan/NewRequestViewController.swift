@@ -98,6 +98,9 @@ class NewRequestViewController: FormViewController {
         let pricerow: DecimalRow = form.rowBy(tag: "price")!
         let _price: Double! = pricerow.value
         
+        let distancerow: DecimalRow = form.rowBy(tag: "Distance")!
+        let _distance: Double! = distancerow.value
+        
         let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!
         let _pickup: Int!
         if row.value == "Yes" {
@@ -111,6 +114,7 @@ class NewRequestViewController: FormViewController {
         else {
             request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
             request?.requestTags.append("Add Tags")
+            request?.distance = _distance
         }
         
         if let destinationViewController = nextViewController as? TagListViewController {
