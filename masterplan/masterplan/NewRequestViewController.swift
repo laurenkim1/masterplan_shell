@@ -90,7 +90,7 @@ class NewRequestViewController: FormViewController {
     // MARK: - Navigation
     
     func buttonTapped(){
-        let nextViewController: UIViewController = TagListViewController()
+        let nextViewController: UIViewController = TagsViewController()
         
         let titlerow: TextRow = form.rowBy(tag: "requestTitle")!
         let _title = titlerow.value ?? ""

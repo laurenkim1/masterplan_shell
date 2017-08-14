@@ -7,18 +7,18 @@
 //
 
 import UIKit
-import TagListView
+import AMTagListView
 import os.log
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests"
 private let kFiles: String = "files"
 
-class TagsViewController: UIViewController, TagListViewDelegate {
+class TagsViewController: UIViewController,  UITextFieldDelegate {
     
     // Mark: Properties
-    var tagListView: TagListView!
-    var newTag: UITextField!
+    var tagListView: AMTagListView!
+    var textField: UITextField!
     var doneButton: UIBarButtonItem!
     var backButton: UIBarButtonItem!
     var request: requestInfo?
@@ -26,6 +26,7 @@ class TagsViewController: UIViewController, TagListViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Proffr"
         self.view.backgroundColor = UIColor.white
         self.setTagList()
 
@@ -37,37 +38,26 @@ class TagsViewController: UIViewController, TagListViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: TagListViewDelegate
-    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
-        print("Tag pressed: \(title), \(sender)")
-        tagView.isSelected = !tagView.isSelected
-    }
-    
-    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
-        print("Tag Remove pressed: \(title), \(sender)")
-        sender.removeTagView(tagView)
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        tagListView.addTag(textField.text)
+        textField.text = ""
+        return false;
     }
     
     // MARK: Actions
     
     func setTagList() {
-        self.tagListView = TagListView(frame: self.view.frame)
-        tagListView.delegate = self
-        tagListView.addTag("TagListView")
-        tagListView.addTag("TEAChart")
-        tagListView.addTag("To Be Removed")
-        tagListView.addTag("To Be Removed")
-        tagListView.addTag("Quark Shell")
-        tagListView.removeTag("To Be Removed")
-        tagListView.addTag("On tap will be removed").onTap = { [weak self] tagView in
-            self?.tagListView.removeTagView(tagView)
-        }
+        textField = UITextField(frame: CGRect(origin: CGPoint(x: self.view.center.x, y: (self.view.center.y+200)), size: CGSize(width: 200, height: 20)))
+        textField.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
+        textField.layer.borderWidth = 2.0
+        textField.delegate = self
         
-        let tagView = tagListView.addTag("gray")
-        tagView.tagBackgroundColor = UIColor.gray
-        tagView.onTap = { tagView in
-            print("Don’t tap me!")
-        }
+        AMTagView.appearance().tagLength = 10
+        AMTagView.appearance().textFont = UIFont(name: "Futura", size: 14)
+        AMTagView.appearance().tagColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1)
+        
+        tagListView = AMTagListView(frame: CGRect(origin: self.view.center, size: CGSize(width: 200, height: 200)))
+        tagListView.addTag("my tag")
         self.view.addSubview(tagListView)
     }
     
