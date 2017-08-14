@@ -9,6 +9,8 @@
 import UIKit
 import AMTagListView
 import os.log
+import EasyPeasy
+import Neon
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests"
@@ -37,17 +39,30 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    /*
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         tagListView.addTag(textField.text!)
         textField.text = ""
         return false;
+    }*/
+    
+    //MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        tagListView.addTag(textField.text!)
+        textField.text = ""
+        return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
+    
     
     // MARK: Actions
     
     func setTagList() {
-        textField = UITextField(frame: CGRect(origin: CGPoint(x: self.view.center.x, y: (self.view.center.y-200)), size: CGSize(width: 200, height: 20)))
+        textField = UITextField(frame: CGRect(x:20, y: 80, width: self.view.frame.width-40, height: 25))
         textField.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         textField.layer.borderWidth = 2.0
         textField.delegate = self
@@ -56,7 +71,9 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
         AMTagView.appearance().textFont = UIFont(name: "Futura", size: 14)
         AMTagView.appearance().tagColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1)
         
-        tagListView = AMTagListView(frame: CGRect(origin: self.view.center, size: CGSize(width: 200, height: 200)))
+        tagListView = AMTagListView(frame: CGRect(x:20, y: 80+textField.frame.height+10, width: self.view.frame.width-40, height: 400))
+        tagListView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
+        tagListView.layer.borderWidth = 2.0
         
         self.view.addSubview(textField)
         self.view.addSubview(tagListView)
