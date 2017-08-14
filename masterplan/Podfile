@@ -18,7 +18,7 @@ target 'masterplan' do
   pod 'Neon'
   pod 'DGElasticPullToRefresh'
   pod 'Eureka'
-  pod 'AMTagListView'
+  pod 'TagListView', '~> 1.0'
 
   target 'masterplanTests' do
     inherit! :search_paths

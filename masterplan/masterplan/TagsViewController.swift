@@ -7,17 +7,17 @@
 //
 
 import UIKit
-import AMTagListView
+import TagListView
 import os.log
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests"
 private let kFiles: String = "files"
 
-class TagsViewController: UIViewController,  UITextFieldDelegate {
+class TagsViewController: UIViewController, TagListViewDelegate, UITextFieldDelegate {
     
     // Mark: Properties
-    var tagListView: AMTagListView!
+    var tagListView: TagListView!
     var textField: UITextField!
     var doneButton: UIBarButtonItem!
     var backButton: UIBarButtonItem!
@@ -39,7 +39,7 @@ class TagsViewController: UIViewController,  UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        tagListView.addTag(textField.text)
+        tagListView.addTag(textField.text!)
         textField.text = ""
         return false;
     }
@@ -52,15 +52,40 @@ class TagsViewController: UIViewController,  UITextFieldDelegate {
         textField.layer.borderWidth = 2.0
         textField.delegate = self
         
-        AMTagView.appearance().tagLength = 10
-        AMTagView.appearance().textFont = UIFont(name: "Futura", size: 14)
-        AMTagView.appearance().tagColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1)
         
-        tagListView = AMTagListView(frame: CGRect(origin: self.view.center, size: CGSize(width: 200, height: 200)))
-        tagListView.addTag("my tag")
+        
+        tagListView = TagListView(frame: CGRect(origin: self.view.center, size: CGSize(width: 200, height: 200)))
+        tagListView.delegate = self
+        tagListView.addTag("TagListView")
+        tagListView.addTag("TEAChart")
+        tagListView.addTag("To Be Removed")
+        tagListView.addTag("To Be Removed")
+        tagListView.addTag("Quark Shell")
+        tagListView.removeTag("To Be Removed")
+        tagListView.addTag("On tap will be removed").onTap = { [weak self] tagView in
+            self?.tagListView.removeTagView(tagView)
+        }
+        
+        let tagView = tagListView.addTag("gray")
+        tagView.tagBackgroundColor = UIColor.gray
+        tagView.onTap = { tagView in
+            print("Don’t tap me!")
+        }
+        
+        tagListView.insertTag("This should be the third tag", at: 2)
         self.view.addSubview(tagListView)
     }
     
+    // MARK: TagListViewDelegate
+    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        print("Tag pressed: \(title), \(sender)")
+        tagView.isSelected = !tagView.isSelected
+    }
+    
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        print("Tag Remove pressed: \(title), \(sender)")
+        sender.removeTagView(tagView)
+    }
 
     /*
     // MARK: - Navigation

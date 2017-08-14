@@ -1,5 +1,4 @@
 PODS:
-  - AMTagListView (1.5.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -70,9 +69,9 @@ PODS:
     - Material/Core (= 2.6.3)
   - Material/Core (2.6.3)
   - Neon (0.4.0)
+  - TagListView (1.2.0)
 
 DEPENDENCIES:
-  - AMTagListView
   - CircleMenu (~> 2.0.1)
   - DGElasticPullToRefresh
   - EasyPeasy
@@ -85,9 +84,9 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - Material (~> 2.0)
   - Neon
+  - TagListView (~> 1.0)
 
 SPEC CHECKSUMS:
-  AMTagListView: 08ab67466c67152f6299bc29a13a907783b0046f
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
@@ -110,7 +109,8 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
+  TagListView: 999e1df50c0f6b9ca927fae705c86a7e3b6ee9ba
 
-PODFILE CHECKSUM: 17981ba2d3c8149cad941643b71add91a54c2ef8
+PODFILE CHECKSUM: d019d486f211a6b980370b310c1f72988cd2eb97
 
 COCOAPODS: 1.2.1
