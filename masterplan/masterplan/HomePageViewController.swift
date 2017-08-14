@@ -34,7 +34,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         
         self.navigationItem.title = "Proffr"
         
-        //tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
+        tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()

@@ -8,6 +8,7 @@ PODS:
   - CircleMenu (2.0.5)
   - DGElasticPullToRefresh (1.1)
   - EasyPeasy (1.4.2)
+  - Eureka (3.0.0)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - CircleMenu (~> 2.0.1)
   - DGElasticPullToRefresh
   - EasyPeasy
+  - Eureka
   - FacebookCore
   - FacebookLogin
   - Firebase/Auth
@@ -87,6 +89,7 @@ SPEC CHECKSUMS:
   CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   EasyPeasy: 50e7130b61f495ce105796e438d4136e2c8d2cc0
+  Eureka: f36fd440c3ebb7bfea0a4fbe6f16a05f1cb35906
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
@@ -105,6 +108,6 @@ SPEC CHECKSUMS:
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
 
-PODFILE CHECKSUM: 7e8f0923dbc6cfe85e3f9fdb4b50403620601716
+PODFILE CHECKSUM: 04555ee34afd010905c948906111d31d92829e46
 
 COCOAPODS: 1.2.1

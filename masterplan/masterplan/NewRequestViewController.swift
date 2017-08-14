@@ -10,7 +10,48 @@ import UIKit
 import os.log
 import MapKit
 import CoreLocation
+import Eureka
 
+class NewRequestViewController: FormViewController {
+    
+    //MARK: Properties
+    
+    var myDisplayName: String!
+    var myUserId: String!
+    
+    var requestName: UITextField!
+    var price: UITextField!
+    var pickUpBool: UISegmentedControl!
+    let nextPhaseButton: UIButton! = UIButton(type: .system)
+    
+    let _location = CLLocation(latitude: 42.3770, longitude: -71.1167)
+    
+    var request: requestInfo?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.pickUpBool = UISegmentedControl(items: ["Yes", "No"])
+        self.pickUpBool.selectedSegmentIndex = 0
+        
+        form +++ Section("New Request")
+            <<< TextRow("requestTitle"){ row in
+                row.title = "I want:"
+                row.placeholder = "a spatula"
+            }
+            <<< DecimalRow("price"){
+                $0.title = "For ($):"
+                $0.placeholder = "2.00"
+            }
+            <<< SegmentedRow<String>(){
+                $0.title = "I am willing to pick up the item:"
+                $0.options = ["Yes", "No"]
+        }
+    }
+}
+
+
+/*
 class NewRequestViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
@@ -21,7 +62,7 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
     var requestName: UITextField!
     var price: UITextField!
     var pickUpBool: UISegmentedControl!
-    let nextPhaseButton: UIButton! = UIButton()
+    let nextPhaseButton: UIButton! = UIButton(type: .system)
     
     let _location = CLLocation(latitude: 42.3770, longitude: -71.1167)
     
@@ -102,7 +143,7 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
         requestName.delegate = self
         price.delegate = self
         
-        nextPhaseButton.frame = (frame: CGRect(origin: CGPoint(x: self.view.center.x, y: self.view.center.y), size: CGSize(width: 30, height: 20)))
+        nextPhaseButton.frame = (frame: CGRect(origin: CGPoint(x: self.view.center.x, y: self.view.center.y), size: CGSize(width: 100, height: 30)))
         nextPhaseButton.tintColor = UIColor.blue
         nextPhaseButton.setTitle("Next", for: .normal)
         nextPhaseButton.addTarget(self, action: #selector(buttonTapped),
@@ -181,4 +222,4 @@ class NewRequestViewController: UIViewController, UITextFieldDelegate {
     }
  */
 
-}
+} */
