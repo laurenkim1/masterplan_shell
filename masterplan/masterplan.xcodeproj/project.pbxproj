@@ -158,7 +158,6 @@
 				47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */,
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
 				47E24B281F41853000F0F723 /* TagsViewController.swift */,
-				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
 				47E24B241F40072F00F0F723 /* ProfileViewController.swift */,
 				47C57A931F2C28C200BC1D06 /* Models */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
@@ -166,6 +165,7 @@
 				47C888FE1F0A169D003ED4F7 /* LaunchScreen.storyboard */,
 				47C889011F0A169D003ED4F7 /* Info.plist */,
 				47C37EFE1F298174007FC639 /* GoogleService-Info.plist */,
+				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
 				47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */,
 			);
 			path = masterplan;

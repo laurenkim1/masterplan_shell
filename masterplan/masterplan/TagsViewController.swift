@@ -21,8 +21,6 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
     // Mark: Properties
     var tagListView: AMTagListView!
     var textField: UITextField!
-    var doneButton: UIBarButtonItem!
-    var backButton: UIBarButtonItem!
     var request: requestInfo?
     var objects: NSMutableArray = []
 
@@ -31,6 +29,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
         self.title = "Proffr"
         self.view.backgroundColor = UIColor.white
         self.setTagList()
+        self.setNavigationBar()
 
         // Do any additional setup after loading the view.
     }
@@ -78,6 +77,48 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(textField)
         self.view.addSubview(tagListView)
         tagListView.addTag("my tag")
+    }
+    
+    func setNavigationBar() {
+        let saveButton = UIBarButtonItem(image: UIImage(named: "icons8-Ok-50"), style: .plain, target: self, action: #selector(done))
+        self.navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    func done() {
+        for tag in self.tagListView.tags {
+            request?.requestTags.append(tag)
+        }
+        persist(self.request!)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func persist(_ request: requestInfo) {
+        if request == nil || request.requestTitle == nil || request.requestPrice == 0 {
+            return
+            //input safety check
+        }
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let url = URL(string: requests)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "POST"
+        //2
+        let data: Data? = try? JSONSerialization.data(withJSONObject: request.toDictionary(), options: [])
+        //3
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                request.requestID = response?["_id"] as? String
+            }
+        })
+        dataTask?.resume()
     }
 
     /*
