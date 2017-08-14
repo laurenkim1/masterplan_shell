@@ -34,6 +34,8 @@ class NewRequestViewController: FormViewController {
         self.pickUpBool = UISegmentedControl(items: ["Yes", "No"])
         self.pickUpBool.selectedSegmentIndex = 0
         
+        self.setNavigationBar()
+        
         form +++ Section("New Request")
             <<< TextRow("requestTitle"){ row in
                 row.title = "I want:"
@@ -43,10 +45,35 @@ class NewRequestViewController: FormViewController {
                 $0.title = "For ($):"
                 $0.placeholder = "2.00"
             }
-            <<< SegmentedRow<String>(){
+            <<< SegmentedRow<String>("pickUp"){
                 $0.title = "I am willing to pick up the item:"
                 $0.options = ["Yes", "No"]
+                $0.value = "Yes"
         }
+            +++ Section("Distance")
+            <<< DecimalRow() {
+                $0.title = "I am willing to travel (mi):"
+                $0.placeholder = "0.5"
+                $0.disabled = Eureka.Condition.function(["pickUp"], { (form) -> Bool in
+                    let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!
+                    return (row.value == "No")
+                })
+        }
+    }
+    
+    // MARK: Actions
+    func cancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func setNavigationBar() {
+        // let cancelImage = UIButton(type: .custom)
+        // cancelImage.setImage(UIImage(named: "icon_close"), for: .normal)
+        let cancelButton = UIBarButtonItem(image: UIImage(named: "icon_close"), style: .plain, target: self, action: #selector(cancel))
+        //let cancelButton = UIBarButtonItem(customView: cancelImage)
+        //cancelButton.target = self
+        //cancelButton.action = #selector(cancel)
+        self.navigationItem.leftBarButtonItem = cancelButton
     }
 }
 
