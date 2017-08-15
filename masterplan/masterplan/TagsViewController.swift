@@ -16,7 +16,7 @@ private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests"
 private let kFiles: String = "files"
 
-class TagsViewController: UIViewController, UITextFieldDelegate {
+class TagsViewController: UIViewController, UITextFieldDelegate, UIAlertViewDelegate, AMTagListDelegate {
     
     // Mark: Properties
     var tagListView: AMTagListView!
@@ -71,12 +71,22 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
         AMTagView.appearance().tagColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1)
         
         tagListView = AMTagListView(frame: CGRect(x:20, y: 80+textField.frame.height+10, width: self.view.frame.width-40, height: 400))
+        self.tagListView.tagListDelegate = self
         tagListView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         tagListView.layer.borderWidth = 2.0
         
+        tagListView.setTapHandler({(_ view: AMTagView) -> Void in
+            self.tagListView.removeTag(view)
+            } as! AMTagListViewTapHandler)
+        
         self.view.addSubview(textField)
         self.view.addSubview(tagListView)
-        tagListView.addTag("my tag")
+        tagListView.addTag("Add tags")
+    }
+    
+    func removeTag(tag: AMTag) {
+        var alert = UIAlertView(title: "Delete", message: "Delete \(tag.tagText())?", delegate: self, cancelButtonTitle: "Nope", otherButtonTitles: "Sure!")
+        alert.show()
     }
     
     func setNavigationBar() {
@@ -86,7 +96,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate {
     
     func done() {
         for tag in self.tagListView.tags {
-            request?.requestTags.append(tag)
+            request?.requestTags.append(tag as! String)
         }
         persist(self.request!)
         dismiss(animated: true, completion: nil)
