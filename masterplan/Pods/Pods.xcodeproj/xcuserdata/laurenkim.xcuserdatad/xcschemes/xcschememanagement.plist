@@ -104,6 +104,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>XLActionController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -152,11 +157,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6DA69EFFCA17455CCC80E89ECA4E2349</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7335E9C9689F3B8A16F063A884748533</key>
 		<dict>
 			<key>primary</key>
@@ -168,6 +168,11 @@
 			<true/>
 		</dict>
 		<key>8D511562A8961C5B7A5DD87BAE2374F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9BE262B0466770A26FB997C2FD8B72F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -198,6 +203,11 @@
 			<true/>
 		</dict>
 		<key>EF630AB9720279E0A1F904F21F31CF0B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0B7357F800DB07BEA8D68A8DF99A2A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

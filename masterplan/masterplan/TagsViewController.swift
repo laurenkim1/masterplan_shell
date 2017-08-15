@@ -11,12 +11,13 @@ import AMTagListView
 import os.log
 import EasyPeasy
 import Neon
+import XLActionController
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests"
 private let kFiles: String = "files"
 
-class TagsViewController: UIViewController, UITextFieldDelegate, UIAlertViewDelegate, AMTagListDelegate {
+class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelegate {
     
     // Mark: Properties
     var tagListView: AMTagListView!
@@ -75,18 +76,25 @@ class TagsViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
         tagListView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         tagListView.layer.borderWidth = 2.0
         
-        tagListView.setTapHandler({(_ view: AMTagView) -> Void in
-            self.tagListView.removeTag(view)
-            } as! AMTagListViewTapHandler)
+        tagListView.setTapHandler({(_ view: AMTagView?) -> Void in
+            // self.tagListView.removeTag(view)
+            self.removeTag(view!)
+            })
         
         self.view.addSubview(textField)
         self.view.addSubview(tagListView)
         tagListView.addTag("Add tags")
     }
     
-    func removeTag(tag: AMTag) {
-        var alert = UIAlertView(title: "Delete", message: "Delete \(tag.tagText())?", delegate: self, cancelButtonTitle: "Nope", otherButtonTitles: "Sure!")
-        alert.show()
+    func removeTag(_ view: AMTagView) {
+        let actionController = PeriscopeActionController()
+        actionController.headerData = "Delete Tag?"
+        actionController.addAction(Action("Delete", style: .destructive, handler: { action in
+            self.tagListView.removeTag(view)
+        }))
+        actionController.addAction(Action("Cancel", style: .cancel, handler: { action in
+        }))
+        present(actionController, animated: true, completion: nil)
     }
     
     func setNavigationBar() {
@@ -96,7 +104,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate, UIAlertViewDele
     
     func done() {
         for tag in self.tagListView.tags {
-            request?.requestTags.append(tag as! String)
+            request?.requestTags.append((tag as! AMTagView).tagText as String)
         }
         persist(self.request!)
         dismiss(animated: true, completion: nil)

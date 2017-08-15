@@ -54,6 +54,7 @@ class NewChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "New Proffr"
         self.senderId = Auth.auth().currentUser?.uid
         observeMessages()
         

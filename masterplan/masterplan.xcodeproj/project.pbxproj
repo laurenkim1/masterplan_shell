@@ -34,8 +34,9 @@
 		47E24B161F381EC400F0F723 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B151F381EC400F0F723 /* NotificationsTableViewController.swift */; };
 		47E24B191F3820F200F0F723 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B181F3820F200F0F723 /* NotificationsTableViewCell.swift */; };
 		47E24B251F40072F00F0F723 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B241F40072F00F0F723 /* ProfileViewController.swift */; };
-		47E24B271F40F9A600F0F723 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B261F40F9A600F0F723 /* RequestViewController.swift */; };
 		47E24B291F41853000F0F723 /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B281F41853000F0F723 /* TagsViewController.swift */; };
+		47E24B2B1F42872600F0F723 /* NewProffrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B2A1F42872600F0F723 /* NewProffrViewController.swift */; };
+		47E24B2E1F4289C300F0F723 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B2D1F4289C300F0F723 /* PaymentViewController.swift */; };
 		DCCD3F82108AFF226F4B8EA3 /* Pods_masterplan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC686D5A35B06459E5A0D3F0 /* Pods_masterplan.framework */; };
 		E28C997371DC6FAAC6747834 /* Pods_masterplanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25092871A3E6A3EE250AB7E /* Pods_masterplanTests.framework */; };
 /* End PBXBuildFile section */
@@ -57,7 +58,7 @@
 		47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestPlaceholder.swift; sourceTree = "<group>"; };
 		47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyRequestTableViewCell.swift; path = masterplan/NearbyRequestTableViewCell.swift; sourceTree = "<group>"; };
 		479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
-		47B798921F1473FF00F67BEA /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
+		47B798921F1473FF00F67BEA /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListViewController.swift; path = masterplan/TagListViewController.swift; sourceTree = "<group>"; };
 		47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListItemViewCollectionViewCell.swift; path = masterplan/TagListItemViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		47C37EFE1F298174007FC639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47C37F011F2981AA007FC639 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -76,14 +77,15 @@
 		47C8890A1F0A169D003ED4F7 /* masterplanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = masterplanTests.swift; sourceTree = "<group>"; };
 		47C8890C1F0A169D003ED4F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47C889151F0C8939003ED4F7 /* RequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestInfo.swift; sourceTree = "<group>"; };
-		47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistancePageViewController.swift; sourceTree = "<group>"; };
+		47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DistancePageViewController.swift; path = masterplan/DistancePageViewController.swift; sourceTree = "<group>"; };
 		47C889191F10873B003ED4F7 /* NewRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestViewController.swift; sourceTree = "<group>"; };
 		47E24B111F3577F800F0F723 /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		47E24B151F381EC400F0F723 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		47E24B181F3820F200F0F723 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		47E24B241F40072F00F0F723 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		47E24B261F40F9A600F0F723 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		47E24B281F41853000F0F723 /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
+		47E24B2A1F42872600F0F723 /* NewProffrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProffrViewController.swift; sourceTree = "<group>"; };
+		47E24B2D1F4289C300F0F723 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		69AE117DCF2563F4EC66D6ED /* Pods-masterplan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-masterplan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-masterplan/Pods-masterplan.debug.xcconfig"; sourceTree = "<group>"; };
 		C79D2251CFAB117BCE915CCE /* Pods-masterplanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-masterplanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-masterplanTests/Pods-masterplanTests.release.xcconfig"; sourceTree = "<group>"; };
 		D25092871A3E6A3EE250AB7E /* Pods_masterplanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_masterplanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,11 +151,12 @@
 				47C37F031F29847F007FC639 /* LoginViewController.swift */,
 				47408CA31F188FC60097C957 /* TabBarController.swift */,
 				47408CA11F188A3C0097C957 /* HomePageViewController.swift */,
-				47E24B261F40F9A600F0F723 /* RequestViewController.swift */,
 				47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */,
+				47E24B2A1F42872600F0F723 /* NewProffrViewController.swift */,
 				479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */,
 				47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */,
 				47C37F011F2981AA007FC639 /* ChatViewController.swift */,
+				47E24B2D1F4289C300F0F723 /* PaymentViewController.swift */,
 				47E24B151F381EC400F0F723 /* NotificationsTableViewController.swift */,
 				47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */,
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
@@ -165,8 +168,7 @@
 				47C888FE1F0A169D003ED4F7 /* LaunchScreen.storyboard */,
 				47C889011F0A169D003ED4F7 /* Info.plist */,
 				47C37EFE1F298174007FC639 /* GoogleService-Info.plist */,
-				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
-				47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */,
+				47E24B2C1F4287EF00F0F723 /* Obsolete */,
 			);
 			path = masterplan;
 			sourceTree = "<group>";
@@ -185,10 +187,20 @@
 			children = (
 				47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */,
 				47C57A911F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift */,
-				47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */,
 				47E24B181F3820F200F0F723 /* NotificationsTableViewCell.swift */,
 			);
 			name = cellModels;
+			sourceTree = "<group>";
+		};
+		47E24B2C1F4287EF00F0F723 /* Obsolete */ = {
+			isa = PBXGroup;
+			children = (
+				47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */,
+				47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */,
+				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
+			);
+			name = Obsolete;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		86062D50DF90589BFA2808CC /* Pods */ = {
@@ -424,13 +436,14 @@
 				47E24B291F41853000F0F723 /* TagsViewController.swift in Sources */,
 				47408CA61F19F69F0097C957 /* NewRequestPlaceholder.swift in Sources */,
 				47408CA41F188FC60097C957 /* TabBarController.swift in Sources */,
-				47E24B271F40F9A600F0F723 /* RequestViewController.swift in Sources */,
 				47408CA21F188A3C0097C957 /* HomePageViewController.swift in Sources */,
 				47C57A8E1F29AA4200BC1D06 /* ProffrChannel.swift in Sources */,
 				47C8891A1F10873B003ED4F7 /* NewRequestViewController.swift in Sources */,
 				47C889161F0C8939003ED4F7 /* RequestInfo.swift in Sources */,
 				47E24B191F3820F200F0F723 /* NotificationsTableViewCell.swift in Sources */,
 				47C37F041F29847F007FC639 /* LoginViewController.swift in Sources */,
+				47E24B2B1F42872600F0F723 /* NewProffrViewController.swift in Sources */,
+				47E24B2E1F4289C300F0F723 /* PaymentViewController.swift in Sources */,
 				47C57A8C1F29A78900BC1D06 /* MyProffrsViewController.swift in Sources */,
 				47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */,
 				47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Neon
 
 class ProfileViewController: UIViewController {
     
@@ -14,13 +15,23 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        self.setNavigationBar()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Mark: Private Methods
+    func setNavigationBar() {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 70))
+        let navItem = UINavigationItem(title: "Proffr")
+        navBar.setItems([navItem], animated: false)
+        self.view.addSubview(navBar)
     }
     
 

@@ -55,8 +55,8 @@ class MyProffrsViewController: UITableViewController {
         }
 
         // Configure the cell...
-        cell.senderLabel?.text = channels[(indexPath as NSIndexPath).row].name
-        cell.subTitle?.text = channels[(indexPath as NSIndexPath).row].subTitle
+        cell.senderLabel.text = channels[(indexPath as NSIndexPath).row].name
+        cell.subTitle.text = channels[(indexPath as NSIndexPath).row].subTitle
 
         return cell
     }

@@ -1,14 +1,14 @@
 //
-//  RequestViewController.swift
+//  PaymentViewController.swift
 //  masterplan
 //
-//  Created by Lauren Kim on 8/13/17.
+//  Created by Lauren Kim on 8/14/17.
 //  Copyright © 2017 Lauren Kim. All rights reserved.
 //
 
 import UIKit
 
-class RequestViewController: UIViewController {
+class PaymentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

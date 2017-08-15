@@ -19,6 +19,8 @@ target 'masterplan' do
   pod 'DGElasticPullToRefresh'
   pod 'Eureka'
   pod 'AMTagListView'
+  pod 'XLActionController'
+  pod 'XLActionController/Periscope'
 
   target 'masterplanTests' do
     inherit! :search_paths
