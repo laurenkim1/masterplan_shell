@@ -92,29 +92,30 @@ class NearbyRequestTableViewCell: UITableViewCell {
         inlabel.text = "in"
         hourslabel.text = "hrs"
         
-        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 100, height: CellHeight/2-10)
+        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 100, height: CellHeight/3)
         nameLabel.textColor = UIColor.black
         contentView.addSubview(nameLabel)
         
-        needslabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: nameLabel.frame.origin.y+(nameLabel.frame.size.height / 2)+5 , width: 50, height: CellHeight/2-10)
+        needslabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: nameLabel.frame.origin.y+nameLabel.frame.size.height-5, width: 75, height: CellHeight/3)
+        contentView.addSubview(needslabel)
         
-        requestTitle.frame = CGRect(x: needslabel.frame.origin.x+(ProfilePhoto.frame.width / 2)+5, y: nameLabel.frame.origin.y+(nameLabel.frame.size.height / 2)+5, width: 100, height: CellHeight/2-10)
+        requestTitle.frame = CGRect(x: needslabel.frame.origin.x+ProfilePhoto.frame.width+5, y: nameLabel.frame.origin.y+nameLabel.frame.size.height-5, width: 200, height: CellHeight/3)
         requestTitle.textColor = UIColor.black
         contentView.addSubview(requestTitle)
         
-        forlabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: needslabel.frame.origin.y+(needslabel.frame.size.height / 2)+5, width: 15, height: CellHeight/2-10)
+        forlabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 50, height: CellHeight/3)
         contentView.addSubview(forlabel)
         
-        requestPrice.frame = CGRect(x: forlabel.frame.origin.x+(forlabel.frame.width / 2)+5, y: needslabel.frame.origin.y+(needslabel.frame.size.height / 2)+5, width: 30, height: CellHeight/2-10)
+        requestPrice.frame = CGRect(x: forlabel.frame.origin.x+forlabel.frame.width+5, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 30, height: CellHeight/3)
         contentView.addSubview(requestPrice)
         
-        inlabel.frame = CGRect(x: requestPrice.frame.origin.x+(requestPrice.frame.width / 2)+5, y: needslabel.frame.origin.y+(needslabel.frame.size.height / 2)+5, width: 10, height: CellHeight/2-10)
+        inlabel.frame = CGRect(x: requestPrice.frame.origin.x+requestPrice.frame.width+5, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 30, height: CellHeight/3)
         contentView.addSubview(inlabel)
         
-        timeLabel.frame = CGRect(x: inlabel.frame.origin.x+(inlabel.frame.width / 2)+5, y: needslabel.frame.origin.y+(needslabel.frame.size.height / 2)+5, width: 10, height: CellHeight/2-10)
+        timeLabel.frame = CGRect(x: inlabel.frame.origin.x+inlabel.frame.width+5, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 50, height: CellHeight/3)
         contentView.addSubview(timeLabel)
         
-        hourslabel.frame = CGRect(x: timeLabel.frame.origin.x+(timeLabel.frame.width / 2)+5, y: needslabel.frame.origin.y+(needslabel.frame.size.height / 2)+5, width: 10, height: CellHeight/2-10)
+        hourslabel.frame = CGRect(x: timeLabel.frame.origin.x+timeLabel.frame.width+5, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 50, height: CellHeight/3)
         contentView.addSubview(hourslabel)
         
         //distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+110 , y: 10, width: 100, height: CellHeight/2-10)

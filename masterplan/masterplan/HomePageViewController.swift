@@ -192,6 +192,10 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     //MARK: - Table view data source
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
