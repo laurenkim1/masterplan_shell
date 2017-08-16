@@ -24,6 +24,10 @@ class MyProffrsViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.register(MyProffrsTableViewCell.self, forCellReuseIdentifier: "proffrChannel")
+        self.tableView.delegate = self
+        self.tableView.allowsSelection = true
+        self.tableView.allowsSelectionDuringEditing = true
+        self.tableView.isUserInteractionEnabled = true
         
         self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         observeChannels()
@@ -36,6 +40,10 @@ class MyProffrsViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -59,6 +67,15 @@ class MyProffrsViewController: UITableViewController {
         cell.subTitle.text = channels[(indexPath as NSIndexPath).row].subTitle
 
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        let selectedProffr: ProffrChannel = channels[indexPath.row]
+        print(selectedProffr)
+        cellSelected(channel: selectedProffr)
     }
     
     // MARK: Firebase related methods
@@ -122,6 +139,22 @@ class MyProffrsViewController: UITableViewController {
     */
 
     // MARK: Navigation
+    
+    func cellSelected(channel: ProffrChannel){
+        print(channel)
+        let proffrChatVc: ChatViewController = ChatViewController()
+        
+        proffrChatVc.senderDisplayName = channel.name
+        proffrChatVc.channel = channel
+        let channeldataref = channelRef.child(channel.id)
+        proffrChatVc.channelRef = channeldataref
+        proffrChatVc.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(proffrChatVc,
+                                                 animated: false)
+    }
+    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let proffrChatVc = segue.destination as? ChatViewController else {
@@ -144,5 +177,6 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.channelRef = channeldataref
         proffrChatVc.hidesBottomBarWhenPushed = true
     }
+ */
 
 }

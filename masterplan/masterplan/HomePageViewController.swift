@@ -296,17 +296,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             }
         }
     }
-    
-    func cellSelected(selectedRequest: requestInfo){
-        print(selectedRequest)
-        let nextViewController: NewProffrViewController = NewProffrViewController()
-        
-        nextViewController.request = selectedRequest
-        nextViewController.senderDisplayName = myDisplayName
-        nextViewController.senderId = myUserId
-        navigationController?.pushViewController(nextViewController,
-                                                 animated: false)
-    }
 
 
     /*
@@ -327,7 +316,19 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     // MARK: - Navigation
+    
+    func cellSelected(selectedRequest: requestInfo){
+        print(selectedRequest)
+        let nextViewController: NewProffrViewController = NewProffrViewController()
+        
+        nextViewController.request = selectedRequest
+        nextViewController.senderDisplayName = myDisplayName
+        nextViewController.senderId = myUserId
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: false)
+    }
 
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let CreateProffrViewController = segue.destination as? CreateProffrViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
@@ -352,5 +353,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         CreateProffrViewController.senderDisplayName = myDisplayName
         CreateProffrViewController.senderId = myUserId
     }
+ */
 
 }

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523863611.660553"
+            timestampString = "524556012.730695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "observeChannels()"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,13 +340,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523863611.660553"
+            timestampString = "524556012.730695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "prepare(for:sender:)"
-            landmarkType = "7">
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "MyProffrsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -900,11 +900,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "523863611.660553"
+            timestampString = "524556012.730695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "observeChannels()"
             landmarkType = "7">
             <Locations>
