@@ -108,7 +108,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    @IBAction func createProffr(_ sender: UIButton) {
+    func createProffr(_ sender: UIButton) {
         if let subTitle = request?.requestTitle {
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem: NSDictionary = [ // 3
@@ -170,6 +170,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         photoImageView.addGestureRecognizer(gestureRecognizer)
         
         self.doneButton = UIButton(frame: CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20+photoImageView.frame.height+20, width: self.view.frame.width-40, height: 50))
+        doneButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
         doneButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         doneButton.layer.cornerRadius = 5
         doneButton.setTitle("Done", for: .normal)
