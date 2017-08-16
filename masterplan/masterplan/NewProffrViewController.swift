@@ -154,13 +154,17 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         messageTextField.layer.borderWidth = 2.0
         messageTextField.delegate = self
         
+        let photoLabel = UILabel(frame: CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+20, width: self.view.frame.width-40, height: 25))
+        photoLabel.text = "Upload a photo..."
+    
         photoImageView = UIImageView(image: UIImage(named: "DefaultPhoto"))
-        photoImageView.frame = CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+10, width: self.view.frame.width-40, height: self.view.frame.width-40)
+        photoImageView.frame = CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20, width: self.view.frame.width-40, height: self.view.frame.width-40)
         photoImageView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         photoImageView.layer.borderWidth = 2.0
         
         self.view.addSubview(messageLabel)
         self.view.addSubview(messageTextField)
+        self.view.addSubview(photoLabel)
         self.view.addSubview(photoImageView)
     }
 
