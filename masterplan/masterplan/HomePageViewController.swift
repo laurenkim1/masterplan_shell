@@ -34,7 +34,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         
         self.navigationItem.title = "Proffr"
         
-        tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
+        self.tableView.delegate = self
+        self.tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
+        self.tableView.allowsSelection = true
+        self.tableView.allowsSelectionDuringEditing = true
+        self.tableView.isUserInteractionEnabled = true
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -61,6 +65,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             self?.getNearbyRequests((self?.userLocation)!, 1)
             self?.tableView.reloadData()
             self?.tableView.dg_stopLoading()
+            self?.tableView.reloadData()
             }, loadingView: loadingView)
         self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
         self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
@@ -238,6 +243,21 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         return cell
     }
     
+    // MARK: - UITableViewDelegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        os_log("hi - selected row")
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        let selectedRequest: requestInfo
+        if searchController.isActive && searchController.searchBar.text != "" {
+            selectedRequest = nearbyRequestList[indexPath.row]
+        } else {
+            selectedRequest = nearbyRequestList[indexPath.row]
+        }
+        print(selectedRequest)
+        cellSelected(selectedRequest: selectedRequest)
+    }
+    
     // Mark: Private Methods
     
     func getNearbyRequests(_ loc: CLLocation, _ rad: Float) -> Void {
@@ -277,6 +297,18 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         }
     }
     
+    func cellSelected(selectedRequest: requestInfo){
+        print(selectedRequest)
+        let nextViewController: NewProffrViewController = NewProffrViewController()
+        
+        nextViewController.request = selectedRequest
+        nextViewController.senderDisplayName = myDisplayName
+        nextViewController.senderId = myUserId
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: false)
+    }
+
+
     /*
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
