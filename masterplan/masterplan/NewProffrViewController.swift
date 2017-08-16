@@ -12,7 +12,7 @@ import Photos
 
 private let kBaseURL: String = "https://"
 
-class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate {
+class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate {
     
     // MARK: Properties
     
@@ -28,8 +28,8 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     
     var messageTextField: UITextField!
     var photoImageView: UIImageView!
-    var createProffrButton: UIButton!
-
+    var doneButton: UIButton!
+    var gestureRecognizer: UITapGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,10 +90,12 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     
     // MARK: Actions
     
-    @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
+    func handleTap(_ sender: UITapGestureRecognizer) {
         
         // Hide the keyboard.
         messageTextField.resignFirstResponder()
+        
+        print("gesture recognized")
         
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         let imagePickerController = UIImagePickerController()
@@ -142,7 +144,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         // Disable the Save button if the text field is empty.
         let text = messageTextField.text ?? ""
         let photoRefString = self.photoReferenceUrl ?? ""
-        self.createProffrButton.isEnabled = !text.isEmpty && !photoRefString.isEmpty
+        self.doneButton.isEnabled = !text.isEmpty && !photoRefString.isEmpty
     }
     
     func setView() {
@@ -161,11 +163,22 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         photoImageView.frame = CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20, width: self.view.frame.width-40, height: self.view.frame.width-40)
         photoImageView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         photoImageView.layer.borderWidth = 2.0
+        photoImageView.isUserInteractionEnabled = true
+        
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        gestureRecognizer.delegate = self
+        photoImageView.addGestureRecognizer(gestureRecognizer)
+        
+        self.doneButton = UIButton(frame: CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20+photoImageView.frame.height+20, width: self.view.frame.width-40, height: 50))
+        doneButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
+        doneButton.layer.cornerRadius = 5
+        doneButton.setTitle("Done", for: .normal)
         
         self.view.addSubview(messageLabel)
         self.view.addSubview(messageTextField)
         self.view.addSubview(photoLabel)
         self.view.addSubview(photoImageView)
+        self.view.addSubview(doneButton)
     }
 
     /*
