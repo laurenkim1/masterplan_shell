@@ -20,6 +20,8 @@ class NewChatViewController: JSQMessagesViewController {
     var proffrPhotoUrlString: String?
     var messageText: String?
     
+    var doneButton: UIBarButtonItem!
+    
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
     private lazy var userIsTypingRef: DatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
@@ -58,6 +60,7 @@ class NewChatViewController: JSQMessagesViewController {
         self.title = "New Proffr"
         self.senderId = Auth.auth().currentUser?.uid
         observeMessages()
+        self.setNavBar()
         
         // No avatars
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
@@ -308,6 +311,17 @@ class NewChatViewController: JSQMessagesViewController {
     
     // MARK: UI and User Interaction
     
+    private func setNavBar() {
+        self.doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
+        self.navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    func doneButtonTapped(){
+        // guard let controllers = navigationController?.viewControllers else { return }
+        // guard let homeViewController = controllers[0] as? HomePageViewController else { return }
+        navigationController?.popToRootViewController(animated: true)
+    }
+
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
