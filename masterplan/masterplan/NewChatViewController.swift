@@ -64,7 +64,7 @@ class NewChatViewController: JSQMessagesViewController {
         
         if let navController = self.parent as! UINavigationController? {
             let parentVCIndex = navController.viewControllers.count - 2
-            if navController.viewControllers[parentVCIndex] is CreateProffrViewController {
+            if navController.viewControllers[parentVCIndex] is NewProffrViewController {
                 let proffrPhotoUrl = URL(string: self.proffrPhotoUrlString!)
                 if proffrPhotoUrl != nil {
                     let assets = PHAsset.fetchAssets(withALAssetURLs: [proffrPhotoUrl!], options: nil)

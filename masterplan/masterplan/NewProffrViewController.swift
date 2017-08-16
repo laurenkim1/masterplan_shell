@@ -109,6 +109,9 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     }
     
     func createProffr(_ sender: UIButton) {
+        
+        //disable button for further tapping
+        sender.isUserInteractionEnabled = false
         if let subTitle = request?.requestTitle {
             let newChannelRef = channelRef.childByAutoId() // 2
             let channelItem: NSDictionary = [ // 3
@@ -122,19 +125,23 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
                 "Accepted": 0
             ]
             
-            newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
-                let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                let id = snapshot.key
-                if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
-                    let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
-                    self.performSegue(withIdentifier: "OpenProffrChat", sender: channel)
-                } else {
-                    print("Error! Could not decode channel data in Create Proffr")
-                }
+            let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                // Your code with delay
+                newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+                    let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+                    let id = snapshot.key
+                    if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
+                        let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
+                        self.segueToNewChannel(channel: channel)
+                    } else {
+                        print("Error! Could not decode channel data in Create Proffr")
+                    }
+                    
+                })
                 
-            })
-            
-            newChannelRef.setValue(channelItem)
+                newChannelRef.setValue(channelItem)
+            }
         }
     }
     
@@ -181,10 +188,25 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         self.view.addSubview(photoImageView)
         self.view.addSubview(doneButton)
     }
-
-    /*
+    
     // MARK: - Navigation
+    
+    func segueToNewChannel(channel: ProffrChannel){
+        let chatVc: NewChatViewController = NewChatViewController()
+        
+        chatVc.senderDisplayName = senderDisplayName
+        chatVc.channel = channel
+        chatVc.channelRef = channelRef.child(channel.id)
+        if !self.photoReferenceUrl.isEmpty {
+            chatVc.proffrPhotoUrlString = self.photoReferenceUrl
+        }
+        chatVc.hidesBottomBarWhenPushed = true
 
+        navigationController?.pushViewController(chatVc,
+                                                 animated: false)
+    }
+    
+     /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
