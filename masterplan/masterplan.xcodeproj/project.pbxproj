@@ -65,7 +65,7 @@
 		47C37F031F29847F007FC639 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProffrsViewController.swift; sourceTree = "<group>"; };
 		47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProffrChannel.swift; sourceTree = "<group>"; };
-		47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProffrViewController.swift; sourceTree = "<group>"; };
+		47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateProffrViewController.swift; path = masterplan/CreateProffrViewController.swift; sourceTree = "<group>"; };
 		47C57A911F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyProffrsTableViewCell.swift; path = masterplan/MyProffrsTableViewCell.swift; sourceTree = "<group>"; };
 		47C888F21F0A169D003ED4F7 /* masterplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = masterplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47C888F51F0A169D003ED4F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +151,6 @@
 				47C37F031F29847F007FC639 /* LoginViewController.swift */,
 				47408CA31F188FC60097C957 /* TabBarController.swift */,
 				47408CA11F188A3C0097C957 /* HomePageViewController.swift */,
-				47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */,
 				47E24B2A1F42872600F0F723 /* NewProffrViewController.swift */,
 				479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */,
 				47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */,
@@ -196,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */,
+				47C57A8F1F29AF5700BC1D06 /* CreateProffrViewController.swift */,
 				47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */,
 				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
 			);

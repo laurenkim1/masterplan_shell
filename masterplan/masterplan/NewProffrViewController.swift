@@ -199,6 +199,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         chatVc.channelRef = channelRef.child(channel.id)
         if !self.photoReferenceUrl.isEmpty {
             chatVc.proffrPhotoUrlString = self.photoReferenceUrl
+            chatVc.messageText = self.messageTextField.text!
         }
         chatVc.hidesBottomBarWhenPushed = true
 

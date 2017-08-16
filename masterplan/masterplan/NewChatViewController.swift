@@ -18,6 +18,7 @@ class NewChatViewController: JSQMessagesViewController {
     
     var channelRef: DatabaseReference?
     var proffrPhotoUrlString: String?
+    var messageText: String?
     
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
@@ -277,12 +278,22 @@ class NewChatViewController: JSQMessagesViewController {
     func sendPhotoMessage() -> String? {
         let itemRef = messageRef.childByAutoId()
         
-        let messageItem = [
+        let photoMessageItem = [
             "photoURL": imageURLNotSetKey,
             "senderId": senderId!,
             ]
         
-        itemRef.setValue(messageItem)
+        itemRef.setValue(photoMessageItem)
+        
+        let messageItemRef = messageRef.childByAutoId()
+        
+        let textMessageItem = [
+            "senderId": senderId!,
+            "senderName": senderDisplayName!,
+            "text": messageText!
+        ]
+        
+        messageItemRef.setValue(textMessageItem)
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
