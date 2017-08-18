@@ -22,6 +22,7 @@ class MyProffrsViewController: UITableViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "My Proffrs"
         
         tableView.register(MyProffrsTableViewCell.self, forCellReuseIdentifier: "proffrChannel")
         self.tableView.delegate = self

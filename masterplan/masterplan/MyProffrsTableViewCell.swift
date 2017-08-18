@@ -18,8 +18,8 @@ class MyProffrsTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
+        view.textColor = UIColor.darkGray
+        view.font = UIFont(name: "Ubuntu-Bold", size: 20)
         self.contentView.addSubview(view)
         return view
     }()
@@ -28,8 +28,8 @@ class MyProffrsTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
+        view.textColor = UIColor.darkGray
+        view.font = UIFont(name: "Ubuntu-Bold", size: 16)
         self.contentView.addSubview(view)
         return view
     }()
@@ -50,12 +50,16 @@ class MyProffrsTableViewCell: UITableViewCell {
         ProfilePhoto.clipsToBounds = true
         contentView.addSubview(ProfilePhoto)
         
-        senderLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 100, height: CellHeight/2-10)
-        senderLabel.textColor = UIColor.black
+        senderLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 200, height: CellHeight/2-10)
         contentView.addSubview(senderLabel)
         
-        subTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: senderLabel.frame.origin.y+senderLabel.frame.size.height, width: 100, height: CellHeight/2-10)
-        subTitle.textColor = UIColor.black
+        let forlabel = UILabel(frame: CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: senderLabel.frame.origin.y+senderLabel.frame.size.height, width: 40, height: CellHeight/2-10))
+        forlabel.text = "For:"
+        forlabel.textColor = UIColor.lightGray
+        forlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
+        contentView.addSubview(forlabel)
+        
+        subTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10+forlabel.frame.width, y: senderLabel.frame.origin.y+senderLabel.frame.size.height, width: 100, height: CellHeight/2-10)
         contentView.addSubview(subTitle)
     }
     

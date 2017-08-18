@@ -24,8 +24,8 @@ class NotificationsTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
+        view.textColor = UIColor.darkGray
+        view.font = UIFont(name: "Ubuntu-Bold", size: 20)
         self.contentView.addSubview(view)
         return view
     }()
@@ -34,8 +34,8 @@ class NotificationsTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
+        view.textColor = UIColor.darkGray
+        view.font = UIFont(name: "Ubuntu-Bold", size: 16)
         self.contentView.addSubview(view)
         return view
     }()
@@ -57,11 +57,9 @@ class NotificationsTableViewCell: UITableViewCell {
         contentView.addSubview(ProfilePhoto)
         
         requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 100, height: CellHeight/2-10)
-        requesterName.textColor = UIColor.black
         contentView.addSubview(requesterName)
         
         requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: requesterName.frame.origin.y+requesterName.frame.size.height, width: 100, height: CellHeight/2-10)
-        requestTitle.textColor = UIColor.black
         contentView.addSubview(requestTitle)
     }
     

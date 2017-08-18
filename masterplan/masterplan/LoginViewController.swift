@@ -28,6 +28,7 @@ class LogInViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
+                self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
                 UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in
                     self.performSegue(withIdentifier: "loggedIn", sender: nil)
                 })
@@ -61,20 +62,36 @@ class LogInViewController: UIViewController {
     
     // func completion(fetchResult: UserProfile.FetchResult) {}
     
+    //getting image data
+    
     func FBGraphRequest(graphPath: String) {
-        print(graphPath)
-        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "id, name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "id, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
         let connection = GraphRequestConnection()
-        connection.add(graphRequest, batchEntryName: "Test", completion: { httpResponse, result in
-            print(httpResponse)
-            print("hi")
+        connection.add(graphRequest, batchEntryName: "ProfilePicture", completion: { httpResponse, result in
             switch result {
             case .success(let response):
-                print("Graph Request Succeeded: \(response)")
+                print("Graph Request Succeeded: \(response.dictionaryValue?["picture"])")
+                let photoData: [String : Any] = response.dictionaryValue?["picture"] as! [String : Any]
+                let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
+                let photoUrlString: String = photoMetaData["url"] as! String
+                let photoUrl: URL = URL(string: photoUrlString)!
+                self.getDataFromUrl(url: photoUrl, completion: {(data, response, error) -> Void in
+                    print(error)
+                    print(data)
+                    print(response)
+                })
             case .failed(let error):
                 print("Graph Request Failed: \(error)")
             }})
         connection.start()
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            print(response)
+            }.resume()
     }
     
     /*

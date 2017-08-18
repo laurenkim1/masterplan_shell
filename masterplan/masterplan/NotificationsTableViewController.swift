@@ -39,6 +39,7 @@ class NotificationsTableViewController: UITableViewController {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.notifications = []
             self?.getNotifications()
             self?.tableView.reloadData()
             self?.tableView.dg_stopLoading()
