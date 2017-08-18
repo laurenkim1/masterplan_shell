@@ -75,11 +75,7 @@ class LogInViewController: UIViewController {
                 let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
                 let photoUrlString: String = photoMetaData["url"] as! String
                 let photoUrl: URL = URL(string: photoUrlString)!
-                self.getDataFromUrl(url: photoUrl, completion: {(data, response, error) -> Void in
-                    print(error)
-                    print(data)
-                    print(response)
-                })
+                self.downloadImage(url: photoUrl)
             case .failed(let error):
                 print("Graph Request Failed: \(error)")
             }})
@@ -92,6 +88,18 @@ class LogInViewController: UIViewController {
             completion(data, response, error)
             print(response)
             }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        print("Download Started")
+        getDataFromUrl(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                self.imageView.image = UIImage(data: data)
+            }
+        }
     }
     
     /*
