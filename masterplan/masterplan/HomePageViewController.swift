@@ -238,7 +238,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         
         let _meterDistance: CLLocationDistance = userLocation.distance(from: nearbyRequest.location)
         let _distance: Double = _meterDistance/1609.34
-        let _distanceString: String = "(" + String(format:"%.2f", _distance) + "mi)"
+        let _distanceString: String = "(" + String(format:"%.2f", _distance) + " mi)"
         cell.distanceLabel.text = _distanceString
         
         return cell

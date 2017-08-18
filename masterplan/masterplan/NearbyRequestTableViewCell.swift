@@ -98,6 +98,8 @@ class NearbyRequestTableViewCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         
         needslabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: nameLabel.frame.origin.y+nameLabel.frame.size.height-5, width: 60, height: CellHeight/3)
+        needslabel.textColor = UIColor.lightGray
+        needslabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(needslabel)
         
         requestTitle.frame = CGRect(x: needslabel.frame.origin.x+ProfilePhoto.frame.width, y: nameLabel.frame.origin.y+nameLabel.frame.size.height-5, width: 200, height: CellHeight/3)
@@ -106,6 +108,8 @@ class NearbyRequestTableViewCell: UITableViewCell {
         contentView.addSubview(requestTitle)
         
         forlabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 30, height: CellHeight/3)
+        forlabel.textColor = UIColor.lightGray
+        forlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(forlabel)
         
         requestPrice.frame = CGRect(x: forlabel.frame.origin.x+forlabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 70, height: CellHeight/3)
@@ -114,6 +118,8 @@ class NearbyRequestTableViewCell: UITableViewCell {
         contentView.addSubview(requestPrice)
         
         inlabel.frame = CGRect(x: requestPrice.frame.origin.x+requestPrice.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 20, height: CellHeight/3)
+        inlabel.textColor = UIColor.lightGray
+        inlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(inlabel)
         
         timeLabel.frame = CGRect(x: inlabel.frame.origin.x+inlabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 30, height: CellHeight/3)
@@ -122,10 +128,13 @@ class NearbyRequestTableViewCell: UITableViewCell {
         contentView.addSubview(timeLabel)
         
         hourslabel.frame = CGRect(x: timeLabel.frame.origin.x+timeLabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 50, height: CellHeight/3)
+        hourslabel.textColor = UIColor.lightGray
+        hourslabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(hourslabel)
         
         distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10+nameLabel.frame.width, y: 5, width: 100, height: CellHeight/3)
-        distanceLabel.textColor = UIColor.black
+        distanceLabel.textColor = UIColor.lightGray
+        distanceLabel.font = UIFont(name: "Ubuntu", size: 16)
         contentView.addSubview(distanceLabel)
     }
     
