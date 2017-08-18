@@ -232,12 +232,13 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         // change these parameters to match a request table cell
         cell.requestTitle.text = nearbyRequest.requestTitle
         cell.nameLabel.text = nearbyRequest.userName
+        cell.requestPrice.text = "$" + String(format:"%.2f", nearbyRequest.requestPrice)
         
         userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
         
         let _meterDistance: CLLocationDistance = userLocation.distance(from: nearbyRequest.location)
         let _distance: Double = _meterDistance/1609.34
-        let _distanceString: String = String(format:"%.2f", _distance)
+        let _distanceString: String = "(" + String(format:"%.2f", _distance) + "mi)"
         cell.distanceLabel.text = _distanceString
         
         return cell

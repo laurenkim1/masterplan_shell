@@ -11,6 +11,24 @@
 		47408CA41F188FC60097C957 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA31F188FC60097C957 /* TabBarController.swift */; };
 		47408CA61F19F69F0097C957 /* NewRequestPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */; };
 		47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */; };
+		4782987B1F46AD480044519A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298721F46AD480044519A /* Ubuntu-B.ttf */; };
+		4782987C1F46AD480044519A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298721F46AD480044519A /* Ubuntu-B.ttf */; };
+		4782987D1F46AD480044519A /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298731F46AD480044519A /* Ubuntu-BI.ttf */; };
+		4782987E1F46AD480044519A /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298731F46AD480044519A /* Ubuntu-BI.ttf */; };
+		4782987F1F46AD480044519A /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298741F46AD480044519A /* Ubuntu-C.ttf */; };
+		478298801F46AD480044519A /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298741F46AD480044519A /* Ubuntu-C.ttf */; };
+		478298811F46AD480044519A /* Ubuntu-L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298751F46AD480044519A /* Ubuntu-L.ttf */; };
+		478298821F46AD480044519A /* Ubuntu-L.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298751F46AD480044519A /* Ubuntu-L.ttf */; };
+		478298831F46AD480044519A /* Ubuntu-LI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298761F46AD480044519A /* Ubuntu-LI.ttf */; };
+		478298841F46AD480044519A /* Ubuntu-LI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298761F46AD480044519A /* Ubuntu-LI.ttf */; };
+		478298851F46AD480044519A /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298771F46AD480044519A /* Ubuntu-M.ttf */; };
+		478298861F46AD480044519A /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298771F46AD480044519A /* Ubuntu-M.ttf */; };
+		478298871F46AD480044519A /* Ubuntu-MI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298781F46AD480044519A /* Ubuntu-MI.ttf */; };
+		478298881F46AD480044519A /* Ubuntu-MI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298781F46AD480044519A /* Ubuntu-MI.ttf */; };
+		478298891F46AD480044519A /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298791F46AD480044519A /* Ubuntu-R.ttf */; };
+		4782988A1F46AD480044519A /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298791F46AD480044519A /* Ubuntu-R.ttf */; };
+		4782988B1F46AD480044519A /* Ubuntu-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4782987A1F46AD480044519A /* Ubuntu-RI.ttf */; };
+		4782988C1F46AD480044519A /* Ubuntu-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4782987A1F46AD480044519A /* Ubuntu-RI.ttf */; };
 		479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */; };
 		47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798921F1473FF00F67BEA /* TagListViewController.swift */; };
 		47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */; };
@@ -57,6 +75,15 @@
 		47408CA31F188FC60097C957 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../TabBarController.swift; sourceTree = "<group>"; };
 		47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestPlaceholder.swift; sourceTree = "<group>"; };
 		47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyRequestTableViewCell.swift; path = masterplan/NearbyRequestTableViewCell.swift; sourceTree = "<group>"; };
+		478298721F46AD480044519A /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
+		478298731F46AD480044519A /* Ubuntu-BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BI.ttf"; sourceTree = "<group>"; };
+		478298741F46AD480044519A /* Ubuntu-C.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-C.ttf"; sourceTree = "<group>"; };
+		478298751F46AD480044519A /* Ubuntu-L.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-L.ttf"; sourceTree = "<group>"; };
+		478298761F46AD480044519A /* Ubuntu-LI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-LI.ttf"; sourceTree = "<group>"; };
+		478298771F46AD480044519A /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
+		478298781F46AD480044519A /* Ubuntu-MI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-MI.ttf"; sourceTree = "<group>"; };
+		478298791F46AD480044519A /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
+		4782987A1F46AD480044519A /* Ubuntu-RI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-RI.ttf"; sourceTree = "<group>"; };
 		479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		47B798921F1473FF00F67BEA /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListViewController.swift; path = masterplan/TagListViewController.swift; sourceTree = "<group>"; };
 		47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListItemViewCollectionViewCell.swift; path = masterplan/TagListItemViewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +140,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		478298711F46AD240044519A /* Supporting Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				478298721F46AD480044519A /* Ubuntu-B.ttf */,
+				478298731F46AD480044519A /* Ubuntu-BI.ttf */,
+				478298741F46AD480044519A /* Ubuntu-C.ttf */,
+				478298751F46AD480044519A /* Ubuntu-L.ttf */,
+				478298761F46AD480044519A /* Ubuntu-LI.ttf */,
+				478298771F46AD480044519A /* Ubuntu-M.ttf */,
+				478298781F46AD480044519A /* Ubuntu-MI.ttf */,
+				478298791F46AD480044519A /* Ubuntu-R.ttf */,
+				4782987A1F46AD480044519A /* Ubuntu-RI.ttf */,
+			);
+			name = "Supporting Fonts";
+			sourceTree = "<group>";
+		};
 		47C57A931F2C28C200BC1D06 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +204,7 @@
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
 				47E24B281F41853000F0F723 /* TagsViewController.swift */,
 				47E24B241F40072F00F0F723 /* ProfileViewController.swift */,
+				478298711F46AD240044519A /* Supporting Fonts */,
 				47C57A931F2C28C200BC1D06 /* Models */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
 				47C888FC1F0A169D003ED4F7 /* Assets.xcassets */,
@@ -312,10 +356,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4782987D1F46AD480044519A /* Ubuntu-BI.ttf in Resources */,
+				478298851F46AD480044519A /* Ubuntu-M.ttf in Resources */,
+				478298871F46AD480044519A /* Ubuntu-MI.ttf in Resources */,
 				47C889001F0A169D003ED4F7 /* LaunchScreen.storyboard in Resources */,
+				4782987B1F46AD480044519A /* Ubuntu-B.ttf in Resources */,
 				47C37EFF1F298174007FC639 /* GoogleService-Info.plist in Resources */,
+				478298891F46AD480044519A /* Ubuntu-R.ttf in Resources */,
+				478298811F46AD480044519A /* Ubuntu-L.ttf in Resources */,
 				47C888FD1F0A169D003ED4F7 /* Assets.xcassets in Resources */,
+				4782988B1F46AD480044519A /* Ubuntu-RI.ttf in Resources */,
+				478298831F46AD480044519A /* Ubuntu-LI.ttf in Resources */,
 				47C888FB1F0A169D003ED4F7 /* Main.storyboard in Resources */,
+				4782987F1F46AD480044519A /* Ubuntu-C.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +376,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				478298841F46AD480044519A /* Ubuntu-LI.ttf in Resources */,
+				478298861F46AD480044519A /* Ubuntu-M.ttf in Resources */,
+				4782987E1F46AD480044519A /* Ubuntu-BI.ttf in Resources */,
+				478298821F46AD480044519A /* Ubuntu-L.ttf in Resources */,
+				4782987C1F46AD480044519A /* Ubuntu-B.ttf in Resources */,
 				47C37F001F298174007FC639 /* GoogleService-Info.plist in Resources */,
+				4782988C1F46AD480044519A /* Ubuntu-RI.ttf in Resources */,
+				4782988A1F46AD480044519A /* Ubuntu-R.ttf in Resources */,
+				478298801F46AD480044519A /* Ubuntu-C.ttf in Resources */,
+				478298881F46AD480044519A /* Ubuntu-MI.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
