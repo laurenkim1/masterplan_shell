@@ -19,26 +19,6 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         UserProfile.updatesOnAccessTokenChange = true
         let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
-        /*
-        if let accessToken = AccessToken.current {
-            // User is logged in, use 'accessToken' here.
-            // User is logged in, do work such as go to next view controller.
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
-            Auth.auth().signIn(with: credential) { (user, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                UserProfile.fetch(userId: accessToken.userId!, completion: self.completion)
-                self.performSegue(withIdentifier: "loggedIn", sender: nil)
-            }
-        }
- */
-        loginButton.center = view.center
-        view.addSubview(loginButton)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         if let accessToken = AccessToken.current {
             // User is logged in, use 'accessToken' here.
             // User is logged in, do work such as go to next view controller.
@@ -53,16 +33,21 @@ class LogInViewController: UIViewController {
                 })
                 
                 /*self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
-                
-                let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
-                DispatchQueue.main.asyncAfter(deadline: when) {
-                    // Your code with delay
-                    print(UserProfile.current?.firstName)
-                    self.performSegue(withIdentifier: "loggedIn", sender: nil)
-                }
- */
+                 
+                 let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
+                 DispatchQueue.main.asyncAfter(deadline: when) {
+                 // Your code with delay
+                 print(UserProfile.current?.firstName)
+                 self.performSegue(withIdentifier: "loggedIn", sender: nil)
+                 }
+                 */
             }
         }
+        loginButton.center = view.center
+        view.addSubview(loginButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
 
     }
 

@@ -35,6 +35,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.setView()
+        self.updateCreateProffrButtonState()
 
         // Do any additional setup after loading the view.
     }
@@ -125,7 +126,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
                 "Accepted": 0
             ]
             
-            let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+            let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
             DispatchQueue.main.asyncAfter(deadline: when) {
                 // Your code with delay
                 newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
@@ -155,19 +156,19 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     }
     
     func setView() {
-        let messageLabel: UILabel = UILabel(frame: CGRect(x:20, y: 80, width: self.view.frame.width-40, height: 25))
+        let messageLabel: UILabel = UILabel(frame: CGRect(x:20, y: 70, width: self.view.frame.width-40, height: 25))
         messageLabel.text = "Write a message..."
         
-        messageTextField = UITextField(frame: CGRect(x:20, y: 80+messageLabel.frame.height+10, width: self.view.frame.width-40, height: 50))
+        messageTextField = UITextField(frame: CGRect(x:20, y: 70+messageLabel.frame.height+10, width: self.view.frame.width-40, height: 50))
         messageTextField.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         messageTextField.layer.borderWidth = 2.0
         messageTextField.delegate = self
         
-        let photoLabel = UILabel(frame: CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+20, width: self.view.frame.width-40, height: 25))
+        let photoLabel = UILabel(frame: CGRect(x: 20, y: 70+messageTextField.frame.height+messageLabel.frame.height+20, width: self.view.frame.width-40, height: 25))
         photoLabel.text = "Upload a photo..."
     
         photoImageView = UIImageView(image: UIImage(named: "DefaultPhoto"))
-        photoImageView.frame = CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20, width: self.view.frame.width-40, height: self.view.frame.width-40)
+        photoImageView.frame = CGRect(x: 20, y: 70+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20, width: self.view.frame.width-40, height: self.view.frame.width-40)
         photoImageView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         photoImageView.layer.borderWidth = 2.0
         photoImageView.isUserInteractionEnabled = true
@@ -176,7 +177,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         gestureRecognizer.delegate = self
         photoImageView.addGestureRecognizer(gestureRecognizer)
         
-        self.doneButton = UIButton(frame: CGRect(x: 20, y: 80+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20+photoImageView.frame.height+20, width: self.view.frame.width-40, height: 50))
+        self.doneButton = UIButton(frame: CGRect(x: 20, y: 70+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20+photoImageView.frame.height+10, width: self.view.frame.width-40, height: 50))
         doneButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
         doneButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         doneButton.layer.cornerRadius = 5
