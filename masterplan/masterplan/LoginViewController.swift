@@ -17,6 +17,7 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserProfile.updatesOnAccessTokenChange = true
         let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
         /*
         if let accessToken = AccessToken.current {
@@ -47,8 +48,19 @@ class LogInViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
-                UserProfile.fetch(userId: accessToken.userId!, completion: self.completion)
-                self.performSegue(withIdentifier: "loggedIn", sender: nil)
+                UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in
+                    self.performSegue(withIdentifier: "loggedIn", sender: nil)
+                })
+                
+                /*self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
+                
+                let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    // Your code with delay
+                    print(UserProfile.current?.firstName)
+                    self.performSegue(withIdentifier: "loggedIn", sender: nil)
+                }
+ */
             }
         }
 
@@ -59,9 +71,26 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
     // MARK: Private Methods
     
-    func completion(fetchResult: UserProfile.FetchResult) {}
+    // func completion(fetchResult: UserProfile.FetchResult) {}
+    
+    func FBGraphRequest(graphPath: String) {
+        print(graphPath)
+        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "id, name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+        let connection = GraphRequestConnection()
+        connection.add(graphRequest, batchEntryName: "Test", completion: { httpResponse, result in
+            print(httpResponse)
+            print("hi")
+            switch result {
+            case .success(let response):
+                print("Graph Request Succeeded: \(response)")
+            case .failed(let error):
+                print("Graph Request Failed: \(error)")
+            }})
+        connection.start()
+    }
     
     /*
     func toggleHiddenState(_ shouldHide: Bool) {
@@ -73,6 +102,7 @@ class LogInViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+
         let myDisplayName = (UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
         let myUserId = (UserProfile.current?.userId)!
         
