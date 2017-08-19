@@ -213,8 +213,9 @@ class ChatViewController: JSQMessagesViewController {
         let requestPrice = channelSnapshot["requestPrice"] as! Float
         let requestTitle = channelSnapshot["subTitle"] as! String
         let requestId = channelSnapshot["requestId"] as! String
+        let photoUrl = channelSnapshot["photoUrl"] as! String
         
-        let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName)
+        let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
         let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary(), options: [])
         //3
         networkrequest.httpBody = data

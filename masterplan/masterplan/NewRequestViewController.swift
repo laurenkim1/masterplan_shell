@@ -18,6 +18,7 @@ class NewRequestViewController: FormViewController {
     
     var myDisplayName: String!
     var myUserId: String!
+    var myPhotoUrl: String!
     
     var requestName: UITextField!
     var price: UITextField!
@@ -109,7 +110,7 @@ class NewRequestViewController: FormViewController {
         if request != nil {
         }
         else {
-            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location)
+            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location, photoUrl: myPhotoUrl)
             request?.requestTags.append("Add Tags")
             
             if _pickup == 0 {

@@ -13,9 +13,6 @@ import Neon
 class NotificationsTableViewCell: UITableViewCell {
     
     //MARK: Properties
-    //var requesterName: UILabel!
-    //var requestTitle: UILabel!
-    //var requestPrice: UILabel!
     
     fileprivate let padding: CGFloat = 2.0
     var CellHeight = CGFloat()

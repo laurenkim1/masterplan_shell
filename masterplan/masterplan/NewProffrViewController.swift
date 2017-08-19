@@ -21,6 +21,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     var senderDisplayName: String?
     var request: requestInfo?
     var photoReferenceUrl: String!
+    var myPhotoUrl: String!
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     
@@ -118,11 +119,13 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
             let channelItem: NSDictionary = [ // 3
                 "proffererName": senderDisplayName!,
                 "proffrerId": senderId!,
+                "proffrerPhotoUrl": self.myPhotoUrl,
                 "subTitle": subTitle,
                 "requestId": self.request!.requestID!,
                 "requestPrice": self.request!.requestPrice,
                 "requesterName": self.request!.userName,
                 "requesterId": self.request!.userID,
+                "requesterPhotoUrl": self.request!.photoUrl,
                 "Accepted": 0
             ]
             
@@ -133,7 +136,8 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
                     let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
                     let id = snapshot.key
                     if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
-                        let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String)
+                        let photoUrl: String = channelData["photoUrl"] as! String!
+                        let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl)
                         self.segueToNewChannel(channel: channel)
                     } else {
                         print("Error! Could not decode channel data in Create Proffr")

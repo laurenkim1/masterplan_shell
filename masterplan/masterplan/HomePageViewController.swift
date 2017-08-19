@@ -21,6 +21,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     
     var myDisplayName: String!
     var myUserId: String!
+    var myPhotoUrl: String!
     var nearbyRequestList = [requestInfo]()
     var filteredNearbyRequestList = [requestInfo]()
     var searchController = UISearchController(searchResultsController: nil)
@@ -325,6 +326,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         nextViewController.request = selectedRequest
         nextViewController.senderDisplayName = myDisplayName
         nextViewController.senderId = myUserId
+        nextViewController.myPhotoUrl = myPhotoUrl
         navigationController?.pushViewController(nextViewController,
                                                  animated: false)
     }

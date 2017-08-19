@@ -20,6 +20,7 @@ class notificationModel: NSObject {
     var requestId: String
     var requesterId: String
     var requesterName: String
+    var photoUrl: URL
     
     //MARK: Types
     
@@ -30,12 +31,13 @@ class notificationModel: NSObject {
         static let requestId = "requestId"
         static let requesterId = "requesterId"
         static let requesterName = "requesterName"
+        static let photoURL = "photoUrl"
     }
     
     
     //MARK: Initialization
     
-    init?(userID: String, requestTitle: String, requestPrice: Float, requestId: String, requesterId: String, requesterName: String) {
+    init?(userID: String, requestTitle: String, requestPrice: Float, requestId: String, requesterId: String, requesterName: String, photoUrl: String) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -45,6 +47,8 @@ class notificationModel: NSObject {
             return nil
         }
         
+        let photoURL: URL = URL(string: photoUrl)!
+        
         // Initialize stored properties.
         self.userID = userID
         self.requestTitle = requestTitle
@@ -52,6 +56,7 @@ class notificationModel: NSObject {
         self.requestId = requestId
         self.requesterId = requesterId
         self.requesterName = requesterName
+        self.photoUrl = photoURL
     }
     
     convenience init?(dict: NSDictionary) {
@@ -79,6 +84,10 @@ class notificationModel: NSObject {
             os_log("Unable to decode the name for a request.", log: OSLog.default, type: .debug)
             return nil
         }
+        guard let photoUrl = dict["photoUrl"] as? String else {
+            os_log("Unable to decode the name for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
         /*guard let dateObject = dict["dateObject"] as? NSDictionary else {
          os_log("Unable to decode the date object for a request.", log: OSLog.default, type: .debug)
          return nil
@@ -100,7 +109,7 @@ class notificationModel: NSObject {
         }
         
         //let dateTime = stringToDate(date: date)
-        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName)
+        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
         //self.postTime = dateTime
     }
     
@@ -108,12 +117,15 @@ class notificationModel: NSObject {
     
     public func toDictionary() -> NSDictionary! {
         let jsonable = NSMutableDictionary()
+        
+        let photoUrlString: String = photoUrl.absoluteString
         jsonable.setValue(userID, forKey: "userID")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")
         jsonable.setValue(requestId, forKey: "requestId")
         jsonable.setValue(requesterId, forKey: "requesterId")
         jsonable.setValue(requesterName, forKey: "requesterName")
+        jsonable.setValue(photoUrlString, forKey: "photoUrl")
 
         return jsonable
     }

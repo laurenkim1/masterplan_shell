@@ -12,6 +12,7 @@ class TabBarController: UITabBarController {
     
     var myDisplayName: String!
     var myUserId: String!
+    var myPhotoUrl: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class TabBarController: UITabBarController {
         var HomeVC = HomePageViewController()
         HomeVC.myDisplayName = myDisplayName
         HomeVC.myUserId = myUserId
+        HomeVC.myPhotoUrl = myPhotoUrl
         nav1.viewControllers = [HomeVC]
         nav1.tabBarItem.title = "Home"
         nav1.tabBarItem.image = UIImage(named: "icon_home")
@@ -39,6 +41,7 @@ class TabBarController: UITabBarController {
         var nav3 = NewRequestPlaceholderVC()
         nav3.myDisplayName = myDisplayName
         nav3.myUserId = myUserId
+        nav3.myPhotoUrl = myPhotoUrl
         nav3.tabBarItem.title = "New"
         nav3.tabBarItem.image = UIImage(named: "icons8-Plus 2 Math-50")
         

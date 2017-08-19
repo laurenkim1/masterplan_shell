@@ -13,6 +13,7 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     
     var myDisplayName: String!
     var myUserId: String!
+    var myPhotoUrl: String!
     var button: CircleMenu!
     
     let items: [(icon: String, color: UIColor)] = [
@@ -94,17 +95,20 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
             let newRequestVc = NewRequestViewController()
             newRequestVc.myUserId = myUserId
             newRequestVc.myDisplayName = myDisplayName
+            newRequestVc.myPhotoUrl = myPhotoUrl
             navVc.viewControllers.append(newRequestVc)
             //navVc.viewControllers = [newRequestVc]
         } else if atIndex == 1 {
             let newRequestVc = NewRequestViewController()
             newRequestVc.myUserId = myUserId
             newRequestVc.myDisplayName = myDisplayName
+            newRequestVc.myPhotoUrl = myPhotoUrl
             navVc.viewControllers = [newRequestVc]
         } else if atIndex == 2 {
             let newRequestVc = NewRequestViewController()
             newRequestVc.myUserId = myUserId
             newRequestVc.myDisplayName = myDisplayName
+            newRequestVc.myPhotoUrl = myPhotoUrl
             navVc.viewControllers = [newRequestVc]
         }
         

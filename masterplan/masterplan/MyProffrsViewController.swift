@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FacebookCore
+import FacebookLogin
 
 class MyProffrsViewController: UITableViewController {
     
@@ -62,10 +64,13 @@ class MyProffrsViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MyProffrsTableViewCell else {
             fatalError("The dequeued cell is not an instance of ProffrChannel.")
         }
+        
+        let senderId: String = channels[(indexPath as NSIndexPath).row].id as! String
 
         // Configure the cell...
         cell.senderLabel.text = channels[(indexPath as NSIndexPath).row].name
         cell.subTitle.text = channels[(indexPath as NSIndexPath).row].subTitle
+        cell.ProfilePhoto.image = FBGraphRequest(graphPath: senderId)
 
         return cell
     }
@@ -88,7 +93,9 @@ class MyProffrsViewController: UITableViewController {
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
             if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
-                self.channels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String))
+                let senderId: String = channelData["proffrerId"] as! String
+                let photoUrl: String = channelData["photoUrl"] as! String
+                self.channels.append(ProffrChannel(id: senderId, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
                 self.tableView.reloadData()
             } else {
                 print("Error! Could not decode channel data")
@@ -103,6 +110,51 @@ class MyProffrsViewController: UITableViewController {
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
+    
+    // MARK: Private Methods
+    
+    func FBGraphRequest(graphPath: String) -> UIImage {
+        var image: UIImage!
+        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "id, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+        let connection = GraphRequestConnection()
+        connection.add(graphRequest, batchEntryName: "ProfilePicture", completion: { httpResponse, result in
+            switch result {
+            case .success(let response):
+                print("Graph Request Succeeded: \(response.dictionaryValue?["picture"])")
+                let photoData: [String : Any] = response.dictionaryValue?["picture"] as! [String : Any]
+                let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
+                let photoUrlString: String = photoMetaData["url"] as! String
+                let photoUrl: URL = URL(string: photoUrlString)!
+                image = self.downloadImage(url: photoUrl)
+            case .failed(let error):
+                print("Graph Request Failed: \(error)")
+            }})
+        connection.start()
+        return image
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            print(response)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) -> UIImage {
+        var image: UIImage!
+        print("Download Started")
+        getDataFromUrl(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                image = UIImage(data: data)
+            }
+        }
+        return image
+    }
+
 
     /*
     // Override to support conditional editing of the table view.
