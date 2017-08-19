@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        self.title = "Proffr"
         self.setNavigationBar()
 
     }
@@ -29,9 +30,7 @@ class ProfileViewController: UIViewController {
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 70))
-        let navItem = UINavigationItem(title: "Proffr")
-        navBar.setItems([navItem], animated: false)
-        self.view.addSubview(navBar)
+        
     }
     
 

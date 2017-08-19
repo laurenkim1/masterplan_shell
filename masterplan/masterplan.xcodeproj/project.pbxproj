@@ -29,6 +29,10 @@
 		4782988A1F46AD480044519A /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298791F46AD480044519A /* Ubuntu-R.ttf */; };
 		4782988B1F46AD480044519A /* Ubuntu-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4782987A1F46AD480044519A /* Ubuntu-RI.ttf */; };
 		4782988C1F46AD480044519A /* Ubuntu-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4782987A1F46AD480044519A /* Ubuntu-RI.ttf */; };
+		478298911F47F3EC0044519A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478298901F47F3EC0044519A /* EditProfileViewController.swift */; };
+		478298921F47F3EC0044519A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478298901F47F3EC0044519A /* EditProfileViewController.swift */; };
+		478298951F47F44F0044519A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478298941F47F44F0044519A /* Profile.swift */; };
+		478298961F47F44F0044519A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478298941F47F44F0044519A /* Profile.swift */; };
 		479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */; };
 		47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798921F1473FF00F67BEA /* TagListViewController.swift */; };
 		47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */; };
@@ -83,6 +87,8 @@
 		478298781F46AD480044519A /* Ubuntu-MI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-MI.ttf"; sourceTree = "<group>"; };
 		478298791F46AD480044519A /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
 		4782987A1F46AD480044519A /* Ubuntu-RI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-RI.ttf"; sourceTree = "<group>"; };
+		478298901F47F3EC0044519A /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		478298941F47F44F0044519A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		47B798921F1473FF00F67BEA /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListViewController.swift; path = masterplan/TagListViewController.swift; sourceTree = "<group>"; };
 		47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListItemViewCollectionViewCell.swift; path = masterplan/TagListItemViewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 				47C889151F0C8939003ED4F7 /* RequestInfo.swift */,
 				47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */,
 				47E24B111F3577F800F0F723 /* NotificationModel.swift */,
+				478298941F47F44F0044519A /* Profile.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
 				47E24B281F41853000F0F723 /* TagsViewController.swift */,
 				47E24B241F40072F00F0F723 /* ProfileViewController.swift */,
+				478298901F47F3EC0044519A /* EditProfileViewController.swift */,
 				478298711F46AD240044519A /* Supporting Fonts */,
 				47C57A931F2C28C200BC1D06 /* Models */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
@@ -502,12 +510,14 @@
 				47E24B191F3820F200F0F723 /* NotificationsTableViewCell.swift in Sources */,
 				47C37F041F29847F007FC639 /* LoginViewController.swift in Sources */,
 				47E24B2B1F42872600F0F723 /* NewProffrViewController.swift in Sources */,
+				478298951F47F44F0044519A /* Profile.swift in Sources */,
 				47E24B2E1F4289C300F0F723 /* PaymentViewController.swift in Sources */,
 				47C57A8C1F29A78900BC1D06 /* MyProffrsViewController.swift in Sources */,
 				47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */,
 				47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */,
 				47E24B251F40072F00F0F723 /* ProfileViewController.swift in Sources */,
 				47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */,
+				478298911F47F3EC0044519A /* EditProfileViewController.swift in Sources */,
 				479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +527,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				47C8890B1F0A169D003ED4F7 /* masterplanTests.swift in Sources */,
+				478298961F47F44F0044519A /* Profile.swift in Sources */,
+				478298921F47F3EC0044519A /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

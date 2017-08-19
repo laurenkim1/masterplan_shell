@@ -2,19 +2,19 @@
 //  EditProfileViewController.swift
 //  masterplan
 //
-//  Created by Lauren Kim on 8/12/17.
+//  Created by Lauren Kim on 8/18/17.
 //  Copyright © 2017 Lauren Kim. All rights reserved.
 //
 
-import Foundation
-import Eureka
+import UIKit
 
-class EditProfileViewController: FormViewController {
+class EditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        self.title = "Proffr"
     }
 
     override func didReceiveMemoryWarning() {

@@ -33,6 +33,8 @@ class LogInViewController: UIViewController {
                     return
                 }
                 self.myUserId = accessToken.userId!
+                
+                
                 self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
                 /*
                 UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in

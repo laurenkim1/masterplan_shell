@@ -11,10 +11,9 @@ var User = require('./User');
 router.post('/', function (req, res) {
     console.log(req.body)
     User.create({
+            userId: req.body.userId,
             userName: req.body.userName,
-            userPassword: req.body.userPassword,
-            xCoordinate: req.body.xCoordinate,
-            yCoordinate: req.body.yCoordinate
+            userLocation: req.body.userLocation
         },
         function (err, user) {
             if (err) return res.status(500).send("There was a problem adding the information to the user database.");
