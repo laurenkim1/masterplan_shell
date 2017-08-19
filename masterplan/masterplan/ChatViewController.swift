@@ -237,6 +237,7 @@ class ChatViewController: JSQMessagesViewController {
     // MARK: Firebase related methods
     
     private func observeMessages() {
+        print(self.channelRef!)
         messageRef = self.channelRef!.child("messages")
         let messageQuery = messageRef.queryLimited(toLast:25)
         

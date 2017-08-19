@@ -104,7 +104,7 @@ class MyProffrsViewController: UITableViewController {
             if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
                 let senderId: String = channelData["proffrerId"] as! String
                 let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                self.channels.append(ProffrChannel(id: senderId, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
+                self.channels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
                 self.tableView.reloadData()
             } else {
                 print("Error! Could not decode channel data")
