@@ -230,6 +230,19 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             nearbyRequest = nearbyRequestList[indexPath.row]
         }
         
+        let photoUrl = nearbyRequest.photoUrl
+        
+        URLSession.shared.dataTask(with: photoUrl) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print("Download Started")
+            print(response?.suggestedFilename ?? photoUrl.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                let image = UIImage(data: data)
+                cell.ProfilePhoto.image = image
+            }
+            }.resume()
+        
         // change these parameters to match a request table cell
         cell.requestTitle.text = nearbyRequest.requestTitle
         cell.nameLabel.text = nearbyRequest.userName
