@@ -22,6 +22,7 @@ class ChatViewController: JSQMessagesViewController {
     private let imageURLNotSetKey = "NOTSET"
 
     var channelRef: DatabaseReference?
+    var acceptButton: UIBarButtonItem!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -61,6 +62,7 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
         self.senderId = Auth.auth().currentUser?.uid
         observeMessages()
+        self.setNavBar()
         
         // No avatars
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
@@ -138,6 +140,29 @@ class ChatViewController: JSQMessagesViewController {
     
     // MARK: Actions
     
+    private func setNavBar() {
+        self.acceptButton = UIBarButtonItem(title: "Accept", style: .plain, target: self, action: #selector(acceptButtonTapped))
+        self.navigationItem.rightBarButtonItem = acceptButton
+    }
+    
+    func acceptButtonTapped(){
+        self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+            if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
+                //self.deleteAcceptedRequests(requestId: requestId)
+                self.deleteOtherProffrs(requestId: requestId)
+            } else {
+                print("Error! Could not decode channel data in Create Proffr")
+            }
+            
+        })
+        
+        self.accepted.setValue(1)
+        
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    /*
     @IBAction func acceptedBtton(_ sender: UIBarButtonItem) {
         self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
@@ -153,6 +178,7 @@ class ChatViewController: JSQMessagesViewController {
         self.accepted.setValue(1)
         
     }
+ */
     
     // MARK: Network Request Methods
     
@@ -213,7 +239,7 @@ class ChatViewController: JSQMessagesViewController {
         let requestPrice = channelSnapshot["requestPrice"] as! Float
         let requestTitle = channelSnapshot["subTitle"] as! String
         let requestId = channelSnapshot["requestId"] as! String
-        let photoUrl = channelSnapshot["photoUrl"] as! String
+        let photoUrl = channelSnapshot["requesterPhotoUrl"] as! String
         
         let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
         let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary(), options: [])
