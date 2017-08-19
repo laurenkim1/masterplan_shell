@@ -69,7 +69,17 @@ class MyProffrsViewController: UITableViewController {
         // Configure the cell...
         cell.senderLabel.text = channels[(indexPath as NSIndexPath).row].name
         cell.subTitle.text = channels[(indexPath as NSIndexPath).row].subTitle
-        cell.ProfilePhoto.image = downloadImage(url: photoUrl)
+        
+        URLSession.shared.dataTask(with: photoUrl) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print("Download Started")
+            print(response?.suggestedFilename ?? photoUrl.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                let image = UIImage(data: data)
+                cell.ProfilePhoto.image = image
+            }
+        }.resume()
 
         return cell
     }
@@ -108,29 +118,6 @@ class MyProffrsViewController: UITableViewController {
         
         self.tableView.reloadData()
         refreshControl.endRefreshing()
-    }
-    
-    // MARK: Private Methods
-    
-    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            completion(data, response, error)
-            print(response)
-            }.resume()
-    }
-    
-    func downloadImage(url: URL) -> UIImage {
-        var image: UIImage!
-        print("Download Started")
-        getDataFromUrl(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() { () -> Void in
-                image = UIImage(data: data)
-            }
-        }
     }
 
 
