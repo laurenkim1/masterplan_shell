@@ -12,7 +12,7 @@ internal class ProffrChannel {
     internal let id: String
     internal let name: String
     internal let subTitle: String
-    internal let photoURL: URL
+    internal let photoUrl: URL
     
     init(id: String, name: String, subTitle: String, photoUrl: String) {
         
@@ -21,6 +21,6 @@ internal class ProffrChannel {
         self.id = id
         self.name = name
         self.subTitle = subTitle
-        self.photoURL = photoURL
+        self.photoUrl = photoURL
     }
 }

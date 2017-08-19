@@ -32,13 +32,12 @@ class LogInViewController: UIViewController {
                     print(error.localizedDescription)
                     return
                 }
-                //self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
                 self.myUserId = accessToken.userId!
+                self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
+                /*
                 UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in
                     self.performSegue(withIdentifier: "loggedIn", sender: nil)
                 })
-                
-                /*
                  
                  let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
                  DispatchQueue.main.asyncAfter(deadline: when) {
@@ -70,11 +69,12 @@ class LogInViewController: UIViewController {
     //getting image data
     
     func FBGraphRequest(graphPath: String) {
-        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "id, name, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "name, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
         let connection = GraphRequestConnection()
         connection.add(graphRequest, batchEntryName: "ProfilePicture", completion: { httpResponse, result in
             switch result {
             case .success(let response):
+                print("Graph Request Succeeded: \(response)")
                 print("Graph Request Succeeded: \(response.dictionaryValue?["picture"])")
                 let photoData: [String : Any] = response.dictionaryValue?["picture"] as! [String : Any]
                 let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
@@ -85,7 +85,9 @@ class LogInViewController: UIViewController {
                 self.myDisplayName = response.dictionaryValue?["name"] as! String
             case .failed(let error):
                 print("Graph Request Failed: \(error)")
-            }})
+            }
+            self.performSegue(withIdentifier: "loggedIn", sender: nil)
+        })
         connection.start()
     }
     

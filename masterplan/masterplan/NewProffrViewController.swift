@@ -116,6 +116,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         sender.isUserInteractionEnabled = false
         if let subTitle = request?.requestTitle {
             let newChannelRef = channelRef.childByAutoId() // 2
+            let requesterPhotoUrlString = self.request!.photoUrl.absoluteString
             let channelItem: NSDictionary = [ // 3
                 "proffererName": senderDisplayName!,
                 "proffrerId": senderId!,
@@ -125,7 +126,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
                 "requestPrice": self.request!.requestPrice,
                 "requesterName": self.request!.userName,
                 "requesterId": self.request!.userID,
-                "requesterPhotoUrl": self.request!.photoUrl,
+                "requesterPhotoUrl": requesterPhotoUrlString,
                 "Accepted": 0
             ]
             
@@ -136,7 +137,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
                     let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
                     let id = snapshot.key
                     if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
-                        let photoUrl: String = channelData["photoUrl"] as! String!
+                        let photoUrl: String = channelData["requesterPhotoUrl"] as! String!
                         let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl)
                         self.segueToNewChannel(channel: channel)
                     } else {

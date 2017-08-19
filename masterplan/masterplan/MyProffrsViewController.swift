@@ -8,8 +8,6 @@
 
 import UIKit
 import Firebase
-import FacebookCore
-import FacebookLogin
 
 class MyProffrsViewController: UITableViewController {
     
@@ -66,11 +64,12 @@ class MyProffrsViewController: UITableViewController {
         }
         
         let senderId: String = channels[(indexPath as NSIndexPath).row].id as! String
+        let photoUrl: URL = channels[(indexPath as NSIndexPath).row].photoUrl as! URL
 
         // Configure the cell...
         cell.senderLabel.text = channels[(indexPath as NSIndexPath).row].name
         cell.subTitle.text = channels[(indexPath as NSIndexPath).row].subTitle
-        cell.ProfilePhoto.image = FBGraphRequest(graphPath: senderId)
+        cell.ProfilePhoto.image = downloadImage(url: photoUrl)
 
         return cell
     }
@@ -94,7 +93,7 @@ class MyProffrsViewController: UITableViewController {
             let id = snapshot.key
             if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
                 let senderId: String = channelData["proffrerId"] as! String
-                let photoUrl: String = channelData["photoUrl"] as! String
+                let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
                 self.channels.append(ProffrChannel(id: senderId, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
                 self.tableView.reloadData()
             } else {
@@ -112,26 +111,6 @@ class MyProffrsViewController: UITableViewController {
     }
     
     // MARK: Private Methods
-    
-    func FBGraphRequest(graphPath: String) -> UIImage {
-        var image: UIImage!
-        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "id, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
-        let connection = GraphRequestConnection()
-        connection.add(graphRequest, batchEntryName: "ProfilePicture", completion: { httpResponse, result in
-            switch result {
-            case .success(let response):
-                print("Graph Request Succeeded: \(response.dictionaryValue?["picture"])")
-                let photoData: [String : Any] = response.dictionaryValue?["picture"] as! [String : Any]
-                let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
-                let photoUrlString: String = photoMetaData["url"] as! String
-                let photoUrl: URL = URL(string: photoUrlString)!
-                image = self.downloadImage(url: photoUrl)
-            case .failed(let error):
-                print("Graph Request Failed: \(error)")
-            }})
-        connection.start()
-        return image
-    }
     
     func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
         URLSession.shared.dataTask(with: url) {
@@ -152,7 +131,6 @@ class MyProffrsViewController: UITableViewController {
                 image = UIImage(data: data)
             }
         }
-        return image
     }
 
 

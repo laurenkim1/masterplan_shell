@@ -76,8 +76,12 @@ class NotificationsTableViewController: UITableViewController {
 
         // Configure the cell...
         
+        let photoUrlString: String = notifications[(indexPath as NSIndexPath).row].photoUrl as! String
+        let photoUrl: URL = URL(string: photoUrlString)!
+        
         cell.requestTitle.text = notifications[(indexPath as NSIndexPath).row].requestTitle
         cell.requesterName.text = notifications[(indexPath as NSIndexPath).row].requesterName
+        cell.ProfilePhoto.image = downloadImage(url: photoUrl)
         let price = notifications[(indexPath as NSIndexPath).row].requestPrice 
         //cell.requestPrice?.text = NSString(format: "%.2f", price) as String
 
@@ -120,6 +124,27 @@ class NotificationsTableViewController: UITableViewController {
         }
     }
     
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            print(response)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) -> UIImage {
+        var image: UIImage!
+        print("Download Started")
+        getDataFromUrl(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                image = UIImage(data: data)
+            }
+        }
+        return image
+    }
     
     /*
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {

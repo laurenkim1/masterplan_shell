@@ -165,6 +165,9 @@ class requestInfo: NSObject, NSCoding {
             tags.append(tag)
             tags.append(" ")
         }
+        
+        let photoURL: String = photoUrl.absoluteString
+        
         let geoloc: NSDictionary = self.toLocation()
         jsonable.setValue(userID, forKey: "userID")
         jsonable.setValue(userName, forKey: "userName")
@@ -176,7 +179,7 @@ class requestInfo: NSObject, NSCoding {
         jsonable.setValue(fulfillerID, forKey: "fulfillerID")
         jsonable.setValue(tags, forKey: "requestTags")
         jsonable.setValue(distance, forKey: "distance")
-        jsonable.setValue(photoUrl, forKey: "photoUrl")
+        jsonable.setValue(photoURL, forKey: "photoUrl")
         return jsonable
     }
     

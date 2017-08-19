@@ -12,7 +12,8 @@ var RequestSchema = new mongoose.Schema({
   requestTags: String,
   pickUp: Number,
   distance: Number,
-  location: Object
+  location: Object,
+  photoUrl: String,
 });
 mongoose.model('Request', RequestSchema);
 module.exports = mongoose.model('Request');

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "524732112.07115"
+            timestampString = "524802035.29829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "MyProffrsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "524799094.97603"
+            timestampString = "524803626.365556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "observeChannels()"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "524799094.97603"
+            timestampString = "524803626.365556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "MyProffrsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -852,11 +852,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "524732962.865676"
+            timestampString = "524803626.365556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "observeChannels()"
             landmarkType = "7">
             <Locations>
@@ -1128,11 +1128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "524799094.97603"
+            timestampString = "524802358.32811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
             <Locations>
@@ -1176,11 +1176,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "524799094.97603"
+            timestampString = "524802358.32811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1318,11 +1318,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "524799094.97603"
+            timestampString = "524802358.32811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1350,11 +1350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NotificationsTableViewController.swift"
-            timestampString = "524733726.20635"
+            timestampString = "524802035.29829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "getNotifications()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1366,11 +1366,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NotificationsTableViewController.swift"
-            timestampString = "524733726.20635"
+            timestampString = "524802035.29829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "getNotifications()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1382,11 +1382,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NotificationsTableViewController.swift"
-            timestampString = "524733726.20635"
+            timestampString = "524802035.29829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "getNotifications()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1398,11 +1398,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NotificationsTableViewController.swift"
-            timestampString = "524733726.20635"
+            timestampString = "524802035.29829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "getNotifications()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1542,11 +1542,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NewProffrViewController.swift"
-            timestampString = "524799094.97603"
+            timestampString = "524803354.918834"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "setView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1574,11 +1574,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "524799094.97603"
+            timestampString = "524802358.32811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
             <Locations>
