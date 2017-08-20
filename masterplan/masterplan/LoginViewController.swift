@@ -112,9 +112,10 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         //let lon: String = String(format:"%f", loc.coordinate.longitude)
         //let lat: String = String(format:"%f", loc.coordinate.latitude)
         let kIds: String = "fbid/"
-        let parameterString: String = kIds + "?id=" + id
+        let parameterString: String = id
         let url = URL(string: (requests + parameterString))
         //1
+        print(url?.absoluteString)
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
         //2
@@ -150,7 +151,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             switch result {
             case .success(let response):
                 print("Graph Request Succeeded: \(response)")
-                print("Graph Request Succeeded: \(response.dictionaryValue?["picture"])")
                 let photoData: [String : Any] = response.dictionaryValue?["picture"] as! [String : Any]
                 let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
                 let photoUrlString: String = photoMetaData["url"] as! String
@@ -177,18 +177,23 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     UIApplication.shared.keyWindow?.rootViewController = navVc
                     self.dismiss(animated: true, completion: nil)
                 } else {
+                    
+                    let newUser: Profile = Profile(userId: graphPath, userName: self.myDisplayName, userEmail: self.myEmail, userLocation: self.userLocation)
+                    
+                    self.postUser(newUser)
+                    
                     let profileVC: EditProfileViewController = EditProfileViewController()
                     profileVC.userId = graphPath
                     profileVC.userName = self.myDisplayName
                     profileVC.userEmail = self.myEmail
                     profileVC.userLocation = self.userLocation
-                    profileVC.neighborhood = "Harvard"
                     
                     UIApplication.shared.keyWindow?.rootViewController = profileVC
                     self.dismiss(animated: true, completion: nil)
                 }
             case .failed(let error):
                 print("Graph Request Failed: \(error)")
+                return
             }
         })
         connection.start()
@@ -200,6 +205,35 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             completion(data, response, error)
             print(response)
             }.resume()
+    }
+    
+    func postUser(_ user: Profile) {
+        if user == nil || user.userId == nil {
+            return
+            //input safety check
+        }
+        let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        let url = URL(string: users)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "POST"
+        //2
+        let data: Data? = try? JSONSerialization.data(withJSONObject: user.toDictionary(), options: [])
+        //3
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                print(response)
+            }
+        })
+        dataTask?.resume()
     }
     
     /*
@@ -220,7 +254,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     func toggleHiddenState(_ shouldHide: Bool) {
         loginButton.isHidden = shouldHide
     }
- */
+
     
     // MARK: Navigation
     
@@ -242,6 +276,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
         notificationsTable.myUserId = myUserId
     }
+ */
     
 
 }

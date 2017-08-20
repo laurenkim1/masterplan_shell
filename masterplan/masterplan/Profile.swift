@@ -14,14 +14,32 @@ internal class Profile {
     internal let userName: String
     internal let userEmail: String
     internal let userLocation: CLLocation
-    internal let neighborhood: String
     
-    init(userId: String, userName: String, userEmail: String, userLocation: CLLocation, neighborhood: String) {
+    init(userId: String, userName: String, userEmail: String, userLocation: CLLocation) {
         
         self.userId = userId
         self.userName = userName
         self.userEmail = userEmail
         self.userLocation = userLocation
-        self.neighborhood = neighborhood
+    }
+    
+    // MARK: Public Methods
+    
+    public func toLocation() -> NSDictionary! {
+        let geoloc = NSMutableDictionary()
+        let coordinates: NSArray = [userLocation.coordinate.longitude, userLocation.coordinate.latitude]
+        geoloc.setValue("Point", forKey: "type")
+        geoloc.setValue(coordinates, forKey: "coordinates")
+        return geoloc
+    }
+    
+    public func toDictionary() -> NSDictionary! {
+        let jsonable = NSMutableDictionary()
+        let geoloc: NSDictionary = self.toLocation()
+        jsonable.setValue(userId, forKey: "userId")
+        jsonable.setValue(userName, forKey: "userName")
+        jsonable.setValue(userEmail, forKey: "userEmail")
+        jsonable.setValue(geoloc, forKey: "userLocation")
+        return jsonable
     }
 }

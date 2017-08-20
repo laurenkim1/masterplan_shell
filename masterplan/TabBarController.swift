@@ -16,8 +16,6 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(myUserId)
         /*
         let button = UIButton(frame: CGRect(origin: CGPoint(x: 0, y: self.view.frame.minY), size: CGSize(width: self.view.frame.width/5, height: self.view.frame.height/9)));
         button.setTitle("Button", for: UIControlState.normal)
