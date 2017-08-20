@@ -41,7 +41,6 @@ class NotificationsTableViewController: UITableViewController {
         self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             self?.notifications = []
             self?.getNotifications()
-            self?.tableView.reloadData()
             self?.tableView.dg_stopLoading()
             }, loadingView: loadingView)
         self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))

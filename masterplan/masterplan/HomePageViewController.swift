@@ -64,9 +64,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             self?.nearbyRequestList = []
             self?.getNearbyRequests((self?.userLocation)!, 1)
-            self?.tableView.reloadData()
             self?.tableView.dg_stopLoading()
-            self?.tableView.reloadData()
             }, loadingView: loadingView)
         self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
         self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
