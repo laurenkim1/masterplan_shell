@@ -129,10 +129,20 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                print(response)
                 if response == nil {
                     self.FBGraphRequest(graphPath: "\(id)", exist: false)
                 } else {
+                    let responseDict = response?[0] as! NSDictionary
+                    guard let geoloc = responseDict["userLocation"] as? NSDictionary else {
+                        os_log("Unable to decode the location for a user.", log: OSLog.default, type: .debug)
+                        return
+                    }
+                    guard let coordinates = geoloc["coordinates"] as? Array<Double> else {
+                        os_log("Unable to decode the coordinates for a user.", log: OSLog.default, type: .debug)
+                        return
+                    }
+                    let location = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
+                    self.userLocation = location
                     self.FBGraphRequest(graphPath: "\(id)", exist: true)
                 }
             }
@@ -167,6 +177,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     let homeVc = channelVc.viewControllers.first as! HomePageViewController
                     homeVc.myDisplayName = self.myDisplayName
                     homeVc.myUserId = self.myUserId
+                    homeVc.userLocation = self.userLocation
                     let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
                     newVc.myDisplayName = self.myDisplayName
                     newVc.myUserId = self.myUserId
@@ -187,6 +198,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     profileVC.userName = self.myDisplayName
                     profileVC.userEmail = self.myEmail
                     profileVC.userLocation = self.userLocation
+                    profileVC.myPhotoUrl = self.myPhotoUrl
                     
                     UIApplication.shared.keyWindow?.rootViewController = profileVC
                     self.dismiss(animated: true, completion: nil)

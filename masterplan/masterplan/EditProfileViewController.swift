@@ -18,6 +18,7 @@ class EditProfileViewController: FormViewController {
     var userName: String!
     var userEmail: String!
     var userLocation: CLLocation!
+    var myPhotoUrl: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()

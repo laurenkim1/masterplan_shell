@@ -28,7 +28,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     var distanceCeiling: CLLocationDistance = 1610.0 as CLLocationDistance
     
     let locationManager = CLLocationManager()
-    var userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
+    var userLocation: CLLocation! // = CLLocation(latitude: 42.3770, longitude: -71.1167)
 
     override func viewDidLoad() {
         super.viewDidLoad()
