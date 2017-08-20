@@ -150,7 +150,8 @@ class ChatViewController: JSQMessagesViewController {
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
                 //self.deleteAcceptedRequests(requestId: requestId)
-                self.deleteOtherProffrs(requestId: requestId)
+                let acceptedId: String = channelData["proffrerId"] as! String
+                self.deleteOtherProffrs(requestId: requestId, acceptedId: acceptedId)
             } else {
                 print("Error! Could not decode channel data in Create Proffr")
             }
@@ -204,7 +205,7 @@ class ChatViewController: JSQMessagesViewController {
         dataTask?.resume()
     }
     
-    func deleteOtherProffrs(requestId: String) -> Void {
+    func deleteOtherProffrs(requestId: String, acceptedId: String) -> Void {
         print(requestId)
         let allChannels = channelRef?.parent
         let sameRequestProffrs = allChannels?.queryEqual(toValue: requestId, childKey: "requestId")
@@ -213,15 +214,19 @@ class ChatViewController: JSQMessagesViewController {
             for child in snapshot.children {
                 let childData = (child as! DataSnapshot).value as! NSDictionary
                 if (childData["requestId"] as! String) == requestId {
-                    self.sendNotifications(senderId: childData["proffrerId"] as! String, channelSnapshot: childData)
-                    sameRequestRef?.child((child as! DataSnapshot).key).removeValue()
+                    let proffrerId: String = childData["profferId"] as! String
+                    if proffrerId == acceptedId {
+                        self.sendNotification(senderId: acceptedId, channelSnapshot: childData)
+                    } else {
+                        sameRequestRef?.child((child as! DataSnapshot).key).removeValue()
+                    }
                 }
             }
         })
 
     }
     
-    func sendNotifications(senderId: String, channelSnapshot: NSDictionary) {
+    func sendNotification(senderId: String, channelSnapshot: NSDictionary) {
         if senderId == nil {
             return
             //input safety check
