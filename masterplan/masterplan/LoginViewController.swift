@@ -44,6 +44,16 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
+        
+        loginButton.center = view.center
+        view.addSubview(loginButton)
+        
+        let imageView = UIImageView(image: UIImage(named: "pimage"))
+        imageView.center = view.center
+        imageView.autoresizingMask = .flexibleWidth
+        imageView.contentMode = .scaleAspectFit
+        view.addSubview(imageView)
+        
         if let accessToken = AccessToken.current {
             // User is logged in, use 'accessToken' here.
             // User is logged in, do work such as go to next view controller.
@@ -71,9 +81,10 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                  }
                  */
             }
+        } else {
+            self.view.willRemoveSubview(imageView)
         }
-        loginButton.center = view.center
-        view.addSubview(loginButton)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
