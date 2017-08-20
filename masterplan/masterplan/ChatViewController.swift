@@ -214,7 +214,7 @@ class ChatViewController: JSQMessagesViewController {
             for child in snapshot.children {
                 let childData = (child as! DataSnapshot).value as! NSDictionary
                 if (childData["requestId"] as! String) == requestId {
-                    let proffrerId: String = childData["profferId"] as! String
+                    let proffrerId: String = childData["proffrerId"] as! String
                     if proffrerId == acceptedId {
                         self.sendNotification(senderId: acceptedId, channelSnapshot: childData)
                     } else {

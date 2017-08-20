@@ -131,16 +131,10 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
             ]
             
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
-                let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                let id = snapshot.key
-                if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
-                    let photoUrl: String = channelData["requesterPhotoUrl"] as! String!
-                    let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl)
-                    self.segueToNewChannel(channel: channel)
-                } else {
-                    print("Error! Could not decode channel data in Create Proffr")
-                }
-                
+                let id = newChannelRef.key
+                let name = self.request!.userName
+                let channel = ProffrChannel(id: id, name: self.request!.userName, subTitle: subTitle, photoUrl: requesterPhotoUrlString)
+                self.segueToNewChannel(channel: channel)
             })
             
             newChannelRef.setValue(channelItem)
