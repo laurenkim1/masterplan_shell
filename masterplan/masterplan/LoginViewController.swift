@@ -82,7 +82,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                  */
             }
         } else {
-            self.view.willRemoveSubview(imageView)
+            imageView.removeFromSuperview()
         }
 
     }
@@ -190,9 +190,11 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     homeVc.myDisplayName = self.myDisplayName
                     homeVc.myUserId = self.myUserId
                     homeVc.userLocation = self.userLocation
+                    homeVc.myPhotoUrl = self.myPhotoUrl
                     let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
                     newVc.myDisplayName = self.myDisplayName
                     newVc.myUserId = self.myUserId
+                    newVc.myPhotoUrl = self.myPhotoUrl
                     let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
                     let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
                     notificationsTable.myUserId = self.myUserId
