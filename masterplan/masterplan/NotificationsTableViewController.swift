@@ -76,12 +76,21 @@ class NotificationsTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        let photoUrlString: String = notifications[(indexPath as NSIndexPath).row].photoUrl as! String
-        let photoUrl: URL = URL(string: photoUrlString)!
+        let photoUrl: URL = notifications[(indexPath as NSIndexPath).row].photoUrl as! URL
+        
+        URLSession.shared.dataTask(with: photoUrl) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print("Download Started")
+            print(response?.suggestedFilename ?? photoUrl.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                let image = UIImage(data: data)
+                cell.ProfilePhoto.image = image
+            }
+            }.resume()
         
         cell.requestTitle.text = notifications[(indexPath as NSIndexPath).row].requestTitle
         cell.requesterName.text = notifications[(indexPath as NSIndexPath).row].requesterName
-        cell.ProfilePhoto.image = downloadImage(url: photoUrl)
         let price = notifications[(indexPath as NSIndexPath).row].requestPrice 
         //cell.requestPrice?.text = NSString(format: "%.2f", price) as String
 
@@ -124,6 +133,7 @@ class NotificationsTableViewController: UITableViewController {
         }
     }
     
+    /*
     func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
         URLSession.shared.dataTask(with: url) {
             (data, response, error) in
@@ -143,8 +153,10 @@ class NotificationsTableViewController: UITableViewController {
                 image = UIImage(data: data)
             }
         }
-        return image
-    }
+        DispatchQueue.main.async() { () -> Void in
+            return image
+        }
+    }*/
     
     /*
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {

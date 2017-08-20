@@ -22,6 +22,7 @@ router.post('/', function (req, res) {
             requestId: req.body.requestId,
             requesterId: req.body.requesterId,
             requesterName: req.body.requesterName,
+            photoUrl: req.body.photoUrl
         },
         function (err, notification) {
             console.log(err)

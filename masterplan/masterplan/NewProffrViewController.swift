@@ -130,24 +130,20 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
                 "Accepted": 0
             ]
             
-            let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                // Your code with delay
-                newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
-                    let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                    let id = snapshot.key
-                    if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
-                        let photoUrl: String = channelData["requesterPhotoUrl"] as! String!
-                        let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl)
-                        self.segueToNewChannel(channel: channel)
-                    } else {
-                        print("Error! Could not decode channel data in Create Proffr")
-                    }
-                    
-                })
+            newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+                let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+                let id = snapshot.key
+                if let name = channelData["requesterName"] as! String!, name.characters.count > 0 { // 3
+                    let photoUrl: String = channelData["requesterPhotoUrl"] as! String!
+                    let channel = ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl)
+                    self.segueToNewChannel(channel: channel)
+                } else {
+                    print("Error! Could not decode channel data in Create Proffr")
+                }
                 
-                newChannelRef.setValue(channelItem)
-            }
+            })
+            
+            newChannelRef.setValue(channelItem)
         }
     }
     

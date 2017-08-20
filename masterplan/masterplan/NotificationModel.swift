@@ -73,19 +73,19 @@ class notificationModel: NSObject {
             return nil
         }
         guard let requestPrice = dict["requestPrice"] as? Float else {
-            os_log("Unable to decode the price for a request.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the requestprice for a request.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let requesterId = dict["requesterId"] as? String else {
-            os_log("Unable to decode the name for a request.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the requsterId for a request.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let requesterName = dict["requesterName"] as? String else {
-            os_log("Unable to decode the name for a request.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the requestername for a request.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let photoUrl = dict["photoUrl"] as? String else {
-            os_log("Unable to decode the name for a request.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the userphoto for a request.", log: OSLog.default, type: .debug)
             return nil
         }
         /*guard let dateObject = dict["dateObject"] as? NSDictionary else {
@@ -119,6 +119,8 @@ class notificationModel: NSObject {
         let jsonable = NSMutableDictionary()
         
         let photoUrlString: String = photoUrl.absoluteString
+        print(photoUrlString)
+        
         jsonable.setValue(userID, forKey: "userID")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")

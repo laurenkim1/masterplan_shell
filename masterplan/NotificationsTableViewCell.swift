@@ -53,10 +53,10 @@ class NotificationsTableViewCell: UITableViewCell {
         ProfilePhoto.clipsToBounds = true
         contentView.addSubview(ProfilePhoto)
         
-        requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 100, height: CellHeight/2-10)
+        requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 200, height: CellHeight/2-10)
         contentView.addSubview(requesterName)
         
-        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: requesterName.frame.origin.y+requesterName.frame.size.height, width: 100, height: CellHeight/2-10)
+        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: requesterName.frame.origin.y+requesterName.frame.size.height, width: 200, height: CellHeight/2-10)
         contentView.addSubview(requestTitle)
     }
     
