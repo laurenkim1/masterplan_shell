@@ -129,7 +129,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                if response == nil {
+                print(response)
+                if (response == nil || (response?.isEmpty)!) {
                     self.FBGraphRequest(graphPath: "\(id)", exist: false)
                 } else {
                     let responseDict = response?[0] as! NSDictionary
