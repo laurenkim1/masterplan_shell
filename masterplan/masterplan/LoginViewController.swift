@@ -111,9 +111,9 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         //let lon: String = String(format:"%f", loc.coordinate.longitude)
         //let lat: String = String(format:"%f", loc.coordinate.latitude)
-        //let radius: String = String(format:"%f", rad)
-        //let parameterString: String = radius + "?lat=" + lat + "&lon=" + lon
-        let url = URL(string: (requests + id))
+        let kIds: String = "fbid/"
+        let parameterString: String = kIds + "?id=" + id
+        let url = URL(string: (requests + parameterString))
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"

@@ -13,7 +13,9 @@ router.post('/', function (req, res) {
     User.create({
             userId: req.body.userId,
             userName: req.body.userName,
-            userLocation: req.body.userLocation
+            userEmail: req.body.userEmail,
+            userLocation: req.body.userLocation,
+            neighborhood: req.body.neighborhood
         },
         function (err, user) {
             if (err) return res.status(500).send("There was a problem adding the information to the user database.");
@@ -34,6 +36,18 @@ router.get('/:id', function (req, res) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user found.");
         res.status(200).send(user);
+    });
+});
+
+// GETS REQUESTS WITHIN RADIUS OF LOCATION FROM THE DATABASE
+router.get('/:fbid', function (req, res) {
+    var fbid = parseFloat(req.query.id)
+    console.log(fbid)
+    User.find({ userId: fbid }, function (err, request) {
+        console.log(err)
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!request) return res.status(404).send("No user found.");
+        res.status(200).send(request);
     });
 });
 
