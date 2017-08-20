@@ -7,15 +7,36 @@
 //
 
 import UIKit
+import os.log
+import MapKit
+import CoreLocation
+import Eureka
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: FormViewController {
+    
+    var userId: String!
+    var userName: String!
+    var userEmail: String!
+    var userLocation: CLLocation!
+    var neighborhood: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
         self.title = "Proffr"
+        
+        form +++ Section("Profile")
+            <<< TextRow("requestTitle"){ row in
+                row.title = "Name:"
+                row.placeholder = ""
+                row.value = self.userName
+            }
+            <<< TextRow("Email"){
+                $0.title = "Email:"
+                $0.placeholder = ""
+                $0.value = self.userEmail
+            }
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

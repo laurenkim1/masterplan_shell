@@ -1,3 +1,4 @@
+
 //
 //  LogInViewController.swift
 //  masterplan
@@ -10,18 +11,38 @@ import UIKit
 import Firebase
 import FacebookCore
 import FacebookLogin
+import os.log
+import MapKit
+import CoreLocation
 
-class LogInViewController: UIViewController {
+private let kBaseURL: String = "http://localhost:3000/"
+private let kUsers: String = "users/"
+
+class LogInViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: Properties
+    
+    let locationManager = CLLocationManager()
     
     var myPhotoUrl: String!
     var myDisplayName: String! //(UserProfile.current?.firstName)! + " " + (UserProfile.current?.lastName)!
     var myUserId: String! //(UserProfile.current?.userId)!
+    var myEmail: String!
+    var userLocation: CLLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         UserProfile.updatesOnAccessTokenChange = true
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+        
         let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
         if let accessToken = AccessToken.current {
             // User is logged in, use 'accessToken' here.
@@ -34,8 +55,9 @@ class LogInViewController: UIViewController {
                 }
                 self.myUserId = accessToken.userId!
                 
+                self.checkUserExist(id: self.myUserId)
                 
-                self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
+                // self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
                 /*
                 UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in
                     self.performSegue(withIdentifier: "loggedIn", sender: nil)
@@ -63,15 +85,66 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - UICLocationManagerDelegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.userLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+        manager.stopUpdatingLocation()
+        
+        print("user latitude = \(self.userLocation.coordinate.latitude)")
+        print("user longitude = \(self.userLocation.coordinate.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error \(error)")
+    }
+    
+    
     
     // MARK: Private Methods
+    
+    func checkUserExist(id: String) {
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        //let lon: String = String(format:"%f", loc.coordinate.longitude)
+        //let lat: String = String(format:"%f", loc.coordinate.latitude)
+        //let radius: String = String(format:"%f", rad)
+        //let parameterString: String = radius + "?lat=" + lat + "&lon=" + lon
+        let url = URL(string: (requests + id))
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "GET"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        let config = URLSessionConfiguration.default
+        //4
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                print(response)
+                if response == nil {
+                    self.FBGraphRequest(graphPath: "\(id)", exist: false)
+                } else {
+                    self.FBGraphRequest(graphPath: "\(id)", exist: true)
+                }
+            }
+        })
+        dataTask?.resume()
+    }
     
     // func completion(fetchResult: UserProfile.FetchResult) {}
     
     //getting image data
     
-    func FBGraphRequest(graphPath: String) {
-        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "name, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+    func FBGraphRequest(graphPath: String, exist: Bool) {
+        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "name, email, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
         let connection = GraphRequestConnection()
         connection.add(graphRequest, batchEntryName: "ProfilePicture", completion: { httpResponse, result in
             switch result {
@@ -81,14 +154,42 @@ class LogInViewController: UIViewController {
                 let photoData: [String : Any] = response.dictionaryValue?["picture"] as! [String : Any]
                 let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
                 let photoUrlString: String = photoMetaData["url"] as! String
-                //let photoUrl: URL = URL(string: photoUrlString)!
                 self.myPhotoUrl = photoUrlString
-                //self.downloadImage(url: photoUrl)
                 self.myDisplayName = response.dictionaryValue?["name"] as! String
+                self.myEmail = response.dictionaryValue?["email"] as! String
+                
+                if exist == true {
+                    let navVc: TabBarController = TabBarController()
+                    navVc.myDisplayName = self.myDisplayName
+                    navVc.myUserId = self.myUserId
+                    navVc.myPhotoUrl = self.myPhotoUrl
+                    let channelVc = navVc.viewControllers?[0] as! UINavigationController
+                    let homeVc = channelVc.viewControllers.first as! HomePageViewController
+                    homeVc.myDisplayName = self.myDisplayName
+                    homeVc.myUserId = self.myUserId
+                    let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
+                    newVc.myDisplayName = self.myDisplayName
+                    newVc.myUserId = self.myUserId
+                    let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
+                    let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
+                    notificationsTable.myUserId = self.myUserId
+                    
+                    UIApplication.shared.keyWindow?.rootViewController = navVc
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let profileVC: EditProfileViewController = EditProfileViewController()
+                    profileVC.userId = graphPath
+                    profileVC.userName = self.myDisplayName
+                    profileVC.userEmail = self.myEmail
+                    profileVC.userLocation = self.userLocation
+                    profileVC.neighborhood = "Harvard"
+                    
+                    UIApplication.shared.keyWindow?.rootViewController = profileVC
+                    self.dismiss(animated: true, completion: nil)
+                }
             case .failed(let error):
                 print("Graph Request Failed: \(error)")
             }
-            self.performSegue(withIdentifier: "loggedIn", sender: nil)
         })
         connection.start()
     }

@@ -123,12 +123,6 @@ class NewRequestViewController: FormViewController {
         if let destinationViewController = nextViewController as? TagsViewController {
             destinationViewController.request = request
         }
-            
-            /*
-        else if let destinationViewController = nextViewController as? DistancePageViewController {
-            destinationViewController.request = request
-        }
- */
         
         navigationController?.pushViewController(nextViewController,
                                                  animated: false)
