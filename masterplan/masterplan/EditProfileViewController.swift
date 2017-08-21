@@ -11,6 +11,7 @@ import os.log
 import MapKit
 import CoreLocation
 import Eureka
+import Firebase
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kUsers: String = "users/"
@@ -72,9 +73,11 @@ class EditProfileViewController: FormViewController {
         homeVc.myDisplayName = self.userName
         homeVc.myUserId = self.userId
         homeVc.userLocation = self.userLocation
+        homeVc.myPhotoUrl = self.myPhotoUrl
         let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
         newVc.myDisplayName = self.userName
         newVc.myUserId = self.userId
+        newVc.myPhotoUrl = self.myPhotoUrl
         let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
         let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
         notificationsTable.myUserId = self.userId
