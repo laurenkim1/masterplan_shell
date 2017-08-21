@@ -18,6 +18,8 @@ private let kNotifications: String = "notifications/"
 private let kUsers: String = "users/"
 
 class ChatViewController: JSQMessagesViewController {
+    
+    lazy var notificationChannelRef: DatabaseReference = Database.database().reference().child("notifications")
 
     // MARK: Properties
     private let imageURLNotSetKey = "NOTSET"
@@ -537,8 +539,10 @@ extension ChatViewController: UIImagePickerControllerDelegate {
                     os_log("Unable to decode the fcmToken for a user.", log: OSLog.default, type: .debug)
                     return
                 }
-                let fcmid: String = fcmToken + "@gcm.googleapis.com"
-                Messaging.messaging().sendMessage(noti as! [AnyHashable : Any], to: fcmid, withMessageID: requestId, timeToLive: 600)
+                noti?.setValue(fcmToken, forKey: "registrationToken")
+                
+                let newChannelRef = self.notificationChannelRef.childByAutoId() // 2
+                newChannelRef.setValue(noti)
             }
         })
         dataTask?.resume()

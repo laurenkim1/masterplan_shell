@@ -1,0 +1,15 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "channels": {
+      ".indexOn": ".value",
+      "$channel_id": {
+        ".indexOn": [
+          "requestId",
+          ".value"
+        ]
+      }
+    }
+  }
+}
