@@ -14,7 +14,8 @@ router.post('/', function (req, res) {
             userId: req.body.userId,
             userName: req.body.userName,
             userEmail: req.body.userEmail,
-            userLocation: req.body.userLocation
+            userLocation: req.body.userLocation,
+            fcmToken: req.body.fcmToken
         },
         function (err, user) {
             if (err) return res.status(500).send("There was a problem adding the information to the user database.");

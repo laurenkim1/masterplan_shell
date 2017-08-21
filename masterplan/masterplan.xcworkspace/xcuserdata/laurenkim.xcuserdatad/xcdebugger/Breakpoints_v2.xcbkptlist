@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "237"
             endingLineNumber = "237"
-            landmarkName = "sendNotification(senderId:channelSnapshot:)"
+            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -681,7 +681,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "250"
             endingLineNumber = "250"
-            landmarkName = "sendNotification(senderId:channelSnapshot:)"
+            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1197,7 +1197,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "249"
             endingLineNumber = "249"
-            landmarkName = "sendNotification(senderId:channelSnapshot:)"
+            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1213,7 +1213,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "241"
             endingLineNumber = "241"
-            landmarkName = "sendNotification(senderId:channelSnapshot:)"
+            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

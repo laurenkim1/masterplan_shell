@@ -15,6 +15,7 @@ import JSQMessagesViewController
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
 private let kNotifications: String = "notifications/"
+private let kUsers: String = "users/"
 
 class ChatViewController: JSQMessagesViewController {
 
@@ -216,7 +217,8 @@ class ChatViewController: JSQMessagesViewController {
                 if (childData["requestId"] as! String) == requestId {
                     let proffrerId: String = childData["proffrerId"] as! String
                     if proffrerId == acceptedId {
-                        self.sendNotification(senderId: acceptedId, channelSnapshot: childData)
+                        self.sendNotification(recipientId: acceptedId, channelSnapshot: childData)
+                        self.getFcmTokenSend(id: acceptedId, channelSnapshot: childData)
                     } else {
                         sameRequestRef?.child((child as! DataSnapshot).key).removeValue()
                     }
@@ -226,8 +228,11 @@ class ChatViewController: JSQMessagesViewController {
 
     }
     
-    func sendNotification(senderId: String, channelSnapshot: NSDictionary) {
-        if senderId == nil {
+    // don't need senderId idiot
+    
+    func sendNotification(recipientId: String, channelSnapshot: NSDictionary) {
+        
+        if recipientId == nil {
             return
             //input safety check
         }
@@ -238,7 +243,7 @@ class ChatViewController: JSQMessagesViewController {
         networkrequest.httpMethod = "POST"
         //2
         
-        let userId = channelSnapshot["proffrerId"] as! String
+        let userId = recipientId 
         let requesterName = channelSnapshot["requesterName"] as! String
         let requesterId = channelSnapshot["requesterId"] as! String
         let requestPrice = channelSnapshot["requestPrice"] as! Float
@@ -247,7 +252,7 @@ class ChatViewController: JSQMessagesViewController {
         let photoUrl = channelSnapshot["requesterPhotoUrl"] as! String
         
         let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
-        let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary(), options: [])
+        let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary()!, options: [])
         //3
         networkrequest.httpBody = data
         networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -490,6 +495,54 @@ extension ChatViewController: UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion:nil)
+    }
+    
+    // Mark: Get recipient fcmToken
+    
+    func getFcmTokenSend(id: String, channelSnapshot: NSDictionary) {
+        
+        let userId = id
+        let requesterName = channelSnapshot["requesterName"] as! String
+        let requesterId = channelSnapshot["requesterId"] as! String
+        let requestPrice = channelSnapshot["requestPrice"] as! Float
+        let requestTitle = channelSnapshot["subTitle"] as! String
+        let requestId = channelSnapshot["requestId"] as! String
+        let photoUrl = channelSnapshot["requesterPhotoUrl"] as! String
+        
+        let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
+        let noti: NSDictionary? = notification?.toDictionary()!
+        
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        //let lon: String = String(format:"%f", loc.coordinate.longitude)
+        //let lat: String = String(format:"%f", loc.coordinate.latitude)
+        let kIds: String = "fbid/"
+        let parameterString: String = id
+        let url = URL(string: (requests + parameterString))
+        //1
+        print(url?.absoluteString)
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "GET"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        let config = URLSessionConfiguration.default
+        //4
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                print(response)
+                let responseDict = response?[0] as! NSDictionary
+                guard let fcmToken = responseDict["fcmToken"] as? String else {
+                    os_log("Unable to decode the fcmToken for a user.", log: OSLog.default, type: .debug)
+                    return
+                }
+                Messaging.messaging().sendMessage(noti as! [AnyHashable : Any], to: fcmToken, withMessageID: requestId, timeToLive: 600)
+            }
+        })
+        dataTask?.resume()
     }
 
 }

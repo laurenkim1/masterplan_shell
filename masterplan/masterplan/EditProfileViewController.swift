@@ -56,7 +56,10 @@ class EditProfileViewController: FormViewController {
         let emailrow: TextRow = form.rowBy(tag: "Email")!
         self.userEmail = emailrow.value ?? ""
         
-        let updateUser: Profile = Profile(userId: self.userId, userName: self.userName, userEmail: self.userEmail, userLocation: self.userLocation)
+        let token = Messaging.messaging().fcmToken
+        print("FCM token: \(token ?? "")")
+        
+        let updateUser: Profile = Profile(userId: self.userId, userName: self.userName, userEmail: self.userEmail, userLocation: self.userLocation, fcmToken: token!)
         
         self.updateUser(updateUser)
         

@@ -203,7 +203,10 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     
-                    let newUser: Profile = Profile(userId: graphPath, userName: self.myDisplayName, userEmail: self.myEmail, userLocation: self.userLocation)
+                    let token = Messaging.messaging().fcmToken
+                    print("FCM token: \(token ?? "")")
+                    
+                    let newUser: Profile = Profile(userId: graphPath, userName: self.myDisplayName, userEmail: self.myEmail, userLocation: self.userLocation, fcmToken: token!)
                     
                     self.postUser(newUser)
                     

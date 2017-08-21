@@ -14,13 +14,15 @@ internal class Profile {
     internal let userName: String
     internal let userEmail: String
     internal let userLocation: CLLocation
+    internal let fcmToken: String
     
-    init(userId: String, userName: String, userEmail: String, userLocation: CLLocation) {
+    init(userId: String, userName: String, userEmail: String, userLocation: CLLocation, fcmToken: String) {
         
         self.userId = userId
         self.userName = userName
         self.userEmail = userEmail
         self.userLocation = userLocation
+        self.fcmToken = fcmToken
     }
     
     // MARK: Public Methods
@@ -40,6 +42,7 @@ internal class Profile {
         jsonable.setValue(userName, forKey: "userName")
         jsonable.setValue(userEmail, forKey: "userEmail")
         jsonable.setValue(geoloc, forKey: "userLocation")
+        jsonable.setValue(fcmToken, forKey: "fcmToken")
         return jsonable
     }
 }
