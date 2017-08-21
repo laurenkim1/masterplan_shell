@@ -248,7 +248,7 @@ class ChatViewController: JSQMessagesViewController {
         let userId = recipientId 
         let requesterName = channelSnapshot["requesterName"] as! String
         let requesterId = channelSnapshot["requesterId"] as! String
-        let requestPrice = channelSnapshot["requestPrice"] as! Float
+        let requestPrice = channelSnapshot["requestPrice"] as! Double
         let requestTitle = channelSnapshot["subTitle"] as! String
         let requestId = channelSnapshot["requestId"] as! String
         let photoUrl = channelSnapshot["requesterPhotoUrl"] as! String
@@ -506,7 +506,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         let userId = id
         let requesterName = channelSnapshot["requesterName"] as! String
         let requesterId = channelSnapshot["requesterId"] as! String
-        let requestPrice = channelSnapshot["requestPrice"] as! Float
+        let requestPrice = channelSnapshot["requestPrice"] as! Double
         let requestTitle = channelSnapshot["subTitle"] as! String
         let requestId = channelSnapshot["requestId"] as! String
         let photoUrl = channelSnapshot["requesterPhotoUrl"] as! String
@@ -540,6 +540,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
                     return
                 }
                 noti?.setValue(fcmToken, forKey: "registrationToken")
+                noti?.setValue("hi this is the message", forKey: "message")
                 
                 let newChannelRef = self.notificationChannelRef.childByAutoId() // 2
                 newChannelRef.setValue(noti)

@@ -3,7 +3,6 @@
 var express = require('express');
 var app = express();
 var db = require('./db');
-var messagebroker = require('./amqp');
 
 var RequestController = require('./requests/RequestController');
 app.use('/requests', RequestController);

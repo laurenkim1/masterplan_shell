@@ -16,7 +16,7 @@ class notificationModel: NSObject {
     
     var userID: String
     var requestTitle: String
-    var requestPrice: Float
+    var requestPrice: Double
     var requestId: String
     var requesterId: String
     var requesterName: String
@@ -37,7 +37,7 @@ class notificationModel: NSObject {
     
     //MARK: Initialization
     
-    init?(userID: String, requestTitle: String, requestPrice: Float, requestId: String, requesterId: String, requesterName: String, photoUrl: String) {
+    init?(userID: String, requestTitle: String, requestPrice: Double, requestId: String, requesterId: String, requesterName: String, photoUrl: String) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -109,7 +109,7 @@ class notificationModel: NSObject {
         }
         
         //let dateTime = stringToDate(date: date)
-        self.init(userID: userID, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
+        self.init(userID: userID, requestTitle: requestTitle, requestPrice: Double(requestPrice), requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
         //self.postTime = dateTime
     }
     
