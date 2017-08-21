@@ -519,7 +519,6 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         let parameterString: String = id
         let url = URL(string: (requests + parameterString))
         //1
-        print(url?.absoluteString)
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
         //2
@@ -533,13 +532,13 @@ extension ChatViewController: UIImagePickerControllerDelegate {
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                print(response)
                 let responseDict = response?[0] as! NSDictionary
                 guard let fcmToken = responseDict["fcmToken"] as? String else {
                     os_log("Unable to decode the fcmToken for a user.", log: OSLog.default, type: .debug)
                     return
                 }
-                Messaging.messaging().sendMessage(noti as! [AnyHashable : Any], to: fcmToken, withMessageID: requestId, timeToLive: 600)
+                let fcmid: String = fcmToken + "@gcm.googleapis.com"
+                Messaging.messaging().sendMessage(noti as! [AnyHashable : Any], to: fcmid, withMessageID: requestId, timeToLive: 600)
             }
         })
         dataTask?.resume()

@@ -98,6 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print full message.
         print(userInfo)
+        
+        print("RECIEVED")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -114,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print full message.
         print(userInfo)
+        print("RECIEVED")
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
