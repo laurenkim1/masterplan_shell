@@ -1,6 +1,6 @@
 // notificationController.js
 
-var messagebroker = require('./../amqp');
+//var messagebroker = require('./../amqp');
 
 var express = require('express');
 var router = express.Router();
