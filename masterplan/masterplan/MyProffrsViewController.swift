@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import TwicketSegmentedControl
 
 class MyProffrsViewController: UITableViewController {
     
@@ -16,7 +15,10 @@ class MyProffrsViewController: UITableViewController {
     // MARK: Properties
     
     var myUserId: String!
-    private var channels: [ProffrChannel] = []
+    private var incomingChannels: [ProffrChannel] = []
+    private var outgoingChannels: [ProffrChannel] = []
+    
+    var segmentedControl: UISegmentedControl!
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     private var channelRefHandle: DatabaseHandle?
@@ -24,7 +26,20 @@ class MyProffrsViewController: UITableViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "My Proffrs"
+        
+        let segmentTextContent = [
+            NSLocalizedString("Incoming", comment: ""),
+            NSLocalizedString("Outgoing", comment: "")
+        ]
+        
+        // Segmented control as the custom title view
+        segmentedControl = UISegmentedControl(items: segmentTextContent)
+        segmentedControl.autoresizingMask = .flexibleWidth
+        segmentedControl.frame = CGRect(x: 0, y: 0, width: 400, height: 30)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(self, action: #selector(action(_:)), for: .valueChanged)
+        
+        self.navigationItem.titleView = segmentedControl
         
         tableView.register(MyProffrsTableViewCell.self, forCellReuseIdentifier: "proffrChannel")
         self.tableView.delegate = self
@@ -32,17 +47,8 @@ class MyProffrsViewController: UITableViewController {
         self.tableView.allowsSelectionDuringEditing = true
         self.tableView.isUserInteractionEnabled = true
         
-        let titles = ["Incoming", "Outgoing"]
-        let frame = CGRect(x: 5, y: view.frame.height / 2 - 20, width: view.frame.width - 10, height: 40)
-        
-        let segmentedControl = TwicketSegmentedControl(frame: frame)
-        segmentedControl.setSegmentItems(titles)
-        segmentedControl.delegate = self
-        
-        view.addSubview(segmentedControl)
-        
         //self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
-        observeChannels()
+        observeIncomingChannels()
     }
     
     deinit {
@@ -62,6 +68,12 @@ class MyProffrsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let channels: [ProffrChannel]!
+        if self.segmentedControl.selectedSegmentIndex == 0 {
+            channels = self.incomingChannels
+        } else {
+            channels = self.outgoingChannels
+        }
         return channels.count
     }
 
@@ -72,6 +84,13 @@ class MyProffrsViewController: UITableViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MyProffrsTableViewCell else {
             fatalError("The dequeued cell is not an instance of ProffrChannel.")
+        }
+        
+        let channels: [ProffrChannel]!
+        if self.segmentedControl.selectedSegmentIndex == 0 {
+            channels = self.incomingChannels
+        } else {
+            channels = self.outgoingChannels
         }
         
         let senderId: String = channels[(indexPath as NSIndexPath).row].id as! String
@@ -98,6 +117,13 @@ class MyProffrsViewController: UITableViewController {
     // MARK: - UITableViewDelegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let channels: [ProffrChannel]!
+        if self.segmentedControl.selectedSegmentIndex == 0 {
+            channels = self.incomingChannels
+        } else {
+            channels = self.outgoingChannels
+        }
+        
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let selectedProffr: ProffrChannel = channels[indexPath.row]
         print(selectedProffr)
@@ -106,7 +132,29 @@ class MyProffrsViewController: UITableViewController {
     
     // MARK: Firebase related methods
     
-    private func observeChannels() {
+    private func observeIncomingChannels() {
+        // Use the observe method to listen for new
+        // channels being written to the Firebase DB
+        
+        // let channelRefQuery = channelRef.queryOrderedByKey().queryLimited(toLast: 20)
+        channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
+            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+            let id = snapshot.key
+            if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
+                let requesterId: String = channelData["requesterId"] as! String
+                if requesterId == self.myUserId {
+                    let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
+                    self.incomingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
+                }
+                self.tableView.reloadData()
+            } else {
+                print("Error! Could not decode channel data")
+            }
+        })
+        
+    }
+    
+    private func observeOutgoingChannels() {
         // Use the observe method to listen for new
         // channels being written to the Firebase DB
         
@@ -116,10 +164,9 @@ class MyProffrsViewController: UITableViewController {
             let id = snapshot.key
             if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
                 let senderId: String = channelData["proffrerId"] as! String
-                let requesterId: String = channelData["requesterId"] as! String
-                if requesterId == self.myUserId {
+                if senderId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.channels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
+                    self.outgoingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
                 }
                 self.tableView.reloadData()
             } else {
@@ -127,6 +174,11 @@ class MyProffrsViewController: UITableViewController {
             }
         })
         
+    }
+    
+    func action(_ sender: AnyObject) {
+        print("CustomTitleViewController IBAction invoked!")
+        self.tableView.reloadData()
     }
     
     /*
@@ -217,10 +269,4 @@ class MyProffrsViewController: UITableViewController {
     }
  */
 
-}
-
-extension MyProffrsViewController: TwicketSegmentedControlDelegate {
-    func didSelect(_ segmentIndex: Int) {
-        print("Selected index: \(segmentIndex)")
-    }
 }
