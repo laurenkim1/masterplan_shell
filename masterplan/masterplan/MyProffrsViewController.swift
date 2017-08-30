@@ -49,6 +49,7 @@ class MyProffrsViewController: UITableViewController {
         
         //self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         observeIncomingChannels()
+        observeOutgoingChannels()
     }
     
     deinit {
@@ -136,7 +137,7 @@ class MyProffrsViewController: UITableViewController {
         // Use the observe method to listen for new
         // channels being written to the Firebase DB
         
-        // let channelRefQuery = channelRef.queryOrderedByKey().queryLimited(toLast: 20)
+        // let channelRefQuery = channelRef.queryOrderedByKey().queryLimited(toLast: 100)
         channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
