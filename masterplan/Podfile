@@ -22,6 +22,7 @@ target 'masterplan' do
   pod 'AMTagListView'
   pod 'XLActionController'
   pod 'XLActionController/Periscope'
+  pod 'TwicketSegmentedControl'
 
   target 'masterplanTests' do
     inherit! :search_paths

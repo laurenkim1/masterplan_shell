@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6A3782799F0FA9DB9CCDD21100D807C7'
-               BlueprintName = 'XLActionController'
+               BlueprintIdentifier = '840BBE4C34BF0EBD05DFDD3AD00565B3'
+               BlueprintName = 'TwicketSegmentedControl'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'XLActionController.framework'>
+               BuildableName = 'TwicketSegmentedControl.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

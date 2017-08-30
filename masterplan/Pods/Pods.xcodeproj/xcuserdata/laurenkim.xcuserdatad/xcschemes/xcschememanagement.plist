@@ -109,6 +109,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TwicketSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>XLActionController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -117,16 +122,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>01E650914E62EC3629FAA0A79E20857F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0EA1D3B5CFCC3C0B190EAD9FFE81F297</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>39AA3FC7447AC6B6A131668CFF9C01CD</key>
 		<dict>
 			<key>primary</key>
@@ -143,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>47D07B436D82BB983C8429FF84F919A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54ADDFB09222AE6F8185A8D7DE4828D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,6 +167,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6A3782799F0FA9DB9CCDD21100D807C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
 		<dict>
 			<key>primary</key>
@@ -177,12 +182,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7FD4942B382827451395F50B0AF08E21</key>
+		<key>7795728918F7CAAA6002653D0C2F56EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>82C75D62480841E553014D81E775098C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>840BBE4C34BF0EBD05DFDD3AD00565B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

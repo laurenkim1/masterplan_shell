@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "525807415.907503"
+            timestampString = "525809776.840897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "MyProffrsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -324,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "525807786.029263"
+            timestampString = "525809776.840897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "MyProffrsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -836,11 +836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "525807786.029263"
+            timestampString = "525809776.840897"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "observeChannels()"
             landmarkType = "7">
             <Locations>
@@ -1868,6 +1868,22 @@
             startingLineNumber = "545"
             endingLineNumber = "545"
             landmarkName = "getFcmTokenSend(id:channelSnapshot:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/MyProffrsViewController.swift"
+            timestampString = "525809776.840897"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

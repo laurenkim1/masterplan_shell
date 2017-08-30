@@ -82,6 +82,7 @@ PODS:
   - Material/Core (2.6.3)
   - Neon (0.4.0)
   - Protobuf (3.4.0)
+  - TwicketSegmentedControl (0.1.2)
   - XLActionController (3.0.1):
     - XLActionController/Core (= 3.0.1)
   - XLActionController/Core (3.0.1)
@@ -103,6 +104,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - Material (~> 2.0)
   - Neon
+  - TwicketSegmentedControl
   - XLActionController
   - XLActionController/Periscope
 
@@ -132,8 +134,9 @@ SPEC CHECKSUMS:
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
+  TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
 
-PODFILE CHECKSUM: 2326e2d3b35323e3dc062019d0a1fd4c08ed00a1
+PODFILE CHECKSUM: 84f6c41a0d7b16b4266196ad9cc26245d61b9832
 
 COCOAPODS: 1.2.1

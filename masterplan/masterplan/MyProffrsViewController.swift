@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import TwicketSegmentedControl
 
 class MyProffrsViewController: UITableViewController {
     
@@ -31,7 +32,16 @@ class MyProffrsViewController: UITableViewController {
         self.tableView.allowsSelectionDuringEditing = true
         self.tableView.isUserInteractionEnabled = true
         
-        self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        let titles = ["Incoming", "Outgoing"]
+        let frame = CGRect(x: 5, y: view.frame.height / 2 - 20, width: view.frame.width - 10, height: 40)
+        
+        let segmentedControl = TwicketSegmentedControl(frame: frame)
+        segmentedControl.setSegmentItems(titles)
+        segmentedControl.delegate = self
+        
+        view.addSubview(segmentedControl)
+        
+        //self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         observeChannels()
     }
     
@@ -65,7 +75,7 @@ class MyProffrsViewController: UITableViewController {
         }
         
         let senderId: String = channels[(indexPath as NSIndexPath).row].id as! String
-        let photoUrl: URL = channels[(indexPath as NSIndexPath).row].photoUrl as! URL
+        let photoUrl: URL = channels[(indexPath as NSIndexPath).row].photoUrl 
 
         // Configure the cell...
         cell.senderLabel.text = channels[(indexPath as NSIndexPath).row].name
@@ -119,6 +129,7 @@ class MyProffrsViewController: UITableViewController {
         
     }
     
+    /*
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
@@ -127,6 +138,7 @@ class MyProffrsViewController: UITableViewController {
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
+ */
 
 
     /*
@@ -205,4 +217,10 @@ class MyProffrsViewController: UITableViewController {
     }
  */
 
+}
+
+extension MyProffrsViewController: TwicketSegmentedControlDelegate {
+    func didSelect(_ segmentIndex: Int) {
+        print("Selected index: \(segmentIndex)")
+    }
 }
