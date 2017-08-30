@@ -21,8 +21,8 @@ class TabBarController: UITabBarController {
         button.setTitle("Button", for: UIControlState.normal)
         self.view.addSubview(button)
          */
-        var nav1 = UINavigationController()
-        var HomeVC = HomePageViewController()
+        let nav1 = UINavigationController()
+        let HomeVC = HomePageViewController()
         HomeVC.myDisplayName = myDisplayName
         HomeVC.myUserId = myUserId
         HomeVC.myPhotoUrl = myPhotoUrl
@@ -30,28 +30,29 @@ class TabBarController: UITabBarController {
         nav1.tabBarItem.title = "Home"
         nav1.tabBarItem.image = UIImage(named: "icon_home")
         
-        var nav2 = UINavigationController()
-        var ProffrsVC = MyProffrsViewController()
+        let nav2 = UINavigationController()
+        let ProffrsVC = MyProffrsViewController()
+        ProffrsVC.myUserId = myUserId
         nav2.viewControllers = [ProffrsVC]
         nav2.tabBarItem.title = "Proffrs"
         nav2.tabBarItem.image = UIImage(named: "icons8-Price Tag Filled-50")
         
-        var nav3 = NewRequestPlaceholderVC()
+        let nav3 = NewRequestPlaceholderVC()
         nav3.myDisplayName = myDisplayName
         nav3.myUserId = myUserId
         nav3.myPhotoUrl = myPhotoUrl
         nav3.tabBarItem.title = "New"
         nav3.tabBarItem.image = UIImage(named: "icons8-Plus 2 Math-50")
         
-        var nav4 = UINavigationController()
-        var NotificationsVC = NotificationsTableViewController()
+        let nav4 = UINavigationController()
+        let NotificationsVC = NotificationsTableViewController()
         NotificationsVC.myUserId = myUserId
         nav4.viewControllers = [NotificationsVC]
         nav4.tabBarItem.title = "Notifications"
         nav4.tabBarItem.image = UIImage(named: "notifications-btn")
         
-        var nav5 = UINavigationController()
-        var ProfileVC = ProfileViewController()
+        let nav5 = UINavigationController()
+        let ProfileVC = ProfileViewController()
         NotificationsVC.myUserId = myUserId
         nav5.viewControllers = [ProfileVC]
         nav5.tabBarItem.title = "Profile"

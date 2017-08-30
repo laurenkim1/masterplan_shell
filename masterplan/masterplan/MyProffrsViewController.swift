@@ -14,6 +14,7 @@ class MyProffrsViewController: UITableViewController {
     
     // MARK: Properties
     
+    var myUserId: String!
     private var channels: [ProffrChannel] = []
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
@@ -98,24 +99,31 @@ class MyProffrsViewController: UITableViewController {
     private func observeChannels() {
         // Use the observe method to listen for new
         // channels being written to the Firebase DB
+        
+        // let channelRefQuery = channelRef.queryOrderedByKey().queryLimited(toLast: 20)
         channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
             if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
                 let senderId: String = channelData["proffrerId"] as! String
-                let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                self.channels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
+                let requesterId: String = channelData["requesterId"] as! String
+                if requesterId == self.myUserId {
+                    let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
+                    self.channels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
+                }
                 self.tableView.reloadData()
             } else {
                 print("Error! Could not decode channel data")
             }
         })
+        
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
         
+        self.observeChannels()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
