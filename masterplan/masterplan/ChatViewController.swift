@@ -11,6 +11,7 @@ import Photos
 import os.log
 import Firebase
 import JSQMessagesViewController
+import XLActionController
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
@@ -149,21 +150,28 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func acceptButtonTapped(){
-        self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
-            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-            if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
-                //self.deleteAcceptedRequests(requestId: requestId)
-                let acceptedId: String = channelData["proffrerId"] as! String
-                self.deleteOtherProffrs(requestId: requestId, acceptedId: acceptedId)
-            } else {
-                print("Error! Could not decode channel data in Create Proffr")
-            }
+        let actionController = PeriscopeActionController()
+        actionController.headerData = "Accept Proffr?"
+        actionController.addAction(Action("Accept", style: .destructive, handler: { action in
+            self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
+                let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
+                if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
+                    //self.deleteAcceptedRequests(requestId: requestId)
+                    let acceptedId: String = channelData["proffrerId"] as! String
+                    self.deleteOtherProffrs(requestId: requestId, acceptedId: acceptedId)
+                } else {
+                    print("Error! Could not decode channel data in Create Proffr")
+                }
+                
+            })
             
-        })
-        
-        self.accepted.setValue(1)
-        
-        navigationController?.popToRootViewController(animated: true)
+            self.accepted.setValue(1)
+            
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        actionController.addAction(Action("Cancel", style: .cancel, handler: { action in
+        }))
+        present(actionController, animated: true, completion: nil)
     }
     
     /*
