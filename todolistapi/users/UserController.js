@@ -15,7 +15,8 @@ router.post('/', function (req, res) {
             userName: req.body.userName,
             userEmail: req.body.userEmail,
             userLocation: req.body.userLocation,
-            fcmToken: req.body.fcmToken
+            fcmToken: req.body.fcmToken.
+            userRequests: []
         },
         function (err, user) {
             if (err) return res.status(500).send("There was a problem adding the information to the user database.");
@@ -64,6 +65,15 @@ router.put('/:id', function (req, res) {
 
     User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
         if (err) return res.status(500).send("There was a problem updating the user.");
+        res.status(200).send(user);
+    });
+});
+
+// ADD NEW REQUEST TO USER PROFILE
+router.put('/newreq/:id', function (req, res) {
+
+    User.update({ userId: req.params.id }, { $push: { myRequests: req.body } }, function (err, user) {
+        if (err) return res.status(500).send("There was a problem updating the user requests.");
         res.status(200).send(user);
     });
 });
