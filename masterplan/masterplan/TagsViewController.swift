@@ -15,6 +15,7 @@ import XLActionController
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests"
+private let kUsers: String = "users"
 private let kFiles: String = "files"
 
 class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelegate {
@@ -107,6 +108,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
             request?.requestTags.append((tag as! AMTagView).tagText as String)
         }
         persist(self.request!)
+        persistToUser(self.request!)
         dismiss(animated: true, completion: nil)
     }
     
@@ -131,13 +133,41 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
         let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
             //5
             if error == nil {
-                os_log("Success")
+                os_log("Successfully posted to Requests DB")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                 request.requestID = response?["_id"] as? String
             }
         })
         dataTask?.resume()
     }
+    
+    func persistToUser(_ request: requestInfo) {
+        if request.userID == nil || request.requestTitle == nil || request.requestPrice == 0 {
+            return
+            //input safety check
+        }
+        let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        let url = URL(string: (users + "newreq" + request.userID))
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "PUT"
+        //2
+        let data: Data? = try? JSONSerialization.data(withJSONObject: request.toDictionary(), options: [])
+        //3
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Successfully posted to User")
+            }
+        })
+        dataTask?.resume()
+    }
+
 
     /*
     // MARK: - Navigation
