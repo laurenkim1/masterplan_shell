@@ -43,6 +43,7 @@ class MyProffrsViewController: UITableViewController {
         
         tableView.register(MyProffrsTableViewCell.self, forCellReuseIdentifier: "proffrChannel")
         self.tableView.delegate = self
+        self.tableView.rowHeight = 80
         self.tableView.allowsSelection = true
         self.tableView.allowsSelectionDuringEditing = true
         self.tableView.isUserInteractionEnabled = true
@@ -59,10 +60,6 @@ class MyProffrsViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -27,6 +27,7 @@ class NotificationsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.register(NotificationsTableViewCell.self, forCellReuseIdentifier: "notificationCell")
+        tableView.rowHeight = 80
         self.getNotifications()
 
         // Uncomment the following line to preserve selection between presentations
@@ -53,10 +54,6 @@ class NotificationsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

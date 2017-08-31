@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IGListKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -109,11 +114,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TwicketSegmentedControl.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>XLActionController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -122,6 +122,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0FB408FDD1724548E283FB7940306AF3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>318540A5846798D1C7467934B112FDD2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>39AA3FC7447AC6B6A131668CFF9C01CD</key>
 		<dict>
 			<key>primary</key>
@@ -142,7 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54ADDFB09222AE6F8185A8D7DE4828D4</key>
+		<key>4A95CF3C7968D54E5319BA0A80F654F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,11 +177,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A3782799F0FA9DB9CCDD21100D807C7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
 		<dict>
 			<key>primary</key>
@@ -182,17 +187,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7795728918F7CAAA6002653D0C2F56EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>82C75D62480841E553014D81E775098C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>840BBE4C34BF0EBD05DFDD3AD00565B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -218,6 +213,11 @@
 			<true/>
 		</dict>
 		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D2A521CA925334C6EE6CAAA6BC03FE27</key>
 		<dict>
 			<key>primary</key>
 			<true/>
