@@ -26,13 +26,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.title = "Proffr"
         self.setNavigationBar()
         self.tableView = UITableView(frame: CGRect(x: 0, y: 200, width: self.view.frame.width, height: self.view.frame.height-200))
+        self.view.addSubview(self.tableView)
         self.tableView.delegate = self
         self.tableView.rowHeight = 80
         self.tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
-        self.view.addSubview(self.tableView)
         
         let userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
         self.getMyRequests(userLocation, 1)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.getMyRequests(CLLocation(latitude: 42.3770, longitude: -71.1167), 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +59,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let lat: String = String(format:"%f", loc.coordinate.latitude)
         let radius: String = String(format:"%f", rad)
         let parameterString: String = radius + "?lat=" + lat + "&lon=" + lon
-        let url = URL(string: (requests + parameterString))
+        let url = URL(string: requests)
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
