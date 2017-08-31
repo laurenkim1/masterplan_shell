@@ -201,6 +201,9 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
                     let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
                     notificationsTable.myUserId = self.myUserId
+                    let profileVcNav = navVc.viewControllers?[4] as! UINavigationController
+                    let profileVc = profileVcNav.viewControllers.first as! ProfileViewController
+                    profileVc.myUserId = self.myUserId
                     
                     UIApplication.shared.keyWindow?.rootViewController = navVc
                     self.dismiss(animated: true, completion: nil)

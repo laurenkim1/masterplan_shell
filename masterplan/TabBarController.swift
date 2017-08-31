@@ -53,7 +53,7 @@ class TabBarController: UITabBarController {
         
         let nav5 = UINavigationController()
         let ProfileVC = ProfileViewController()
-        NotificationsVC.myUserId = myUserId
+        ProfileVC.myUserId = myUserId
         nav5.viewControllers = [ProfileVC]
         nav5.tabBarItem.title = "Profile"
         nav5.tabBarItem.image = UIImage(named: "icons8-Badge-50")
