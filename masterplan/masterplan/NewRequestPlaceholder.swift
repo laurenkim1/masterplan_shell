@@ -55,7 +55,7 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 70))
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 65))
         let navItem = UINavigationItem(title: "Proffr")
         navBar.setItems([navItem], animated: false)
         self.view.addSubview(navBar)
