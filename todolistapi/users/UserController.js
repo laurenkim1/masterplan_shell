@@ -15,7 +15,7 @@ router.post('/', function (req, res) {
             userName: req.body.userName,
             userEmail: req.body.userEmail,
             userLocation: req.body.userLocation,
-            fcmToken: req.body.fcmToken.
+            fcmToken: req.body.fcmToken,
             userRequests: []
         },
         function (err, user) {

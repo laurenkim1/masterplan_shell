@@ -31,9 +31,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.view.addSubview(self.tableView)
         self.tableView.rowHeight = 80
         self.tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
-        
-        let userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
-        self.getMyRequests(userLocation, 1)
+        self.getMyRequests()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,12 +46,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func getMyRequests(_ loc: CLLocation, _ rad: Float) -> Void {
+    func getMyRequests() -> Void {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
-        let lon: String = String(format:"%f", loc.coordinate.longitude)
-        let lat: String = String(format:"%f", loc.coordinate.latitude)
-        let radius: String = String(format:"%f", rad)
-        let parameterString: String = radius + "?lat=" + lat + "&lon=" + lon
         let url = URL(string: requests)
         //1
         var networkrequest = URLRequest(url: url!)
