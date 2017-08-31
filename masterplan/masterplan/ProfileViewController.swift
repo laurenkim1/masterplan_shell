@@ -26,19 +26,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.title = "Proffr"
         self.setNavigationBar()
         self.tableView = UITableView(frame: CGRect(x: 0, y: 200, width: self.view.frame.width, height: self.view.frame.height-200))
-        self.view.addSubview(self.tableView)
         self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.view.addSubview(self.tableView)
         self.tableView.rowHeight = 80
         self.tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
         
         let userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
         self.getMyRequests(userLocation, 1)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.getMyRequests(CLLocation(latitude: 42.3770, longitude: -71.1167), 1)
     }
 
     override func didReceiveMemoryWarning() {
