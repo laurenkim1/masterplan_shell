@@ -136,6 +136,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
                 os_log("Successfully posted to Requests DB")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                 request.requestID = response?["_id"] as? String
+                self.persistToUser(requestId: request.requestID!)
             }
         })
         dataTask?.resume()
