@@ -122,7 +122,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         //let lon: String = String(format:"%f", loc.coordinate.longitude)
         //let lat: String = String(format:"%f", loc.coordinate.latitude)
-        let kIds: String = "fbid/"
         let parameterString: String = id
         let url = URL(string: (requests + parameterString))
         //1

@@ -121,14 +121,10 @@ class requestInfo: NSObject, NSCoding {
             return nil
         }
 
-        /*guard let dateObject = dict["dateObject"] as? NSDictionary else {
+        guard let date = dict["createdAt"] as? String else {
             os_log("Unable to decode the date object for a request.", log: OSLog.default, type: .debug)
             return nil
         }
-        guard let date = dateObject["$date"] as? String else {
-            os_log("Unable to decode the date for a request.", log: OSLog.default, type: .debug)
-            return nil
-        }*/
         
         func stringToDate(date:String) -> NSDate {
             let formatter = DateFormatter()
@@ -136,6 +132,7 @@ class requestInfo: NSObject, NSCoding {
             // Format 1
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             if let parsedDate = formatter.date(from: date) {
+                print(parsedDate)
                 return parsedDate as NSDate
             }
             return NSDate()
@@ -144,7 +141,7 @@ class requestInfo: NSObject, NSCoding {
         //let dateTime = stringToDate(date: date)
         self.init(userID: userID, userName: userName, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location, photoUrl: photoUrl)
         self.tagString = tagString
-        //self.postTime = dateTime
+        self.postTime = stringToDate(date: date)
         self.requestID = requestId
     }
     

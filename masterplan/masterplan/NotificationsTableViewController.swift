@@ -87,8 +87,6 @@ class NotificationsTableViewController: UITableViewController {
         
         cell.requestTitle.text = notifications[(indexPath as NSIndexPath).row].requestTitle
         cell.requesterName.text = notifications[(indexPath as NSIndexPath).row].requesterName
-        let price = notifications[(indexPath as NSIndexPath).row].requestPrice 
-        //cell.requestPrice?.text = NSString(format: "%.2f", price) as String
 
         return cell
     }

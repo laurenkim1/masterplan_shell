@@ -106,6 +106,15 @@ class RequestDetailsViewController: UIViewController {
         nameLabel.text = request.userName
         requestPrice.text = "$" + String(format:"%.2f", request.requestPrice)
         
+        let postTime = request.postTime!
+        let components: NSDateComponents = NSDateComponents()
+        components.setValue(24, forComponent: NSCalendar.Unit.hour)
+        let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: postTime as Date)
+        let nowTime = Date()
+        let timeLeft = endTime?.timeIntervalSince(nowTime)
+        
+        timeLabel.text = String(format:"%.2f", request.postTime!)
+        
         userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
         
         let _meterDistance: CLLocationDistance = userLocation.distance(from: request.location)

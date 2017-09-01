@@ -90,7 +90,7 @@ class EditProfileViewController: FormViewController {
         let doneButton = UIBarButtonItem(image: UIImage(named: "icons8-Ok-50"), style: .plain, target: self, action: #selector(finishSegue))
         
         if self.navigationController == nil {
-            var navItem = UINavigationItem()
+            let navItem = UINavigationItem()
             navItem.rightBarButtonItem = doneButton
             let screenSize: CGRect = UIScreen.main.bounds
             let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 65))
@@ -102,7 +102,7 @@ class EditProfileViewController: FormViewController {
     }
     
     func updateUser(_ user: Profile) {
-        if user == nil || user.userId == nil {
+        if user.userId == nil {
             return
             //input safety check
         }
