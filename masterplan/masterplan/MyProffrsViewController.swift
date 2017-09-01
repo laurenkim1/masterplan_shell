@@ -91,7 +91,7 @@ class MyProffrsViewController: UITableViewController {
             channels = self.outgoingChannels
         }
         
-        let senderId: String = channels[(indexPath as NSIndexPath).row].id as! String
+        // let senderId: String = channels[(indexPath as NSIndexPath).row].id
         let photoUrl: URL = channels[(indexPath as NSIndexPath).row].photoUrl 
 
         // Configure the cell...

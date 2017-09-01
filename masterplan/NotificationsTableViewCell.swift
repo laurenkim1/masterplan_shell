@@ -23,7 +23,6 @@ class NotificationsTableViewCell: UITableViewCell {
         view.textAlignment = .left
         view.textColor = UIColor.darkGray
         view.font = UIFont(name: "Ubuntu-Bold", size: 20)
-        self.contentView.addSubview(view)
         return view
     }()
     
@@ -33,7 +32,6 @@ class NotificationsTableViewCell: UITableViewCell {
         view.textAlignment = .left
         view.textColor = UIColor.darkGray
         view.font = UIFont(name: "Ubuntu-Bold", size: 16)
-        self.contentView.addSubview(view)
         return view
     }()
     

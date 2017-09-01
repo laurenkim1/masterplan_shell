@@ -72,7 +72,7 @@ class NotificationsTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        let photoUrl: URL = notifications[(indexPath as NSIndexPath).row].photoUrl as! URL
+        let photoUrl: URL = notifications[(indexPath as NSIndexPath).row].photoUrl 
         
         URLSession.shared.dataTask(with: photoUrl) { (data, response, error)  in
             guard let data = data, error == nil else { return }

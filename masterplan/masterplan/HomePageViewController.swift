@@ -328,7 +328,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     // MARK: - Navigation
     
     func cellSelected(selectedRequest: requestInfo){
-        print(selectedRequest)
+        let nextViewController: RequestDetailsViewController = RequestDetailsViewController()
+        nextViewController.request = selectedRequest
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: false)
+        /*
         let nextViewController: NewProffrViewController = NewProffrViewController()
         
         nextViewController.request = selectedRequest
@@ -337,6 +341,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         nextViewController.myPhotoUrl = myPhotoUrl
         navigationController?.pushViewController(nextViewController,
                                                  animated: false)
+ */
     }
 
     /*

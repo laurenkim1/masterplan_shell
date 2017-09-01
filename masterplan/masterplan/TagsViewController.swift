@@ -109,6 +109,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
             request?.requestTags.append((tag as! AMTagView).tagText as String)
         }
         persist(self.request!)
+        persistToUser(request: self.request!)
         dismiss(animated: true, completion: nil)
     }
     
@@ -136,13 +137,12 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
                 os_log("Successfully posted to Requests DB")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                 request.requestID = response?["_id"] as? String
-                self.persistToUser(requestId: request.requestID!)
             }
         })
         dataTask?.resume()
     }
     
-    func persistToUser(requestId: String) {
+    func persistToUser(request: requestInfo) {
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         let url = URL(string: (users + "newreq/" + myUserId))
         print(url?.absoluteString)
@@ -150,7 +150,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "PUT"
         //2
-        let data: Data? = try? JSONSerialization.data(withJSONObject: requestId, options: [])
+        let data: Data? = try? JSONSerialization.data(withJSONObject: request.toDictionary(), options: [])
         //3
         networkrequest.httpBody = data
         networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
