@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
   userEmail: String,
   userLocation: Object,
   fcmToken: String,
-  userRequests: [Object]
+  userRequests: [String]
 });
 mongoose.model('User', UserSchema);
 module.exports = mongoose.model('User');

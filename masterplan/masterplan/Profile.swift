@@ -43,6 +43,7 @@ internal class Profile {
         jsonable.setValue(userEmail, forKey: "userEmail")
         jsonable.setValue(geoloc, forKey: "userLocation")
         jsonable.setValue(fcmToken, forKey: "fcmToken")
+        jsonable.setValue([], forKey: "userRequests")
         return jsonable
     }
 }

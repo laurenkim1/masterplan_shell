@@ -11,6 +11,7 @@
 		47408CA41F188FC60097C957 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA31F188FC60097C957 /* TabBarController.swift */; };
 		47408CA61F19F69F0097C957 /* NewRequestPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */; };
 		47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */; };
+		4767349C1F59E573001A4A08 /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767349B1F59E573001A4A08 /* RequestDetailsViewController.swift */; };
 		4782987B1F46AD480044519A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298721F46AD480044519A /* Ubuntu-B.ttf */; };
 		4782987C1F46AD480044519A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298721F46AD480044519A /* Ubuntu-B.ttf */; };
 		4782987D1F46AD480044519A /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298731F46AD480044519A /* Ubuntu-BI.ttf */; };
@@ -78,6 +79,7 @@
 		47408CA31F188FC60097C957 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../TabBarController.swift; sourceTree = "<group>"; };
 		47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestPlaceholder.swift; sourceTree = "<group>"; };
 		47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyRequestTableViewCell.swift; path = masterplan/NearbyRequestTableViewCell.swift; sourceTree = "<group>"; };
+		4767349B1F59E573001A4A08 /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
 		478298721F46AD480044519A /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
 		478298731F46AD480044519A /* Ubuntu-BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BI.ttf"; sourceTree = "<group>"; };
 		478298741F46AD480044519A /* Ubuntu-C.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-C.ttf"; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
 				47E24B281F41853000F0F723 /* TagsViewController.swift */,
 				47E24B241F40072F00F0F723 /* ProfileViewController.swift */,
+				4767349B1F59E573001A4A08 /* RequestDetailsViewController.swift */,
 				478298901F47F3EC0044519A /* EditProfileViewController.swift */,
 				478298711F46AD240044519A /* Supporting Fonts */,
 				47C57A931F2C28C200BC1D06 /* Models */,
@@ -512,6 +515,7 @@
 				47C57A8E1F29AA4200BC1D06 /* ProffrChannel.swift in Sources */,
 				47C8891A1F10873B003ED4F7 /* NewRequestViewController.swift in Sources */,
 				47C889161F0C8939003ED4F7 /* RequestInfo.swift in Sources */,
+				4767349C1F59E573001A4A08 /* RequestDetailsViewController.swift in Sources */,
 				47E24B191F3820F200F0F723 /* NotificationsTableViewCell.swift in Sources */,
 				47C37F041F29847F007FC639 /* LoginViewController.swift in Sources */,
 				47E24B2B1F42872600F0F723 /* NewProffrViewController.swift in Sources */,

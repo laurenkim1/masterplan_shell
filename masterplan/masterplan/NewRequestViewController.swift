@@ -122,6 +122,7 @@ class NewRequestViewController: FormViewController {
         
         if let destinationViewController = nextViewController as? TagsViewController {
             destinationViewController.request = request
+            destinationViewController.myUserId = self.myUserId
         }
         
         navigationController?.pushViewController(nextViewController,

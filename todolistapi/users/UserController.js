@@ -40,15 +40,29 @@ router.get('/:id', function (req, res) {
     });
 });
 
-// GETS REQUESTS WITHIN RADIUS OF LOCATION FROM THE DATABASE
+/*
+// GETS USERS FROM THE DATABASE
 router.get('/:fbid', function (req, res) {
     var fbid = req.query.id
     console.log(fbid)
-    User.find({ userId: fbid }, function (err, request) {
+    User.find({ userId: fbid }, function (err, user) {
         console.log(err)
         if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!request) return res.status(404).send("No user found.");
-        res.status(200).send(request);
+        if (!user) return res.status(404).send("No user found.");
+        res.status(200).send(user);
+    });
+});
+*/
+
+// GETS USER REQUESTS FROM THE DATABASE
+router.get('/myRequests/:id', function (req, res) {
+    User.find({ userId: req.params.id }, function (err, user) {
+        if (err) return res.status(500).send("There was a problem finding the user requests.");
+        if (!user) return res.status(404).send("No user found.");
+        let myRequests = user.userRequests;
+        if (!myRequests) return res.status(404).send("No requests for user.");
+        console.log(myRequests);
+        res.status(200).send(myRequests);
     });
 });
 
@@ -71,8 +85,7 @@ router.put('/:id', function (req, res) {
 
 // ADD NEW REQUEST TO USER PROFILE
 router.put('/newreq/:id', function (req, res) {
-
-    User.update({ userId: req.params.id }, { $push: { myRequests: req.body } }, function (err, user) {
+    User.findOneAndUpdate({ "userId": req.params.id }, { $push: { "userRequests": req.body } }, function (err, user) {
         if (err) return res.status(500).send("There was a problem updating the user requests.");
         res.status(200).send(user);
     });

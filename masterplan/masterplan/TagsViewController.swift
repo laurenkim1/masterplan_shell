@@ -14,8 +14,8 @@ import Neon
 import XLActionController
 
 private let kBaseURL: String = "http://localhost:3000/"
-private let kRequests: String = "requests"
-private let kUsers: String = "users"
+private let kRequests: String = "requests/"
+private let kUsers: String = "users/"
 private let kFiles: String = "files"
 
 class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelegate {
@@ -24,6 +24,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
     var tagListView: AMTagListView!
     var textField: UITextField!
     var request: requestInfo?
+    var myUserId: String!
     var objects: NSMutableArray = []
 
     override func viewDidLoad() {
@@ -108,7 +109,6 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
             request?.requestTags.append((tag as! AMTagView).tagText as String)
         }
         persist(self.request!)
-        persistToUser(self.request!)
         dismiss(animated: true, completion: nil)
     }
     
@@ -141,18 +141,15 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
         dataTask?.resume()
     }
     
-    func persistToUser(_ request: requestInfo) {
-        if request.userID == nil || request.requestTitle == nil || request.requestPrice == 0 {
-            return
-            //input safety check
-        }
+    func persistToUser(requestId: String) {
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
-        let url = URL(string: (users + "newreq" + request.userID))
+        let url = URL(string: (users + "newreq/" + myUserId))
+        print(url?.absoluteString)
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "PUT"
         //2
-        let data: Data? = try? JSONSerialization.data(withJSONObject: request.toDictionary(), options: [])
+        let data: Data? = try? JSONSerialization.data(withJSONObject: requestId, options: [])
         //3
         networkrequest.httpBody = data
         networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")

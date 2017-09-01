@@ -13,6 +13,7 @@ import CoreLocation
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
+private let kUsers: String = "users/"
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -47,8 +48,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func getMyRequests() -> Void {
-        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
-        let url = URL(string: requests)
+        let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        let url = URL(string: (users + "myRequests/" + myUserId))
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
