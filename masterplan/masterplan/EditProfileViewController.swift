@@ -34,10 +34,15 @@ class EditProfileViewController: FormViewController {
         form +++ Section() {
             $0.header = HeaderFooterView<BufferView>(.class)
             }
-            <<< TextRow("Name"){ row in
-                row.title = "Name:"
+            <<< TextRow("firstName"){ row in
+                row.title = "First Name:"
                 row.placeholder = ""
-                row.value = self.userName
+                row.value = self.firstName
+            }
+            <<< TextRow("lastName"){ row in
+                row.title = "Last Name:"
+                row.placeholder = ""
+                row.value = self.lastName
             }
             <<< TextRow("Email"){
                 $0.title = "Email:"
@@ -54,15 +59,18 @@ class EditProfileViewController: FormViewController {
     
     func finishSegue() {
         
-        let namerow: TextRow = form.rowBy(tag: "Name")!
-        self.userName = namerow.value ?? ""
+        let firstnamerow: TextRow = form.rowBy(tag: "firstName")!
+        let lastnamerow: TextRow = form.rowBy(tag: "lastName")!
+        self.firstName = firstnamerow.value ?? ""
+        self.lastName = lastnamerow.value ?? ""
+        self.userName = (firstnamerow.value ?? "") + " " + (lastnamerow.value ?? "")
         let emailrow: TextRow = form.rowBy(tag: "Email")!
         self.userEmail = emailrow.value ?? ""
         
         let token = Messaging.messaging().fcmToken
         print("FCM token: \(token ?? "")")
         
-        let updateUser: Profile = Profile(userId: self.userId, userName: self.userName, userEmail: self.userEmail, userLocation: self.userLocation, fcmToken: token!)
+        let updateUser: Profile = Profile(userId: self.userId, userName: self.userName, firstName: self.firstName, lastName: self.lastName, userEmail: self.userEmail, userLocation: self.userLocation, fcmToken: token!)
         
         self.updateUser(updateUser)
         
@@ -76,6 +84,9 @@ class EditProfileViewController: FormViewController {
         homeVc.myUserId = self.userId
         homeVc.userLocation = self.userLocation
         homeVc.myPhotoUrl = self.myPhotoUrl
+        let proffrsNavVc = navVc.viewControllers?[1] as! UINavigationController
+        let proffrsVc = proffrsNavVc.viewControllers.first as! MyProffrsViewController
+        proffrsVc.myUserId = self.userId
         let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
         newVc.myDisplayName = self.userName
         newVc.myUserId = self.userId
@@ -115,7 +126,7 @@ class EditProfileViewController: FormViewController {
             //input safety check
         }
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
-        let url = URL(string: users)
+        let url = URL(string: users + self.userId)
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "PUT"

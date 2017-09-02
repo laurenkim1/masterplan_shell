@@ -18,6 +18,8 @@ router.post('/', function (req, res) {
     User.create({
             userId: req.body.userId,
             userName: req.body.userName,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             userEmail: req.body.userEmail,
             userLocation: req.body.userLocation,
             fcmToken: req.body.fcmToken,
@@ -81,7 +83,7 @@ router.delete('/:id', function (req, res) {
 
 // UPDATES A SINGLE USER IN THE DATABASE
 router.put('/:id', function (req, res) {
-    User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
+    User.update({ "userId": req.params.id }, req.body, {new: true}, function (err, user) {
         if (err) return res.status(500).send("There was a problem updating the user.");
         res.status(200).send(user);
     });

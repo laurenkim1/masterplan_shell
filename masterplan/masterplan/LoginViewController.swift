@@ -29,6 +29,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     var myUserId: String! //(UserProfile.current?.userId)!
     var myEmail: String!
     var userLocation: CLLocation!
+    var user: Profile!
     
     var firstName: String!
     var lastName: String!
@@ -144,7 +145,10 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 if (response == nil || (response?.isEmpty)!) {
                     self.FBGraphRequest(graphPath: "\(id)", exist: false)
                 } else {
+                    print(response!)
                     let responseDict = response?[0] as! NSDictionary
+                    self.user = Profile(dict: responseDict)
+                    
                     guard let geoloc = responseDict["userLocation"] as? NSDictionary else {
                         os_log("Unable to decode the location for a user.", log: OSLog.default, type: .debug)
                         return
@@ -155,6 +159,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     let location = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
                     self.userLocation = location
+                    
                     self.FBGraphRequest(graphPath: "\(id)", exist: true)
                 }
             }
@@ -177,12 +182,13 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
                 let photoUrlString: String = photoMetaData["url"] as! String
                 self.myPhotoUrl = photoUrlString
-                self.myDisplayName = response.dictionaryValue?["name"] as! String
-                self.firstName = response.dictionaryValue?["first_name"] as! String
-                self.lastName = response.dictionaryValue?["last_name"] as! String
-                self.myEmail = response.dictionaryValue?["email"] as! String
                 
                 if exist == true {
+                    self.myDisplayName = self.user.userName
+                    self.firstName = self.user.firstName
+                    self.lastName = self.user.lastName
+                    self.myEmail = self.user.userEmail
+                    
                     let navVc: TabBarController = TabBarController()
                     navVc.myDisplayName = self.myDisplayName
                     navVc.myUserId = self.myUserId
@@ -216,10 +222,15 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     
+                    self.myDisplayName = response.dictionaryValue?["name"] as! String
+                    self.firstName = response.dictionaryValue?["first_name"] as! String
+                    self.lastName = response.dictionaryValue?["last_name"] as! String
+                    self.myEmail = response.dictionaryValue?["email"] as! String
+                    
                     let token = Messaging.messaging().fcmToken
                     print("FCM token: \(token ?? "")")
                     
-                    let newUser: Profile = Profile(userId: graphPath, userName: self.myDisplayName, userEmail: self.myEmail, userLocation: self.userLocation, fcmToken: token!)
+                    let newUser: Profile = Profile(userId: graphPath, userName: self.myDisplayName, firstName: self.firstName, lastName: self.lastName, userEmail: self.myEmail, userLocation: self.userLocation, fcmToken: token!)
                     
                     self.postUser(newUser)
                     
