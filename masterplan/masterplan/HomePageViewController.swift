@@ -247,6 +247,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         formatter.unitsStyle = .abbreviated
         let timeString = formatter.string(from: timeLeft)
         cell.timeLabel.text = timeString
+        cell.inlabel.text = "in"
         
         cell.requestTitle.text = nearbyRequest.requestTitle
         cell.nameLabel.text = nearbyRequest.userName
@@ -265,7 +266,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     // MARK: - UITableViewDelegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        os_log("hi - selected row")
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let selectedRequest: requestInfo
         if searchController.isActive && searchController.searchBar.text != "" {

@@ -126,18 +126,46 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.requestPrice.text = "$" + String(format:"%.2f", myRequest.requestPrice)
         cell.distanceLabel.text = ""
         
+        let components: NSDateComponents = NSDateComponents()
+        components.setValue(24, forComponent: NSCalendar.Unit.hour)
+        let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: myRequest.postTime as! Date)
+        let nowTime = Date()
+        let timeLeft: TimeInterval = (endTime?.timeIntervalSince(nowTime))!
+        
+        if timeLeft > 0 {
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = .abbreviated
+            let timeString = formatter.string(from: timeLeft)
+            cell.timeLabel.text = timeString
+            cell.inlabel.text = "in"
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            cell.timeLabel.text = formatter.string(from: myRequest.postTime as! Date)
+            cell.inlabel.text = ""
+        }
+        
         return cell
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - UITableViewDelegate Methods
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        let selectedRequest: requestInfo
+        selectedRequest = myRequestList[indexPath.row]
+        print(selectedRequest)
+        cellSelected(selectedRequest: selectedRequest)
     }
-    */
+    
+    // MARK: - Navigation
+    
+    func cellSelected(selectedRequest: requestInfo){
+        let nextViewController: RequestDetailsViewController = RequestDetailsViewController()
+        nextViewController.request = selectedRequest
+        nextViewController.myUserId = myUserId
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: true)
+    }
 
 }

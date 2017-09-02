@@ -83,7 +83,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         
         needslabel.text = "needs:"
         forlabel.text = "for"
-        inlabel.text = "in"
         
         nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 200, height: CellHeight/3)
         nameLabel.textColor = UIColor.darkGray

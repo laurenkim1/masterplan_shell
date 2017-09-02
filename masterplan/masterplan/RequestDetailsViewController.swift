@@ -169,18 +169,27 @@ class RequestDetailsViewController: UIViewController {
         distanceLabel.font = UIFont(name: "Ubuntu", size: 20)
         view.addSubview(distanceLabel)
         
-        self.proffrButton = UIButton(frame: CGRect(x: 40, y: inlabel.frame.height+inlabel.frame.origin.y+20, width: self.view.frame.width-80, height: 40))
-        proffrButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
-        proffrButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
-        proffrButton.layer.cornerRadius = 5
-        proffrButton.setTitle("Proffr", for: .normal)
-        view.addSubview(proffrButton)
+        self.isButton()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
+    }
+    
+    func isButton() {
+        if let navController = self.parent as! UINavigationController? {
+            let parentVCIndex = navController.viewControllers.count - 2
+            if navController.viewControllers[parentVCIndex] is HomePageViewController {
+                self.proffrButton = UIButton(frame: CGRect(x: 40, y: inlabel.frame.height+inlabel.frame.origin.y+20, width: self.view.frame.width-80, height: 40))
+                proffrButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
+                proffrButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
+                proffrButton.layer.cornerRadius = 5
+                proffrButton.setTitle("Proffr", for: .normal)
+                view.addSubview(proffrButton)
+            }
+        }
     }
     
     // MARK: - Navigation
