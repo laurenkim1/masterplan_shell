@@ -238,7 +238,16 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             }
             }.resume()
         
-        // change these parameters to match a request table cell
+        let components: NSDateComponents = NSDateComponents()
+        components.setValue(24, forComponent: NSCalendar.Unit.hour)
+        let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: nearbyRequest.postTime as! Date)
+        let nowTime = Date()
+        let timeLeft: TimeInterval = (endTime?.timeIntervalSince(nowTime))!
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        let timeString = formatter.string(from: timeLeft)
+        cell.timeLabel.text = timeString
+        
         cell.requestTitle.text = nearbyRequest.requestTitle
         cell.nameLabel.text = nearbyRequest.userName
         cell.requestPrice.text = "$" + String(format:"%.2f", nearbyRequest.requestPrice)

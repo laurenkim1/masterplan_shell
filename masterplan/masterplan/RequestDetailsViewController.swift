@@ -86,7 +86,6 @@ class RequestDetailsViewController: UIViewController {
         needslabel.text = "needs:"
         forlabel.text = "for:"
         inlabel.text = "in:"
-        hourslabel.text = "hrs"
         
         let photoUrl = request.photoUrl
         
@@ -111,9 +110,13 @@ class RequestDetailsViewController: UIViewController {
         components.setValue(24, forComponent: NSCalendar.Unit.hour)
         let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: postTime as Date)
         let nowTime = Date()
-        let timeLeft = endTime?.timeIntervalSince(nowTime)
+        let timeLeft: TimeInterval = (endTime?.timeIntervalSince(nowTime))!
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .short
         
-        timeLabel.text = String(format:"%.2f", request.postTime!)
+        let timeString = formatter.string(from: timeLeft)
+        
+        timeLabel.text = timeString
         
         userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
         
@@ -152,15 +155,10 @@ class RequestDetailsViewController: UIViewController {
         inlabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
         view.addSubview(inlabel)
         
-        timeLabel.frame = CGRect(x: inlabel.frame.origin.x+inlabel.frame.width, y: forlabel.frame.origin.y+forlabel.frame.size.height, width: 40, height: 30)
+        timeLabel.frame = CGRect(x: inlabel.frame.origin.x+inlabel.frame.width, y: forlabel.frame.origin.y+forlabel.frame.size.height, width: 250, height: 30)
         timeLabel.textColor = UIColor.darkGray
         timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
         view.addSubview(timeLabel)
-        
-        hourslabel.frame = CGRect(x: timeLabel.frame.origin.x+timeLabel.frame.width, y: forlabel.frame.origin.y+forlabel.frame.size.height, width: 50, height: 30)
-        hourslabel.textColor = UIColor.lightGray
-        hourslabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
-        view.addSubview(hourslabel)
         
         distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+20, y: nameLabel.frame.origin.y+nameLabel.frame.height, width: 100, height: 30)
         distanceLabel.textColor = UIColor.lightGray

@@ -21,7 +21,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
     let needslabel: UILabel = UILabel()
     let forlabel: UILabel = UILabel()
     let inlabel: UILabel = UILabel()
-    let hourslabel: UILabel = UILabel()
     
     lazy var nameLabel: UILabel = {
         let view = UILabel()
@@ -85,7 +84,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         needslabel.text = "needs:"
         forlabel.text = "for"
         inlabel.text = "in"
-        hourslabel.text = "hrs"
         
         nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 200, height: CellHeight/3)
         nameLabel.textColor = UIColor.darkGray
@@ -117,15 +115,10 @@ class NearbyRequestTableViewCell: UITableViewCell {
         inlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(inlabel)
         
-        timeLabel.frame = CGRect(x: inlabel.frame.origin.x+inlabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 30, height: CellHeight/3)
+        timeLabel.frame = CGRect(x: inlabel.frame.origin.x+inlabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 200, height: CellHeight/3)
         timeLabel.textColor = UIColor.darkGray
         timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(timeLabel)
-        
-        hourslabel.frame = CGRect(x: timeLabel.frame.origin.x+timeLabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 50, height: CellHeight/3)
-        hourslabel.textColor = UIColor.lightGray
-        hourslabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
-        contentView.addSubview(hourslabel)
         
         distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10+nameLabel.frame.width, y: 5, width: 100, height: CellHeight/3)
         distanceLabel.textColor = UIColor.lightGray
