@@ -9,7 +9,6 @@ var Request = require('./Request');
 
 // CREATES A NEW REQUEST
 router.post('/', function (req, res) {
-    console.log(req.body)
     Request.create({
             createdAt: new Date(),
             userID: req.body.userID,
@@ -54,9 +53,6 @@ router.get('/:radius', function (req, res) {
     var lat = parseFloat(req.query.lat)
     var lon = parseFloat(req.query.lon)
     var rad = parseFloat(req.params.radius)
-    console.log(lat)
-    console.log(lon)
-    console.log(rad)
     var geoloc = [ lon, lat ]
     Request.find({ location: { $geoWithin: { $centerSphere: [ geoloc, rad * 1609.34 ] } } }, function (err, request) {
         console.log(err)

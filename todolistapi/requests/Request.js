@@ -15,5 +15,5 @@ var RequestSchema = new mongoose.Schema({
   location: Object,
   photoUrl: String,
 });
-mongoose.model('Request', RequestSchema);
+mongoose.model('Request', RequestSchema, "requests");
 module.exports = mongoose.model('Request');

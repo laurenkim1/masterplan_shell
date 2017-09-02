@@ -81,6 +81,9 @@ class EditProfileViewController: FormViewController {
         let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
         let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
         notificationsTable.myUserId = self.userId
+        let profileVcNav = navVc.viewControllers?[4] as! UINavigationController
+        let profileVc = profileVcNav.viewControllers.first as! ProfileViewController
+        profileVc.myUserId = self.userId
         
         UIApplication.shared.keyWindow?.rootViewController = navVc
         self.dismiss(animated: true, completion: nil)

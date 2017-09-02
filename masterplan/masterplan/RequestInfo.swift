@@ -28,6 +28,7 @@ class requestInfo: NSObject, NSCoding {
     var location: CLLocation
     var postTime: NSDate?
     var photoUrl: URL
+    var postTimeString: String?
     
     //MARK: Types
     
@@ -132,7 +133,6 @@ class requestInfo: NSObject, NSCoding {
             // Format 1
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             if let parsedDate = formatter.date(from: date) {
-                print(parsedDate)
                 return parsedDate as NSDate
             }
             return NSDate()
@@ -167,6 +167,33 @@ class requestInfo: NSObject, NSCoding {
         
         let geoloc: NSDictionary = self.toLocation()
         jsonable.setValue(userID, forKey: "userID")
+        jsonable.setValue(userName, forKey: "userName")
+        jsonable.setValue(requestTitle, forKey: "requestTitle")
+        jsonable.setValue(requestPrice, forKey: "requestPrice")
+        jsonable.setValue(pickUp, forKey: "pickUp")
+        jsonable.setValue(geoloc, forKey: "location")
+        jsonable.setValue(fulfilled, forKey: "fulfilled")
+        jsonable.setValue(fulfillerID, forKey: "fulfillerID")
+        jsonable.setValue(tags, forKey: "requestTags")
+        jsonable.setValue(distance, forKey: "distance")
+        jsonable.setValue(photoURL, forKey: "photoUrl")
+        return jsonable
+    }
+    
+    public func longToDictionary() -> NSDictionary! {
+        let jsonable = NSMutableDictionary()
+        var tags: String = ""
+        for tag in requestTags {
+            tags.append(tag)
+            tags.append(" ")
+        }
+        
+        let photoURL: String = photoUrl.absoluteString
+        
+        let geoloc: NSDictionary = self.toLocation()
+        jsonable.setValue(requestID, forKey: "_id")
+        jsonable.setValue(userID, forKey: "userID")
+        jsonable.setValue(postTimeString, forKey: "createdAt")
         jsonable.setValue(userName, forKey: "userName")
         jsonable.setValue(requestTitle, forKey: "requestTitle")
         jsonable.setValue(requestPrice, forKey: "requestPrice")

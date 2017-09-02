@@ -3,13 +3,18 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+var options = {
+    useMongoClient: true
+};
+var db = mongoose.connect('mongodb://laurenkim:jihye197@ds163232.mlab.com:63232/requests', options);
 
 router.use(bodyParser.json());
 var User = require('./User');
 
 // CREATES A NEW USER
 router.post('/', function (req, res) {
-    console.log(req.body)
     User.create({
             userId: req.body.userId,
             userName: req.body.userName,
@@ -56,7 +61,7 @@ router.get('/:fbid', function (req, res) {
 
 // GETS USER REQUESTS FROM THE DATABASE
 router.get('/myRequests/:id', function (req, res) {
-    User.find({ userId: req.params.id }, function (err, user) {
+    db.collection("users").findOne({ userId: req.params.id }, function (err, user) {
         if (err) return res.status(500).send("There was a problem finding the user requests.");
         if (!user) return res.status(404).send("No user found.");
         let myRequests = user.userRequests;
@@ -76,7 +81,6 @@ router.delete('/:id', function (req, res) {
 
 // UPDATES A SINGLE USER IN THE DATABASE
 router.put('/:id', function (req, res) {
-
     User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
         if (err) return res.status(500).send("There was a problem updating the user.");
         res.status(200).send(user);
@@ -85,7 +89,7 @@ router.put('/:id', function (req, res) {
 
 // ADD NEW REQUEST TO USER PROFILE
 router.put('/newreq/:id', function (req, res) {
-    User.findOneAndUpdate({ "userId": req.params.id }, { $push: { "userRequests": req.body } }, function (err, user) {
+    db.collection("users").update({ "userId": req.params.id }, { $push: { "userRequests": req.body } }, function (err, user) {
         if (err) return res.status(500).send("There was a problem updating the user requests.");
         res.status(200).send(user);
     });
