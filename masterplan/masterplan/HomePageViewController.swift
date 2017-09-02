@@ -339,18 +339,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     func cellSelected(selectedRequest: requestInfo){
         let nextViewController: RequestDetailsViewController = RequestDetailsViewController()
         nextViewController.request = selectedRequest
-        navigationController?.pushViewController(nextViewController,
-                                                 animated: false)
-        /*
-        let nextViewController: NewProffrViewController = NewProffrViewController()
-        
-        nextViewController.request = selectedRequest
-        nextViewController.senderDisplayName = myDisplayName
-        nextViewController.senderId = myUserId
+        nextViewController.myDisplayName = myDisplayName
+        nextViewController.myUserId = myUserId
         nextViewController.myPhotoUrl = myPhotoUrl
         navigationController?.pushViewController(nextViewController,
-                                                 animated: false)
- */
+                                                 animated: true)
     }
 
     /*

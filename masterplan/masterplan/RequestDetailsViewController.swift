@@ -17,6 +17,10 @@ class RequestDetailsViewController: UIViewController {
     var ProfilePhoto : UIImageView!
     var userLocation: CLLocation!
     var request: requestInfo!
+    var myDisplayName: String!
+    var myUserId: String!
+    var myPhotoUrl: String!
+    var proffrButton: UIButton!
     
     let needslabel: UILabel = UILabel()
     let forlabel: UILabel = UILabel()
@@ -130,12 +134,12 @@ class RequestDetailsViewController: UIViewController {
         nameLabel.font = UIFont(name: "Ubuntu-Bold", size: 30)
         view.addSubview(nameLabel)
         
-        needslabel.frame = CGRect(x: 50 , y: ProfilePhoto.frame.origin.y+ProfilePhoto.frame.size.height, width: 70, height: 30)
+        needslabel.frame = CGRect(x: 50 , y: ProfilePhoto.frame.origin.y+ProfilePhoto.frame.size.height+10, width: 70, height: 30)
         needslabel.textColor = UIColor.lightGray
         needslabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
         view.addSubview(needslabel)
         
-        requestTitle.frame = CGRect(x: needslabel.frame.origin.x+needslabel.frame.width, y: ProfilePhoto.frame.origin.y+ProfilePhoto.frame.size.height, width: 400, height: 30)
+        requestTitle.frame = CGRect(x: needslabel.frame.origin.x+needslabel.frame.width, y: ProfilePhoto.frame.origin.y+ProfilePhoto.frame.size.height+10, width: 400, height: 30)
         requestTitle.textColor = UIColor.darkGray
         requestTitle.font = UIFont(name: "Ubuntu-Bold", size: 20)
         view.addSubview(requestTitle)
@@ -164,6 +168,13 @@ class RequestDetailsViewController: UIViewController {
         distanceLabel.textColor = UIColor.lightGray
         distanceLabel.font = UIFont(name: "Ubuntu", size: 20)
         view.addSubview(distanceLabel)
+        
+        self.proffrButton = UIButton(frame: CGRect(x: 40, y: inlabel.frame.height+inlabel.frame.origin.y+20, width: self.view.frame.width-80, height: 40))
+        proffrButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
+        proffrButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
+        proffrButton.layer.cornerRadius = 5
+        proffrButton.setTitle("Proffr", for: .normal)
+        view.addSubview(proffrButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -172,6 +183,20 @@ class RequestDetailsViewController: UIViewController {
         
     }
     
+    // MARK: - Navigation
+    
+    func createProffr(_ sender: UIButton) {
+        
+        let nextViewController: NewProffrViewController = NewProffrViewController()
+        
+        nextViewController.request = self.request
+        nextViewController.senderDisplayName = myDisplayName
+        nextViewController.senderId = myUserId
+        nextViewController.myPhotoUrl = myPhotoUrl
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: true)
+    }
+
 
     /*
     // MARK: - Navigation

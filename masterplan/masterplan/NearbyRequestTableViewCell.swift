@@ -105,7 +105,7 @@ class NearbyRequestTableViewCell: UITableViewCell {
         forlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(forlabel)
         
-        requestPrice.frame = CGRect(x: forlabel.frame.origin.x+forlabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 70, height: CellHeight/3)
+        requestPrice.frame = CGRect(x: forlabel.frame.origin.x+forlabel.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 60, height: CellHeight/3)
         requestPrice.textColor = UIColor.darkGray
         requestPrice.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(requestPrice)
