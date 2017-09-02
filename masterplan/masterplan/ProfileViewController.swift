@@ -18,21 +18,54 @@ private let kUsers: String = "users/"
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var myUserId: String!
+    var myPhotoUrl: String!
     var myRequestList = [requestInfo]()
     var tableView: UITableView!
+    var ProfilePhoto : UIImageView!
+    var firstName: String!
+    var lastName: String!
+    
+    lazy var firstNameLabel: UILabel = {
+        let view = UILabel()
+        view.backgroundColor = .clear
+        view.textAlignment = .left
+        return view
+    }()
+    
+    lazy var lastNameLabel: UILabel = {
+        let view = UILabel()
+        view.backgroundColor = .clear
+        view.textAlignment = .left
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.title = "Proffr"
         self.setNavigationBar()
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 200, width: self.view.frame.width, height: self.view.frame.height-200))
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        
+        ProfilePhoto = UIImageView()
+        ProfilePhoto.frame = CGRect(x: 20, y: 80, width: self.view.frame.width-230, height: self.view.frame.width-230)
+        ProfilePhoto.layer.borderWidth = 1
+        ProfilePhoto.layer.masksToBounds = false
+        ProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
+        ProfilePhoto.layer.cornerRadius = 10
+        ProfilePhoto.clipsToBounds = true
+        view.addSubview(ProfilePhoto)
+        
+        self.tableView = UITableView(frame: CGRect(x: 0, y: self.ProfilePhoto.frame.origin.y+self.ProfilePhoto.frame.height+20, width: self.view.frame.width, height: self.view.frame.height-200))
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view.addSubview(self.tableView)
         self.tableView.rowHeight = 80
         self.tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
         self.getMyRequests()
+        
+        self.setProfilePhoto()
+        self.setNameLabels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +78,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let screenSize: CGRect = UIScreen.main.bounds
         // let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 70))
         
+    }
+    
+    func setProfilePhoto() {
+        let photoUrl = URL(string: myPhotoUrl)
+        URLSession.shared.dataTask(with: photoUrl!) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print("Download Started")
+            print(response?.suggestedFilename ?? photoUrl?.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                let image = UIImage(data: data)
+                self.ProfilePhoto.image = image
+            }
+            }.resume()
+    }
+    
+    func setNameLabels() {
+        firstNameLabel.frame = CGRect(x: self.ProfilePhoto.frame.origin.x+self.ProfilePhoto.frame.width+10, y: 90, width: 150, height: 30)
+        firstNameLabel.text = firstName
+        firstNameLabel.textColor = UIColor.darkGray
+        firstNameLabel.font = UIFont(name: "Ubuntu-Bold", size: 30)
+        lastNameLabel.frame = CGRect(x: self.firstNameLabel.frame.origin.x, y: self.firstNameLabel.frame.origin.y+self.firstNameLabel.frame.height+10, width: 150, height: 30)
+        lastNameLabel.text = lastName
+        lastNameLabel.textColor = UIColor.darkGray
+        lastNameLabel.font = UIFont(name: "Ubuntu-Bold", size: 30)
+        self.view.addSubview(firstNameLabel)
+        self.view.addSubview(lastNameLabel)
     }
     
     func getMyRequests() -> Void {

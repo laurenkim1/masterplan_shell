@@ -31,8 +31,6 @@ class RequestDetailsViewController: UIViewController {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -40,8 +38,6 @@ class RequestDetailsViewController: UIViewController {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -49,8 +45,6 @@ class RequestDetailsViewController: UIViewController {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -58,8 +52,6 @@ class RequestDetailsViewController: UIViewController {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -67,8 +59,6 @@ class RequestDetailsViewController: UIViewController {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
 

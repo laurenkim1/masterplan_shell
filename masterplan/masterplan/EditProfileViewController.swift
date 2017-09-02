@@ -23,6 +23,8 @@ class EditProfileViewController: FormViewController {
     var userEmail: String!
     var userLocation: CLLocation!
     var myPhotoUrl: String!
+    var firstName: String!
+    var lastName: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +86,9 @@ class EditProfileViewController: FormViewController {
         let profileVcNav = navVc.viewControllers?[4] as! UINavigationController
         let profileVc = profileVcNav.viewControllers.first as! ProfileViewController
         profileVc.myUserId = self.userId
+        profileVc.myPhotoUrl = self.myPhotoUrl
+        profileVc.firstName = self.firstName
+        profileVc.lastName = self.lastName
         
         UIApplication.shared.keyWindow?.rootViewController = navVc
         self.dismiss(animated: true, completion: nil)

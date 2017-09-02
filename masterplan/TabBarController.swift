@@ -13,6 +13,9 @@ class TabBarController: UITabBarController {
     var myDisplayName: String!
     var myUserId: String!
     var myPhotoUrl: String!
+    
+    var firstName: String!
+    var lastName: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +57,7 @@ class TabBarController: UITabBarController {
         let nav5 = UINavigationController()
         let ProfileVC = ProfileViewController()
         ProfileVC.myUserId = myUserId
+        ProfileVC.myPhotoUrl = myPhotoUrl
         nav5.viewControllers = [ProfileVC]
         nav5.tabBarItem.title = "Profile"
         nav5.tabBarItem.image = UIImage(named: "icons8-Badge-50")

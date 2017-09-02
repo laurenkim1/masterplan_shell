@@ -26,8 +26,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -35,8 +33,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -45,7 +41,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         view.backgroundColor = .clear
         view.textAlignment = .left
         view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -54,7 +49,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         view.backgroundColor = .clear
         view.textAlignment = .left
         view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
     
@@ -63,7 +57,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         view.backgroundColor = .clear
         view.textAlignment = .left
         view.font = .systemFont(ofSize: 17)
-        view.textColor = .darkText
         return view
     }()
 

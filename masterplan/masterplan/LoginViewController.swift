@@ -29,6 +29,9 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     var myUserId: String! //(UserProfile.current?.userId)!
     var myEmail: String!
     var userLocation: CLLocation!
+    
+    var firstName: String!
+    var lastName: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +128,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         let parameterString: String = id
         let url = URL(string: (requests + parameterString))
         //1
-        print(url?.absoluteString)
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
         //2
@@ -139,7 +141,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                print(response)
                 if (response == nil || (response?.isEmpty)!) {
                     self.FBGraphRequest(graphPath: "\(id)", exist: false)
                 } else {
@@ -166,7 +167,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     //getting image data
     
     func FBGraphRequest(graphPath: String, exist: Bool) {
-        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "name, email, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+        let graphRequest = GraphRequest(graphPath: graphPath, parameters: ["fields": "name, first_name, last_name, email, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
         let connection = GraphRequestConnection()
         connection.add(graphRequest, batchEntryName: "ProfilePicture", completion: { httpResponse, result in
             switch result {
@@ -177,6 +178,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 let photoUrlString: String = photoMetaData["url"] as! String
                 self.myPhotoUrl = photoUrlString
                 self.myDisplayName = response.dictionaryValue?["name"] as! String
+                self.firstName = response.dictionaryValue?["first_name"] as! String
+                self.lastName = response.dictionaryValue?["last_name"] as! String
                 self.myEmail = response.dictionaryValue?["email"] as! String
                 
                 if exist == true {
@@ -184,6 +187,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     navVc.myDisplayName = self.myDisplayName
                     navVc.myUserId = self.myUserId
                     navVc.myPhotoUrl = self.myPhotoUrl
+                    navVc.firstName = self.firstName
+                    navVc.lastName = self.lastName
                     let channelVc = navVc.viewControllers?[0] as! UINavigationController
                     let homeVc = channelVc.viewControllers.first as! HomePageViewController
                     homeVc.myDisplayName = self.myDisplayName
@@ -203,6 +208,9 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     let profileVcNav = navVc.viewControllers?[4] as! UINavigationController
                     let profileVc = profileVcNav.viewControllers.first as! ProfileViewController
                     profileVc.myUserId = self.myUserId
+                    profileVc.myPhotoUrl = self.myPhotoUrl
+                    profileVc.firstName = self.firstName
+                    profileVc.lastName = self.lastName
                     
                     UIApplication.shared.keyWindow?.rootViewController = navVc
                     self.dismiss(animated: true, completion: nil)
@@ -221,6 +229,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     profileVC.userEmail = self.myEmail
                     profileVC.userLocation = self.userLocation
                     profileVC.myPhotoUrl = self.myPhotoUrl
+                    profileVC.firstName = self.firstName
+                    profileVC.lastName = self.lastName
                     
                     UIApplication.shared.keyWindow?.rootViewController = profileVC
                     self.dismiss(animated: true, completion: nil)
@@ -237,7 +247,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         URLSession.shared.dataTask(with: url) {
             (data, response, error) in
             completion(data, response, error)
-            print(response)
             }.resume()
     }
     
@@ -264,53 +273,9 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                print(response)
             }
         })
         dataTask?.resume()
     }
-    
-    /*
-    func downloadImage(url: URL) {
-        print("Download Started")
-        getDataFromUrl(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() { () -> Void in
-                self.imageView.image = UIImage(data: data)
-            }
-        }
-    }
- */
-    
-    /*
-    func toggleHiddenState(_ shouldHide: Bool) {
-        loginButton.isHidden = shouldHide
-    }
-
-    
-    // MARK: Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        let navVc = segue.destination as! TabBarController
-        navVc.myDisplayName = myDisplayName
-        navVc.myUserId = myUserId
-        navVc.myPhotoUrl = myPhotoUrl
-        let channelVc = navVc.viewControllers?[0] as! UINavigationController
-        let homeVc = channelVc.viewControllers.first as! HomePageViewController
-        homeVc.myDisplayName = myDisplayName
-        homeVc.myUserId = myUserId
-        let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
-        newVc.myDisplayName = myDisplayName
-        newVc.myUserId = myUserId
-        let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
-        let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
-        notificationsTable.myUserId = myUserId
-    }
- */
-    
 
 }
