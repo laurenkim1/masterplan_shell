@@ -3,15 +3,10 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-
-var options = {
-    useMongoClient: true
-};
-var db = mongoose.connect('mongodb://laurenkim:jihye197@ds163232.mlab.com:63232/requests', options);
 
 router.use(bodyParser.json());
 var User = require('./User');
+var db = require('../db');
 
 // CREATES A NEW USER
 router.post('/', function (req, res) {

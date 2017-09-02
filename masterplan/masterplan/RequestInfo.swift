@@ -150,8 +150,8 @@ class requestInfo: NSObject, NSCoding {
     public func toLocation() -> NSDictionary! {
         let geoloc = NSMutableDictionary()
         let coordinates: NSArray = [location.coordinate.longitude, location.coordinate.latitude]
-        geoloc.setValue("Point", forKey: "type")
         geoloc.setValue(coordinates, forKey: "coordinates")
+        geoloc.setValue("Point", forKey: "type")
         return geoloc
     }
     

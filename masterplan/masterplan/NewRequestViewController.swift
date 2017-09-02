@@ -25,8 +25,6 @@ class NewRequestViewController: FormViewController {
     var price: UITextField!
     var nextPhaseButton: UIBarButtonItem!
     
-    let _location = CLLocation(latitude: 42.3770, longitude: -71.1167)
-    
     var request: requestInfo?
     
     override func viewDidLoad() {
@@ -111,7 +109,7 @@ class NewRequestViewController: FormViewController {
         if request != nil {
         }
         else {
-            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: _location, photoUrl: myPhotoUrl)
+            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: userLocation, photoUrl: myPhotoUrl)
             
             if _pickup == 0 {
                 let distancerow: DecimalRow = form.rowBy(tag: "Distance")!

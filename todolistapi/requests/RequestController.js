@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
 var Request = require('./Request');
+var db = require('../db');
 
 // CREATES A NEW REQUEST
 router.post('/', function (req, res) {
@@ -50,12 +51,12 @@ router.get('/:id', function (req, res) {
 
 // GETS REQUESTS WITHIN RADIUS OF LOCATION FROM THE DATABASE
 router.get('/:radius', function (req, res) {
-    var lat = parseFloat(req.query.lat)
-    var lon = parseFloat(req.query.lon)
-    var rad = parseFloat(req.params.radius)
-    var geoloc = [ lon, lat ]
-    Request.find({ location: { $geoWithin: { $centerSphere: [ geoloc, rad * 1609.34 ] } } }, function (err, request) {
-        console.log(err)
+    var lat = parseFloat(req.query.lat);
+    var lon = parseFloat(req.query.lon);
+    var rad = parseFloat(req.params.radius) * 1609.34;
+    var geoloc = [ lon, lat ];
+    db.collection("requests").find({ location: { $geoWithin: { $centerSphere: [ geoloc, rad ] } } }, function (err, request) {
+        console.log(err);
         if (err) return res.status(500).send("There was a problem finding the request.");
         if (!request) return res.status(404).send("No request found.");
         res.status(200).send(request);
