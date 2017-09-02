@@ -8,12 +8,14 @@
 
 import UIKit
 import CircleMenu
+import CoreLocation
 
 class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     
     var myDisplayName: String!
     var myUserId: String!
     var myPhotoUrl: String!
+    var userLocation: CLLocation!
     var button: CircleMenu!
     
     let items: [(icon: String, color: UIColor)] = [
@@ -96,6 +98,7 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
             newRequestVc.myUserId = myUserId
             newRequestVc.myDisplayName = myDisplayName
             newRequestVc.myPhotoUrl = myPhotoUrl
+            newRequestVc.userLocation = self.userLocation
             navVc.viewControllers.append(newRequestVc)
             //navVc.viewControllers = [newRequestVc]
         } else if atIndex == 1 {

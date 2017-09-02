@@ -91,6 +91,7 @@ class EditProfileViewController: FormViewController {
         newVc.myDisplayName = self.userName
         newVc.myUserId = self.userId
         newVc.myPhotoUrl = self.myPhotoUrl
+        newVc.userLocation = self.userLocation
         let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
         let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
         notificationsTable.myUserId = self.userId
@@ -100,6 +101,7 @@ class EditProfileViewController: FormViewController {
         profileVc.myPhotoUrl = self.myPhotoUrl
         profileVc.firstName = self.firstName
         profileVc.lastName = self.lastName
+        profileVc.userLocation = self.userLocation
         
         UIApplication.shared.keyWindow?.rootViewController = navVc
         self.dismiss(animated: true, completion: nil)

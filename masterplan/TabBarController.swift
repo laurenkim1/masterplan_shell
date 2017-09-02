@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class TabBarController: UITabBarController {
     
     var myDisplayName: String!
     var myUserId: String!
     var myPhotoUrl: String!
+    var userLocation: CLLocation!
     
     var firstName: String!
     var lastName: String!
@@ -29,6 +31,7 @@ class TabBarController: UITabBarController {
         HomeVC.myDisplayName = myDisplayName
         HomeVC.myUserId = myUserId
         HomeVC.myPhotoUrl = myPhotoUrl
+        HomeVC.userLocation = userLocation
         nav1.viewControllers = [HomeVC]
         nav1.tabBarItem.title = "Home"
         nav1.tabBarItem.image = UIImage(named: "icon_home")
@@ -44,6 +47,7 @@ class TabBarController: UITabBarController {
         nav3.myDisplayName = myDisplayName
         nav3.myUserId = myUserId
         nav3.myPhotoUrl = myPhotoUrl
+        nav3.userLocation = userLocation
         nav3.tabBarItem.title = "New"
         nav3.tabBarItem.image = UIImage(named: "icons8-Plus 2 Math-50")
         
@@ -58,6 +62,7 @@ class TabBarController: UITabBarController {
         let ProfileVC = ProfileViewController()
         ProfileVC.myUserId = myUserId
         ProfileVC.myPhotoUrl = myPhotoUrl
+        ProfileVC.userLocation = userLocation
         nav5.viewControllers = [ProfileVC]
         nav5.tabBarItem.title = "Profile"
         nav5.tabBarItem.image = UIImage(named: "icons8-Badge-50")

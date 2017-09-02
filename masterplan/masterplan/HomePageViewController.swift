@@ -253,8 +253,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         cell.nameLabel.text = nearbyRequest.userName
         cell.requestPrice.text = "$" + String(format:"%.2f", nearbyRequest.requestPrice)
         
-        userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
-        
         let _meterDistance: CLLocationDistance = userLocation.distance(from: nearbyRequest.location)
         let _distance: Double = _meterDistance/1609.34
         let _distanceString: String = "(" + String(format:"%.2f", _distance) + " mi)"
@@ -342,6 +340,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         nextViewController.myDisplayName = myDisplayName
         nextViewController.myUserId = myUserId
         nextViewController.myPhotoUrl = myPhotoUrl
+        nextViewController.userLocation = userLocation
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
     }

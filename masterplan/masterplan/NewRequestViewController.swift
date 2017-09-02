@@ -19,6 +19,7 @@ class NewRequestViewController: FormViewController {
     var myDisplayName: String!
     var myUserId: String!
     var myPhotoUrl: String!
+    var userLocation: CLLocation!
     
     var requestName: UITextField!
     var price: UITextField!

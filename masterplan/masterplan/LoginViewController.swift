@@ -208,6 +208,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     newVc.myDisplayName = self.myDisplayName
                     newVc.myUserId = self.myUserId
                     newVc.myPhotoUrl = self.myPhotoUrl
+                    newVc.userLocation = self.userLocation
                     let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
                     let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
                     notificationsTable.myUserId = self.myUserId
@@ -217,6 +218,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     profileVc.myPhotoUrl = self.myPhotoUrl
                     profileVc.firstName = self.firstName
                     profileVc.lastName = self.lastName
+                    profileVc.userLocation = self.userLocation
                     
                     UIApplication.shared.keyWindow?.rootViewController = navVc
                     self.dismiss(animated: true, completion: nil)

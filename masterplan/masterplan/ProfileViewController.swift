@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var myUserId: String!
     var myPhotoUrl: String!
+    var userLocation: CLLocation!
     var myRequestList = [requestInfo]()
     var tableView: UITableView!
     var ProfilePhoto : UIImageView!
@@ -224,6 +225,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let nextViewController: RequestDetailsViewController = RequestDetailsViewController()
         nextViewController.request = selectedRequest
         nextViewController.myUserId = myUserId
+        nextViewController.userLocation = userLocation
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
     }

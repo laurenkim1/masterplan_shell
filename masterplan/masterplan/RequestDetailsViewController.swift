@@ -112,8 +112,6 @@ class RequestDetailsViewController: UIViewController {
         
         timeLabel.text = timeString
         
-        userLocation = CLLocation(latitude: 42.3770, longitude: -71.1167)
-        
         let _meterDistance: CLLocationDistance = userLocation.distance(from: request.location)
         let _distance: Double = _meterDistance/1609.34
         let _distanceString: String = "(" + String(format:"%.2f", _distance) + " mi)"
