@@ -39,15 +39,14 @@ router.get('/', function (req, res) {
 });
 
 // GETS A SINGLE REQUEST FROM THE DATABASE
-/*
-router.get('/:id', function (req, res) {
+
+router.get('/search/:id', function (req, res) {
     Request.findById(req.params.id, function (err, request) {
         if (err) return res.status(500).send("There was a problem finding the request.");
         if (!request) return res.status(404).send("No request found.");
         res.status(200).send(request);
     });
 });
-*/
 
 // GETS REQUESTS WITHIN RADIUS OF LOCATION FROM THE DATABASE
 router.get('/:radius', function (req, res) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 class MyProffrsViewController: UITableViewController {
     
@@ -15,6 +16,7 @@ class MyProffrsViewController: UITableViewController {
     // MARK: Properties
     
     var myUserId: String!
+    var userLocation: CLLocation!
     private var incomingChannels: [ProffrChannel] = []
     private var outgoingChannels: [ProffrChannel] = []
     
@@ -235,6 +237,7 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.channel = channel
         proffrChatVc.requestId = channel.requestId
         proffrChatVc.requestTitle = channel.subTitle
+        proffrChatVc.userLocation = self.userLocation
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref
         proffrChatVc.hidesBottomBarWhenPushed = true

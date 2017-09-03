@@ -12,6 +12,7 @@ import os.log
 import Firebase
 import JSQMessagesViewController
 import XLActionController
+import CoreLocation
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
@@ -29,6 +30,7 @@ class ChatViewController: JSQMessagesViewController {
     var acceptButton: UIBarButtonItem!
     var requestId: String!
     var requestTitle: String!
+    var userLocation: CLLocation!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -190,7 +192,7 @@ class ChatViewController: JSQMessagesViewController {
     
     func getRequest() -> Void {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
-        let url = URL(string: (requests + self.requestId!))
+        let url = URL(string: (requests + "search/" + self.requestId!))
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
@@ -204,22 +206,26 @@ class ChatViewController: JSQMessagesViewController {
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                self.parseRequest(requestlist: response!)
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                DispatchQueue.main.async() {
+                    if response != nil {
+                        self.parseRequest(request: response!)
+                    }
+                }
             }
         })
         dataTask?.resume()
     }
     
-    func parseRequest(requestlist: Array<Any>) -> Void {
-        let request = requestInfo(dict: requestlist[0] as! NSDictionary)
+    func parseRequest(request: NSDictionary) -> Void {
+        let request = requestInfo(dict: request)
         let detailVc: RequestDetailsViewController = RequestDetailsViewController()
-        
+        detailVc.userLocation = userLocation
         detailVc.request = request
         detailVc.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(detailVc,
-                                                 animated: false)
+                                                 animated: true)
     }
     
     // MARK: Network Request Methods
