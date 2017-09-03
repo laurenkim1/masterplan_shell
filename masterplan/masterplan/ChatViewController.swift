@@ -27,6 +27,8 @@ class ChatViewController: JSQMessagesViewController {
 
     var channelRef: DatabaseReference?
     var acceptButton: UIBarButtonItem!
+    var requestId: String!
+    var requestTitle: String!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -147,6 +149,14 @@ class ChatViewController: JSQMessagesViewController {
     private func setNavBar() {
         self.acceptButton = UIBarButtonItem(title: "Accept", style: .plain, target: self, action: #selector(acceptButtonTapped))
         self.navigationItem.rightBarButtonItem = acceptButton
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 65, width: screenSize.width, height: 30))
+        let buttonString: String = "For: " + self.requestTitle
+        let button = UIBarButtonItem(title: buttonString, style: .plain, target: self, action: #selector(titleTapped))
+        toolbar.barTintColor = UIColor.white
+        toolbar.items = [button]
+        self.view.addSubview(toolbar)
     }
     
     func acceptButtonTapped(){
@@ -174,23 +184,43 @@ class ChatViewController: JSQMessagesViewController {
         present(actionController, animated: true, completion: nil)
     }
     
-    /*
-    @IBAction func acceptedBtton(_ sender: UIBarButtonItem) {
-        self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
-            let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-            if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
-                //self.deleteAcceptedRequests(requestId: requestId)
-                self.deleteOtherProffrs(requestId: requestId)
-            } else {
-                print("Error! Could not decode channel data in Create Proffr")
-            }
-            
-        })
-
-        self.accepted.setValue(1)
-        
+    func titleTapped() {
+        self.getRequest()
     }
- */
+    
+    func getRequest() -> Void {
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let url = URL(string: (requests + self.requestId!))
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "GET"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        let config = URLSessionConfiguration.default
+        //4
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                self.parseRequest(requestlist: response!)
+            }
+        })
+        dataTask?.resume()
+    }
+    
+    func parseRequest(requestlist: Array<Any>) -> Void {
+        let request = requestInfo(dict: requestlist[0] as! NSDictionary)
+        let detailVc: RequestDetailsViewController = RequestDetailsViewController()
+        
+        detailVc.request = request
+        detailVc.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(detailVc,
+                                                 animated: false)
+    }
     
     // MARK: Network Request Methods
     
@@ -241,11 +271,6 @@ class ChatViewController: JSQMessagesViewController {
     // don't need senderId idiot
     
     func sendNotification(recipientId: String, channelSnapshot: NSDictionary) {
-        
-        if recipientId == nil {
-            return
-            //input safety check
-        }
         let notifications: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kNotifications).absoluteString
         let url = URL(string: notifications)
         //1

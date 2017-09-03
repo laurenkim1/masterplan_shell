@@ -132,8 +132,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
             
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
                 let id = newChannelRef.key
-                let name = self.request!.userName
-                let channel = ProffrChannel(id: id, name: self.request!.userName, subTitle: subTitle, photoUrl: requesterPhotoUrlString)
+                let channel = ProffrChannel(id: id, name: self.request!.userName, subTitle: subTitle, photoUrl: requesterPhotoUrlString, requestId: self.request!.requestID!)
                 self.segueToNewChannel(channel: channel)
             })
             
@@ -200,7 +199,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         chatVc.hidesBottomBarWhenPushed = true
 
         navigationController?.pushViewController(chatVc,
-                                                 animated: false)
+                                                 animated: true)
     }
     
      /*

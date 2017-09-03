@@ -142,7 +142,7 @@ class MyProffrsViewController: UITableViewController {
                 let requesterId: String = channelData["requesterId"] as! String
                 if requesterId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.incomingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
+                    self.incomingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String))
                 }
                 self.tableView.reloadData()
             } else {
@@ -164,7 +164,7 @@ class MyProffrsViewController: UITableViewController {
                 let senderId: String = channelData["proffrerId"] as! String
                 if senderId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.outgoingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl))
+                    self.outgoingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String))
                 }
                 self.tableView.reloadData()
             } else {
@@ -229,11 +229,12 @@ class MyProffrsViewController: UITableViewController {
     // MARK: Navigation
     
     func cellSelected(channel: ProffrChannel){
-        print(channel)
         let proffrChatVc: ChatViewController = ChatViewController()
         
         proffrChatVc.senderDisplayName = channel.name
         proffrChatVc.channel = channel
+        proffrChatVc.requestId = channel.requestId
+        proffrChatVc.requestTitle = channel.subTitle
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref
         proffrChatVc.hidesBottomBarWhenPushed = true
