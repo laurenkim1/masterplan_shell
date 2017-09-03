@@ -154,8 +154,17 @@ class ChatViewController: JSQMessagesViewController {
         
         let screenSize: CGRect = UIScreen.main.bounds
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 65, width: screenSize.width, height: 30))
-        let buttonString: String = "For: " + self.requestTitle
+        let buttonString: String = "For: \"" + self.requestTitle + "\""
         let button = UIBarButtonItem(title: buttonString, style: .plain, target: self, action: #selector(titleTapped))
+        
+        let color : UIColor = UIColor.black
+        let titleFont : UIFont = UIFont(name: "Ubuntu-Bold", size: 20)!
+        let attributes = [
+            NSForegroundColorAttributeName : color,
+            NSFontAttributeName : titleFont
+        ]
+
+        button.setTitleTextAttributes(attributes, for: UIControlState.normal)
         toolbar.barTintColor = UIColor.white
         toolbar.items = [button]
         self.view.addSubview(toolbar)
