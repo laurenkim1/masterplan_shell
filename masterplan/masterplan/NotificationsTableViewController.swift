@@ -122,7 +122,7 @@ class NotificationsTableViewController: UITableViewController {
         for item in notificationlist {
             if let notification = notificationModel(dict: item as! NSDictionary) {
                 //2
-                notifications += [notification]
+                notifications.insert(notification, at: 0)
             }
         }
     }

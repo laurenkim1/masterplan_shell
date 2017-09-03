@@ -145,7 +145,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 if (response == nil || (response?.isEmpty)!) {
                     self.FBGraphRequest(graphPath: "\(id)", exist: false)
                 } else {
-                    print(response!)
+                    // print(response!)
                     let responseDict = response?[0] as! NSDictionary
                     self.user = Profile(dict: responseDict)
                     
@@ -177,7 +177,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         connection.add(graphRequest, batchEntryName: "ProfilePicture", completion: { httpResponse, result in
             switch result {
             case .success(let response):
-                print("Graph Request Succeeded: \(response)")
+                // print("Graph Request Succeeded: \(response)")
                 let photoData: [String : Any] = response.dictionaryValue?["picture"] as! [String : Any]
                 let photoMetaData: [String : Any] = photoData["data"] as! [String : Any]
                 let photoUrlString: String = photoMetaData["url"] as! String

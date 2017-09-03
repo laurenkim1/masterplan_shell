@@ -136,7 +136,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         for item in requestlist {
             if let request = requestInfo(dict: item as! NSDictionary) {
                 //2
-                myRequestList += [request]
+                myRequestList.insert(request, at: 0)
             }
         }
     }

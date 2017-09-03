@@ -144,7 +144,7 @@ class MyProffrsViewController: UITableViewController {
                 let requesterId: String = channelData["requesterId"] as! String
                 if requesterId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.incomingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String))
+                    self.incomingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String), at: 0)
                 }
                 self.tableView.reloadData()
             } else {
@@ -166,7 +166,7 @@ class MyProffrsViewController: UITableViewController {
                 let senderId: String = channelData["proffrerId"] as! String
                 if senderId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.outgoingChannels.append(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String))
+                    self.outgoingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String), at: 0)
                 }
                 self.tableView.reloadData()
             } else {
