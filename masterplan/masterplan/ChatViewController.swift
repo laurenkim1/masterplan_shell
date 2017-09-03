@@ -156,6 +156,7 @@ class ChatViewController: JSQMessagesViewController {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 65, width: screenSize.width, height: 30))
         let buttonString: String = "For: \"" + self.requestTitle + "\""
         let button = UIBarButtonItem(title: buttonString, style: .plain, target: self, action: #selector(titleTapped))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         let color : UIColor = UIColor.black
         let titleFont : UIFont = UIFont(name: "Ubuntu-Bold", size: 20)!
@@ -166,7 +167,12 @@ class ChatViewController: JSQMessagesViewController {
 
         button.setTitleTextAttributes(attributes, for: UIControlState.normal)
         toolbar.barTintColor = UIColor.white
-        toolbar.items = [button]
+        
+        toolbar.items = [flexibleSpace, button, flexibleSpace]
+        let toolBarSeparator = UIView(frame: CGRect(x: 0, y: toolbar.frame.size.height-1, width: toolbar.frame.size.width, height: 1))
+        toolBarSeparator.backgroundColor = UIColor.gray // Here your custom color
+        toolBarSeparator.isOpaque = true
+        toolbar.addSubview(toolBarSeparator)
         self.view.addSubview(toolbar)
     }
     
