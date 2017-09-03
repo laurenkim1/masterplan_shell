@@ -169,7 +169,7 @@ class ChatViewController: JSQMessagesViewController {
         toolbar.barTintColor = UIColor.white
         
         toolbar.items = [flexibleSpace, button, flexibleSpace]
-        let toolBarSeparator = UIView(frame: CGRect(x: 0, y: toolbar.frame.size.height-1, width: toolbar.frame.size.width, height: 1))
+        let toolBarSeparator = UIView(frame: CGRect(x: 0, y: toolbar.frame.size.height-0.75, width: toolbar.frame.size.width, height: 0.75))
         toolBarSeparator.backgroundColor = UIColor.gray // Here your custom color
         toolBarSeparator.isOpaque = true
         toolbar.addSubview(toolBarSeparator)
