@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526105376.903371"
+            timestampString = "526232385.694868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "ChatViewController"
             landmarkType = "3">
             <Locations>
@@ -105,11 +105,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526105376.903371"
+            timestampString = "526232385.694868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "ChatViewController"
             landmarkType = "3">
             <Locations>
@@ -183,11 +183,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526105376.903371"
+            timestampString = "526232385.694868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "ChatViewController"
             landmarkType = "3">
             <Locations>
@@ -261,11 +261,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526105376.903371"
+            timestampString = "526232385.694868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "ChatViewController"
             landmarkType = "3">
             <Locations>
@@ -564,11 +564,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "deleteAcceptedRequests(requestId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -580,11 +580,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "deleteAcceptedRequests(requestId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -612,11 +612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -628,11 +628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -644,11 +644,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -660,11 +660,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -676,11 +676,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
             landmarkType = "7">
             <Locations>
@@ -1112,11 +1112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1128,11 +1128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1478,11 +1478,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
             landmarkName = "observeMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1686,11 +1686,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526233237.994638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "599"
-            endingLineNumber = "599"
+            startingLineNumber = "613"
+            endingLineNumber = "613"
             landmarkName = "getFcmTokenSend(id:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1798,11 +1798,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108411.193726"
+            timestampString = "526232385.694868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "acceptButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1814,11 +1814,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "526108334.245065"
+            timestampString = "526232385.694868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "setNavBar()"
             landmarkType = "7">
          </BreakpointContent>

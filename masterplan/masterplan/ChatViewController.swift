@@ -13,6 +13,7 @@ import Firebase
 import JSQMessagesViewController
 import XLActionController
 import CoreLocation
+import SwiftMessages
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
@@ -225,6 +226,8 @@ class ChatViewController: JSQMessagesViewController {
                 DispatchQueue.main.async() {
                     if response != nil {
                         self.parseRequest(request: response!)
+                    } else {
+                        self.warning()
                     }
                 }
             }
@@ -241,6 +244,17 @@ class ChatViewController: JSQMessagesViewController {
         
         navigationController?.pushViewController(detailVc,
                                                  animated: true)
+    }
+    
+    func warning() -> Void {
+        let error = MessageView.viewFromNib(layout: .TabView)
+        error.configureTheme(.warning)
+        error.backgroundView.backgroundColor = UIColor.purple
+        error.configureContent(title: "Sorry", body: "This request has already expired!")
+        error.configureDropShadow()
+        error.button?.isHidden = true
+        let errorConfig = SwiftMessages.defaultConfig
+        SwiftMessages.show(config: errorConfig, view: error)
     }
     
     // MARK: Network Request Methods

@@ -74,11 +74,6 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
-  - IGListKit (3.0.0):
-    - IGListKit/Default (= 3.0.0)
-  - IGListKit/Default (3.0.0):
-    - IGListKit/Diffing
-  - IGListKit/Diffing (3.0.0)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -87,6 +82,7 @@ PODS:
   - Material/Core (2.6.3)
   - Neon (0.4.0)
   - Protobuf (3.4.0)
+  - SwiftMessages (3.4.0)
   - XLActionController (3.0.1):
     - XLActionController/Core (= 3.0.1)
   - XLActionController/Core (3.0.1)
@@ -105,10 +101,10 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Messaging
   - Firebase/Storage
-  - IGListKit (~> 3.0)
   - JSQMessagesViewController
   - Material (~> 2.0)
   - Neon
+  - SwiftMessages
   - XLActionController
   - XLActionController/Periscope
 
@@ -133,14 +129,14 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
-  IGListKit: 9eab6856a15fa25ad72018ff9d9eb2178c240fff
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
+  SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
 
-PODFILE CHECKSUM: 01ab5bcd209ab3b5aaa9776a7658a59d61efcac1
+PODFILE CHECKSUM: d78292fcada31ebaae3fb9fbb0752d19b8c1eca7
 
 COCOAPODS: 1.2.1
