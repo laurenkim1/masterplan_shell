@@ -10,6 +10,7 @@ import UIKit
 import os.log
 import MapKit
 import CoreLocation
+import SwiftMessages
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
@@ -125,8 +126,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                self.parseAndAddRequest(requestlist: response!)
-                self.tableView.reloadData()
+                if (!(response != nil)) {
+                    self.warning()
+                } else {
+                    self.parseAndAddRequest(requestlist: response!)
+                    self.tableView.reloadData()
+                }
             }
         })
         dataTask?.resume()
@@ -141,6 +146,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func warning() -> Void {
+        let error = MessageView.viewFromNib(layout: .StatusLine)
+        error.backgroundView.backgroundColor = UIColor.lightGray
+        error.bodyLabel?.textColor = UIColor.white
+        error.configureContent(body: "No Internet Connection")
+        error.configureDropShadow()
+        var errorConfig = SwiftMessages.defaultConfig
+        errorConfig.duration = .seconds(seconds: 10)
+        SwiftMessages.show(config: errorConfig, view: error)
+    }
     
     // MARK: - Table view data source
     
