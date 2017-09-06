@@ -12,6 +12,7 @@ import MapKit
 import CoreLocation
 import DGElasticPullToRefresh
 import SwiftMessages
+import SystemConfiguration
 
 private let kBaseURL: String = "http://localhost:3000/"
 private let kRequests: String = "requests/"
@@ -43,6 +44,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         self.tableView.allowsSelectionDuringEditing = true
         self.tableView.isUserInteractionEnabled = true
         
+        let internet = self.isInternetAvailable()
+        if (!internet) {
+            self.warning()
+        }
+        
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -58,8 +64,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        
-        self.tableView.reloadData()
         //self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
@@ -328,6 +332,26 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
                 nearbyRequestList.insert(request, at: 0)
             }
         }
+    }
+    
+    func isInternetAvailable() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        return (isReachable && !needsConnection)
     }
 
 
