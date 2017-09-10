@@ -344,6 +344,7 @@ class ChatViewController: JSQMessagesViewController {
         let nextViewController: PaymentViewController = PaymentViewController()
         nextViewController.requestId = requestId
         nextViewController.requestTitle = requestTitle
+        nextViewController.userLocation = userLocation
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
     }

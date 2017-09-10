@@ -8,15 +8,26 @@
 
 import UIKit
 import Braintree
+import CoreLocation
+import SwiftMessages
+import os.log
+
+private let kBaseURL: String = "http://localhost:3000/"
+private let kRequests: String = "requests/"
+private let kNotifications: String = "notifications/"
+private let kUsers: String = "users/"
 
 class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
+    
     var braintree: Braintree?
+    
     var myUserId: String!
     var requestId: String!
     var requestTitle: String!
     var myProfilePhoto: UIImageView!
     var otherProfilePhoto: UIImageView!
     var payButton: UIButton!
+    var userLocation: CLLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +45,9 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
     func tappedMyPayButton() {
         // If you haven't already, create and retain a `Braintree` instance with the client token.
         // Typically, you only need to do this once per session.
-        //braintree = Braintree(clientToken: CLIENT_TOKEN_FROM_SERVER)
+        let clientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJkZTFiMzc1NmY0NjFiODlkNDJkZTY0NDc1NWNlMWIxMTE1ZjE0NGNlNGE5YjcxOTRhM2I3Yzk5MDU2MzIxYmMxfGNyZWF0ZWRfYXQ9MjAxNy0wOS0xMFQyMTowMzo1OS40NTEyMjkxMjMrMDAwMFx1MDAyNm1lcmNoYW50X2lkPTM0OHBrOWNnZjNiZ3l3MmJcdTAwMjZwdWJsaWNfa2V5PTJuMjQ3ZHY4OWJxOXZtcHIiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvMzQ4cGs5Y2dmM2JneXcyYi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzM0OHBrOWNnZjNiZ3l3MmIvY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tLzM0OHBrOWNnZjNiZ3l3MmIifSwidGhyZWVEU2VjdXJlRW5hYmxlZCI6dHJ1ZSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwiYmlsbGluZ0FncmVlbWVudHNFbmFibGVkIjp0cnVlLCJtZXJjaGFudEFjY291bnRJZCI6ImFjbWV3aWRnZXRzbHRkc2FuZGJveCIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9LCJtZXJjaGFudElkIjoiMzQ4cGs5Y2dmM2JneXcyYiIsInZlbm1vIjoib2ZmIn0="
+        
+        braintree = Braintree(clientToken: clientToken)
         
         // Create a BTDropInViewController
         let dropInViewController = braintree!.dropInViewController(with: self)
@@ -101,13 +114,6 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
     }
     
     func setView() {
-        let messageLabel: UILabel = UILabel(frame: CGRect(x:20, y: 70, width: self.view.frame.width-40, height: 25))
-        messageLabel.text = "Write a message..."
-        
-        messageTextField = UITextField(frame: CGRect(x:20, y: 70+messageLabel.frame.height+10, width: self.view.frame.width-40, height: 50))
-        messageTextField.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
-        messageTextField.layer.borderWidth = 2.0
-        messageTextField.delegate = self
         
         myProfilePhoto = UIImageView()
         myProfilePhoto.frame = CGRect(x: 20, y: 80, width: self.view.frame.width-230, height: self.view.frame.width-230)
@@ -118,15 +124,12 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         myProfilePhoto.clipsToBounds = true
         view.addSubview(myProfilePhoto)
         
-        self.payButton = UIButton(frame: CGRect(x: 20, y: 70+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20+photoImageView.frame.height+10, width: self.view.frame.width-40, height: 50))
-        payButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
+        self.payButton = UIButton(frame: CGRect(x: 20, y: 70+myProfilePhoto.frame.height, width: self.view.frame.width-40, height: 50))
+        payButton.addTarget(self, action: #selector(self.tappedMyPayButton), for: .touchUpInside)
         payButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         payButton.layer.cornerRadius = 5
         payButton.setTitle("Done", for: .normal)
         
-        self.view.addSubview(messageLabel)
-        self.view.addSubview(messageTextField)
-        self.view.addSubview(photoLabel)
         self.view.addSubview(myProfilePhoto)
         self.view.addSubview(payButton)
     }
@@ -173,6 +176,17 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         
         navigationController?.pushViewController(detailVc,
                                                  animated: true)
+    }
+    
+    func warning() -> Void {
+        let error = MessageView.viewFromNib(layout: .TabView)
+        error.configureTheme(.warning)
+        error.backgroundView.backgroundColor = UIColor.purple
+        error.configureContent(title: "Sorry", body: "This request has already expired!")
+        error.configureDropShadow()
+        error.button?.isHidden = true
+        let errorConfig = SwiftMessages.defaultConfig
+        SwiftMessages.show(config: errorConfig, view: error)
     }
 
     /*
