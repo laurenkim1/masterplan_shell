@@ -6,6 +6,36 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Braintree (3.9.9):
+    - Braintree/API (= 3.9.9)
+    - Braintree/Coinbase (= 3.9.9)
+    - Braintree/Drop-In (= 3.9.9)
+    - Braintree/Payments (= 3.9.9)
+    - Braintree/PayPal (= 3.9.9)
+    - Braintree/UI (= 3.9.9)
+    - Braintree/Venmo (= 3.9.9)
+  - Braintree/API (3.9.9)
+  - Braintree/Coinbase (3.9.9):
+    - Braintree/API
+  - Braintree/Drop-In (3.9.9):
+    - Braintree/API
+    - Braintree/Coinbase
+    - Braintree/Payments
+    - Braintree/PayPal
+    - Braintree/UI
+    - Braintree/Venmo
+  - Braintree/Payments (3.9.9):
+    - Braintree/API
+    - Braintree/Coinbase
+    - Braintree/PayPal
+    - Braintree/Venmo
+  - Braintree/PayPal (3.9.9):
+    - Braintree/API
+    - Braintree/UI
+  - Braintree/UI (3.9.9):
+    - Braintree/API
+  - Braintree/Venmo (3.9.9):
+    - Braintree/API
   - CircleMenu (2.0.5)
   - DGElasticPullToRefresh (1.1)
   - EasyPeasy (1.4.2)
@@ -91,6 +121,7 @@ PODS:
 
 DEPENDENCIES:
   - AMTagListView
+  - Braintree (~> 3.9)
   - CircleMenu (~> 2.0.1)
   - DGElasticPullToRefresh
   - EasyPeasy
@@ -111,6 +142,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AMTagListView: 08ab67466c67152f6299bc29a13a907783b0046f
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Braintree: a9d35b7d5a8d76267adcb5795d32c20ca5f39a99
   CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   EasyPeasy: 50e7130b61f495ce105796e438d4136e2c8d2cc0
@@ -137,6 +169,6 @@ SPEC CHECKSUMS:
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
 
-PODFILE CHECKSUM: d78292fcada31ebaae3fb9fbb0752d19b8c1eca7
+PODFILE CHECKSUM: 57bb58cb61be79264eb19af921630af10bbc1492
 
 COCOAPODS: 1.2.1

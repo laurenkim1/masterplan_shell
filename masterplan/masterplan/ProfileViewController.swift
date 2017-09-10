@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userLocation: CLLocation!
     var myRequestList = [requestInfo]()
     var tableView: UITableView!
-    var ProfilePhoto : UIImageView!
+    var ProfilePhoto: UIImageView!
     var firstName: String!
     var lastName: String!
     

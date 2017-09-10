@@ -195,7 +195,8 @@ class ChatViewController: JSQMessagesViewController {
             
             self.accepted.setValue(1)
             
-            self.navigationController?.popToRootViewController(animated: true)
+            // self.navigationController?.popToRootViewController(animated: true)
+            self.moveToPay()
         }))
         actionController.addAction(Action("Cancel", style: .cancel, handler: { action in
         }))
@@ -337,6 +338,14 @@ class ChatViewController: JSQMessagesViewController {
             }
         })
         dataTask?.resume()
+    }
+    
+    func moveToPay(){
+        let nextViewController: PaymentViewController = PaymentViewController()
+        nextViewController.requestId = requestId
+        nextViewController.requestTitle = requestTitle
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: true)
     }
 
     
