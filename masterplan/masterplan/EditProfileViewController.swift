@@ -88,6 +88,7 @@ class EditProfileViewController: FormViewController {
         let proffrsVc = proffrsNavVc.viewControllers.first as! MyProffrsViewController
         proffrsVc.myUserId = self.userId
         proffrsVc.userLocation = self.userLocation
+        proffrsVc.myPhotoUrl = self.myPhotoUrl
         let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
         newVc.myDisplayName = self.userName
         newVc.myUserId = self.userId
@@ -103,6 +104,7 @@ class EditProfileViewController: FormViewController {
         profileVc.firstName = self.firstName
         profileVc.lastName = self.lastName
         profileVc.userLocation = self.userLocation
+        profileVc.userProfile = updateUser
         
         UIApplication.shared.keyWindow?.rootViewController = navVc
         self.dismiss(animated: true, completion: nil)

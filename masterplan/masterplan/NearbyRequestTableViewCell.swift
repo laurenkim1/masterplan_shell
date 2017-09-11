@@ -40,7 +40,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
         return view
     }()
     
@@ -48,7 +47,7 @@ class NearbyRequestTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
+        //view.font = .systemFont(ofSize: 17)
         return view
     }()
     
@@ -56,7 +55,6 @@ class NearbyRequestTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        view.font = .systemFont(ofSize: 17)
         return view
     }()
 
@@ -102,7 +100,7 @@ class NearbyRequestTableViewCell: UITableViewCell {
         requestPrice.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(requestPrice)
         
-        inlabel.frame = CGRect(x: requestPrice.frame.origin.x+requestPrice.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 20, height: CellHeight/3)
+        inlabel.frame = CGRect(x: requestPrice.frame.origin.x+requestPrice.frame.width, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 25, height: CellHeight/3)
         inlabel.textColor = UIColor.lightGray
         inlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(inlabel)

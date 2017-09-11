@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var ProfilePhoto: UIImageView!
     var firstName: String!
     var lastName: String!
+    var userProfile: Profile!
     
     lazy var firstNameLabel: UILabel = {
         let view = UILabel()
@@ -57,6 +58,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         ProfilePhoto.layer.cornerRadius = 10
         ProfilePhoto.clipsToBounds = true
         view.addSubview(ProfilePhoto)
+        
+        let fbimage = UIImageView()
+        fbimage.image = UIImage(named: "facebook")
+        fbimage.frame = CGRect(x: self.ProfilePhoto.frame.origin.x+self.ProfilePhoto.frame.width+10, y: 160, width: 20, height: 20)
+        self.view.addSubview(fbimage)
+        
+        let verifiedLabel: UILabel = UILabel()
+        verifiedLabel.frame = CGRect(x: fbimage.frame.origin.x+fbimage.frame.width+5, y: 160, width: 200, height: 20)
+        verifiedLabel.text = "Verified"
+        verifiedLabel.font = UIFont(name: "Ubuntu", size: 16)
+        verifiedLabel.textColor = UIColor.lightGray
+        self.view.addSubview(verifiedLabel)
+        
+        let locationimage = UIImageView()
+        locationimage.image = UIImage(named: "location")
+        locationimage.frame = CGRect(x: self.ProfilePhoto.frame.origin.x+self.ProfilePhoto.frame.width+10, y: 190, width: 20, height: 20)
+        self.view.addSubview(locationimage)
+        
+        let distanceLabel: UILabel = UILabel()
+        distanceLabel.frame = CGRect(x: locationimage.frame.origin.x+locationimage.frame.width+5, y: 190, width: 200, height: 20)
+        let _meterDistance: CLLocationDistance = userLocation.distance(from: userProfile.userLocation)
+        let _distance: Double = _meterDistance/1609.34
+        let _distanceString: String = "(" + String(format:"%.2f", _distance) + " mi away)"
+        distanceLabel.text = _distanceString
+        distanceLabel.font = UIFont(name: "Ubuntu", size: 16)
+        distanceLabel.textColor = UIColor.lightGray
+        self.view.addSubview(distanceLabel)
         
         self.tableView = UITableView(frame: CGRect(x: 0, y: self.ProfilePhoto.frame.origin.y+self.ProfilePhoto.frame.height+20, width: self.view.frame.width, height: self.view.frame.height-200))
         self.tableView.delegate = self
@@ -101,7 +129,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         firstNameLabel.text = firstName
         firstNameLabel.textColor = UIColor.darkGray
         firstNameLabel.font = UIFont(name: "Ubuntu-Bold", size: 30)
-        lastNameLabel.frame = CGRect(x: self.firstNameLabel.frame.origin.x, y: self.firstNameLabel.frame.origin.y+self.firstNameLabel.frame.height+10, width: 150, height: 30)
+        lastNameLabel.frame = CGRect(x: self.firstNameLabel.frame.origin.x, y: self.firstNameLabel.frame.origin.y+self.firstNameLabel.frame.height+5, width: 150, height: 30)
         lastNameLabel.text = lastName
         lastNameLabel.textColor = UIColor.darkGray
         lastNameLabel.font = UIFont(name: "Ubuntu-Bold", size: 30)
