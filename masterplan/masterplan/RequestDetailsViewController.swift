@@ -105,12 +105,19 @@ class RequestDetailsViewController: UIViewController {
         let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: postTime as Date)
         let nowTime = Date()
         let timeLeft: TimeInterval = (endTime?.timeIntervalSince(nowTime))!
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .short
         
-        let timeString = formatter.string(from: timeLeft)
-        
-        timeLabel.text = timeString
+        if timeLeft > 0 {
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = .short
+            let timeString = formatter.string(from: timeLeft)
+            timeLabel.text = timeString
+            inlabel.text = "in"
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            timeLabel.text = formatter.string(from: request.postTime as! Date)
+            inlabel.text = "on"
+        }
         
         let _meterDistance: CLLocationDistance = userLocation.distance(from: request.location)
         let _distance: Double = _meterDistance/1609.34

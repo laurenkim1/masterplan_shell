@@ -218,7 +218,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
             cell.timeLabel.text = formatter.string(from: myRequest.postTime as! Date)
-            cell.inlabel.text = ""
+            cell.inlabel.text = "on"
         }
         
         return cell
