@@ -196,7 +196,8 @@ class ChatViewController: JSQMessagesViewController {
             self.accepted.setValue(1)
             
             // self.navigationController?.popToRootViewController(animated: true)
-            self.moveToPay()
+            // movetopay
+            self.getRequest(nxt: 0)
         }))
         actionController.addAction(Action("Cancel", style: .cancel, handler: { action in
         }))
@@ -204,10 +205,10 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func titleTapped() {
-        self.getRequest()
+        self.getRequest(nxt: 1)
     }
     
-    func getRequest() -> Void {
+    func getRequest(nxt: Int) -> Void {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
         let url = URL(string: (requests + "search/" + self.requestId!))
         //1
@@ -226,7 +227,11 @@ class ChatViewController: JSQMessagesViewController {
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
                 DispatchQueue.main.async() {
                     if response != nil {
-                        self.parseRequest(request: response!)
+                        if nxt == 1 {
+                            self.parseRequest(requestdict: response!)
+                        } else if nxt == 0 {
+                            self.moveToPay(requestdict: response!)
+                        }
                     } else {
                         self.warning()
                     }
@@ -236,8 +241,8 @@ class ChatViewController: JSQMessagesViewController {
         dataTask?.resume()
     }
     
-    func parseRequest(request: NSDictionary) -> Void {
-        let request = requestInfo(dict: request)
+    func parseRequest(requestdict: NSDictionary) -> Void {
+        let request = requestInfo(dict: requestdict)
         let detailVc: RequestDetailsViewController = RequestDetailsViewController()
         detailVc.userLocation = userLocation
         detailVc.request = request
@@ -340,9 +345,11 @@ class ChatViewController: JSQMessagesViewController {
         dataTask?.resume()
     }
     
-    func moveToPay(){
+    func moveToPay(requestdict: NSDictionary) -> Void {
+        let request = requestInfo(dict: requestdict)
         let nextViewController: PaymentViewController = PaymentViewController()
         nextViewController.requestId = requestId
+        nextViewController.request = request
         nextViewController.requestTitle = requestTitle
         nextViewController.userLocation = userLocation
         navigationController?.pushViewController(nextViewController,

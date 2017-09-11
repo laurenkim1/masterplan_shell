@@ -22,6 +22,7 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
     var braintree: Braintree?
     
     var myUserId: String!
+    var request: requestInfo!
     var requestId: String!
     var requestTitle: String!
     var myProfilePhoto: UIImageView!
@@ -120,9 +121,11 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         myProfilePhoto.layer.borderWidth = 1
         myProfilePhoto.layer.masksToBounds = false
         myProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
-        myProfilePhoto.layer.cornerRadius = 10
+        myProfilePhoto.layer.cornerRadius = myProfilePhoto.frame.height/2
         myProfilePhoto.clipsToBounds = true
         view.addSubview(myProfilePhoto)
+        
+        self.setProfilePhoto(myPhotoUrl: request.photoUrl.absoluteString, photo: myProfilePhoto)
         
         self.payButton = UIButton(frame: CGRect(x: 20, y: 70+myProfilePhoto.frame.height, width: self.view.frame.width-40, height: 50))
         payButton.addTarget(self, action: #selector(self.tappedMyPayButton), for: .touchUpInside)
@@ -187,6 +190,20 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         error.button?.isHidden = true
         let errorConfig = SwiftMessages.defaultConfig
         SwiftMessages.show(config: errorConfig, view: error)
+    }
+    
+    func setProfilePhoto(myPhotoUrl: String, photo: UIImageView) {
+        let photoUrl = URL(string: myPhotoUrl)
+        URLSession.shared.dataTask(with: photoUrl!) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            print("Download Started")
+            print(response?.suggestedFilename ?? photoUrl?.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() { () -> Void in
+                let image = UIImage(data: data)
+                photo.image = image
+            }
+            }.resume()
     }
 
     /*
