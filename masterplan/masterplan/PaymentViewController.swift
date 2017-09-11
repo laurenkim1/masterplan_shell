@@ -24,6 +24,7 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
     var myUserId: String!
     var request: requestInfo!
     var requestId: String!
+    var myPhotoUrl: String!
     var requestTitle: String!
     var myProfilePhoto: UIImageView!
     var otherProfilePhoto: UIImageView!
@@ -117,7 +118,7 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
     func setView() {
         
         myProfilePhoto = UIImageView()
-        myProfilePhoto.frame = CGRect(x: 20, y: 80, width: self.view.frame.width-230, height: self.view.frame.width-230)
+        myProfilePhoto.frame = CGRect(x: self.view.frame.width/5-10, y: 140, width: self.view.frame.width/5+10, height: self.view.frame.width/5+10)
         myProfilePhoto.layer.borderWidth = 1
         myProfilePhoto.layer.masksToBounds = false
         myProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
@@ -125,9 +126,19 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         myProfilePhoto.clipsToBounds = true
         view.addSubview(myProfilePhoto)
         
-        self.setProfilePhoto(myPhotoUrl: request.photoUrl.absoluteString, photo: myProfilePhoto)
+        otherProfilePhoto = UIImageView()
+        otherProfilePhoto.frame = CGRect(x: 3*self.view.frame.width/5, y: 140, width: self.view.frame.width/5+10, height: self.view.frame.width/5+10)
+        otherProfilePhoto.layer.borderWidth = 1
+        otherProfilePhoto.layer.masksToBounds = false
+        otherProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
+        otherProfilePhoto.layer.cornerRadius = myProfilePhoto.frame.height/2
+        otherProfilePhoto.clipsToBounds = true
+        view.addSubview(otherProfilePhoto)
         
-        self.payButton = UIButton(frame: CGRect(x: 20, y: 70+myProfilePhoto.frame.height, width: self.view.frame.width-40, height: 50))
+        self.setProfilePhoto(PhotoUrl: self.myPhotoUrl, photo: myProfilePhoto)
+        self.setProfilePhoto(PhotoUrl: request.photoUrl.absoluteString, photo: otherProfilePhoto)
+        
+        self.payButton = UIButton(frame: CGRect(x: self.view.frame.width/3, y: 140+myProfilePhoto.frame.height+200, width: self.view.frame.width/3, height: 50))
         payButton.addTarget(self, action: #selector(self.tappedMyPayButton), for: .touchUpInside)
         payButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         payButton.layer.cornerRadius = 5
@@ -192,8 +203,8 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         SwiftMessages.show(config: errorConfig, view: error)
     }
     
-    func setProfilePhoto(myPhotoUrl: String, photo: UIImageView) {
-        let photoUrl = URL(string: myPhotoUrl)
+    func setProfilePhoto(PhotoUrl: String, photo: UIImageView) {
+        let photoUrl = URL(string: PhotoUrl)
         URLSession.shared.dataTask(with: photoUrl!) { (data, response, error)  in
             guard let data = data, error == nil else { return }
             print("Download Started")

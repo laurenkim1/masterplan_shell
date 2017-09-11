@@ -32,6 +32,7 @@ class ChatViewController: JSQMessagesViewController {
     var requestId: String!
     var requestTitle: String!
     var userLocation: CLLocation!
+    var myPhotoUrl: String!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -352,6 +353,7 @@ class ChatViewController: JSQMessagesViewController {
         nextViewController.request = request
         nextViewController.requestTitle = requestTitle
         nextViewController.userLocation = userLocation
+        nextViewController.myPhotoUrl = self.myPhotoUrl
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
     }
