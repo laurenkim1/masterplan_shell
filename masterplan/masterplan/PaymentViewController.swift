@@ -117,8 +117,13 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
     
     func setView() {
         
+        let arrow = UIImageView()
+        arrow.image = UIImage(named: "right-arrow")
+        arrow.frame = CGRect(x: 2*self.view.frame.width/5+10, y: 170, width: self.view.frame.width/5-20, height: self.view.frame.width/5-20)
+        view.addSubview(arrow)
+        
         myProfilePhoto = UIImageView()
-        myProfilePhoto.frame = CGRect(x: self.view.frame.width/5-10, y: 140, width: self.view.frame.width/5+10, height: self.view.frame.width/5+10)
+        myProfilePhoto.frame = CGRect(x: self.view.frame.width/5-20, y: 160, width: self.view.frame.width/5+10, height: self.view.frame.width/5+10)
         myProfilePhoto.layer.borderWidth = 1
         myProfilePhoto.layer.masksToBounds = false
         myProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
@@ -127,7 +132,7 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         view.addSubview(myProfilePhoto)
         
         otherProfilePhoto = UIImageView()
-        otherProfilePhoto.frame = CGRect(x: 3*self.view.frame.width/5, y: 140, width: self.view.frame.width/5+10, height: self.view.frame.width/5+10)
+        otherProfilePhoto.frame = CGRect(x: 3*self.view.frame.width/5+10, y: 160, width: self.view.frame.width/5+10, height: self.view.frame.width/5+10)
         otherProfilePhoto.layer.borderWidth = 1
         otherProfilePhoto.layer.masksToBounds = false
         otherProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
@@ -138,13 +143,64 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         self.setProfilePhoto(PhotoUrl: self.myPhotoUrl, photo: myProfilePhoto)
         self.setProfilePhoto(PhotoUrl: request.photoUrl.absoluteString, photo: otherProfilePhoto)
         
-        self.payButton = UIButton(frame: CGRect(x: self.view.frame.width/3, y: 140+myProfilePhoto.frame.height+200, width: self.view.frame.width/3, height: 50))
+        self.payButton = UIButton(frame: CGRect(x: self.view.frame.width/5, y: 140+myProfilePhoto.frame.height+300, width: 3*self.view.frame.width/5, height: 50))
         payButton.addTarget(self, action: #selector(self.tappedMyPayButton), for: .touchUpInside)
         payButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         payButton.layer.cornerRadius = 5
-        payButton.setTitle("Done", for: .normal)
+        payButton.setTitle("Pay", for: .normal)
         
-        self.view.addSubview(myProfilePhoto)
+        let separator = UIView(frame: CGRect(x: 0, y: 140+myProfilePhoto.frame.height+80, width: self.view.frame.size.width, height: 0.75))
+        separator.backgroundColor = UIColor.gray // Here your custom color
+        separator.isOpaque = true
+        view.addSubview(separator)
+        
+        let separator1 = UIView(frame: CGRect(x: 0, y: 140+myProfilePhoto.frame.height+130, width: self.view.frame.size.width, height: 0.75))
+        separator1.backgroundColor = UIColor.gray // Here your custom color
+        separator1.isOpaque = true
+        view.addSubview(separator1)
+        
+        let centerpoint: CGPoint = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+        
+        let paymentlabel = UILabel(frame: CGRect(x: centerpoint.x-60, y: 140+myProfilePhoto.frame.height+80, width: 120, height: 50))
+        paymentlabel.text = "Payment"
+        paymentlabel.font = UIFont(name: "Arial", size: 30)
+        self.view.addSubview(paymentlabel)
+        
+        let itemlabel = UILabel(frame: CGRect(x: centerpoint.x-120, y: separator1.center.y+20, width: 180, height: 20))
+        itemlabel.text = "Item"
+        itemlabel.font = UIFont(name: "Arial", size: 16)
+        self.view.addSubview(itemlabel)
+        
+        let itemprice = UILabel(frame: CGRect(x: centerpoint.x+60, y: separator1.center.y+20, width: 60, height: 20))
+        itemprice.text = "$" + String(format:"%.2f", request.requestPrice)
+        itemprice.font = UIFont(name: "Arial", size: 16)
+        self.view.addSubview(itemprice)
+        
+        let servicelabel = UILabel(frame: CGRect(x: centerpoint.x-120, y: itemlabel.center.y+30, width: 180, height: 20))
+        servicelabel.text = "Transaction Fee"
+        servicelabel.font = UIFont(name: "Arial", size: 16)
+        self.view.addSubview(servicelabel)
+        
+        let serviceprice = UILabel(frame: CGRect(x: centerpoint.x+60, y: itemlabel.center.y+30, width: 60, height: 20))
+        serviceprice.text = "$" + String(format:"%.2f", 0.60)
+        serviceprice.font = UIFont(name: "Arial", size: 16)
+        self.view.addSubview(serviceprice)
+        
+        let separator2 = UIView(frame: CGRect(x: centerpoint.x-130, y: serviceprice.center.y+20, width: 260, height: 1.25))
+        separator2.backgroundColor = UIColor.gray // Here your custom color
+        separator2.isOpaque = true
+        view.addSubview(separator2)
+        
+        let totallabel = UILabel(frame: CGRect(x: centerpoint.x-120, y: separator2.center.y+15, width: 180, height: 20))
+        totallabel.text = "Total"
+        totallabel.font = UIFont(name: "Arial", size: 16)
+        self.view.addSubview(totallabel)
+        
+        let totalprice = UILabel(frame: CGRect(x: centerpoint.x+60, y: separator2.center.y+15, width: 60, height: 20))
+        totalprice.text = "$" + String(format:"%.2f", request.requestPrice+0.60)
+        totalprice.font = UIFont(name: "Arial", size: 16)
+        self.view.addSubview(totalprice)
+        
         self.view.addSubview(payButton)
     }
     
