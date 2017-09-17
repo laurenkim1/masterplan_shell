@@ -329,7 +329,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         for item in requestlist {
             if let request = requestInfo(dict: item as! NSDictionary) {
                 //2
-                nearbyRequestList.insert(request, at: 0)
+                nearbyRequestList.append(request)
             }
         }
     }

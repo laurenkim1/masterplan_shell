@@ -127,7 +127,7 @@ class NotificationsTableViewController: UITableViewController {
         for item in notificationlist {
             if let notification = notificationModel(dict: item as! NSDictionary) {
                 //2
-                notifications.insert(notification, at: 0)
+                notifications.append(notification)
             }
         }
     }

@@ -5,6 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var db = require('../db');
 
 router.use(bodyParser.json());
 var Notification = require('./Notification');
@@ -33,8 +34,8 @@ router.post('/', function (req, res) {
 
 router.get('/:recipientId', function (req, res) {
     var userID = req.params.recipientId;
-    console.log(userID)
-    Notification.find({ userID: userID }, function (err, notification) {
+    console.log(userID);
+    Notification.find({ userID: userID }).sort({createdAt:-1}).limit(15).exec(function (err, notification) {
         if (err) return res.status(500).send("There was a problem finding the notification.");
         if (!notification) return res.status(404).send("No notification found.");
         console.log(notification)
