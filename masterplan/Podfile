@@ -18,7 +18,7 @@ target 'masterplan' do
   pod ‘EasyPeasy’
   pod 'Neon'
   pod 'DGElasticPullToRefresh'
-  pod 'Eureka'
+  pod 'Eureka’, :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift3_2'
   pod 'AMTagListView'
   pod 'XLActionController'
   pod 'XLActionController/Periscope'

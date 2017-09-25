@@ -60,7 +60,7 @@ class TabBarController: UITabBarController {
         nav4.tabBarItem.image = UIImage(named: "notifications-btn")
         
         let nav5 = UINavigationController()
-        let ProfileVC = ProfileViewController()
+        let ProfileVC = UserProfileViewController()
         ProfileVC.myUserId = myUserId
         ProfileVC.myPhotoUrl = myPhotoUrl
         ProfileVC.userLocation = userLocation

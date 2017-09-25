@@ -14,7 +14,7 @@ import DGElasticPullToRefresh
 import SwiftMessages
 import SystemConfiguration
 
-private let kBaseURL: String = "http://localhost:3000/"
+private let kBaseURL: String = "http://52.14.151.59/"
 private let kRequests: String = "requests/"
 
 class HomePageViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, CLLocationManagerDelegate {
@@ -30,12 +30,10 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     var distanceCeiling: CLLocationDistance = 1610.0 as CLLocationDistance
     
     let locationManager = CLLocationManager()
-    var userLocation: CLLocation! // = CLLocation(latitude: 42.3770, longitude: -71.1167)
+    var userLocation: CLLocation! 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = "Proffr"
         
         self.tableView.delegate = self
         self.tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
@@ -68,7 +66,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            self?.nearbyRequestList = []
             self?.getNearbyRequests((self?.userLocation)!, 1)
             self?.tableView.dg_stopLoading()
             }, loadingView: loadingView)
@@ -160,42 +157,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             
             searchItemsPredicate.append(tagSearchComparisonPredicate)
             
-            /*
-            
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .none
-            numberFormatter.formatterBehavior = .default
-            
-            let targetNumber = numberFormatter.number(from: searchString)
-            
-            // `searchString` may fail to convert to a number.
-            if targetNumber != nil {
-                // Use `targetNumberExpression` in both the following predicates.
-                let targetNumberExpression = NSExpression(forConstantValue: targetNumber!)
-                
-                // `yearIntroduced` field matching.
-                let yearIntroducedExpression = NSExpression(forKeyPath: "yearIntroduced")
-                let yearIntroducedPredicate = NSComparisonPredicate(leftExpression: yearIntroducedExpression, rightExpression: targetNumberExpression, modifier: .direct, type: .equalTo, options: .caseInsensitive)
-                
-                searchItemsPredicate.append(yearIntroducedPredicate)
-                
-                // `price` field matching.
-                let lhs = NSExpression(forKeyPath: "introPrice")
-                
-                let finalPredicate = NSComparisonPredicate(leftExpression: lhs, rightExpression: targetNumberExpression, modifier: .direct, type: .equalTo, options: .caseInsensitive)
-                
-                searchItemsPredicate.append(finalPredicate)
-            }
- 
-
-            
-            let requestLocation: CLLocation = value(forKeyPath: "location") as! CLLocation
-            let distanceBetween: CLLocationDistance = userLocation.distance(from: requestLocation)
-            let NSDistanceBetween = NSExpression(forConstantValue: distanceBetween)
-            let NSDistanceCeiling = NSExpression(forConstantValue: distanceCeiling)
-            let distancePredicate = NSComparisonPredicate(leftExpression: NSDistanceBetween, rightExpression: NSDistanceCeiling, modifier: .direct, type: .lessThanOrEqualTo, options: .caseInsensitive)
-            searchItemsPredicate.append(distancePredicate)
- */
             
             // Add this OR predicate to our master AND predicate.
             let orMatchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates:searchItemsPredicate)
@@ -254,16 +215,19 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             }
             }.resume()
         
+        cell.inlabel.text = "in"
+        
+        let postTime = nearbyRequest.postTime!
         let components: NSDateComponents = NSDateComponents()
         components.setValue(24, forComponent: NSCalendar.Unit.hour)
-        let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: nearbyRequest.postTime as! Date)
+        let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: postTime as Date)
         let nowTime = Date()
         let timeLeft: TimeInterval = (endTime?.timeIntervalSince(nowTime))!
+        
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
         let timeString = formatter.string(from: timeLeft)
         cell.timeLabel.text = timeString
-        cell.inlabel.text = "in"
         
         cell.requestTitle.text = nearbyRequest.requestTitle
         cell.nameLabel.text = nearbyRequest.userName
@@ -317,6 +281,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
                 if (!(response != nil)) {
                     self.warning()
                 } else {
+                    self.nearbyRequestList = []
+                    self.tableView.reloadData()
                     self.parseAndAddRequest(requestlist: response!)
                     self.tableView.reloadData()
                 }

@@ -60,8 +60,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // updateCreateButtonState()
-        navigationItem.title = textField.text
+        // updateCreateButtonState()=
         self.updateCreateProffrButtonState()
     }
     

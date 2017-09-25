@@ -125,7 +125,7 @@ DEPENDENCIES:
   - CircleMenu (~> 2.0.1)
   - DGElasticPullToRefresh
   - EasyPeasy
-  - Eureka
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `feature/Xcode9-Swift3_2`)
   - FacebookCore
   - FacebookLogin
   - Firebase/Auth
@@ -139,6 +139,16 @@ DEPENDENCIES:
   - XLActionController
   - XLActionController/Periscope
 
+EXTERNAL SOURCES:
+  Eureka:
+    :branch: feature/Xcode9-Swift3_2
+    :git: https://github.com/xmartlabs/Eureka.git
+
+CHECKOUT OPTIONS:
+  Eureka:
+    :commit: 05acfb04c24a480f1868e671d19b39e0f22fc265
+    :git: https://github.com/xmartlabs/Eureka.git
+
 SPEC CHECKSUMS:
   AMTagListView: 08ab67466c67152f6299bc29a13a907783b0046f
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -146,7 +156,7 @@ SPEC CHECKSUMS:
   CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
   DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   EasyPeasy: 50e7130b61f495ce105796e438d4136e2c8d2cc0
-  Eureka: f36fd440c3ebb7bfea0a4fbe6f16a05f1cb35906
+  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
@@ -169,6 +179,6 @@ SPEC CHECKSUMS:
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
 
-PODFILE CHECKSUM: 57bb58cb61be79264eb19af921630af10bbc1492
+PODFILE CHECKSUM: 3b4dee5bbcf817d716b9d94af47ed5cfedba6007
 
 COCOAPODS: 1.2.1

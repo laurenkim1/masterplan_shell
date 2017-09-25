@@ -14,7 +14,7 @@ import Material
 import DGElasticPullToRefresh
 import SwiftMessages
 
-private let kBaseURL: String = "http://localhost:3000/"
+private let kBaseURL: String = "http://52.14.151.59/"
 private let kNotifications: String = "notifications/"
 
 class NotificationsTableViewController: UITableViewController {
@@ -41,7 +41,6 @@ class NotificationsTableViewController: UITableViewController {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            self?.notifications = []
             self?.getNotifications()
             self?.tableView.dg_stopLoading()
             }, loadingView: loadingView)
@@ -115,6 +114,8 @@ class NotificationsTableViewController: UITableViewController {
                 if (!(response != nil)) {
                     self.warning()
                 } else {
+                    self.notifications = []
+                    self.tableView.reloadData()
                     self.parseAndAddNotification(notificationlist: response!)
                     self.tableView.reloadData()
                 }
@@ -142,86 +143,5 @@ class NotificationsTableViewController: UITableViewController {
         errorConfig.duration = .seconds(seconds: 10)
         SwiftMessages.show(config: errorConfig, view: error)
     }
-    
-    /*
-    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            completion(data, response, error)
-            print(response)
-            }.resume()
-    }
-    
-    func downloadImage(url: URL) -> UIImage {
-        var image: UIImage!
-        print("Download Started")
-        getDataFromUrl(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() { () -> Void in
-                image = UIImage(data: data)
-            }
-        }
-        DispatchQueue.main.async() { () -> Void in
-            return image
-        }
-    }*/
-    
-    /*
-    func handleRefresh(refreshControl: UIRefreshControl) -> Void {
-        // Do some reloading of data and update the table view's data source
-        // Fetch more objects from a web service, for example...
-        self.getNotifications()
-        self.tableView.reloadData()
-        refreshControl.endRefreshing()
-    }
- 
- */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

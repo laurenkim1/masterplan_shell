@@ -15,7 +15,7 @@ import os.log
 import MapKit
 import CoreLocation
 
-private let kBaseURL: String = "http://localhost:3000/"
+private let kBaseURL: String = "http://52.14.151.59/"
 private let kUsers: String = "users/"
 
 class LogInViewController: UIViewController, CLLocationManagerDelegate {
@@ -51,7 +51,10 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         
         loginButton.center = view.center
         view.addSubview(loginButton)
-        
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         let imageView = UIImageView(image: UIImage(named: "pimage"))
         imageView.center = view.center
         imageView.autoresizingMask = .flexibleWidth
@@ -73,9 +76,9 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 
                 // self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
                 /*
-                UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in
-                    self.performSegue(withIdentifier: "loggedIn", sender: nil)
-                })
+                 UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in
+                 self.performSegue(withIdentifier: "loggedIn", sender: nil)
+                 })
                  
                  let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
                  DispatchQueue.main.asyncAfter(deadline: when) {
@@ -88,11 +91,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             imageView.removeFromSuperview()
         }
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -190,6 +188,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     self.myEmail = self.user.userEmail
                     
                     let navVc: TabBarController = TabBarController()
+                    navVc.userLocation = self.userLocation
                     navVc.myDisplayName = self.myDisplayName
                     navVc.myUserId = self.myUserId
                     navVc.myPhotoUrl = self.myPhotoUrl
@@ -215,7 +214,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
                     notificationsTable.myUserId = self.myUserId
                     let profileVcNav = navVc.viewControllers?[4] as! UINavigationController
-                    let profileVc = profileVcNav.viewControllers.first as! ProfileViewController
+                    let profileVc = profileVcNav.viewControllers.first as! UserProfileViewController
                     profileVc.myUserId = self.myUserId
                     profileVc.myPhotoUrl = self.myPhotoUrl
                     profileVc.firstName = self.firstName

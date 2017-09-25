@@ -75,7 +75,7 @@ class NearbyRequestTableViewCell: UITableViewCell {
         needslabel.text = "needs:"
         forlabel.text = "for"
         
-        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 200, height: CellHeight/3)
+        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 160, height: CellHeight/3)
         nameLabel.textColor = UIColor.darkGray
         nameLabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
         contentView.addSubview(nameLabel)
@@ -110,7 +110,7 @@ class NearbyRequestTableViewCell: UITableViewCell {
         timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(timeLabel)
         
-        distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10+nameLabel.frame.width, y: 5, width: 100, height: CellHeight/3)
+        distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+nameLabel.frame.width, y: 5, width: 100, height: CellHeight/3)
         distanceLabel.textColor = UIColor.lightGray
         distanceLabel.font = UIFont(name: "Ubuntu", size: 16)
         contentView.addSubview(distanceLabel)

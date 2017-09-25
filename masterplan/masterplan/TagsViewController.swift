@@ -13,7 +13,7 @@ import EasyPeasy
 import Neon
 import XLActionController
 
-private let kBaseURL: String = "http://localhost:3000/"
+private let kBaseURL: String = "http://52.14.151.59/"
 private let kRequests: String = "requests/"
 private let kUsers: String = "users/"
 private let kFiles: String = "files"

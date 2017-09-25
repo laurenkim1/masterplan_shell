@@ -13,6 +13,7 @@
 		47408CA61F19F69F0097C957 /* NewRequestPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */; };
 		47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */; };
 		4767349C1F59E573001A4A08 /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4767349B1F59E573001A4A08 /* RequestDetailsViewController.swift */; };
+		476B57EF1F78811E0057FEE1 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B57EE1F78811E0057FEE1 /* RatingControl.swift */; };
 		4782987B1F46AD480044519A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298721F46AD480044519A /* Ubuntu-B.ttf */; };
 		4782987C1F46AD480044519A /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298721F46AD480044519A /* Ubuntu-B.ttf */; };
 		4782987D1F46AD480044519A /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478298731F46AD480044519A /* Ubuntu-BI.ttf */; };
@@ -53,6 +54,8 @@
 		47C889161F0C8939003ED4F7 /* RequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889151F0C8939003ED4F7 /* RequestInfo.swift */; };
 		47C889181F0F3E13003ED4F7 /* DistancePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */; };
 		47C8891A1F10873B003ED4F7 /* NewRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889191F10873B003ED4F7 /* NewRequestViewController.swift */; };
+		47DD354A1F76A93100E71D40 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DD35491F76A93100E71D40 /* UserProfileViewController.swift */; };
+		47DD354C1F76AC0000E71D40 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DD354B1F76AC0000E71D40 /* ProfileTableViewCell.swift */; };
 		47E24B121F3577F800F0F723 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B111F3577F800F0F723 /* NotificationModel.swift */; };
 		47E24B161F381EC400F0F723 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B151F381EC400F0F723 /* NotificationsTableViewController.swift */; };
 		47E24B191F3820F200F0F723 /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B181F3820F200F0F723 /* NotificationsTableViewCell.swift */; };
@@ -81,6 +84,7 @@
 		47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestPlaceholder.swift; sourceTree = "<group>"; };
 		47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearbyRequestTableViewCell.swift; path = masterplan/NearbyRequestTableViewCell.swift; sourceTree = "<group>"; };
 		4767349B1F59E573001A4A08 /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
+		476B57EE1F78811E0057FEE1 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		478298721F46AD480044519A /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
 		478298731F46AD480044519A /* Ubuntu-BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-BI.ttf"; sourceTree = "<group>"; };
 		478298741F46AD480044519A /* Ubuntu-C.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-C.ttf"; sourceTree = "<group>"; };
@@ -113,6 +117,9 @@
 		47C889151F0C8939003ED4F7 /* RequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestInfo.swift; sourceTree = "<group>"; };
 		47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DistancePageViewController.swift; path = masterplan/DistancePageViewController.swift; sourceTree = "<group>"; };
 		47C889191F10873B003ED4F7 /* NewRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestViewController.swift; sourceTree = "<group>"; };
+		47DD35491F76A93100E71D40 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		47DD354B1F76AC0000E71D40 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		47DD354D1F76B44900E71D40 /* masterplan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = masterplan.entitlements; sourceTree = "<group>"; };
 		47E24B111F3577F800F0F723 /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		47E24B151F381EC400F0F723 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		47E24B181F3820F200F0F723 /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
@@ -169,6 +176,7 @@
 				47C57A8D1F29AA4200BC1D06 /* ProffrChannel.swift */,
 				47E24B111F3577F800F0F723 /* NotificationModel.swift */,
 				478298941F47F44F0044519A /* Profile.swift */,
+				476B57EE1F78811E0057FEE1 /* RatingControl.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 		47C888F41F0A169D003ED4F7 /* masterplan */ = {
 			isa = PBXGroup;
 			children = (
+				47DD354D1F76B44900E71D40 /* masterplan.entitlements */,
 				47C888F51F0A169D003ED4F7 /* AppDelegate.swift */,
 				47C37F031F29847F007FC639 /* LoginViewController.swift */,
 				47408CA31F188FC60097C957 /* TabBarController.swift */,
@@ -209,10 +218,10 @@
 				47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */,
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
 				47E24B281F41853000F0F723 /* TagsViewController.swift */,
-				47E24B241F40072F00F0F723 /* ProfileViewController.swift */,
 				4767349B1F59E573001A4A08 /* RequestDetailsViewController.swift */,
 				478298901F47F3EC0044519A /* EditProfileViewController.swift */,
 				4726BEEB1F65DFEA0030A1EB /* PaymentViewController.swift */,
+				47DD35491F76A93100E71D40 /* UserProfileViewController.swift */,
 				478298711F46AD240044519A /* Supporting Fonts */,
 				47C57A931F2C28C200BC1D06 /* Models */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
@@ -240,6 +249,7 @@
 				47408CA71F1B35130097C957 /* NearbyRequestTableViewCell.swift */,
 				47C57A911F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift */,
 				47E24B181F3820F200F0F723 /* NotificationsTableViewCell.swift */,
+				47DD354B1F76AC0000E71D40 /* ProfileTableViewCell.swift */,
 			);
 			name = cellModels;
 			sourceTree = "<group>";
@@ -247,6 +257,7 @@
 		47E24B2C1F4287EF00F0F723 /* Obsolete */ = {
 			isa = PBXGroup;
 			children = (
+				47E24B241F40072F00F0F723 /* ProfileViewController.swift */,
 				47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */,
 				47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */,
 				47B798921F1473FF00F67BEA /* TagListViewController.swift */,
@@ -331,15 +342,20 @@
 				TargetAttributes = {
 					47C888F11F0A169D003ED4F7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 657S22D82Y;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
 					};
 					47C889051F0A169D003ED4F7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 657S22D82Y;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 47C888F11F0A169D003ED4F7;
 					};
@@ -503,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E24B121F3577F800F0F723 /* NotificationModel.swift in Sources */,
+				47DD354C1F76AC0000E71D40 /* ProfileTableViewCell.swift in Sources */,
 				4726BEEC1F65DFEA0030A1EB /* PaymentViewController.swift in Sources */,
 				47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */,
 				47C889181F0F3E13003ED4F7 /* DistancePageViewController.swift in Sources */,
@@ -518,6 +535,7 @@
 				47C889161F0C8939003ED4F7 /* RequestInfo.swift in Sources */,
 				4767349C1F59E573001A4A08 /* RequestDetailsViewController.swift in Sources */,
 				47E24B191F3820F200F0F723 /* NotificationsTableViewCell.swift in Sources */,
+				47DD354A1F76A93100E71D40 /* UserProfileViewController.swift in Sources */,
 				47C37F041F29847F007FC639 /* LoginViewController.swift in Sources */,
 				47E24B2B1F42872600F0F723 /* NewProffrViewController.swift in Sources */,
 				478298951F47F44F0044519A /* Profile.swift in Sources */,
@@ -526,6 +544,7 @@
 				47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */,
 				47E24B251F40072F00F0F723 /* ProfileViewController.swift in Sources */,
 				47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */,
+				476B57EF1F78811E0057FEE1 /* RatingControl.swift in Sources */,
 				478298911F47F3EC0044519A /* EditProfileViewController.swift in Sources */,
 				479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */,
 			);
@@ -592,9 +611,12 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 657S22D82Y;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -642,9 +664,12 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 657S22D82Y;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -669,11 +694,16 @@
 			baseConfigurationReference = 69AE117DCF2563F4EC66D6ED /* Pods-masterplan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = masterplan/masterplan.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 657S22D82Y;
 				INFOPLIST_FILE = masterplan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lk.masterplan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -682,11 +712,16 @@
 			baseConfigurationReference = DCD7E0DD18CECD32879EC9F4 /* Pods-masterplan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = masterplan/masterplan.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 657S22D82Y;
 				INFOPLIST_FILE = masterplan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lk.masterplan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -696,6 +731,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 657S22D82Y;
 				INFOPLIST_FILE = masterplanTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lk.masterplanTests;
@@ -711,6 +749,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 657S22D82Y;
 				INFOPLIST_FILE = masterplanTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lk.masterplanTests;
