@@ -35,6 +35,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(self.myUserId)
         self.tableView.delegate = self
         self.tableView.register(NearbyRequestTableViewCell.self, forCellReuseIdentifier: "NearbyRequestTableViewCell")
         self.tableView.rowHeight = 80

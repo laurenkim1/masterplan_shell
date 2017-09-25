@@ -70,6 +70,7 @@ class NearbyRequestTableViewCell: UITableViewCell {
         ProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
         ProfilePhoto.layer.cornerRadius = ProfilePhoto.frame.height/2
         ProfilePhoto.clipsToBounds = true
+        ProfilePhoto.contentMode = UIViewContentMode.scaleAspectFill
         contentView.addSubview(ProfilePhoto)
         
         needslabel.text = "needs:"

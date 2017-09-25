@@ -184,8 +184,7 @@ class ChatViewController: JSQMessagesViewController {
         actionController.addAction(Action("Accept", style: .destructive, handler: { action in
             self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
                 let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 { // 3
-                    //self.deleteAcceptedRequests(requestId: requestId)
+                if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 {
                     let acceptedId: String = channelData["proffrerId"] as! String
                     self.deleteOtherProffrs(requestId: requestId, acceptedId: acceptedId)
                 } else {
@@ -266,6 +265,7 @@ class ChatViewController: JSQMessagesViewController {
     
     // MARK: Network Request Methods
     
+    /*
     func deleteAcceptedRequests(requestId: String) -> Void {
         print(requestId)
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
@@ -287,7 +287,8 @@ class ChatViewController: JSQMessagesViewController {
         })
         dataTask?.resume()
     }
-    
+ */
+ 
     func deleteOtherProffrs(requestId: String, acceptedId: String) -> Void {
         print(requestId)
         let allChannels = channelRef?.parent
@@ -301,16 +302,43 @@ class ChatViewController: JSQMessagesViewController {
                     if proffrerId == acceptedId {
                         self.sendNotification(recipientId: acceptedId, channelSnapshot: childData)
                         self.getFcmTokenSend(id: acceptedId, channelSnapshot: childData)
+                        self.updateRequest(requestId: self.requestId)
                     } else {
                         sameRequestRef?.child((child as! DataSnapshot).key).removeValue()
                     }
                 }
             }
         })
-
     }
     
-    // don't need senderId idiot
+    func updateRequest(requestId: String) {
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let url = URL(string: requests + requestId)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "PUT"
+        //2
+        let jsonable = NSMutableDictionary()
+        jsonable.setValue(true, forKey: "fulfilled")
+        
+        let data: Data? = try? JSONSerialization.data(withJSONObject: jsonable, options: [])
+        //3
+        
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                print(response)
+            }
+        })
+        dataTask?.resume()
+    }
     
     func sendNotification(recipientId: String, channelSnapshot: NSDictionary) {
         let notifications: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kNotifications).absoluteString

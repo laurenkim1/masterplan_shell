@@ -50,6 +50,7 @@ class NotificationsTableViewCell: UITableViewCell {
         ProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
         ProfilePhoto.layer.cornerRadius = ProfilePhoto.frame.height/2
         ProfilePhoto.clipsToBounds = true
+        ProfilePhoto.contentMode = UIViewContentMode.scaleAspectFill
         contentView.addSubview(ProfilePhoto)
         
         requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 160, height: CellHeight/3)

@@ -47,6 +47,7 @@ class MyProffrsTableViewCell: UITableViewCell {
         ProfilePhoto.layer.masksToBounds = false
         ProfilePhoto.layer.borderColor = UIColor.lightGray.cgColor
         ProfilePhoto.layer.cornerRadius = ProfilePhoto.frame.height/2
+        ProfilePhoto.contentMode = UIViewContentMode.scaleAspectFill
         ProfilePhoto.clipsToBounds = true
         contentView.addSubview(ProfilePhoto)
         

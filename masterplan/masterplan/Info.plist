@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Add photos to your Proffrs</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Proffr</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -51,6 +51,8 @@
 	<string>Find requests all neighborhood near you.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Find requests near you.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Add photos to your Proffrs</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Add photo to proffr.</string>
 	<key>UIAppFonts</key>

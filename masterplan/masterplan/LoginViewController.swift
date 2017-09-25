@@ -71,7 +71,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     return
                 }
                 self.myUserId = accessToken.userId!
-                
                 self.checkUserExist(id: self.myUserId)
                 
                 // self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
@@ -121,12 +120,14 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: Private Methods
     
     func checkUserExist(id: String) {
-        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        let users: String = kBaseURL + kUsers
         //let lon: String = String(format:"%f", loc.coordinate.longitude)
         //let lat: String = String(format:"%f", loc.coordinate.latitude)
         let parameterString: String = id
-        let url = URL(string: (requests + parameterString))
+        let url = URL(string: (users + parameterString))
         //1
+        print("WATCH URL")
+        print(url?.absoluteString)
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
         //2
@@ -135,7 +136,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         let config = URLSessionConfiguration.default
         //4
         let session = URLSession(configuration: config)
-        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ resp: URLResponse?, _ error: Error?) -> Void in
             //5
             if error == nil {
                 os_log("Success")
@@ -143,7 +144,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 if (response == nil || (response?.isEmpty)!) {
                     self.FBGraphRequest(graphPath: "\(id)", exist: false)
                 } else {
-                    // print(response!)
                     let responseDict = response?[0] as! NSDictionary
                     self.user = Profile(dict: responseDict)
                     

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "526785774.662703"
+            timestampString = "528055918.477977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.82373"
+            timestampString = "528058039.191361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
+            landmarkName = "updateRequest(requestId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.823829"
+            timestampString = "528058039.191445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
@@ -105,7 +105,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.823884"
+            timestampString = "528058039.191501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -183,7 +183,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.823935"
+            timestampString = "528058039.191554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -261,7 +261,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.823983"
+            timestampString = "528058039.191604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -324,7 +324,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "526785774.662703"
+            timestampString = "528055918.483749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "273"
@@ -564,13 +564,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.824432"
+            timestampString = "528058039.191898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "271"
             endingLineNumber = "271"
-            landmarkName = "deleteAcceptedRequests(requestId:)"
-            landmarkType = "7">
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -580,13 +580,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.824539"
+            timestampString = "528058039.191951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "276"
             endingLineNumber = "276"
-            landmarkName = "deleteAcceptedRequests(requestId:)"
-            landmarkType = "7">
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -612,75 +612,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.824641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.824706"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
-            landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.824766"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
-            landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.824841"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
-            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.824915"
+            timestampString = "528058039.192025"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "296"
             endingLineNumber = "296"
+            landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/ChatViewController.swift"
+            timestampString = "528058039.192078"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/ChatViewController.swift"
+            timestampString = "528058039.192126"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/ChatViewController.swift"
+            timestampString = "528058039.192175"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
+            landmarkName = "updateRequest(requestId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/ChatViewController.swift"
+            timestampString = "528058039.192222"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "deleteOtherProffrs(requestId:acceptedId:)"
             landmarkType = "7">
             <Locations>
@@ -836,7 +836,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "526785774.662703"
+            timestampString = "528055918.491592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "141"
@@ -994,12 +994,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.825087"
+            timestampString = "528058039.192404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
-            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            landmarkName = "updateRequest(requestId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1010,12 +1010,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.825138"
+            timestampString = "528058039.192455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
-            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "updateRequest(requestId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1200,11 +1200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/HomePageViewController.swift"
-            timestampString = "527998411.047302"
+            timestampString = "528058039.192639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1216,7 +1216,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationsTableViewCell.swift"
-            timestampString = "528001709.693532"
+            timestampString = "528047466.826799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -1296,7 +1296,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NewRequestViewController.swift"
-            timestampString = "527998411.047447"
+            timestampString = "528002040.14577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -1312,11 +1312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/HomePageViewController.swift"
-            timestampString = "527998411.047499"
+            timestampString = "528058039.193295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1328,7 +1328,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NewProffrViewController.swift"
-            timestampString = "527998411.047553"
+            timestampString = "528047466.827066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
@@ -1344,7 +1344,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/NewChatViewController.swift"
-            timestampString = "527998411.047611"
+            timestampString = "528047372.105753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
@@ -1360,12 +1360,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.826092"
+            timestampString = "528058039.194133"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "observeMessages()"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
+            landmarkName = "sendNotification(recipientId:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1376,23 +1376,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "527998411.047687"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "checkUserExist(id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "masterplan/LoginViewController.swift"
-            timestampString = "527998411.047739"
+            timestampString = "528058039.194495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "142"
@@ -1408,7 +1392,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "527998411.047786"
+            timestampString = "528058039.194655"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "checkUserExist(id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/LoginViewController.swift"
+            timestampString = "528058039.194743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "258"
@@ -1456,11 +1456,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "527998411.047832"
+            timestampString = "528058039.19482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "checkUserExist(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1472,11 +1472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "527998411.047876"
+            timestampString = "528058039.19491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "checkUserExist(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1488,7 +1488,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "527998411.047919"
+            timestampString = "528058039.194983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
@@ -1504,7 +1504,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/LoginViewController.swift"
-            timestampString = "527998411.047964"
+            timestampString = "528058039.195057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -1520,11 +1520,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.826512"
+            timestampString = "528058039.195205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "632"
-            endingLineNumber = "632"
+            startingLineNumber = "660"
+            endingLineNumber = "660"
             landmarkName = "getFcmTokenSend(id:channelSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1536,7 +1536,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/MyProffrsViewController.swift"
-            timestampString = "526785774.662703"
+            timestampString = "528055918.497073"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
@@ -1616,11 +1616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.826707"
+            timestampString = "528058039.195484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "acceptButtonTapped()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1632,12 +1632,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "masterplan/ChatViewController.swift"
-            timestampString = "527998289.826757"
+            timestampString = "528058039.195582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
             endingLineNumber = "175"
             landmarkName = "setNavBar()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/LoginViewController.swift"
+            timestampString = "528058039.199097"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "FBGraphRequest(graphPath:exist:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "masterplan/HomePageViewController.swift"
+            timestampString = "528058039.199169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

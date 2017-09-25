@@ -167,6 +167,11 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         photoImageView = UIImageView(image: UIImage(named: "DefaultPhoto"))
         photoImageView.frame = CGRect(x: 10, y: 80+messageTextField.frame.height+photoLabel.frame.height, width: self.view.frame.width-20, height: self.view.frame.width-20)
         photoImageView.isUserInteractionEnabled = true
+        photoImageView.clipsToBounds = true
+        photoImageView.contentMode = UIViewContentMode.scaleAspectFill
+        photoImageView.layer.borderColor = UIColor.lightGray.cgColor
+        photoImageView.layer.borderWidth = 2.0
+        photoImageView.layer.cornerRadius = 5
         
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         gestureRecognizer.delegate = self

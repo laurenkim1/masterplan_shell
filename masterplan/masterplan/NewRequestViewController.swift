@@ -52,7 +52,7 @@ class NewRequestViewController: FormViewController {
                 $0.placeholder = "0.5"
                 $0.disabled = Eureka.Condition.function(["pickUp"], { (form) -> Bool in
                     let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!
-                    return (row.value == "No")
+                    return (row.value == "Yes")
                 })
         }
     }
@@ -111,7 +111,7 @@ class NewRequestViewController: FormViewController {
         else {
             request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: userLocation, photoUrl: myPhotoUrl)
             
-            if _pickup == 0 {
+            if _pickup == 1 {
                 let distancerow: DecimalRow = form.rowBy(tag: "Distance")!
                 let _distance: Double! = distancerow.value
                 request?.distance = _distance
