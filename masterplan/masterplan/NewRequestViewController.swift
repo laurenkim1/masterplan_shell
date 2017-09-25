@@ -42,13 +42,13 @@ class NewRequestViewController: FormViewController {
                 $0.placeholder = "2.00"
             }
             <<< SegmentedRow<String>("pickUp"){
-                $0.title = "I am willing to pick up the item:"
+                $0.title = "Delivery Required:"
                 $0.options = ["Yes", "No"]
                 $0.value = "Yes"
         }
             +++ Section("PickUpDistance")
             <<< DecimalRow("Distance") {
-                $0.title = "I am willing to travel (mi):"
+                $0.title = "I can travel (mi):"
                 $0.placeholder = "0.5"
                 $0.disabled = Eureka.Condition.function(["pickUp"], { (form) -> Bool in
                     let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!

@@ -19,6 +19,7 @@ class NewChatViewController: JSQMessagesViewController {
     var channelRef: DatabaseReference?
     var proffrPhotoUrlString: String?
     var messageText: String?
+    var imageData: Data!
     
     var doneButton: UIBarButtonItem!
     
@@ -83,7 +84,7 @@ class NewChatViewController: JSQMessagesViewController {
                             let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(proffrPhotoUrl?.lastPathComponent)"
                             
                             // 6
-                            self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
+                            self.storageRef.child(path).putData(self.imageData, metadata: nil) { (metadata, error) in
                                 if let error = error {
                                     print("Error uploading photo: \(error.localizedDescription)")
                                     return
@@ -314,6 +315,7 @@ class NewChatViewController: JSQMessagesViewController {
     private func setNavBar() {
         self.doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
         self.navigationItem.rightBarButtonItem = doneButton
+        self.navigationItem.hidesBackButton = true
     }
     
     func doneButtonTapped(){

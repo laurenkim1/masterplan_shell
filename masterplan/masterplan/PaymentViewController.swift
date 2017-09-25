@@ -143,7 +143,7 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         self.setProfilePhoto(PhotoUrl: self.myPhotoUrl, photo: myProfilePhoto)
         self.setProfilePhoto(PhotoUrl: request.photoUrl.absoluteString, photo: otherProfilePhoto)
         
-        self.payButton = UIButton(frame: CGRect(x: self.view.frame.width/5, y: 140+myProfilePhoto.frame.height+300, width: 3*self.view.frame.width/5, height: 50))
+        self.payButton = UIButton(frame: CGRect(x: self.view.frame.width/5, y: 140+myProfilePhoto.frame.height+270, width: 3*self.view.frame.width/5, height: 50))
         payButton.addTarget(self, action: #selector(self.tappedMyPayButton), for: .touchUpInside)
         payButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         payButton.layer.cornerRadius = 5

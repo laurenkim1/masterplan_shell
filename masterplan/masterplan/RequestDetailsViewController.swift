@@ -182,6 +182,12 @@ class RequestDetailsViewController: UIViewController {
                 proffrButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
                 proffrButton.layer.cornerRadius = 5
                 proffrButton.setTitle("Proffr", for: .normal)
+                
+                proffrButton.layer.shouldRasterize = true
+                proffrButton.layer.shadowColor = UIColor.black.cgColor
+                proffrButton.layer.shadowOpacity = 1
+                proffrButton.layer.shadowOffset = CGSize.zero
+                proffrButton.layer.shadowRadius = 1
                 view.addSubview(proffrButton)
             }
         }

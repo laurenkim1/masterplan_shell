@@ -22,6 +22,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     var request: requestInfo?
     var photoReferenceUrl: String!
     var myPhotoUrl: String!
+    var imageData: Data!
     
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     
@@ -79,6 +80,8 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
+        
+        imageData = UIImageJPEGRepresentation(selectedImage, 0.1)
         
         let photoRefNSUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
         self.photoReferenceUrl = photoRefNSUrl.absoluteString
@@ -149,34 +152,38 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
     }
     
     func setView() {
-        let messageLabel: UILabel = UILabel(frame: CGRect(x:20, y: 70, width: self.view.frame.width-40, height: 25))
-        messageLabel.text = "Write a message..."
         
-        messageTextField = UITextField(frame: CGRect(x:20, y: 70+messageLabel.frame.height+10, width: self.view.frame.width-40, height: 50))
-        messageTextField.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
-        messageTextField.layer.borderWidth = 2.0
+        messageTextField = UITextField(frame: CGRect(x:10, y: 80, width: self.view.frame.width-20, height: 50))
+        messageTextField.placeholder = "  Write a message..."
+        messageTextField.layer.borderColor = UIColor.lightGray.cgColor
+        messageTextField.layer.borderWidth = 1.0
         messageTextField.delegate = self
+        messageTextField.layer.cornerRadius = 5
         
-        let photoLabel = UILabel(frame: CGRect(x: 20, y: 70+messageTextField.frame.height+messageLabel.frame.height+20, width: self.view.frame.width-40, height: 25))
+        let photoLabel = UILabel(frame: CGRect(x: 15, y: 80+messageTextField.frame.height, width: self.view.frame.width-40, height: 25))
+        photoLabel.textColor = UIColor.lightGray
         photoLabel.text = "Upload a photo..."
     
         photoImageView = UIImageView(image: UIImage(named: "DefaultPhoto"))
-        photoImageView.frame = CGRect(x: 20, y: 70+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20, width: self.view.frame.width-40, height: self.view.frame.width-40)
-        photoImageView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
-        photoImageView.layer.borderWidth = 2.0
+        photoImageView.frame = CGRect(x: 10, y: 80+messageTextField.frame.height+photoLabel.frame.height, width: self.view.frame.width-20, height: self.view.frame.width-20)
         photoImageView.isUserInteractionEnabled = true
         
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         gestureRecognizer.delegate = self
         photoImageView.addGestureRecognizer(gestureRecognizer)
         
-        self.doneButton = UIButton(frame: CGRect(x: 20, y: 70+messageTextField.frame.height+messageLabel.frame.height+10+photoLabel.frame.height+20+photoImageView.frame.height+10, width: self.view.frame.width-40, height: 50))
+        self.doneButton = UIButton(frame: CGRect(x: 20, y: 90+messageTextField.frame.height+photoLabel.frame.height+photoImageView.frame.height, width: self.view.frame.width-40, height: 40))
         doneButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
         doneButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         doneButton.layer.cornerRadius = 5
         doneButton.setTitle("Done", for: .normal)
         
-        self.view.addSubview(messageLabel)
+        doneButton.layer.shouldRasterize = true
+        doneButton.layer.shadowColor = UIColor.black.cgColor
+        doneButton.layer.shadowOpacity = 1
+        doneButton.layer.shadowOffset = CGSize.zero
+        doneButton.layer.shadowRadius = 1
+        
         self.view.addSubview(messageTextField)
         self.view.addSubview(photoLabel)
         self.view.addSubview(photoImageView)
@@ -191,6 +198,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         chatVc.senderDisplayName = senderDisplayName
         chatVc.channel = channel
         chatVc.channelRef = channelRef.child(channel.id)
+        chatVc.imageData = imageData
         if !self.photoReferenceUrl.isEmpty {
             chatVc.proffrPhotoUrlString = self.photoReferenceUrl
             chatVc.messageText = self.messageTextField.text!

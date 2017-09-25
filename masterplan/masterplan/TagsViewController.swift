@@ -64,19 +64,22 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
     // MARK: Actions
     
     func setTagList() {
-        textField = UITextField(frame: CGRect(x:20, y: 80, width: self.view.frame.width-40, height: 25))
-        textField.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
-        textField.layer.borderWidth = 2.0
+        textField = UITextField(frame: CGRect(x:10, y: 80, width: self.view.frame.width-20, height: 50))
+        textField.placeholder = "  Add tags..."
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 1.0
         textField.delegate = self
+        textField.layer.cornerRadius = 5
         
         AMTagView.appearance().tagLength = 10
         AMTagView.appearance().textFont = UIFont(name: "Futura", size: 14)
         AMTagView.appearance().tagColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1)
         
-        tagListView = AMTagListView(frame: CGRect(x:20, y: 80+textField.frame.height+10, width: self.view.frame.width-40, height: 400))
+        tagListView = AMTagListView(frame: CGRect(x:10, y: 80+textField.frame.height+10, width: self.view.frame.width-20, height: 400))
         self.tagListView.tagListDelegate = self
-        tagListView.layer.borderColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
+        tagListView.layer.borderColor = UIColor.lightGray.cgColor
         tagListView.layer.borderWidth = 2.0
+        tagListView.layer.cornerRadius = 5
         
         tagListView.setTapHandler({(_ view: AMTagView?) -> Void in
             // self.tagListView.removeTag(view)
