@@ -16,6 +16,7 @@ class NotificationsTableViewCell: UITableViewCell {
     
     fileprivate let padding: CGFloat = 2.0
     var CellHeight = CGFloat()
+    let acceptlabel: UILabel = UILabel()
     
     lazy var requesterName: UILabel = {
         let view = UILabel()
@@ -51,10 +52,16 @@ class NotificationsTableViewCell: UITableViewCell {
         ProfilePhoto.clipsToBounds = true
         contentView.addSubview(ProfilePhoto)
         
-        requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 200, height: CellHeight/2-10)
+        requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 160, height: CellHeight/3)
         contentView.addSubview(requesterName)
         
-        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: requesterName.frame.origin.y+requesterName.frame.size.height, width: 200, height: CellHeight/2-10)
+        acceptlabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: requesterName.frame.origin.y+requesterName.frame.size.height-5, width: 200, height: CellHeight/3)
+        acceptlabel.text = "accepted your Proffr for:"
+        acceptlabel.textColor = UIColor.lightGray
+        acceptlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
+        contentView.addSubview(acceptlabel)
+        
+        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: acceptlabel.frame.origin.y+acceptlabel.frame.size.height-5, width: 200, height: CellHeight/3)
         contentView.addSubview(requestTitle)
     }
     
