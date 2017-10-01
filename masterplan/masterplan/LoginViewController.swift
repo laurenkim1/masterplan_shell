@@ -30,6 +30,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     var myEmail: String!
     var userLocation: CLLocation!
     var user: Profile!
+    var fbLoginSuccess = false
     
     var firstName: String!
     var lastName: String!
@@ -46,15 +47,27 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
+        /*
         
         let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
         
         loginButton.center = view.center
         view.addSubview(loginButton)
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        */
+        
+        // Add a custom login button to your app
+        let myLoginButton = UIButton(type: .custom)
+        myLoginButton.backgroundColor = UIColor.darkGray
+        myLoginButton.frame = CGRect(x: 0, y: 0, width: 180, height: 40)
+        myLoginButton.center = view.center;
+        myLoginButton.setTitle("Login", for: .normal)
+        
+        // Handle clicks on the button
+        myLoginButton.addTarget(self, action: #selector(self.loginButtonClicked), for: .touchUpInside)
+        
+        // Add the button to the view
+        view.addSubview(myLoginButton)
+        
         let imageView = UIImageView(image: UIImage(named: "pimage"))
         imageView.center = view.center
         imageView.autoresizingMask = .flexibleWidth
@@ -72,24 +85,13 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 }
                 self.myUserId = accessToken.userId!
                 self.checkUserExist(id: self.myUserId)
-                
-                // self.FBGraphRequest(graphPath: "\(accessToken.userId!)")
-                /*
-                 UserProfile.fetch(userId: accessToken.userId!, completion: {(_ fetchResult: UserProfile.FetchResult) -> Void in
-                 self.performSegue(withIdentifier: "loggedIn", sender: nil)
-                 })
-                 
-                 let when = DispatchTime.now() + 5 // change 2 to desired number of seconds
-                 DispatchQueue.main.asyncAfter(deadline: when) {
-                 // Your code with delay
-                 print(UserProfile.current?.firstName)
-                 self.performSegue(withIdentifier: "loggedIn", sender: nil)
-                 }
-                 */
             }
         } else {
             imageView.removeFromSuperview()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
     }
 
     override func didReceiveMemoryWarning() {
@@ -116,8 +118,36 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    
     // MARK: Private Methods
+    
+    @objc func loginButtonClicked() {
+        let loginManager = LoginManager()
+        loginManager.logIn( [.publishActions], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                print("Logged in!")
+                let imageView = UIImageView(image: UIImage(named: "pimage"))
+                imageView.center = self.view.center
+                imageView.autoresizingMask = .flexibleWidth
+                imageView.contentMode = .scaleAspectFit
+                self.view.addSubview(imageView)
+                let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    self.myUserId = accessToken.userId!
+                    self.checkUserExist(id: self.myUserId)
+                }
+            }
+        }
+    }
+
     
     func checkUserExist(id: String) {
         let users: String = kBaseURL + kUsers
@@ -126,7 +156,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         let parameterString: String = id
         let url = URL(string: (users + parameterString))
         //1
-        print("WATCH URL")
         print(url?.absoluteString)
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
@@ -146,6 +175,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 } else {
                     let responseDict = response?[0] as! NSDictionary
                     self.user = Profile(dict: responseDict)
+                    /*
                     
                     guard let geoloc = responseDict["userLocation"] as? NSDictionary else {
                         os_log("Unable to decode the location for a user.", log: OSLog.default, type: .debug)
@@ -157,6 +187,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     let location = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
                     self.userLocation = location
+ */
                     
                     self.FBGraphRequest(graphPath: "\(id)", exist: true)
                 }
@@ -186,6 +217,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     self.firstName = self.user.firstName
                     self.lastName = self.user.lastName
                     self.myEmail = self.user.userEmail
+                    self.userLocation = self.user.userLocation
                     
                     let navVc: TabBarController = TabBarController()
                     navVc.userLocation = self.userLocation

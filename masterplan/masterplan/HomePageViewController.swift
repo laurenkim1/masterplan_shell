@@ -17,7 +17,7 @@ import SystemConfiguration
 private let kBaseURL: String = "http://52.14.151.59/"
 private let kRequests: String = "requests/"
 
-class HomePageViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, CLLocationManagerDelegate {
+class HomePageViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
     // MARK: Properties
     
@@ -29,7 +29,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     var searchController = UISearchController(searchResultsController: nil)
     var distanceCeiling: CLLocationDistance = 1610.0 as CLLocationDistance
     
-    let locationManager = CLLocationManager()
+    // let locationManager = CLLocationManager()
     var userLocation: CLLocation! 
 
     override func viewDidLoad() {
@@ -48,6 +48,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             self.warning()
         }
         
+        /*
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -56,7 +57,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
-        
+        */
         self.getNearbyRequests(userLocation, 1)
 
         searchController.searchResultsUpdater = self
@@ -97,7 +98,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     // MARK: - UICLocationManagerDelegate
-    
+    /*
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.userLocation = locations[0] as CLLocation
         
@@ -119,6 +120,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
+ */
     
     // MARK: - UISearchResultsUpdating
     
@@ -279,7 +281,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                if (!(response != nil)) {
+                if (response == nil) {
                     self.warning()
                 } else {
                     self.nearbyRequestList = []
