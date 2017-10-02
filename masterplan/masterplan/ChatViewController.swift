@@ -209,7 +209,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func getRequest(nxt: Int) -> Void {
-        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let requests: String = kBaseURL + kRequests
         let url = URL(string: (requests + "search/" + self.requestId!))
         //1
         var networkrequest = URLRequest(url: url!)
@@ -312,7 +312,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func updateRequest(requestId: String) {
-        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let requests: String = kBaseURL + kRequests
         let url = URL(string: requests + requestId)
         //1
         var networkrequest = URLRequest(url: url!)
@@ -629,7 +629,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
         let noti: NSDictionary? = notification?.toDictionary()!
         
-        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        let requests: String = kBaseURL + kUsers
         //let lon: String = String(format:"%f", loc.coordinate.longitude)
         //let lat: String = String(format:"%f", loc.coordinate.latitude)
         let kIds: String = "fbid/"

@@ -17,6 +17,8 @@ import SystemConfiguration
 private let kBaseURL: String = "http://52.14.151.59/"
 private let kRequests: String = "requests/"
 
+let semaphore = DispatchSemaphore(value: 1)
+
 class HomePageViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
     // MARK: Properties
@@ -276,6 +278,11 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         let config = URLSessionConfiguration.default
         //4
         let session = URLSession(configuration: config)
+        self.nearbyRequestList = []
+        self.tableView.reloadData()
+        let group = DispatchGroup()
+        group.enter()
+        
         let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
             //5
             if error == nil {
@@ -284,14 +291,14 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
                 if (response == nil) {
                     self.warning()
                 } else {
-                    self.nearbyRequestList = []
-                    self.tableView.reloadData()
                     self.parseAndAddRequest(requestlist: response!)
-                    self.tableView.reloadData()
+                    group.leave()
                 }
             }
         })
         dataTask?.resume()
+        group.wait()
+        self.tableView.reloadData()
     }
     
     func parseAndAddRequest(requestlist: Array<Any>) -> Void {

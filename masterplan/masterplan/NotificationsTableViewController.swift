@@ -94,7 +94,7 @@ class NotificationsTableViewController: UITableViewController {
     // Mark: Private Methods
     
     func getNotifications() -> Void {
-        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kNotifications).absoluteString
+        let requests: String = kBaseURL + kNotifications
         let parameterString: String = self.myUserId
         let url = URL(string: (requests + parameterString))
         //1
@@ -106,6 +106,11 @@ class NotificationsTableViewController: UITableViewController {
         let config = URLSessionConfiguration.default
         //4
         let session = URLSession(configuration: config)
+        self.notifications = []
+        self.tableView.reloadData()
+        let group = DispatchGroup()
+        group.enter()
+        
         let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
             //5
             if error == nil {
@@ -114,14 +119,14 @@ class NotificationsTableViewController: UITableViewController {
                 if (!(response != nil)) {
                     self.warning()
                 } else {
-                    self.notifications = []
-                    self.tableView.reloadData()
                     self.parseAndAddNotification(notificationlist: response!)
-                    self.tableView.reloadData()
+                    group.leave()
                 }
             }
         })
         dataTask?.resume()
+        group.wait()
+        self.tableView.reloadData()
     }
     
     func parseAndAddNotification(notificationlist: Array<Any>) -> Void {
