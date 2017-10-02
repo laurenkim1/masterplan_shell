@@ -261,7 +261,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     // Mark: Private Methods
     
     func getNearbyRequests(_ loc: CLLocation, _ rad: Float) -> Void {
-        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let requests: String = kBaseURL + kRequests
         let lon: String = String(format:"%f", loc.coordinate.longitude)
         let lat: String = String(format:"%f", loc.coordinate.latitude)
         let radius: String = String(format:"%f", rad)

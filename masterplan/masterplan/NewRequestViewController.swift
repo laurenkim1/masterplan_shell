@@ -111,7 +111,7 @@ class NewRequestViewController: FormViewController {
         else {
             request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: userLocation, photoUrl: myPhotoUrl)
             
-            if _pickup == 1 {
+            if _pickup == 0 {
                 let distancerow: DecimalRow = form.rowBy(tag: "Distance")!
                 let _distance: Double! = distancerow.value
                 request?.distance = _distance

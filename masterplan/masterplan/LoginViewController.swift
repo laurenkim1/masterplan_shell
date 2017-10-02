@@ -156,7 +156,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         let parameterString: String = id
         let url = URL(string: (users + parameterString))
         //1
-        print(url?.absoluteString)
+        print(url?.absoluteString ?? "")
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"
         //2
@@ -261,7 +261,11 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     self.myDisplayName = response.dictionaryValue?["name"] as! String
                     self.firstName = response.dictionaryValue?["first_name"] as! String
                     self.lastName = response.dictionaryValue?["last_name"] as! String
-                    self.myEmail = response.dictionaryValue?["email"] as! String
+                    if let email = response.dictionaryValue?["email"] {
+                        self.myEmail = email as! String
+                    } else {
+                        self.myEmail = ""
+                    }
                     
                     let token = Messaging.messaging().fcmToken
                     print("FCM token: \(token ?? "")")
@@ -298,10 +302,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func postUser(_ user: Profile) {
-        if user == nil || user.userId == nil {
-            return
-            //input safety check
-        }
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         let url = URL(string: users)
         //1
@@ -319,7 +319,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                _ = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
             }
         })
         dataTask?.resume()
