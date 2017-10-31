@@ -112,7 +112,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    func createProffr(_ sender: UIButton) {
+    @objc func createProffr(_ sender: UIButton) {
         
         //disable button for further tapping
         sender.isUserInteractionEnabled = false

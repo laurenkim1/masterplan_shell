@@ -57,7 +57,7 @@ class EditProfileViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func finishSegue() {
+    @objc func finishSegue() {
         
         let firstnamerow: TextRow = form.rowBy(tag: "firstName")!
         let lastnamerow: TextRow = form.rowBy(tag: "lastName")!

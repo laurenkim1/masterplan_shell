@@ -178,7 +178,7 @@ class ChatViewController: JSQMessagesViewController {
         self.view.addSubview(toolbar)
     }
     
-    func acceptButtonTapped(){
+    @objc func acceptButtonTapped(){
         let actionController = PeriscopeActionController()
         actionController.headerData = "Accept Proffr?"
         actionController.addAction(Action("Accept", style: .destructive, handler: { action in

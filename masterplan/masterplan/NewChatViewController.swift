@@ -318,7 +318,7 @@ class NewChatViewController: JSQMessagesViewController {
         self.navigationItem.hidesBackButton = true
     }
     
-    func doneButtonTapped(){
+    @objc func doneButtonTapped(){
         // guard let controllers = navigationController?.viewControllers else { return }
         // guard let homeViewController = controllers[0] as? HomePageViewController else { return }
         navigationController?.popToRootViewController(animated: true)

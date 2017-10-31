@@ -177,7 +177,7 @@ class MyProffrsViewController: UITableViewController {
         
     }
     
-    func action(_ sender: AnyObject) {
+    @objc func action(_ sender: AnyObject) {
         print("CustomTitleViewController IBAction invoked!")
         self.tableView.reloadData()
     }

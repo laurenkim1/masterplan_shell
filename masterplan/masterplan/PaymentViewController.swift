@@ -64,7 +64,7 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         self.present(navigationController, animated: true, completion: nil)
     }
     
-    func userDidCancelPayment() {
+    @objc func userDidCancelPayment() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -204,7 +204,7 @@ class PaymentViewController: UIViewController, BTDropInViewControllerDelegate {
         self.view.addSubview(payButton)
     }
     
-    func titleTapped() {
+    @objc func titleTapped() {
         self.getRequest()
     }
     

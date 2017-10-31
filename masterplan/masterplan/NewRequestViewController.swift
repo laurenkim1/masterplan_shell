@@ -58,7 +58,7 @@ class NewRequestViewController: FormViewController {
     }
     
     // MARK: Actions
-    func cancel() {
+    @objc func cancel() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -89,7 +89,7 @@ class NewRequestViewController: FormViewController {
     
     // MARK: - Navigation
     
-    func buttonTapped(){
+    @objc func buttonTapped(){
         let nextViewController: UIViewController = TagsViewController()
         
         let titlerow: TextRow = form.rowBy(tag: "requestTitle")!

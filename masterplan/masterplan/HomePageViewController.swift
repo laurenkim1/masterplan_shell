@@ -331,8 +331,7 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     }
 
 
-    /*
-    func handleRefresh(refreshControl: UIRefreshControl) -> Void {
+    @objc func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
         self.nearbyRequestList = []
@@ -341,7 +340,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
-    */
     
     // MARK: Actions
 
