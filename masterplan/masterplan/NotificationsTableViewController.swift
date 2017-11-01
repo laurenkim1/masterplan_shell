@@ -14,7 +14,7 @@ import Material
 import DGElasticPullToRefresh
 import SwiftMessages
 
-private let kBaseURL: String = "http://52.14.151.59/"
+private let kBaseURL: String = "http://18.221.170.199/"
 private let kNotifications: String = "notifications/"
 
 class NotificationsTableViewController: UITableViewController {

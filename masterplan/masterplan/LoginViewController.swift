@@ -15,7 +15,7 @@ import os.log
 import MapKit
 import CoreLocation
 
-private let kBaseURL: String = "https://52.14.151.59/"
+private let kBaseURL: String = "http://18.221.170.199/"
 private let kUsers: String = "users/"
 
 class LogInViewController: UIViewController, CLLocationManagerDelegate {

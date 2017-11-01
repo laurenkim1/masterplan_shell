@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Photos
 
-private let kBaseURL: String = "https://"
+private let kBaseURL: String = "http://18.221.170.199/"
 
 class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate {
     

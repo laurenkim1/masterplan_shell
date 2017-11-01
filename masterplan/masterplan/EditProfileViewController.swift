@@ -13,7 +13,7 @@ import CoreLocation
 import Eureka
 import Firebase
 
-private let kBaseURL: String = "http://52.14.151.59/"
+private let kBaseURL: String = "http://18.221.170.199/"
 private let kUsers: String = "users/"
 
 class EditProfileViewController: FormViewController {
