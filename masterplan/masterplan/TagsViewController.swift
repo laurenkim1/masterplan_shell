@@ -9,8 +9,6 @@
 import UIKit
 import AMTagListView
 import os.log
-import EasyPeasy
-import Neon
 import XLActionController
 
 private let kBaseURL: String = "http://18.221.170.199/"
@@ -141,11 +139,13 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
                 request.requestID = response?["_id"] as? String
                 
                 request.postTimeString = response?["createdAt"] as? String
-                self.persistToUser(request: request)
+                // self.persistToUser(request: request)
             }
         })
         dataTask?.resume()
     }
+    
+/*
     
     func persistToUser(request: requestInfo) {
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
@@ -170,7 +170,7 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
         })
         dataTask?.resume()
     }
-
+*/
 
     /*
     // MARK: - Navigation

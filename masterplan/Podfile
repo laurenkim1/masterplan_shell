@@ -14,11 +14,7 @@ target 'masterplan' do
   pod 'Firebase/Messaging’
   pod 'JSQMessagesViewController'
   pod 'CircleMenu', '~> 2.0.1'
-  pod 'Material', '~> 2.0'
-  pod ‘EasyPeasy’
-  pod 'Neon'
-  pod 'DGElasticPullToRefresh'
-  pod 'Eureka’, :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift3_2'
+  pod 'Eureka’
   pod 'AMTagListView'
   pod 'XLActionController'
   pod 'XLActionController/Periscope'

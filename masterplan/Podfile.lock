@@ -37,9 +37,7 @@ PODS:
   - Braintree/Venmo (3.9.9):
     - Braintree/API
   - CircleMenu (2.0.5)
-  - DGElasticPullToRefresh (1.1)
-  - EasyPeasy (1.4.2)
-  - Eureka (3.0.0)
+  - Eureka (4.0.1)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -107,10 +105,6 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - Material (2.6.3):
-    - Material/Core (= 2.6.3)
-  - Material/Core (2.6.3)
-  - Neon (0.4.0)
   - Protobuf (3.4.0)
   - SwiftMessages (3.4.0)
   - XLActionController (3.0.1):
@@ -123,9 +117,7 @@ DEPENDENCIES:
   - AMTagListView
   - Braintree (~> 3.9)
   - CircleMenu (~> 2.0.1)
-  - DGElasticPullToRefresh
-  - EasyPeasy
-  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `feature/Xcode9-Swift3_2`)
+  - Eureka
   - FacebookCore
   - FacebookLogin
   - Firebase/Auth
@@ -133,30 +125,16 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - JSQMessagesViewController
-  - Material (~> 2.0)
-  - Neon
   - SwiftMessages
   - XLActionController
   - XLActionController/Periscope
-
-EXTERNAL SOURCES:
-  Eureka:
-    :branch: feature/Xcode9-Swift3_2
-    :git: https://github.com/xmartlabs/Eureka.git
-
-CHECKOUT OPTIONS:
-  Eureka:
-    :commit: 05acfb04c24a480f1868e671d19b39e0f22fc265
-    :git: https://github.com/xmartlabs/Eureka.git
 
 SPEC CHECKSUMS:
   AMTagListView: 08ab67466c67152f6299bc29a13a907783b0046f
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Braintree: a9d35b7d5a8d76267adcb5795d32c20ca5f39a99
   CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
-  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
-  EasyPeasy: 50e7130b61f495ce105796e438d4136e2c8d2cc0
-  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
+  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
@@ -173,12 +151,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
-  Neon: 7fb5a9327e7e57911843f608e08f4893a74deaf9
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
 
-PODFILE CHECKSUM: 3b4dee5bbcf817d716b9d94af47ed5cfedba6007
+PODFILE CHECKSUM: 6561d148b15e09c4c09331a5e896ac0e35287162
 
 COCOAPODS: 1.2.1

@@ -15,7 +15,7 @@ import XLActionController
 import CoreLocation
 import SwiftMessages
 
-private let kBaseURL: String = "http://52.14.151.59/"
+private let kBaseURL: String = "http://18.221.170.199/"
 private let kRequests: String = "requests/"
 private let kNotifications: String = "notifications/"
 private let kUsers: String = "users/"
@@ -33,6 +33,7 @@ class ChatViewController: JSQMessagesViewController {
     var requestTitle: String!
     var userLocation: CLLocation!
     var myPhotoUrl: String!
+    var otherPhotoUrl: String!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -186,18 +187,14 @@ class ChatViewController: JSQMessagesViewController {
                 let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
                 if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 {
                     let acceptedId: String = channelData["proffrerId"] as! String
+                    self.otherPhotoUrl = channelData["proffrerPhotoUrl"] as! String!
                     self.deleteOtherProffrs(requestId: requestId, acceptedId: acceptedId)
+                    self.accepted.setValue(1)
+                    self.getRequest(nxt: 0)
                 } else {
                     print("Error! Could not decode channel data in Create Proffr")
                 }
-                
             })
-            
-            self.accepted.setValue(1)
-            
-            // self.navigationController?.popToRootViewController(animated: true)
-            // movetopay
-            self.getRequest(nxt: 0)
         }))
         actionController.addAction(Action("Cancel", style: .cancel, handler: { action in
         }))
@@ -382,6 +379,7 @@ class ChatViewController: JSQMessagesViewController {
         nextViewController.requestTitle = requestTitle
         nextViewController.userLocation = userLocation
         nextViewController.myPhotoUrl = self.myPhotoUrl
+        nextViewController.otherPhotoUrl = self.otherPhotoUrl
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
     }
@@ -533,7 +531,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func didPressAccessoryButton(_ sender: UIButton) {
         let picker = UIImagePickerController()
-        picker.delegate = self
+        picker.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
             picker.sourceType = UIImagePickerControllerSourceType.camera
         } else {

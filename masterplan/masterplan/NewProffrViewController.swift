@@ -12,7 +12,7 @@ import Photos
 
 private let kBaseURL: String = "http://18.221.170.199/"
 
-class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate {
+class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate {
     
     // MARK: Properties
     
@@ -108,7 +108,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         imagePickerController.sourceType = .photoLibrary
         
         // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
+        imagePickerController.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
         present(imagePickerController, animated: true, completion: nil)
     }
     
@@ -201,6 +201,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UIImagePic
         let chatVc: NewChatViewController = NewChatViewController()
         
         chatVc.senderDisplayName = senderDisplayName
+        chatVc.myDisplayName = senderDisplayName
         chatVc.channel = channel
         chatVc.channelRef = channelRef.child(channel.id)
         chatVc.imageData = imageData

@@ -47,13 +47,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
-        /*
-        
-        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email, .userFriends ])
-        
-        loginButton.center = view.center
-        view.addSubview(loginButton)
-        */
         
         // Add a custom login button to your app
         let myLoginButton = UIButton(type: .custom)

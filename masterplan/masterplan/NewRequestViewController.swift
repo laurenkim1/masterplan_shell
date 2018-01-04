@@ -101,9 +101,9 @@ class NewRequestViewController: FormViewController {
         let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!
         let _pickup: Int!
         if row.value == "Yes" {
-            _pickup = 0
-        } else {
             _pickup = 1
+        } else {
+            _pickup = 0
         }
         
         if request != nil {

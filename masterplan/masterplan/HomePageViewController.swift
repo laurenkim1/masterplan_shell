@@ -10,7 +10,6 @@ import UIKit
 import os.log
 import MapKit
 import CoreLocation
-import DGElasticPullToRefresh
 import SwiftMessages
 import SystemConfiguration
 
@@ -30,9 +29,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     var filteredNearbyRequestList = [requestInfo]()
     var searchController = UISearchController(searchResultsController: nil)
     var distanceCeiling: CLLocationDistance = 1610.0 as CLLocationDistance
-    
     // let locationManager = CLLocationManager()
-    var userLocation: CLLocation! 
+    var userLocation: CLLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,15 +64,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        //self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
-        self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            self?.getNearbyRequests((self?.userLocation)!, 1)
-            self?.tableView.dg_stopLoading()
-            }, loadingView: loadingView)
-        self.tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
-        self.tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(HomePageViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -334,10 +325,8 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
     @objc func handleRefresh(refreshControl: UIRefreshControl) -> Void {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
-        self.nearbyRequestList = []
-        self.getNearbyRequests(userLocation, 1)
         
-        self.tableView.reloadData()
+        self.getNearbyRequests(userLocation, 1)
         refreshControl.endRefreshing()
     }
     
@@ -358,32 +347,5 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
     }
-
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let CreateProffrViewController = segue.destination as? CreateProffrViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        
-        guard let selectedRequestCell = sender as? NearbyRequestTableViewCell else {
-            fatalError("Unexpected sender: \(sender)")
-        }
-        
-        guard let indexPath = tableView.indexPath(for: selectedRequestCell) else {
-            fatalError("The selected cell is not being displayed by the table")
-        }
-        
-        let selectedRequest: requestInfo
-        if searchController.isActive && searchController.searchBar.text != "" {
-            selectedRequest = nearbyRequestList[indexPath.row]
-        } else {
-            selectedRequest = nearbyRequestList[indexPath.row]
-        }
-        
-        CreateProffrViewController.request = selectedRequest
-        CreateProffrViewController.senderDisplayName = myDisplayName
-        CreateProffrViewController.senderId = myUserId
-    }
- */
 
 }

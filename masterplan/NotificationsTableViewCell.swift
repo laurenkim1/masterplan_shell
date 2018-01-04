@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import EasyPeasy
-import Neon
 
 class NotificationsTableViewCell: UITableViewCell {
     

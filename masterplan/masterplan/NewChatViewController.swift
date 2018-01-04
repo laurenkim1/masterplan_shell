@@ -16,6 +16,7 @@ class NewChatViewController: JSQMessagesViewController {
     // MARK: Properties
     private let imageURLNotSetKey = "NOTSET"
     
+    var myDisplayName: String!
     var channelRef: DatabaseReference?
     var proffrPhotoUrlString: String?
     var messageText: String?
@@ -60,6 +61,7 @@ class NewChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
         self.title = "New Proffr"
         self.senderId = Auth.auth().currentUser?.uid
+        self.senderDisplayName = myDisplayName
         observeMessages()
         self.setNavBar()
         
@@ -336,7 +338,7 @@ class NewChatViewController: JSQMessagesViewController {
     
     override func didPressAccessoryButton(_ sender: UIButton) {
         let picker = UIImagePickerController()
-        picker.delegate = self
+        picker.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
             picker.sourceType = UIImagePickerControllerSourceType.camera
         } else {
