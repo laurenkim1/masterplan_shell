@@ -263,7 +263,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     let token = Messaging.messaging().fcmToken
                     print("FCM token: \(token ?? "")")
                     
-                    let newUser: Profile = Profile(userId: graphPath, userName: self.myDisplayName, firstName: self.firstName, lastName: self.lastName, userEmail: self.myEmail, userLocation: self.userLocation, fcmToken: token!)
+                    let newUser: Profile = Profile(userId: graphPath, userName: self.myDisplayName, firstName: self.firstName, lastName: self.lastName, userEmail: self.myEmail, userLocation: self.userLocation, fcmToken: token!, rating: 5)
                     
                     self.postUser(newUser)
                     
@@ -275,6 +275,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     profileVC.myPhotoUrl = self.myPhotoUrl
                     profileVC.firstName = self.firstName
                     profileVC.lastName = self.lastName
+                    profileVC.rating = 5
                     
                     UIApplication.shared.keyWindow?.rootViewController = profileVC
                     self.dismiss(animated: true, completion: nil)

@@ -16,10 +16,11 @@ internal class Profile {
     internal let firstName: String
     internal let lastName: String
     internal let userEmail: String
+    internal let rating: Int
     internal let userLocation: CLLocation
     internal let fcmToken: String
     
-    init(userId: String, userName: String, firstName: String, lastName: String, userEmail: String, userLocation: CLLocation, fcmToken: String) {
+    init(userId: String, userName: String, firstName: String, lastName: String, userEmail: String, userLocation: CLLocation, fcmToken: String, rating: Int) {
         
         self.userId = userId
         self.userName = userName
@@ -28,6 +29,7 @@ internal class Profile {
         self.userEmail = userEmail
         self.userLocation = userLocation
         self.fcmToken = fcmToken
+        self.rating = rating
     }
     
     // MARK: Public Methods
@@ -50,7 +52,7 @@ internal class Profile {
         jsonable.setValue(userEmail, forKey: "userEmail")
         jsonable.setValue(geoloc, forKey: "userLocation")
         jsonable.setValue(fcmToken, forKey: "fcmToken")
-        jsonable.setValue([], forKey: "userRequests")
+        jsonable.setValue(rating, forKey: "rating")
         return jsonable
     }
     
@@ -89,8 +91,12 @@ internal class Profile {
             os_log("Unable to decode the photoUrl for a request.", log: OSLog.default, type: .debug)
             return nil
         }
+        guard let rating = dict["rating"] as? Int else {
+            os_log("Unable to decode the rating for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
         
-        self.init(userId: userId, userName: userName, firstName: firstName, lastName: lastName, userEmail: userEmail, userLocation: userLocation, fcmToken: fcmToken)
+        self.init(userId: userId, userName: userName, firstName: firstName, lastName: lastName, userEmail: userEmail, userLocation: userLocation, fcmToken: fcmToken, rating: rating)
     }
 
 }
