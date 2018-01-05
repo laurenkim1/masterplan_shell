@@ -34,6 +34,8 @@ class ChatViewController: JSQMessagesViewController {
     var userLocation: CLLocation!
     var myPhotoUrl: String!
     var otherPhotoUrl: String!
+    var acceptedName: String!
+    var acceptedId: String!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -185,10 +187,11 @@ class ChatViewController: JSQMessagesViewController {
         actionController.addAction(Action("Accept", style: .destructive, handler: { action in
             self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
                 let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                if let requestId = channelData["requestId"] as! String!, requestId.characters.count > 0 {
-                    let acceptedId: String = channelData["proffrerId"] as! String
+                if let requestId = channelData["requestId"] as! String! {
+                    self.acceptedId = channelData["proffrerId"] as! String
+                    self.acceptedName = channelData["proffererName"] as! String
                     self.otherPhotoUrl = channelData["proffrerPhotoUrl"] as! String!
-                    self.deleteOtherProffrs(requestId: requestId, acceptedId: acceptedId)
+                    self.deleteOtherProffrs(requestId: requestId, acceptedId: self.acceptedId)
                     self.accepted.setValue(1)
                     self.getRequest(nxt: 0)
                 } else {
@@ -380,6 +383,8 @@ class ChatViewController: JSQMessagesViewController {
         nextViewController.userLocation = userLocation
         nextViewController.myPhotoUrl = self.myPhotoUrl
         nextViewController.otherPhotoUrl = self.otherPhotoUrl
+        nextViewController.proffrerName = self.acceptedName
+        nextViewController.proffrerId = self.acceptedId
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
     }

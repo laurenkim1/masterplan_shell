@@ -26,6 +26,7 @@ class EditProfileViewController: FormViewController {
     var firstName: String!
     var lastName: String!
     var rating: Int!
+    var numRatings: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +72,7 @@ class EditProfileViewController: FormViewController {
         let token = Messaging.messaging().fcmToken
         print("FCM token: \(token ?? "")")
         
-        let updateUser: Profile = Profile(userId: self.userId, userName: self.userName, firstName: self.firstName, lastName: self.lastName, userEmail: self.userEmail, userLocation: self.userLocation, fcmToken: token!, rating: self.rating)
+        let updateUser: Profile = Profile(userId: self.userId, userName: self.userName, firstName: self.firstName, lastName: self.lastName, userEmail: self.userEmail, userLocation: self.userLocation, fcmToken: token!, rating: self.rating, numRatings: self.numRatings)
         
         self.updateUser(updateUser)
         

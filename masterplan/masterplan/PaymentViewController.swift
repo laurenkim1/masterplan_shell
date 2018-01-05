@@ -26,8 +26,12 @@ class PaymentViewController: UIViewController {
     var requestTitle: String!
     var myProfilePhoto: UIImageView!
     var otherProfilePhoto: UIImageView!
-    var payButton: UIButton!
+    var submitButton: UIButton!
     var userLocation: CLLocation!
+    var proffrerName: String!
+    var proffrerId: String!
+    
+    var ratingControl: RatingControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +69,14 @@ class PaymentViewController: UIViewController {
         toolBarSeparator.isOpaque = true
         toolbar.addSubview(toolBarSeparator)
         self.view.addSubview(toolbar)
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    @objc func doneButtonTapped(){
+        // guard let controllers = navigationController?.viewControllers else { return }
+        // guard let homeViewController = controllers[0] as? HomePageViewController else { return }
+        self.updateUser()
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func setView() {
@@ -95,68 +107,59 @@ class PaymentViewController: UIViewController {
         self.setProfilePhoto(PhotoUrl: self.myPhotoUrl, photo: myProfilePhoto)
         self.setProfilePhoto(PhotoUrl: self.otherPhotoUrl, photo: otherProfilePhoto)
         
-        self.payButton = UIButton(frame: CGRect(x: self.view.frame.width/5, y: 140+myProfilePhoto.frame.height+270, width: 3*self.view.frame.width/5, height: 50))
+        self.submitButton = UIButton(frame: CGRect(x: self.view.frame.width/5, y: 140+myProfilePhoto.frame.height+270, width: 3*self.view.frame.width/5, height: 50))
         
-        /*
-        payButton.addTarget(self, action: #selector(self.tappedMyPayButton), for: .touchUpInside)
-        */ 
-        payButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
-        payButton.layer.cornerRadius = 5
-        payButton.setTitle("Pay", for: .normal)
+        submitButton.addTarget(self, action: #selector(self.doneButtonTapped), for: .touchUpInside)
+        submitButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
+        submitButton.layer.cornerRadius = 5
+        submitButton.setTitle("Submit", for: .normal)
         
-        let separator = UIView(frame: CGRect(x: 0, y: 140+myProfilePhoto.frame.height+80, width: self.view.frame.size.width, height: 0.75))
+        let separator = UIView(frame: CGRect(x: 0, y: 140+myProfilePhoto.frame.height+90, width: self.view.frame.size.width, height: 0.75))
         separator.backgroundColor = UIColor.gray // Here your custom color
         separator.isOpaque = true
         view.addSubview(separator)
         
-        let separator1 = UIView(frame: CGRect(x: 0, y: 140+myProfilePhoto.frame.height+130, width: self.view.frame.size.width, height: 0.75))
+        let separator1 = UIView(frame: CGRect(x: 0, y: 140+myProfilePhoto.frame.height+140, width: self.view.frame.size.width, height: 0.75))
         separator1.backgroundColor = UIColor.gray // Here your custom color
         separator1.isOpaque = true
         view.addSubview(separator1)
         
         let centerpoint: CGPoint = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         
-        let paymentlabel = UILabel(frame: CGRect(x: centerpoint.x-60, y: 140+myProfilePhoto.frame.height+80, width: 120, height: 50))
-        paymentlabel.text = "Payment"
-        paymentlabel.font = UIFont(name: "Arial", size: 30)
-        self.view.addSubview(paymentlabel)
+        let leaveReviewlabel = UILabel(frame: CGRect(x: centerpoint.x-90, y: 140+myProfilePhoto.frame.height+90, width: 180, height: 50))
+        leaveReviewlabel.text = "Leave a review for"
+        leaveReviewlabel.font = UIFont(name: "Arial", size: 20)
+        leaveReviewlabel.textAlignment = .center
+        self.view.addSubview(leaveReviewlabel)
         
-        let itemlabel = UILabel(frame: CGRect(x: centerpoint.x-120, y: separator1.center.y+20, width: 180, height: 20))
-        itemlabel.text = "Item"
+        let meetlabel = UILabel(frame: CGRect(x: centerpoint.x-90, y: 105, width: 180, height: 50))
+        meetlabel.text = "Meet in person!"
+        meetlabel.font = UIFont(name: "Arial", size: 25)
+        meetlabel.textAlignment = .center
+        self.view.addSubview(meetlabel)
+        
+        let itemlabel = UILabel(frame: CGRect(x: 3*self.view.frame.width/5+10, y: 170+myProfilePhoto.frame.height, width: self.view.frame.width/5+10, height: 20))
+        itemlabel.text = self.requestTitle
         itemlabel.font = UIFont(name: "Arial", size: 16)
+        itemlabel.textAlignment = .center
         self.view.addSubview(itemlabel)
         
-        let itemprice = UILabel(frame: CGRect(x: centerpoint.x+60, y: separator1.center.y+20, width: 60, height: 20))
+        let itemprice = UILabel(frame: CGRect(x: self.view.frame.width/5-20, y: 170+myProfilePhoto.frame.height, width: self.view.frame.width/5+10, height: 20))
         itemprice.text = "$" + String(format:"%.2f", request.requestPrice)
-        itemprice.font = UIFont(name: "Arial", size: 16)
+        itemprice.font = UIFont(name: "Arial", size: 20)
+        itemprice.textAlignment = .center
         self.view.addSubview(itemprice)
         
-        let servicelabel = UILabel(frame: CGRect(x: centerpoint.x-120, y: itemlabel.center.y+30, width: 180, height: 20))
-        servicelabel.text = "Transaction Fee"
-        servicelabel.font = UIFont(name: "Arial", size: 16)
-        self.view.addSubview(servicelabel)
+        let namelabel = UILabel(frame: CGRect(x: centerpoint.x-100, y: 140+myProfilePhoto.frame.height+150, width: 200, height: 50))
+        namelabel.text = self.proffrerName
+        namelabel.font = UIFont(name: "Arial", size: 30)
+        namelabel.textAlignment = .center
+        self.view.addSubview(namelabel)
         
-        let serviceprice = UILabel(frame: CGRect(x: centerpoint.x+60, y: itemlabel.center.y+30, width: 60, height: 20))
-        serviceprice.text = "$" + String(format:"%.2f", 0.60)
-        serviceprice.font = UIFont(name: "Arial", size: 16)
-        self.view.addSubview(serviceprice)
+        ratingControl = RatingControl(frame: CGRect(x: centerpoint.x-75, y: 140+myProfilePhoto.frame.height+210, width: 150, height: 30))
+        self.view.addSubview(ratingControl)
         
-        let separator2 = UIView(frame: CGRect(x: centerpoint.x-130, y: serviceprice.center.y+20, width: 260, height: 1.25))
-        separator2.backgroundColor = UIColor.gray // Here your custom color
-        separator2.isOpaque = true
-        view.addSubview(separator2)
-        
-        let totallabel = UILabel(frame: CGRect(x: centerpoint.x-120, y: separator2.center.y+15, width: 180, height: 20))
-        totallabel.text = "Total"
-        totallabel.font = UIFont(name: "Arial", size: 16)
-        self.view.addSubview(totallabel)
-        
-        let totalprice = UILabel(frame: CGRect(x: centerpoint.x+60, y: separator2.center.y+15, width: 60, height: 20))
-        totalprice.text = "$" + String(format:"%.2f", request.requestPrice+0.60)
-        totalprice.font = UIFont(name: "Arial", size: 16)
-        self.view.addSubview(totalprice)
-        
-        self.view.addSubview(payButton)
+        self.view.addSubview(self.submitButton)
     }
     
     @objc func titleTapped() {
@@ -227,15 +230,42 @@ class PaymentViewController: UIViewController {
             }
             }.resume()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func rateToDict() -> NSDictionary! {
+        let jsonable = NSMutableDictionary()
+        let newRating: Int! = self.ratingControl.rating
+        jsonable.setValue(newRating, forKey: "rating")
+        return jsonable
     }
-    */
-
+    
+    func updateUser() {
+        if self.proffrerId == nil {
+            return
+            //input safety check
+        }
+        let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        let url = URL(string: users + "/rating/" + self.proffrerId)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "PUT"
+        //2
+        
+        let data: Data? = try? JSONSerialization.data(withJSONObject: self.rateToDict(), options: [])
+        //3
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                print(response)
+            }
+        })
+        dataTask?.resume()
+    }
+    
 }

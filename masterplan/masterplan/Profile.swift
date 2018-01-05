@@ -17,10 +17,11 @@ internal class Profile {
     internal let lastName: String
     internal let userEmail: String
     internal let rating: Int
+    internal let numRatings: Int
     internal let userLocation: CLLocation
     internal let fcmToken: String
     
-    init(userId: String, userName: String, firstName: String, lastName: String, userEmail: String, userLocation: CLLocation, fcmToken: String, rating: Int) {
+    init(userId: String, userName: String, firstName: String, lastName: String, userEmail: String, userLocation: CLLocation, fcmToken: String, rating: Int, numRatings: Int) {
         
         self.userId = userId
         self.userName = userName
@@ -30,6 +31,7 @@ internal class Profile {
         self.userLocation = userLocation
         self.fcmToken = fcmToken
         self.rating = rating
+        self.numRatings = numRatings
     }
     
     // MARK: Public Methods
@@ -53,6 +55,7 @@ internal class Profile {
         jsonable.setValue(geoloc, forKey: "userLocation")
         jsonable.setValue(fcmToken, forKey: "fcmToken")
         jsonable.setValue(rating, forKey: "rating")
+        jsonable.setValue(numRatings, forKey: "numRatings")
         return jsonable
     }
     
@@ -96,7 +99,12 @@ internal class Profile {
             return nil
         }
         
-        self.init(userId: userId, userName: userName, firstName: firstName, lastName: lastName, userEmail: userEmail, userLocation: userLocation, fcmToken: fcmToken, rating: rating)
+        guard let numRatings = dict["numRatings"] as? Int else {
+            os_log("Unable to decode the numrating for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
+        self.init(userId: userId, userName: userName, firstName: firstName, lastName: lastName, userEmail: userEmail, userLocation: userLocation, fcmToken: fcmToken, rating: rating, numRatings: numRatings)
     }
 
 }
