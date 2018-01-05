@@ -10,17 +10,19 @@ import Foundation
 
 internal class ProffrChannel {
     internal let id: String
+    internal let proffrerId: String
     internal let name: String
     internal let subTitle: String
     internal let photoUrl: URL
     internal let requestId: String
     internal let alreadyAccepted: Int
     
-    init(id: String, name: String, subTitle: String, photoUrl: String, requestId: String, alreadyAccepted: Int) {
+    init(id: String, proffrerId: String, name: String, subTitle: String, photoUrl: String, requestId: String, alreadyAccepted: Int) {
         
         let photoURL: URL = URL(string: photoUrl)!
         
         self.id = id
+        self.proffrerId = proffrerId
         self.name = name
         self.subTitle = subTitle
         self.photoUrl = photoURL

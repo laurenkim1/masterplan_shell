@@ -28,6 +28,7 @@ class ChatViewController: JSQMessagesViewController {
     private let imageURLNotSetKey = "NOTSET"
 
     var channelRef: DatabaseReference?
+    var outgoing: Int!
     var acceptButton: UIBarButtonItem!
     var requestId: String!
     var requestTitle: String!
@@ -159,7 +160,9 @@ class ChatViewController: JSQMessagesViewController {
         if self.alreadyAccepted == 1 {
             self.acceptButton.isEnabled = false
         }
-        self.navigationItem.rightBarButtonItem = acceptButton
+        if self.outgoing == 0 {
+            self.navigationItem.rightBarButtonItem = acceptButton
+        }
         
         let screenSize: CGRect = UIScreen.main.bounds
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 65, width: screenSize.width, height: 30))

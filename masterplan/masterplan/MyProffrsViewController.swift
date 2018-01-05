@@ -145,7 +145,7 @@ class MyProffrsViewController: UITableViewController {
                 let requesterId: String = channelData["requesterId"] as! String
                 if requesterId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.incomingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
+                    self.incomingChannels.insert(ProffrChannel(id: id, proffrerId: channelData["proffrerId"] as! String, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
                 }
                 self.tableView.reloadData()
             } else {
@@ -167,7 +167,7 @@ class MyProffrsViewController: UITableViewController {
                 let senderId: String = channelData["proffrerId"] as! String
                 if senderId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.outgoingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
+                    self.outgoingChannels.insert(ProffrChannel(id: id, proffrerId: channelData["proffrerId"] as! String, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
                 }
                 self.tableView.reloadData()
             } else {
@@ -204,6 +204,11 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.requestTitle = channel.subTitle
         proffrChatVc.userLocation = self.userLocation
         proffrChatVc.myPhotoUrl = self.myPhotoUrl
+        if channel.proffrerId == self.myUserId {
+            proffrChatVc.outgoing = 1
+        } else {
+            proffrChatVc.outgoing = 0
+        }
         proffrChatVc.alreadyAccepted = channel.alreadyAccepted
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref

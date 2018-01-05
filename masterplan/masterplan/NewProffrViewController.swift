@@ -134,7 +134,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
             
             newChannelRef.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
                 let id = newChannelRef.key
-                let channel = ProffrChannel(id: id, name: self.request!.userName, subTitle: subTitle, photoUrl: requesterPhotoUrlString, requestId: self.request!.requestID!, alreadyAccepted: 0)
+                let channel = ProffrChannel(id: id, proffrerId: self.senderId, name: self.request!.userName, subTitle: subTitle, photoUrl: requesterPhotoUrlString, requestId: self.request!.requestID!, alreadyAccepted: 0)
                 self.segueToNewChannel(channel: channel)
             })
             
