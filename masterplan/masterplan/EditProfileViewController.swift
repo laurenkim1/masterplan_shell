@@ -25,7 +25,7 @@ class EditProfileViewController: FormViewController {
     var myPhotoUrl: String!
     var firstName: String!
     var lastName: String!
-    var rating: Int!
+    var rating: Float!
     var numRatings: Int!
 
     override func viewDidLoad() {

@@ -16,12 +16,12 @@ internal class Profile {
     internal let firstName: String
     internal let lastName: String
     internal let userEmail: String
-    internal let rating: Int
+    internal let rating: Float
     internal let numRatings: Int
     internal let userLocation: CLLocation
     internal let fcmToken: String
     
-    init(userId: String, userName: String, firstName: String, lastName: String, userEmail: String, userLocation: CLLocation, fcmToken: String, rating: Int, numRatings: Int) {
+    init(userId: String, userName: String, firstName: String, lastName: String, userEmail: String, userLocation: CLLocation, fcmToken: String, rating: Float, numRatings: Int) {
         
         self.userId = userId
         self.userName = userName
@@ -94,7 +94,7 @@ internal class Profile {
             os_log("Unable to decode the photoUrl for a request.", log: OSLog.default, type: .debug)
             return nil
         }
-        guard let rating = dict["rating"] as? Int else {
+        guard let rating = dict["rating"] as? Float else {
             os_log("Unable to decode the rating for a request.", log: OSLog.default, type: .debug)
             return nil
         }
