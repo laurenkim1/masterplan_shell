@@ -245,6 +245,7 @@ class PaymentViewController: UIViewController {
         }
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         let url = URL(string: users + "/rating/" + self.proffrerId)
+        print(url)
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "PUT"

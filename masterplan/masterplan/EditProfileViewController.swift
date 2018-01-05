@@ -100,6 +100,7 @@ class EditProfileViewController: FormViewController {
         let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
         let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
         notificationsTable.myUserId = self.userId
+        notificationsTable.userLocation = self.userLocation
         let profileVcNav = navVc.viewControllers?[4] as! UINavigationController
         let profileVc = profileVcNav.viewControllers.first as! UserProfileViewController
         profileVc.myUserId = self.userId

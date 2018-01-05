@@ -238,6 +238,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     let notificationsVc = navVc.viewControllers?[3] as! UINavigationController
                     let notificationsTable = notificationsVc.viewControllers.first as! NotificationsTableViewController
                     notificationsTable.myUserId = self.myUserId
+                    notificationsTable.userLocation = self.userLocation
                     let profileVcNav = navVc.viewControllers?[4] as! UINavigationController
                     let profileVc = profileVcNav.viewControllers.first as! UserProfileViewController
                     profileVc.myUserId = self.myUserId

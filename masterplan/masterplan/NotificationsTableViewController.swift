@@ -14,12 +14,14 @@ import SwiftMessages
 
 private let kBaseURL: String = "http://18.221.170.199/"
 private let kNotifications: String = "notifications/"
+private let kRequests: String = "requests/"
 
 class NotificationsTableViewController: UITableViewController {
     
     // MARK: Properties
     
     var myUserId: String!
+    var userLocation: CLLocation!
     private var notifications: [notificationModel] = []
 
     override func viewDidLoad() {
@@ -83,6 +85,14 @@ class NotificationsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        let selectedRequest: String!
+        selectedRequest = notifications[indexPath.row].requestId
+        print(selectedRequest)
+        getRequest(requestId: selectedRequest)
+    }
+    
     // Mark: Private Methods
     
     func getNotifications() -> Void {
@@ -136,6 +146,46 @@ class NotificationsTableViewController: UITableViewController {
         
         self.getNotifications()
         refreshControl.endRefreshing()
+    }
+    
+    func getRequest(requestId: String) -> Void {
+        let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
+        let url = URL(string: (requests + "/search/" + requestId))
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "GET"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        let config = URLSessionConfiguration.default
+        //4
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                DispatchQueue.main.async() {
+                    if response != nil {
+                        self.parseRequest(request: response!)
+                    } else {
+                        self.warning()
+                    }
+                }
+            }
+        })
+        dataTask?.resume()
+    }
+    
+    func parseRequest(request: NSDictionary) -> Void {
+        let request = requestInfo(dict: request)
+        let detailVc: RequestDetailsViewController = RequestDetailsViewController()
+        detailVc.userLocation = userLocation
+        detailVc.request = request
+        detailVc.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(detailVc,
+                                                 animated: true)
     }
     
     func warning() -> Void {
