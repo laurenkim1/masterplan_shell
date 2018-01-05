@@ -14,8 +14,9 @@ internal class ProffrChannel {
     internal let subTitle: String
     internal let photoUrl: URL
     internal let requestId: String
+    internal let alreadyAccepted: Int
     
-    init(id: String, name: String, subTitle: String, photoUrl: String, requestId: String) {
+    init(id: String, name: String, subTitle: String, photoUrl: String, requestId: String, alreadyAccepted: Int) {
         
         let photoURL: URL = URL(string: photoUrl)!
         
@@ -24,5 +25,6 @@ internal class ProffrChannel {
         self.subTitle = subTitle
         self.photoUrl = photoURL
         self.requestId = requestId
+        self.alreadyAccepted = alreadyAccepted
     }
 }

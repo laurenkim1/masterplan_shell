@@ -36,6 +36,7 @@ class ChatViewController: JSQMessagesViewController {
     var otherPhotoUrl: String!
     var acceptedName: String!
     var acceptedId: String!
+    var alreadyAccepted: Int!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -155,6 +156,9 @@ class ChatViewController: JSQMessagesViewController {
     
     private func setNavBar() {
         self.acceptButton = UIBarButtonItem(title: "Accept", style: .plain, target: self, action: #selector(acceptButtonTapped))
+        if self.alreadyAccepted == 1 {
+            self.acceptButton.isEnabled = false
+        }
         self.navigationItem.rightBarButtonItem = acceptButton
         
         let screenSize: CGRect = UIScreen.main.bounds

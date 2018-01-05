@@ -141,11 +141,11 @@ class MyProffrsViewController: UITableViewController {
         channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
-            if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
+            if let name = channelData["proffererName"] as! String! { // 3
                 let requesterId: String = channelData["requesterId"] as! String
                 if requesterId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.incomingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String), at: 0)
+                    self.incomingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
                 }
                 self.tableView.reloadData()
             } else {
@@ -163,11 +163,11 @@ class MyProffrsViewController: UITableViewController {
         channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
-            if let name = channelData["proffererName"] as! String!, name.characters.count > 0 { // 3
+            if let name = channelData["proffererName"] as! String!{ // 3
                 let senderId: String = channelData["proffrerId"] as! String
                 if senderId == self.myUserId {
                     let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.outgoingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String), at: 0)
+                    self.outgoingChannels.insert(ProffrChannel(id: id, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
                 }
                 self.tableView.reloadData()
             } else {
@@ -193,42 +193,6 @@ class MyProffrsViewController: UITableViewController {
     }
  */
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: Navigation
     
     func cellSelected(channel: ProffrChannel){
@@ -240,6 +204,7 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.requestTitle = channel.subTitle
         proffrChatVc.userLocation = self.userLocation
         proffrChatVc.myPhotoUrl = self.myPhotoUrl
+        proffrChatVc.alreadyAccepted = channel.alreadyAccepted
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref
         proffrChatVc.hidesBottomBarWhenPushed = true
