@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Photos
+import FirebaseStorage
 
 private let kBaseURL: String = "http://18.221.170.199/"
 

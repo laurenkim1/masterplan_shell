@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Firebase
+import FirebaseStorage
 import JSQMessagesViewController
 
 class NewChatViewController: JSQMessagesViewController {

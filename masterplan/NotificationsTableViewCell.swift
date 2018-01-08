@@ -34,6 +34,13 @@ class NotificationsTableViewCell: UITableViewCell {
         return view
     }()
     
+    lazy var timeLabel: UILabel = {
+        let view = UILabel()
+        view.backgroundColor = .clear
+        view.textAlignment = .right
+        return view
+    }()
+    
     var ProfilePhoto : UIImageView!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -59,6 +66,11 @@ class NotificationsTableViewCell: UITableViewCell {
         acceptlabel.textColor = UIColor.lightGray
         acceptlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(acceptlabel)
+        
+        timeLabel.frame = CGRect(x: self.bounds.maxX-120, y: 5, width: 120, height: CellHeight/3)
+        timeLabel.textColor = UIColor.darkGray
+        timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
+        contentView.addSubview(timeLabel)
         
         requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: acceptlabel.frame.origin.y+acceptlabel.frame.size.height-5, width: 200, height: CellHeight/3)
         contentView.addSubview(requestTitle)

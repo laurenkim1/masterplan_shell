@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import os.log
 import Firebase
+import FirebaseStorage
 import JSQMessagesViewController
 import XLActionController
 import CoreLocation
@@ -41,7 +42,7 @@ class ChatViewController: JSQMessagesViewController {
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
-    fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
+    fileprivate lazy var storageRef = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
     private lazy var userIsTypingRef: DatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
     private lazy var usersTypingQuery: DatabaseQuery = self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
     
@@ -443,7 +444,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
-        let storageRef = Storage.storage().reference(forURL: photoURL)
+        let storageRef = self.storageRef.storage.reference(forURL: photoURL)
         storageRef.getData(maxSize: INT64_MAX){ (data, error) in
             if let error = error {
                 print("Error downloading image data: \(error)")

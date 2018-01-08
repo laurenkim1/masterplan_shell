@@ -21,6 +21,8 @@ class notificationModel: NSObject {
     var requesterId: String
     var requesterName: String
     var photoUrl: URL
+    var postTime: NSDate?
+    var postTimeString: String?
     
     //MARK: Types
     
@@ -88,14 +90,10 @@ class notificationModel: NSObject {
             os_log("Unable to decode the userphoto for a request.", log: OSLog.default, type: .debug)
             return nil
         }
-        /*guard let dateObject = dict["dateObject"] as? NSDictionary else {
-         os_log("Unable to decode the date object for a request.", log: OSLog.default, type: .debug)
-         return nil
-         }
-         guard let date = dateObject["$date"] as? String else {
-         os_log("Unable to decode the date for a request.", log: OSLog.default, type: .debug)
-         return nil
-         }*/
+        guard let date = dict["createdAt"] as? String else {
+            os_log("Unable to decode the date object for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
         
         func stringToDate(date:String) -> NSDate {
             let formatter = DateFormatter()
@@ -110,7 +108,7 @@ class notificationModel: NSObject {
         
         //let dateTime = stringToDate(date: date)
         self.init(userID: userID, requestTitle: requestTitle, requestPrice: Double(requestPrice), requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
-        //self.postTime = dateTime
+        self.postTime = stringToDate(date: date)
     }
     
     // MARK: Public Methods

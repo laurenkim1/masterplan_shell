@@ -119,16 +119,19 @@ class MyProffrsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let channels: [ProffrChannel]!
+        let showAccept: Int!
         if self.segmentedControl.selectedSegmentIndex == 0 {
+            showAccept = 0
             channels = self.incomingChannels
         } else {
+            showAccept = 1
             channels = self.outgoingChannels
         }
         
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let selectedProffr: ProffrChannel = channels[indexPath.row]
         print(selectedProffr)
-        cellSelected(channel: selectedProffr)
+        cellSelected(channel: selectedProffr, showAccept: showAccept)
     }
     
     // MARK: Firebase related methods
@@ -195,7 +198,7 @@ class MyProffrsViewController: UITableViewController {
 
     // MARK: Navigation
     
-    func cellSelected(channel: ProffrChannel){
+    func cellSelected(channel: ProffrChannel, showAccept: Int){
         let proffrChatVc: ChatViewController = ChatViewController()
         
         proffrChatVc.senderDisplayName = channel.name
@@ -204,11 +207,14 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.requestTitle = channel.subTitle
         proffrChatVc.userLocation = self.userLocation
         proffrChatVc.myPhotoUrl = self.myPhotoUrl
+        proffrChatVc.outgoing = showAccept
+        /*
         if channel.proffrerId == self.myUserId {
             proffrChatVc.outgoing = 1
         } else {
             proffrChatVc.outgoing = 0
         }
+ */
         proffrChatVc.alreadyAccepted = channel.alreadyAccepted
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref

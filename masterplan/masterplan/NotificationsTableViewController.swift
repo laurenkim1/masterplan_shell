@@ -79,8 +79,23 @@ class NotificationsTableViewController: UITableViewController {
             }
             }.resume()
         
-        cell.requestTitle.text = notifications[(indexPath as NSIndexPath).row].requestTitle
-        cell.requesterName.text = notifications[(indexPath as NSIndexPath).row].requesterName
+        let notification: notificationModel! = notifications[(indexPath as NSIndexPath).row]
+        
+        let postTime = notification.postTime!
+        let components: NSDateComponents = NSDateComponents()
+        components.setValue(24, forComponent: NSCalendar.Unit.hour)
+        let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: postTime as Date)
+        let nowTime = Date()
+        let timeLeft: TimeInterval = (nowTime.timeIntervalSince(endTime!))
+        
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .short
+        formatter.maximumUnitCount = 1
+        let timeString = formatter.string(from: timeLeft)
+        cell.timeLabel.text = timeString
+        
+        cell.requestTitle.text = notification.requestTitle
+        cell.requesterName.text = notification.requesterName
 
         return cell
     }
