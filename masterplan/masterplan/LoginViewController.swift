@@ -211,6 +211,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     self.lastName = self.user.lastName
                     self.myEmail = self.user.userEmail
                     self.userLocation = self.user.userLocation
+                    self.updateUserToken()
                     
                     let navVc: TabBarController = TabBarController()
                     navVc.userLocation = self.userLocation
@@ -269,6 +270,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     
                     self.postUser(newUser)
                     
+                    let nav = UINavigationController()
                     let profileVC: EditProfileViewController = EditProfileViewController()
                     profileVC.userId = graphPath
                     profileVC.userName = self.myDisplayName
@@ -279,8 +281,9 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     profileVC.lastName = self.lastName
                     profileVC.rating = 5
                     profileVC.numRatings = 1
+                    nav.viewControllers = [profileVC]
                     
-                    UIApplication.shared.keyWindow?.rootViewController = profileVC
+                    UIApplication.shared.keyWindow?.rootViewController = nav
                     self.dismiss(animated: true, completion: nil)
                 }
             case .failed(let error):
@@ -317,6 +320,40 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             if error == nil {
                 os_log("Success")
                 _ = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+            }
+        })
+        dataTask?.resume()
+    }
+    
+    func tokenToDict() -> NSDictionary! {
+        let jsonable = NSMutableDictionary()
+        let token = Messaging.messaging().fcmToken
+        jsonable.setValue(token, forKey: "token")
+        return jsonable
+    }
+    
+    func updateUserToken() {
+        let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
+        let url = URL(string: users + "/fcmtoken/" + self.myUserId)
+        print(url)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "PUT"
+        //2
+        
+        let data: Data? = try? JSONSerialization.data(withJSONObject: self.tokenToDict(), options: [])
+        //3
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                print(response)
             }
         })
         dataTask?.resume()

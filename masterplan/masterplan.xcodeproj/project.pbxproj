@@ -76,8 +76,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4718CAC920055900003261CC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		17B075AD932050938025B4BE /* Pods-masterplanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-masterplanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-masterplanTests/Pods-masterplanTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4718CAB820055900003261CC /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		4718CABA20055900003261CC /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		4726BEEB1F65DFEA0030A1EB /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		47408CA11F188A3C0097C957 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		47408CA31F188FC60097C957 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = ../TabBarController.swift; sourceTree = "<group>"; };
@@ -282,6 +297,8 @@
 			children = (
 				DC686D5A35B06459E5A0D3F0 /* Pods_masterplan.framework */,
 				D25092871A3E6A3EE250AB7E /* Pods_masterplanTests.framework */,
+				4718CAB820055900003261CC /* UserNotifications.framework */,
+				4718CABA20055900003261CC /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,6 +316,7 @@
 				47C888F01F0A169D003ED4F7 /* Resources */,
 				940FEB2003BE6F1187D518B0 /* [CP] Embed Pods Frameworks */,
 				66AC9BE9855B65491D0528E4 /* [CP] Copy Pods Resources */,
+				4718CAC920055900003261CC /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -336,7 +354,7 @@
 		47C888EA1F0A169D003ED4F7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Lauren Kim";
 				TargetAttributes = {

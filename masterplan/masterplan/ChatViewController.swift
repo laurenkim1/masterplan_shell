@@ -300,7 +300,6 @@ class ChatViewController: JSQMessagesViewController {
  */
  
     func deleteOtherProffrs(requestId: String, acceptedId: String) -> Void {
-        print(requestId)
         let allChannels = channelRef?.parent
         let sameRequestProffrs = allChannels?.queryEqual(toValue: requestId, childKey: "requestId")
         let sameRequestRef = sameRequestProffrs?.ref
@@ -403,7 +402,6 @@ class ChatViewController: JSQMessagesViewController {
     // MARK: Firebase related methods
     
     private func observeMessages() {
-        print(self.channelRef!)
         messageRef = self.channelRef!.child("messages")
         let messageQuery = messageRef.queryLimited(toLast:25)
         
@@ -665,7 +663,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
                     return
                 }
                 noti?.setValue(fcmToken, forKey: "registrationToken")
-                noti?.setValue("hi this is the message", forKey: "message")
+                noti?.setValue(self.acceptedName, forKey: "message")
                 
                 let newChannelRef = self.notificationChannelRef.childByAutoId() // 2
                 newChannelRef.setValue(noti)

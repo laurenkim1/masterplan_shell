@@ -19,7 +19,7 @@ exports.sendNotificationToLocation = functions.database.ref("notifications/{noti
 
 		const payload = {
 			notification: {
-				title: message
+				title: "Notification"
 			}
 		};
 

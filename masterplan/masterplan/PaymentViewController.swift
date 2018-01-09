@@ -48,7 +48,7 @@ class PaymentViewController: UIViewController {
     private func setNavBar() {
         
         let screenSize: CGRect = UIScreen.main.bounds
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 65, width: screenSize.width, height: 30))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.maxY, width: screenSize.width, height: 30))
         let buttonString: String = "For: \"" + self.requestTitle + "\""
         let button = UIBarButtonItem(title: buttonString, style: .plain, target: self, action: #selector(titleTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -168,7 +168,7 @@ class PaymentViewController: UIViewController {
     
     func getRequest() -> Void {
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
-        let url = URL(string: (requests + "search/" + self.requestId!))
+        let url = URL(string: (requests + "/search/" + self.requestId!))
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "GET"

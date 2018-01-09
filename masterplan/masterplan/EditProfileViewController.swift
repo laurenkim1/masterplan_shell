@@ -118,16 +118,7 @@ class EditProfileViewController: FormViewController {
     func setNavigationBar() {
         let doneButton = UIBarButtonItem(image: UIImage(named: "icons8-Ok-50"), style: .plain, target: self, action: #selector(finishSegue))
         
-        if self.navigationController == nil {
-            let navItem = UINavigationItem()
-            navItem.rightBarButtonItem = doneButton
-            let screenSize: CGRect = UIScreen.main.bounds
-            let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 65))
-            navBar.setItems([navItem], animated: false)
-            self.view.addSubview(navBar)
-        }
-        
-        self.navigationItem.leftBarButtonItem = doneButton
+        self.navigationItem.rightBarButtonItem = doneButton
     }
     
     func updateUser(_ user: Profile) {
