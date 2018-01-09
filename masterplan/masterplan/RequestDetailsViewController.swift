@@ -85,9 +85,6 @@ class RequestDetailsViewController: UIViewController {
         
         URLSession.shared.dataTask(with: photoUrl) { (data, response, error)  in
             guard let data = data, error == nil else { return }
-            print("Download Started")
-            print(response?.suggestedFilename ?? photoUrl.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() { () -> Void in
                 let image = UIImage(data: data)
                 self.ProfilePhoto.image = image

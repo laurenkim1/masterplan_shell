@@ -44,11 +44,13 @@ class TabBarController: UITabBarController {
         nav2.tabBarItem.title = "Proffrs"
         nav2.tabBarItem.image = UIImage(named: "icons8-Price Tag Filled-50")
         
-        let nav3 = NewRequestPlaceholderVC()
-        nav3.myDisplayName = myDisplayName
-        nav3.myUserId = myUserId
-        nav3.myPhotoUrl = myPhotoUrl
-        nav3.userLocation = userLocation
+        let nav3 = UINavigationController()
+        let newRequestVC = NewRequestPlaceholderVC()
+        newRequestVC.myDisplayName = myDisplayName
+        newRequestVC.myUserId = myUserId
+        newRequestVC.myPhotoUrl = myPhotoUrl
+        newRequestVC.userLocation = userLocation
+        nav3.viewControllers = [newRequestVC]
         nav3.tabBarItem.title = "New"
         nav3.tabBarItem.image = UIImage(named: "icons8-Plus 2 Math-50")
         

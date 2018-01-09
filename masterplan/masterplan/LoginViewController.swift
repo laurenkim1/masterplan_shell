@@ -230,7 +230,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     proffrsVc.myUserId = self.myUserId
                     proffrsVc.userLocation = self.userLocation
                     proffrsVc.myPhotoUrl = self.myPhotoUrl
-                    let newVc = navVc.viewControllers?[2] as! NewRequestPlaceholderVC
+                    let nav2 = navVc.viewControllers?[2] as! UINavigationController
+                    let newVc = nav2.viewControllers.first as! NewRequestPlaceholderVC
                     newVc.myDisplayName = self.myDisplayName
                     newVc.myUserId = self.myUserId
                     newVc.myPhotoUrl = self.myPhotoUrl

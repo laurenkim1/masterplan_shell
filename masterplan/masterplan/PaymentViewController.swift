@@ -221,9 +221,6 @@ class PaymentViewController: UIViewController {
         let photoUrl = URL(string: PhotoUrl)
         URLSession.shared.dataTask(with: photoUrl!) { (data, response, error)  in
             guard let data = data, error == nil else { return }
-            print("Download Started")
-            print(response?.suggestedFilename ?? photoUrl?.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() { () -> Void in
                 let image = UIImage(data: data)
                 photo.image = image

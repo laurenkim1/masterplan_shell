@@ -56,20 +56,7 @@ class NewRequestPlaceholderVC: UIViewController, CircleMenuDelegate {
     }
     
     func setNavigationBar() {
-        let screenSize: CGRect = UIScreen.main.bounds
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 65))
-        let navItem = UINavigationItem(title: "Proffr")
-        navBar.setItems([navItem], animated: false)
-        self.view.addSubview(navBar)
-    }
-    
-    @IBAction func unwindToNewRequestPlaceholder(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? TagListViewController, let request = sourceViewController.request {
-            
-            // Add the new request
-            
-            // Trigger unwind to homepage
-        }
+        self.navigationItem.title = "Proffr"
     }
     
     // MARK: <CircleMenuDelegate>

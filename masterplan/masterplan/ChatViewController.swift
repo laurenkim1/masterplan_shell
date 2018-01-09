@@ -39,6 +39,7 @@ class ChatViewController: JSQMessagesViewController {
     var acceptedName: String!
     var acceptedId: String!
     var alreadyAccepted: Int!
+    var button: UIBarButtonItem!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -166,9 +167,9 @@ class ChatViewController: JSQMessagesViewController {
         }
         
         let screenSize: CGRect = UIScreen.main.bounds
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 65, width: screenSize.width, height: 30))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.maxY, width: screenSize.width, height: 30))
         let buttonString: String = "For: \"" + self.requestTitle + "\""
-        let button = UIBarButtonItem(title: buttonString, style: .plain, target: self, action: #selector(titleTapped))
+        self.button = UIBarButtonItem(title: buttonString, style: .plain, target: self, action: #selector(titleTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         let color : UIColor = UIColor.black
@@ -213,6 +214,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func titleTapped() {
+        button.isEnabled = false
         self.getRequest(nxt: 1)
     }
     

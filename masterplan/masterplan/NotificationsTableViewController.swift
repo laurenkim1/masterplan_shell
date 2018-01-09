@@ -70,9 +70,6 @@ class NotificationsTableViewController: UITableViewController {
         
         URLSession.shared.dataTask(with: photoUrl) { (data, response, error)  in
             guard let data = data, error == nil else { return }
-            print("Download Started")
-            print(response?.suggestedFilename ?? photoUrl.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() { () -> Void in
                 let image = UIImage(data: data)
                 cell.ProfilePhoto.image = image
@@ -83,7 +80,6 @@ class NotificationsTableViewController: UITableViewController {
         
         let postTime = notification.postTime!
         let components: NSDateComponents = NSDateComponents()
-        components.setValue(24, forComponent: NSCalendar.Unit.hour)
         let endTime = NSCalendar.current.date(byAdding: components as DateComponents, to: postTime as Date)
         let nowTime = Date()
         let timeLeft: TimeInterval = (nowTime.timeIntervalSince(endTime!))
