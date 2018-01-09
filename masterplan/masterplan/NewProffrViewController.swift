@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Photos
+import SwiftMessages
 import FirebaseStorage
 
 private let kBaseURL: String = "http://18.221.170.199/"
@@ -16,6 +17,8 @@ private let kBaseURL: String = "http://18.221.170.199/"
 class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate {
     
     // MARK: Properties
+    
+    let semaphore = DispatchSemaphore(value: 1)
     
     private let imageURLNotSetKey = "NOTSET"
     var senderId: String!
@@ -102,15 +105,64 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
         
         print("gesture recognized")
         
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .photoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        present(imagePickerController, animated: true, completion: nil)
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+            case .authorized:
+                let imagePickerController = UIImagePickerController()
+                
+                // Only allow photos to be picked, not taken.
+                imagePickerController.sourceType = .photoLibrary
+                
+                // Make sure ViewController is notified when the user picks an image.
+                imagePickerController.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                self.present(imagePickerController, animated: true, completion: nil)
+                break
+            //handle denied status
+            case .denied, .restricted:
+                self.accessWarning()
+            case .notDetermined:
+                // ask for permissions
+                PHPhotoLibrary.requestAuthorization() { (status) -> Void in
+                    switch status {
+                        case .authorized:
+                            // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+                            let imagePickerController = UIImagePickerController()
+                            
+                            // Only allow photos to be picked, not taken.
+                            imagePickerController.sourceType = .photoLibrary
+                            
+                            // Make sure ViewController is notified when the user picks an image.
+                            imagePickerController.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                            self.present(imagePickerController, animated: true, completion: nil)
+                            break
+                        // as above
+                        case .denied, .restricted:
+                            return
+                        // as above
+                        case .notDetermined: break
+                            // won't happen but still
+                        }
+                }
+        }
+    }
+    
+    func accessWarning() -> Void {
+        let error = MessageView.viewFromNib(layout: .CenteredView)
+        error.backgroundView.backgroundColor = UIColor.purple
+        error.bodyLabel?.textColor = UIColor.white
+        error.configureTheme(.error)
+        error.configureContent(title: "Oops!", body: "Please Allow Access to Photos in Settings.")
+        error.configureDropShadow()
+        var errorConfig = SwiftMessages.defaultConfig
+        errorConfig.duration = .forever
+        error.button?.setTitle("Okay", for: .normal)
+        error.button?.titleLabel?.font = UIFont(name: "Arial", size: 20)
+        error.button?.addTarget(self, action: #selector(self.hide(_:)), for: .touchUpInside)
+        SwiftMessages.show(config: errorConfig, view: error)
+    }
+    
+    @objc func hide(_ sender: AnyObject) {
+        SwiftMessages.hide()
     }
     
     @objc func createProffr(_ sender: UIButton) {
@@ -120,6 +172,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
         if let subTitle = request?.requestTitle {
             let newChannelRef = channelRef.childByAutoId() // 2
             let requesterPhotoUrlString = self.request!.photoUrl.absoluteString
+            
             let channelItem: NSDictionary = [ // 3
                 "proffererName": senderDisplayName!,
                 "proffrerId": senderId!,
