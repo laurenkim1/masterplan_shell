@@ -154,19 +154,19 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
     
     func setView() {
         
-        messageTextField = UITextField(frame: CGRect(x:10, y: 80, width: self.view.frame.width-20, height: 50))
+        messageTextField = UITextField(frame: CGRect(x:10, y: self.navigationController!.navigationBar.frame.maxY + 15, width: self.view.frame.width-20, height: 50))
         messageTextField.placeholder = "  Write a message..."
         messageTextField.layer.borderColor = UIColor.lightGray.cgColor
         messageTextField.layer.borderWidth = 1.0
         messageTextField.delegate = self
         messageTextField.layer.cornerRadius = 5
         
-        let photoLabel = UILabel(frame: CGRect(x: 15, y: 80+messageTextField.frame.height, width: self.view.frame.width-40, height: 25))
+        let photoLabel = UILabel(frame: CGRect(x: 15, y: self.navigationController!.navigationBar.frame.maxY + 15+messageTextField.frame.height, width: self.view.frame.width-40, height: 25))
         photoLabel.textColor = UIColor.lightGray
         photoLabel.text = "Upload a photo..."
     
         photoImageView = UIImageView(image: UIImage(named: "DefaultPhoto"))
-        photoImageView.frame = CGRect(x: 10, y: 80+messageTextField.frame.height+photoLabel.frame.height, width: self.view.frame.width-20, height: self.view.frame.width-20)
+        photoImageView.frame = CGRect(x: 10, y: self.navigationController!.navigationBar.frame.maxY + 15+messageTextField.frame.height+photoLabel.frame.height, width: self.view.frame.width-20, height: self.view.frame.width-20)
         photoImageView.isUserInteractionEnabled = true
         photoImageView.clipsToBounds = true
         photoImageView.contentMode = UIViewContentMode.scaleAspectFill
@@ -178,7 +178,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
         gestureRecognizer.delegate = self
         photoImageView.addGestureRecognizer(gestureRecognizer)
         
-        self.doneButton = UIButton(frame: CGRect(x: 20, y: 90+messageTextField.frame.height+photoLabel.frame.height+photoImageView.frame.height, width: self.view.frame.width-40, height: 40))
+        self.doneButton = UIButton(frame: CGRect(x: 20, y: self.navigationController!.navigationBar.frame.maxY + 25+messageTextField.frame.height+photoLabel.frame.height+photoImageView.frame.height, width: self.view.frame.width-40, height: 40))
         doneButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
         doneButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         doneButton.layer.cornerRadius = 5
