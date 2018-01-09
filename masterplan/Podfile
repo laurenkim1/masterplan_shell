@@ -19,7 +19,6 @@ target 'masterplan' do
   pod 'XLActionController'
   pod 'XLActionController/Periscope'
   pod 'SwiftMessages'
-  pod 'Braintree', '~> 3.9'
 
   target 'masterplanTests' do
     inherit! :search_paths
