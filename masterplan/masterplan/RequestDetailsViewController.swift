@@ -12,6 +12,8 @@ private let kBaseURL: String = "http://18.221.170.199/"
 private let kUsers: String = "users/"
 import os.log
 
+let semaphore = DispatchSemaphore(value: 1)
+
 class RequestDetailsViewController: UIViewController {
     
     //MARK: Properties
@@ -95,7 +97,7 @@ class RequestDetailsViewController: UIViewController {
                 let image = UIImage(data: data)
                 self.ProfilePhoto.image = image
             }
-            }.resume()
+        }.resume()
         
         // change these parameters to match a request table cell
         requestTitle.text = request.requestTitle
@@ -170,6 +172,7 @@ class RequestDetailsViewController: UIViewController {
         profileButton = UIButton(frame: CGRect(x: 30, y: 100, width: 300, height: 80))
         profileButton.addTarget(self, action: #selector(self.viewProfile(_:)), for: .touchUpInside)
         profileButton.layer.backgroundColor = UIColor.clear.cgColor
+        view.addSubview(profileButton)
         
         self.isButton()
     }
@@ -189,7 +192,6 @@ class RequestDetailsViewController: UIViewController {
                 proffrButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
                 proffrButton.layer.cornerRadius = 5
                 proffrButton.setTitle("Proffr", for: .normal)
-                
                 proffrButton.layer.shouldRasterize = true
                 proffrButton.layer.shadowColor = UIColor.black.cgColor
                 proffrButton.layer.shadowOpacity = 1
@@ -216,16 +218,24 @@ class RequestDetailsViewController: UIViewController {
     
     @objc func viewProfile(_ sender: UIButton) {
         
-        let nextViewController: UserProfileViewController = UserProfileViewController()
         self.getUser(id: self.request.userID)
+        while self.requesterProfile == nil {
+            semaphore.wait()
+        }
+        let nextViewController: UserProfileViewController = UserProfileViewController()
         nextViewController.userProfile = self.requesterProfile
         nextViewController.myUserId = self.myUserId
         nextViewController.thisUserId = self.requesterProfile.userId
         nextViewController.myPhotoUrl = self.request.photoUrl.absoluteString
-        navigationController?.pushViewController(nextViewController,
-                                                 animated: true)
+        nextViewController.userLocation = self.userLocation
+        nextViewController.firstName = self.requesterProfile.firstName
+        nextViewController.lastName = self.requesterProfile.lastName
+        nextViewController.isMe = 0
+        self.navigationController?.pushViewController(nextViewController,
+                                                      animated: true)
     }
     
+    //get user from db and segue
     func getUser(id: String) {
         let users: String = kBaseURL + kUsers
         let parameterString: String = id
@@ -246,10 +256,12 @@ class RequestDetailsViewController: UIViewController {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
                 if (response == nil || (response?.isEmpty)!) {
+                    semaphore.signal()
                     return
                 } else {
                     let responseDict = response?[0] as! NSDictionary
                     self.requesterProfile = Profile(dict: responseDict)
+                    semaphore.signal()
                 }
             }
         })

@@ -16,8 +16,6 @@ import SystemConfiguration
 private let kBaseURL: String = "http://18.221.170.199/"
 private let kRequests: String = "requests/"
 
-let semaphore = DispatchSemaphore(value: 1)
-
 class HomePageViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     
     // MARK: Properties

@@ -66,6 +66,7 @@ class TabBarController: UITabBarController {
         ProfileVC.myUserId = myUserId
         ProfileVC.myPhotoUrl = myPhotoUrl
         ProfileVC.userLocation = userLocation
+        ProfileVC.isMe = 1
         nav5.viewControllers = [ProfileVC]
         nav5.tabBarItem.title = "Profile"
         nav5.tabBarItem.image = UIImage(named: "icons8-Badge-50")

@@ -249,6 +249,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     profileVc.lastName = self.lastName
                     profileVc.userLocation = self.userLocation
                     profileVc.userProfile = self.user
+                    profileVc.isMe = 1
                     
                     UIApplication.shared.keyWindow?.rootViewController = navVc
                     self.dismiss(animated: true, completion: nil)
