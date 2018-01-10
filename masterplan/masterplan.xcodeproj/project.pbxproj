@@ -62,6 +62,7 @@
 		47E24B251F40072F00F0F723 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B241F40072F00F0F723 /* ProfileViewController.swift */; };
 		47E24B291F41853000F0F723 /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B281F41853000F0F723 /* TagsViewController.swift */; };
 		47E24B2B1F42872600F0F723 /* NewProffrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E24B2A1F42872600F0F723 /* NewProffrViewController.swift */; };
+		47EB95AE2005BB8A002DEA9A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB95AD2005BB8A002DEA9A /* MapViewController.swift */; };
 		DCCD3F82108AFF226F4B8EA3 /* Pods_masterplan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC686D5A35B06459E5A0D3F0 /* Pods_masterplan.framework */; };
 		E28C997371DC6FAAC6747834 /* Pods_masterplanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25092871A3E6A3EE250AB7E /* Pods_masterplanTests.framework */; };
 /* End PBXBuildFile section */
@@ -141,6 +142,7 @@
 		47E24B241F40072F00F0F723 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		47E24B281F41853000F0F723 /* TagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
 		47E24B2A1F42872600F0F723 /* NewProffrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProffrViewController.swift; sourceTree = "<group>"; };
+		47EB95AD2005BB8A002DEA9A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		69AE117DCF2563F4EC66D6ED /* Pods-masterplan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-masterplan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-masterplan/Pods-masterplan.debug.xcconfig"; sourceTree = "<group>"; };
 		C79D2251CFAB117BCE915CCE /* Pods-masterplanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-masterplanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-masterplanTests/Pods-masterplanTests.release.xcconfig"; sourceTree = "<group>"; };
 		D25092871A3E6A3EE250AB7E /* Pods_masterplanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_masterplanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +239,7 @@
 				478298901F47F3EC0044519A /* EditProfileViewController.swift */,
 				4726BEEB1F65DFEA0030A1EB /* PaymentViewController.swift */,
 				47DD35491F76A93100E71D40 /* UserProfileViewController.swift */,
+				47EB95AD2005BB8A002DEA9A /* MapViewController.swift */,
 				478298711F46AD240044519A /* Supporting Fonts */,
 				47C57A931F2C28C200BC1D06 /* Models */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
@@ -560,6 +563,7 @@
 				47C57A8C1F29A78900BC1D06 /* MyProffrsViewController.swift in Sources */,
 				47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */,
 				47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */,
+				47EB95AE2005BB8A002DEA9A /* MapViewController.swift in Sources */,
 				47E24B251F40072F00F0F723 /* ProfileViewController.swift in Sources */,
 				47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */,
 				476B57EF1F78811E0057FEE1 /* RatingControl.swift in Sources */,
