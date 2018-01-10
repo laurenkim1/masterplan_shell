@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreLocation
+private let kBaseURL: String = "http://18.221.170.199/"
+private let kUsers: String = "users/"
+import os.log
 
 class RequestDetailsViewController: UIViewController {
     
@@ -21,6 +24,9 @@ class RequestDetailsViewController: UIViewController {
     var myUserId: String!
     var myPhotoUrl: String!
     var proffrButton: UIButton!
+    var requesterProfile: Profile!
+    
+    var profileButton: UIButton!
     
     let needslabel: UILabel = UILabel()
     let forlabel: UILabel = UILabel()
@@ -161,6 +167,10 @@ class RequestDetailsViewController: UIViewController {
         distanceLabel.font = UIFont(name: "Ubuntu", size: 20)
         view.addSubview(distanceLabel)
         
+        profileButton = UIButton(frame: CGRect(x: 30, y: 100, width: 300, height: 80))
+        profileButton.addTarget(self, action: #selector(self.viewProfile(_:)), for: .touchUpInside)
+        profileButton.layer.backgroundColor = UIColor.clear.cgColor
+        
         self.isButton()
     }
 
@@ -202,6 +212,48 @@ class RequestDetailsViewController: UIViewController {
         nextViewController.myPhotoUrl = myPhotoUrl
         navigationController?.pushViewController(nextViewController,
                                                  animated: true)
+    }
+    
+    @objc func viewProfile(_ sender: UIButton) {
+        
+        let nextViewController: UserProfileViewController = UserProfileViewController()
+        self.getUser(id: self.request.userID)
+        nextViewController.userProfile = self.requesterProfile
+        nextViewController.myUserId = self.myUserId
+        nextViewController.thisUserId = self.requesterProfile.userId
+        nextViewController.myPhotoUrl = self.request.photoUrl.absoluteString
+        navigationController?.pushViewController(nextViewController,
+                                                 animated: true)
+    }
+    
+    func getUser(id: String) {
+        let users: String = kBaseURL + kUsers
+        let parameterString: String = id
+        let url = URL(string: (users + parameterString))
+        //1
+        print(url?.absoluteString ?? "")
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "GET"
+        //2
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //3
+        let config = URLSessionConfiguration.default
+        //4
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ resp: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                if (response == nil || (response?.isEmpty)!) {
+                    return
+                } else {
+                    let responseDict = response?[0] as! NSDictionary
+                    self.requesterProfile = Profile(dict: responseDict)
+                }
+            }
+        })
+        dataTask?.resume()
     }
 
 
