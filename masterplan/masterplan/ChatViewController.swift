@@ -200,7 +200,12 @@ class ChatViewController: JSQMessagesViewController {
                     self.acceptedId = channelData["proffrerId"] as! String
                     self.acceptedName = channelData["proffererName"] as! String
                     self.otherPhotoUrl = channelData["proffrerPhotoUrl"] as! String!
-                    self.deleteOtherProffrs(requestId: requestId, acceptedId: self.acceptedId)
+                    
+                    self.sendNotification(recipientId: self.acceptedId, channelSnapshot: channelData as NSDictionary)
+                    self.getFcmTokenSend(id: self.acceptedId, channelSnapshot: channelData as NSDictionary)
+                    self.updateRequest(requestId: self.requestId)
+                    
+                    // self.deleteOtherProffrs(requestId: requestId, acceptedId: self.acceptedId)
                     self.accepted.setValue(1)
                     self.getRequest(nxt: 0)
                 } else {
@@ -297,8 +302,9 @@ class ChatViewController: JSQMessagesViewController {
         })
         dataTask?.resume()
     }
- */
  
+    //sends notifications to others and updates request as accepted
+    
     func deleteOtherProffrs(requestId: String, acceptedId: String) -> Void {
         let allChannels = channelRef?.parent
         let sameRequestProffrs = allChannels?.queryEqual(toValue: requestId, childKey: "requestId")
@@ -319,6 +325,7 @@ class ChatViewController: JSQMessagesViewController {
             }
         })
     }
+    */
     
     func updateRequest(requestId: String) {
         let requests: String = kBaseURL + kRequests
