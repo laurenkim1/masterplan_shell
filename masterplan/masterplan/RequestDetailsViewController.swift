@@ -169,10 +169,21 @@ class RequestDetailsViewController: UIViewController {
         distanceLabel.font = UIFont(name: "Ubuntu", size: 20)
         view.addSubview(distanceLabel)
         
-        profileButton = UIButton(frame: CGRect(x: 30, y: 100, width: 300, height: 80))
-        profileButton.addTarget(self, action: #selector(self.viewProfile(_:)), for: .touchUpInside)
-        profileButton.layer.backgroundColor = UIColor.clear.cgColor
-        view.addSubview(profileButton)
+        var profButtonBool = 0
+        
+        let viewControllers = self.navigationController?.viewControllers
+        let count = viewControllers?.count as! Int
+        if count > 1 {
+            if let _ = viewControllers?[count-2] as? UserProfileViewController {
+                profButtonBool = 1
+            }
+        }
+        if profButtonBool == 0 {
+            profileButton = UIButton(frame: CGRect(x: 30, y: 100, width: 300, height: 80))
+            profileButton.addTarget(self, action: #selector(self.viewProfile(_:)), for: .touchUpInside)
+            profileButton.layer.backgroundColor = UIColor.clear.cgColor
+            view.addSubview(profileButton)
+        }
         
         self.isButton()
     }
