@@ -355,6 +355,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                 print(response)
+            } else {
+                print(error)
             }
         })
         dataTask?.resume()

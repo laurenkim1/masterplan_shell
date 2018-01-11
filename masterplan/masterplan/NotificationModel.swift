@@ -23,6 +23,7 @@ class notificationModel: NSObject {
     var photoUrl: URL
     var postTime: NSDate?
     var postTimeString: String?
+    var badgeCount: Int?
     
     //MARK: Types
     

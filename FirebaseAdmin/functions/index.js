@@ -16,10 +16,12 @@ exports.sendNotificationToLocation = functions.database.ref("notifications/{noti
 	if(event.data.val()){
 		var registrationToken = event.data.val().registrationToken;
 		var message = event.data.val().message;
+		var badgeCount = event.data.val().badgeCount;
 
 		const payload = {
 			notification: {
-				title: "Notification"
+				title: "Notification",
+				badge: badgeCount.toString()
 			}
 		};
 

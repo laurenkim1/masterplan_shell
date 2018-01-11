@@ -196,7 +196,7 @@ class ChatViewController: JSQMessagesViewController {
         actionController.addAction(Action("Accept", style: .destructive, handler: { action in
             self.channelRef?.observeSingleEvent(of: .value, with: { (snapshot) -> Void in // 1
                 let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
-                if let requestId = channelData["requestId"] as! String! {
+                if (channelData["requestId"] as! String!) != nil {
                     self.acceptedId = channelData["proffrerId"] as! String
                     self.acceptedName = channelData["proffererName"] as! String
                     self.otherPhotoUrl = channelData["proffrerPhotoUrl"] as! String!
@@ -349,8 +349,7 @@ class ChatViewController: JSQMessagesViewController {
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                print(response)
+                _ = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
             }
         })
         dataTask?.resume()
@@ -384,7 +383,7 @@ class ChatViewController: JSQMessagesViewController {
             //5
             if error == nil {
                 os_log("Success")
-                let notificationmodel = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                _ = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
             }
         })
         dataTask?.resume()
@@ -417,7 +416,7 @@ class ChatViewController: JSQMessagesViewController {
         newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
             let messageData = snapshot.value as! Dictionary<String, String>
             
-            if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String!, text.characters.count > 0 {
+            if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String! {
                 self.addMessage(withId: id, name: name, text: text)
                 self.finishReceivingMessage()
             } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
@@ -551,7 +550,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func didPressAccessoryButton(_ sender: UIButton) {
         let picker = UIImagePickerController()
-        picker.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        picker.delegate = (self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate)
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
             picker.sourceType = UIImagePickerControllerSourceType.camera
         } else {
@@ -610,7 +609,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
                     let imageFileURL = contentEditingInput?.fullSizeImageURL
                     
                     // 5
-                    let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+                    let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
                     
                     // 6
                     self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
@@ -632,7 +631,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion:nil)
     }
     
-    // Mark: Get recipient fcmToken
+    // Mark: Get recipient fcmToken and update badge
     
     func getFcmTokenSend(id: String, channelSnapshot: NSDictionary) {
         
@@ -647,36 +646,49 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
         let noti: NSDictionary? = notification?.toDictionary()!
         
-        let requests: String = kBaseURL + kUsers
+        let requests: String = kBaseURL + kUsers + "badge/"
         let parameterString: String = id
         let url = URL(string: (requests + parameterString))
+        print(url as Any)
         //1
         var networkrequest = URLRequest(url: url!)
-        networkrequest.httpMethod = "GET"
-        //2
-        networkrequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        //3
+        networkrequest.httpMethod = "PUT"
+        
+        let data: Data? = try? JSONSerialization.data(withJSONObject: badgeToDict(), options: [])
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let config = URLSessionConfiguration.default
-        //4
         let session = URLSession(configuration: config)
         let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                let responseDict = response?[0] as! NSDictionary
-                guard let fcmToken = responseDict["fcmToken"] as? String else {
+                //let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                let responseDict = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                //let responseDict = response?[0] as! NSDictionary
+                guard let fcmToken = responseDict!["fcmToken"] as? String else {
                     os_log("Unable to decode the fcmToken for a user.", log: OSLog.default, type: .debug)
                     return
                 }
                 noti?.setValue(fcmToken, forKey: "registrationToken")
                 noti?.setValue(self.acceptedName, forKey: "message")
+                if let badgeCount = responseDict!["badgeCount"] as? String {
+                    noti?.setValue(badgeCount, forKey: "badgeCount")
+                } else {
+                    noti?.setValue(1, forKey: "badgeCount")
+                }
                 
                 let newChannelRef = self.notificationChannelRef.childByAutoId() // 2
                 newChannelRef.setValue(noti)
             }
         })
         dataTask?.resume()
+    }
+    
+    func badgeToDict() -> NSDictionary! {
+        let jsonable = NSMutableDictionary()
+        jsonable.setValue(1, forKey: "badgeCount")
+        return jsonable
     }
 
 }
