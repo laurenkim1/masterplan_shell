@@ -672,7 +672,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
                 }
                 noti?.setValue(fcmToken, forKey: "registrationToken")
                 noti?.setValue(self.acceptedName, forKey: "message")
-                if let badgeCount = responseDict!["badgeCount"] as? String {
+                if let badgeCount = responseDict!["badgeCount"] as? Int {
                     noti?.setValue(badgeCount, forKey: "badgeCount")
                 } else {
                     noti?.setValue(1, forKey: "badgeCount")
