@@ -38,7 +38,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserProfile.updatesOnAccessTokenChange = true
-        
+        self.view.backgroundColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1)
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -48,12 +48,21 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
+        let proffrlabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
+        proffrlabel.text = "Proffr"
+        proffrlabel.center = CGPoint(x: view.center.x, y: view.center.y - 150)
+        proffrlabel.textAlignment = .center
+        proffrlabel.textColor = UIColor.white
+        proffrlabel.font = UIFont(name: "Ubuntu-Bold", size: 90)
+        view.addSubview(proffrlabel)
+        
         // Add a custom login button to your app
         let myLoginButton = UIButton(type: .custom)
-        myLoginButton.backgroundColor = UIColor.darkGray
-        myLoginButton.frame = CGRect(x: 0, y: 0, width: 180, height: 40)
+        myLoginButton.backgroundColor = UIColor(red: 59/255, green: 89/225, blue: 152/255, alpha: 1)
+        myLoginButton.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
         myLoginButton.center = view.center;
-        myLoginButton.setTitle("Login", for: .normal)
+        myLoginButton.setTitle("Login with Facebook", for: .normal)
+        myLoginButton.layer.cornerRadius = 5
         
         // Handle clicks on the button
         myLoginButton.addTarget(self, action: #selector(self.loginButtonClicked), for: .touchUpInside)
@@ -61,11 +70,17 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         // Add the button to the view
         view.addSubview(myLoginButton)
         
-        let imageView = UIImageView(image: UIImage(named: "pimage"))
-        imageView.center = view.center
-        imageView.autoresizingMask = .flexibleWidth
-        imageView.contentMode = .scaleAspectFit
-        view.addSubview(imageView)
+        let cover = UIView(frame: UIScreen.main.bounds)
+        cover.center = view.center
+        cover.layer.backgroundColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1).cgColor
+        let proffrlabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
+        proffrlabel2.text = "Proffr"
+        proffrlabel2.center = self.view.center
+        proffrlabel2.textAlignment = .center
+        proffrlabel2.textColor = UIColor.white
+        proffrlabel2.font = UIFont(name: "Ubuntu-Bold", size: 90)
+        cover.addSubview(proffrlabel2)
+        self.view.addSubview(cover)
         
         if let accessToken = AccessToken.current {
             // User is logged in, use 'accessToken' here.
@@ -80,7 +95,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 self.checkUserExist(id: self.myUserId)
             }
         } else {
-            imageView.removeFromSuperview()
+            cover.removeFromSuperview()
         }
     }
     
@@ -123,11 +138,19 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermissions, let accessToken):
                 print("Logged in!")
-                let imageView = UIImageView(image: UIImage(named: "pimage"))
-                imageView.center = self.view.center
-                imageView.autoresizingMask = .flexibleWidth
-                imageView.contentMode = .scaleAspectFit
-                self.view.addSubview(imageView)
+                
+                let cover = UIView(frame: UIScreen.main.bounds)
+                cover.center = self.view.center
+                cover.layer.backgroundColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1).cgColor
+                let proffrlabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
+                proffrlabel2.text = "Proffr"
+                proffrlabel2.center = self.view.center
+                proffrlabel2.textAlignment = .center
+                proffrlabel2.textColor = UIColor.white
+                proffrlabel2.font = UIFont(name: "Ubuntu-Bold", size: 90)
+                cover.addSubview(proffrlabel2)
+                self.view.addSubview(cover)
+                
                 let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.authenticationToken)
                 Auth.auth().signIn(with: credential) { (user, error) in
                     if let error = error {
@@ -361,5 +384,5 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         })
         dataTask?.resume()
     }
-
+    
 }
