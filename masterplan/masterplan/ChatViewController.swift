@@ -158,13 +158,16 @@ class ChatViewController: JSQMessagesViewController {
     // MARK: Actions
     
     private func setNavBar() {
-        self.acceptButton = UIBarButtonItem(title: "Accept", style: .plain, target: self, action: #selector(acceptButtonTapped))
-        if self.alreadyAccepted == 1 {
-            self.acceptButton.isEnabled = false
-        }
-        if self.outgoing == 0 {
-            self.navigationItem.rightBarButtonItem = acceptButton
-        }
+        self.accepted.observeSingleEvent(of: .value, with: {(snapshot) -> Void in
+            self.alreadyAccepted = snapshot.value as! Int
+            self.acceptButton = UIBarButtonItem(title: "Accept", style: .plain, target: self, action: #selector(self.acceptButtonTapped))
+            if self.alreadyAccepted == 1 {
+                self.acceptButton.isEnabled = false
+            }
+            if self.outgoing == 0 {
+                self.navigationItem.rightBarButtonItem = self.acceptButton
+            }
+        })
         
         let screenSize: CGRect = UIScreen.main.bounds
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: self.navigationController!.navigationBar.frame.maxY, width: screenSize.width, height: 30))

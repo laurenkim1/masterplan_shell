@@ -212,7 +212,7 @@ class MyProffrsViewController: UITableViewController {
             proffrChatVc.outgoing = 0
         }
  */
-        proffrChatVc.alreadyAccepted = channel.alreadyAccepted
+        // proffrChatVc.alreadyAccepted = channel.alreadyAccepted
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref
         proffrChatVc.hidesBottomBarWhenPushed = true
