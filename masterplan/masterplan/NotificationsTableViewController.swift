@@ -15,6 +15,7 @@ import SwiftMessages
 private let kBaseURL: String = "http://18.221.170.199/"
 private let kNotifications: String = "notifications/"
 private let kRequests: String = "requests/"
+private let kUsers: String = "users/"
 
 class NotificationsTableViewController: UITableViewController {
     
@@ -129,9 +130,10 @@ class NotificationsTableViewController: UITableViewController {
             if error == nil {
                 os_log("Success")
                 let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
-                if (!(response != nil)) {
+                if (response == nil) {
                     self.warning()
                 } else {
+                    self.updateBadge()
                     self.parseAndAddNotification(notificationlist: response!)
                     group.leave()
                 }
@@ -208,6 +210,45 @@ class NotificationsTableViewController: UITableViewController {
         var errorConfig = SwiftMessages.defaultConfig
         errorConfig.duration = .seconds(seconds: 10)
         SwiftMessages.show(config: errorConfig, view: error)
+    }
+    
+    func updateBadge() {
+        let requests: String = kBaseURL + kUsers + "badge/"
+        let parameterString: String = self.myUserId
+        let url = URL(string: (requests + parameterString))
+        print(url as Any)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "PUT"
+        
+        let data: Data? = try? JSONSerialization.data(withJSONObject: badgeToDict(), options: [])
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                //let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                _ = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                DispatchQueue.main.async { // Correct
+                    UIApplication.shared.applicationIconBadgeNumber = 0
+                }
+            } else {
+                os_log("error updating badge")
+                DispatchQueue.main.async { // Correct
+                    UIApplication.shared.applicationIconBadgeNumber = 0
+                }
+            }
+        })
+        dataTask?.resume()
+    }
+    
+    func badgeToDict() -> NSDictionary! {
+        let jsonable = NSMutableDictionary()
+        jsonable.setValue(0, forKey: "badgeCount")
+        return jsonable
     }
 
 }
