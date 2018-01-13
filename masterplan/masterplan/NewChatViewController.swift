@@ -214,14 +214,27 @@ class NewChatViewController: MessagesViewController {
     func sendPhotoMessage() -> String? {
         let itemRef = messageRef.childByAutoId()
         
-        let messageItem = [
+        let photoMessageItem = [
             "photoURL": imageURLNotSetKey,
             "senderId": myUserId!,
             "senderName": myDisplayName!,
             "date": dateToString(date: Date())
         ]
         
-        itemRef.setValue(messageItem)
+        itemRef.setValue(photoMessageItem)
+        
+        // now text
+        
+        let messageItemRef = messageRef.childByAutoId()
+        
+        let textMessageItem = [
+            "senderId": myUserId!,
+            "senderName": myDisplayName!,
+            "text": messageText!,
+            "date": dateToString(date: Date())
+        ]
+        
+        messageItemRef.setValue(textMessageItem)
         
         return itemRef.key
     }
