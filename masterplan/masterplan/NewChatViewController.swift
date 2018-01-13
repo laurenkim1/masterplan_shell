@@ -392,9 +392,9 @@ extension NewChatViewController: MessagesDataSource {
     }
     
     func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
-        let initial = message.sender.displayName.first
-        let str = String(describing: initial)
-        return Avatar(image: nil, initals: str)
+        let initial = message.sender.displayName[message.sender.displayName.startIndex]
+        let str = String(initial)
+        return Avatar(initals: str)
     }
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
