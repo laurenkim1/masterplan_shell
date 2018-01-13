@@ -16,6 +16,7 @@ class MyProffrsViewController: UITableViewController {
     // MARK: Properties
     
     var myPhotoUrl: String!
+    var myDisplayName: String!
     var myUserId: String!
     var userLocation: CLLocation!
     private var incomingChannels: [ProffrChannel] = []
@@ -197,13 +198,12 @@ class MyProffrsViewController: UITableViewController {
     
     func cellSelected(channel: ProffrChannel, showAccept: Int){
         let proffrChatVc: ChatViewController = ChatViewController()
-        
-        proffrChatVc.senderDisplayName = channel.name
         proffrChatVc.channel = channel
         proffrChatVc.requestId = channel.requestId
         proffrChatVc.requestTitle = channel.subTitle
         proffrChatVc.userLocation = self.userLocation
         proffrChatVc.myPhotoUrl = self.myPhotoUrl
+        proffrChatVc.myDisplayName = self.myDisplayName
         proffrChatVc.outgoing = showAccept
         /*
         if channel.proffrerId == self.myUserId {

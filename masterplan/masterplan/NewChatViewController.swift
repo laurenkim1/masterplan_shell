@@ -11,8 +11,11 @@ import Photos
 import Firebase
 import FirebaseStorage
 import JSQMessagesViewController
+import Kingfisher
+import MapKit
+import MessageKit
 
-class NewChatViewController: JSQMessagesViewController {
+class NewChatViewController: MessagesViewController {
     
     // MARK: Properties
     private let imageURLNotSetKey = "NOTSET"
@@ -22,20 +25,18 @@ class NewChatViewController: JSQMessagesViewController {
     var proffrPhotoUrlString: String?
     var messageText: String?
     var imageData: Data!
+    var myUserId: String!
     
     var doneButton: UIBarButtonItem!
     
-    private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
+    lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
     fileprivate lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
-    private lazy var userIsTypingRef: DatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
-    private lazy var usersTypingQuery: DatabaseQuery = self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
     
-    private var newMessageRefHandle: DatabaseHandle?
-    private var updatedMessageRefHandle: DatabaseHandle?
+    var newMessageRefHandle: DatabaseHandle?
+    var updatedMessageRefHandle: DatabaseHandle?
     
-    private var messages: [JSQMessage] = []
-    private var photoMessageMap = [String: JSQPhotoMediaItem]()
-    
+    var messageList: [ChatMessage] = []
+    // watch
     private var localTyping = false
     var channel: ProffrChannel? {
         didSet {
@@ -43,32 +44,24 @@ class NewChatViewController: JSQMessagesViewController {
         }
     }
     
-    var isTyping: Bool {
-        get {
-            return localTyping
-        }
-        set {
-            localTyping = newValue
-            userIsTypingRef.setValue(newValue)
-        }
-    }
-    
-    lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
-    lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    
     // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "New Proffr"
-        self.senderId = Auth.auth().currentUser?.uid
-        self.senderDisplayName = myDisplayName
+        super.viewDidLoad()
+        self.myUserId = Auth.auth().currentUser?.uid
         observeMessages()
         self.setNavBar()
         
-        // No avatars
-        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
-        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        messagesCollectionView.messagesDataSource = (self as MessagesDataSource)
+        messagesCollectionView.messagesLayoutDelegate = (self as MessagesLayoutDelegate)
+        messagesCollectionView.messagesDisplayDelegate = (self as MessagesDisplayDelegate)
+        messagesCollectionView.messageCellDelegate = (self as MessageCellDelegate)
+        messageInputBar.delegate = (self as MessageInputBarDelegate)
+        
+        messageInputBar.sendButton.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+        scrollsToBottomOnKeybordBeginsEditing = true // default false
         
         if let navController = self.parent as! UINavigationController? {
             let parentVCIndex = navController.viewControllers.count - 2
@@ -105,7 +98,6 @@ class NewChatViewController: JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        observeTyping()
     }
     
     deinit {
@@ -114,61 +106,6 @@ class NewChatViewController: JSQMessagesViewController {
         }
         if let refHandle = updatedMessageRefHandle {
             messageRef.removeObserver(withHandle: refHandle)
-        }
-    }
-    
-    // MARK: Collection view data source (and related) methods
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        return messages[indexPath.item]
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
-    }
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item] // 1
-        if message.senderId == senderId { // 2
-            return outgoingBubbleImageView
-        } else { // 3
-            return incomingBubbleImageView
-        }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
-        
-        let message = messages[indexPath.item]
-        
-        if message.senderId == senderId { // 1
-            cell.textView?.textColor = UIColor.white // 2
-        } else {
-            cell.textView?.textColor = UIColor.black // 3
-        }
-        
-        return cell
-    }
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return nil
-    }
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        return 15
-    }
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString? {
-        let message = messages[indexPath.item]
-        switch message.senderId {
-        case senderId:
-            return nil
-        default:
-            guard let senderDisplayName = message.senderDisplayName else {
-                assertionFailure()
-                return nil
-            }
-            return NSAttributedString(string: senderDisplayName)
         }
     }
     
@@ -182,21 +119,30 @@ class NewChatViewController: JSQMessagesViewController {
         // messages being written to the Firebase DB
         newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
             let messageData = snapshot.value as! Dictionary<String, String>
+            let messageId = snapshot.key as String
+            let senderId = messageData["senderId"] as String!
+            let senderName = messageData["senderName"] as String!
+            let dateString = messageData["date"] as String!
+            let date: Date = self.stringToDate(date: dateString!) as Date
+            let sender = Sender(id: senderId!, displayName: senderName!)
             
-            if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String!, text.characters.count > 0 {
-                self.addMessage(withId: id, name: name, text: text)
-                self.finishReceivingMessage()
-            } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
-                if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-                    self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
-                    
-                    if photoURL.hasPrefix("gs://") {
-                        self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
-                    }
+            if let text = messageData["text"] as String! {
+                let messageIndex = self.messageList.count
+                let data: MessageData = self.setMessageData(data: text, contentType: "text", messageIndex: messageIndex)
+                let message = ChatMessage(data: data, sender: sender, messageId: messageId, date: date)
+                self.messageList.append(message)
+            } else if let photoURL = messageData["photoURL"] as String! {
+                if photoURL.hasPrefix("gs://") {
+                    let messageIndex = self.messageList.count
+                    let data: MessageData = self.setMessageData(data: photoURL, contentType: "image", messageIndex: messageIndex)
+                    let message = ChatMessage(data: data, sender: sender, messageId: messageId, date: date)
+                    self.messageList.append(message)
                 }
             } else {
                 print("Error! Could not decode message data")
             }
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToBottom()
         })
         
         // We can also use the observer method to listen for
@@ -204,18 +150,28 @@ class NewChatViewController: JSQMessagesViewController {
         // We use this to be notified when a photo has been stored
         // to the Firebase Storage, so we can update the message data
         updatedMessageRefHandle = messageRef.observe(.childChanged, with: { (snapshot) in
-            let key = snapshot.key
             let messageData = snapshot.value as! Dictionary<String, String>
+            let messageId = snapshot.key as String
+            let senderId = messageData["senderId"] as String!
+            let senderName = messageData["senderName"] as String!
+            let dateString = messageData["date"] as String!
+            let date: Date = self.stringToDate(date: dateString!) as Date
+            let sender = Sender(id: senderId!, displayName: senderName!)
             
             if let photoURL = messageData["photoURL"] as String! {
                 // The photo has been updated.
-                if let mediaItem = self.photoMessageMap[key] {
-                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
+                if photoURL.hasPrefix("gs://") {
+                    let messageIndex = self.messageList.count
+                    let data: MessageData = self.setMessageData(data: photoURL, contentType: "image", messageIndex: messageIndex)
+                    let message = ChatMessage(data: data, sender: sender, messageId: messageId, date: date)
+                    self.messageList.append(message)
                 }
             }
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToBottom()
         })
     }
-    
+    /*
     private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
         let storageRef = Storage.storage().reference(forURL: photoURL)
         storageRef.getData(maxSize: INT64_MAX){ (data, error) in
@@ -240,27 +196,8 @@ class NewChatViewController: JSQMessagesViewController {
             })
         }
     }
-    
-    private func observeTyping() {
-        let typingIndicatorRef = channelRef!.child("typingIndicator")
-        userIsTypingRef = typingIndicatorRef.child(senderId)
-        userIsTypingRef.onDisconnectRemoveValue()
-        usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
-        
-        usersTypingQuery.observe(.value) { (data: DataSnapshot) in
-            
-            // You're the only typing, don't show the indicator
-            if data.childrenCount == 1 && self.isTyping {
-                return
-            }
-            
-            // Are there others typing?
-            self.showTypingIndicator = data.childrenCount > 0
-            self.scrollToBottom(animated: true)
-        }
-    }
-    
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+    */
+    func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: String!) {
         // 1
         let itemRef = messageRef.childByAutoId()
         
@@ -269,17 +206,11 @@ class NewChatViewController: JSQMessagesViewController {
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
-            ]
+            "date": date
+        ]
         
         // 3
         itemRef.setValue(messageItem)
-        
-        // 4
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        // 5
-        finishSendingMessage()
-        isTyping = false
     }
     
     func sendPhotoMessage() -> String? {
@@ -287,24 +218,26 @@ class NewChatViewController: JSQMessagesViewController {
         
         let photoMessageItem = [
             "photoURL": imageURLNotSetKey,
-            "senderId": senderId!,
-            ]
+            "senderId": myUserId!,
+            "senderName": myDisplayName!,
+            "date": dateToString(date: Date())
+        ]
         
         itemRef.setValue(photoMessageItem)
+        
+        // now text
         
         let messageItemRef = messageRef.childByAutoId()
         
         let textMessageItem = [
-            "senderId": senderId!,
-            "senderName": senderDisplayName!,
-            "text": messageText!
+            "senderId": myUserId!,
+            "senderName": myDisplayName!,
+            "text": messageText!,
+            "date": dateToString(date: Date())
         ]
         
         messageItemRef.setValue(textMessageItem)
         
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        finishSendingMessage()
         return itemRef.key
     }
     
@@ -314,6 +247,25 @@ class NewChatViewController: JSQMessagesViewController {
     }
     
     // MARK: UI and User Interaction
+    
+    func stringToDate(date:String) -> NSDate {
+        let formatter = DateFormatter()
+        
+        // Format 1
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let parsedDate = formatter.date(from: date) {
+            return parsedDate as NSDate
+        }
+        return NSDate()
+    }
+    
+    func dateToString(date: Date) -> String {
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSZ"
+        let myString = formatter.string(from: date)
+        return myString
+    }
     
     private func setNavBar() {
         self.doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
@@ -326,53 +278,55 @@ class NewChatViewController: JSQMessagesViewController {
         // guard let homeViewController = controllers[0] as? HomePageViewController else { return }
         navigationController?.popToRootViewController(animated: true)
     }
-
-    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    func iMessage() {
+        defaultStyle()
+        messageInputBar.isTranslucent = false
+        // messageInputBar.backgroundView.backgroundColor = .white
+        messageInputBar.separatorLine.isHidden = true
+        messageInputBar.inputTextView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        messageInputBar.inputTextView.placeholderTextColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 36)
+        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 36)
+        messageInputBar.inputTextView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1).cgColor
+        messageInputBar.inputTextView.layer.borderWidth = 1.0
+        messageInputBar.inputTextView.layer.cornerRadius = 16.0
+        messageInputBar.inputTextView.layer.masksToBounds = true
+        messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        messageInputBar.setRightStackViewWidthConstant(to: 36, animated: true)
+        messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: true)
+        messageInputBar.sendButton.imageView?.backgroundColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+        messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        messageInputBar.sendButton.setSize(CGSize(width: 36, height: 36), animated: true)
+        messageInputBar.sendButton.image = #imageLiteral(resourceName: "ic_up")
+        messageInputBar.sendButton.title = nil
+        messageInputBar.sendButton.imageView?.layer.cornerRadius = 16
+        messageInputBar.sendButton.backgroundColor = .clear
+        messageInputBar.textViewPadding.right = -38
     }
     
-    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    func defaultStyle() {
+        let newMessageInputBar = MessageInputBar()
+        newMessageInputBar.sendButton.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+        newMessageInputBar.delegate = self
+        messageInputBar = newMessageInputBar
+        reloadInputViews()
     }
     
-    override func didPressAccessoryButton(_ sender: UIButton) {
-        let picker = UIImagePickerController()
-        picker.delegate = self as! UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
-            picker.sourceType = UIImagePickerControllerSourceType.camera
-        } else {
-            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+    // MARK: - Helpers
+    
+    func makeButton(named: String) -> InputBarButtonItem {
+        return InputBarButtonItem()
+            .configure {
+                $0.spacing = .fixed(10)
+                $0.image = UIImage(named: named)?.withRenderingMode(.alwaysTemplate)
+                $0.setSize(CGSize(width: 30, height: 30), animated: true)
+            }.onSelected {
+                $0.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+            }.onDeselected {
+                $0.tintColor = UIColor.lightGray
+            }.onTouchUpInside { _ in
+                print("Item Tapped")
         }
-        
-        present(picker, animated: true, completion:nil)
-    }
-    
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
-        }
-    }
-    
-    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
-        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
-            messages.append(message)
-            
-            if (mediaItem.image == nil) {
-                photoMessageMap[key] = mediaItem
-            }
-            
-            collectionView.reloadData()
-        }
-    }
-    
-    // MARK: UITextViewDelegate methods
-    
-    override func textViewDidChange(_ textView: UITextView) {
-        super.textViewDidChange(textView)
-        // If the text is not empty, the user is typing
-        isTyping = textView.text != ""
     }
     
 }
@@ -398,7 +352,7 @@ extension NewChatViewController: UIImagePickerControllerDelegate {
                     let imageFileURL = contentEditingInput?.fullSizeImageURL
                     
                     // 5
-                    let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+                    let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
                     
                     // 6
                     self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
@@ -418,6 +372,266 @@ extension NewChatViewController: UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion:nil)
+    }
+    
+}
+
+// MARK: - MessagesDataSource
+
+extension NewChatViewController: MessagesDataSource {
+    func currentSender() -> Sender {
+        return Sender(id: self.myUserId, displayName: self.myDisplayName)
+    }
+    
+    func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messageList.count
+    }
+    
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        return messageList[indexPath.section]
+    }
+    
+    func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
+        let initial = message.sender.displayName[message.sender.displayName.startIndex]
+        let str = String(initial)
+        return Avatar(initals: str)
+    }
+    
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        let name = message.sender.displayName
+        return NSAttributedString(string: name, attributes: nil)
+    }
+    
+    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        
+        struct ConversationDateFormatter {
+            static let formatter: DateFormatter = {
+                let formatter = DateFormatter()
+                formatter.dateStyle = .medium
+                return formatter
+            }()
+        }
+        let formatter = ConversationDateFormatter.formatter
+        let dateString = formatter.string(from: message.sentDate)
+        return NSAttributedString(string: dateString, attributes: nil)
+    }
+    
+    func setMessageData(data: String, contentType: String, messageIndex: Int) -> MessageData {
+        var messageData: MessageData!
+        if contentType.range(of:"image") != nil {
+            let loading = UIImage(named: "loading")
+            messageData = MessageData.photo(loading!)
+            let imageView = ImageView()
+            imageView.contentMode = .scaleAspectFill
+            imageView.kf.indicatorType = .activity
+            let storageRef = Storage.storage().reference(forURL: data)
+            storageRef.getData(maxSize: INT64_MAX){ (imagedata, error) in
+                if let error = error {
+                    print("Error downloading image data: \(error)")
+                    return
+                }
+                
+                storageRef.getMetadata(completion: { (metadata, metadataErr) in
+                    if let error = metadataErr {
+                        print("Error downloading metadata: \(error)")
+                        return
+                    }
+                    if let image = UIImage.init(data: imagedata!){
+                        imageView.image = UIImage.init(data: imagedata!)
+                        self.reloadMessage(messageIndex, MessageData.photo(image))
+                    }
+                })
+            }
+            if (imageView.image != nil) {
+                return MessageData.photo(imageView.image!)
+            }
+        } else if contentType.range(of:"video") != nil {
+            let url = URL(string: data)!
+            return MessageData.video(file: url, thumbnail: UIImage(named: "videoThumbnail")!)
+        } else {
+            return MessageData.text(data)
+        }
+        return messageData
+    }
+    
+    func reloadMessage(_ messageIndex: Int,_ messageData :MessageData) -> Void {
+        if messageIndex < self.messageList.count {
+            let oldMessage = self.messageList[messageIndex]
+            self.messageList[messageIndex] = ChatMessage(
+                data: messageData,
+                sender: oldMessage.sender,
+                messageId: oldMessage.messageId,
+                date: oldMessage.sentDate
+            )
+            self.messagesCollectionView.reloadData()
+        }
+    }
+}
+
+// MARK: - MessagesDisplayDelegate
+
+extension NewChatViewController: MessagesDisplayDelegate {
+    
+    // MARK: - Text Messages
+    
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ? .white : .darkText
+    }
+    /*
+     func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey : Any] {
+     return MessageLabel.defaultAttributes
+     }
+     */
+    
+    func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
+        return [.url, .address, .phoneNumber, .date]
+    }
+    
+    // MARK: - All Messages
+    
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ? UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) : UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+    }
+    
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        //        let configurationClosure = { (view: MessageContainerView) in}
+        //        return .custom(configurationClosure)
+        
+        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+        return .bubbleTail(corner, .curved)
+    }
+    
+    // MARK: - Location Messages
+    
+    func annotationViewForLocation(message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView) -> MKAnnotationView? {
+        let annotationView = MKAnnotationView(annotation: nil, reuseIdentifier: nil)
+        let pinImage = #imageLiteral(resourceName: "pin")
+        annotationView.image = pinImage
+        annotationView.centerOffset = CGPoint(x: 0, y: -pinImage.size.height / 2)
+        return annotationView
+    }
+    
+    func animationBlockForLocation(message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> ((UIImageView) -> Void)? {
+        return { view in
+            view.layer.transform = CATransform3DMakeScale(0, 0, 0)
+            view.alpha = 0.0
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: [], animations: {
+                view.layer.transform = CATransform3DIdentity
+                view.alpha = 1.0
+            }, completion: nil)
+        }
+    }
+}
+
+// MARK: - MessagesLayoutDelegate
+
+extension NewChatViewController: MessagesLayoutDelegate {
+    
+    func messagePadding(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
+        if isFromCurrentSender(message: message) {
+            return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 4)
+        } else {
+            return UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 30)
+        }
+    }
+    
+    func cellTopLabelAlignment(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> LabelAlignment {
+        if isFromCurrentSender(message: message) {
+            return .messageTrailing(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
+        } else {
+            return .messageLeading(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
+        }
+    }
+    
+    func cellBottomLabelAlignment(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> LabelAlignment {
+        if isFromCurrentSender(message: message) {
+            return .messageLeading(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0))
+        } else {
+            return .messageTrailing(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
+        }
+    }
+    
+    func footerViewSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+        
+        return CGSize(width: messagesCollectionView.bounds.width, height: 10)
+    }
+    
+    // MARK: - Location Messages
+    
+    func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 200
+    }
+    
+}
+
+extension NewChatViewController: MediaMessageLayoutDelegate {
+    
+    func widthForMedia(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return (view.frame.width / 3) * 2
+    }
+    
+    func heightForMedia(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return (view.frame.width / 3) * 2
+    }
+    
+}
+
+// MARK: - MessageCellDelegate
+
+extension NewChatViewController: MessageCellDelegate {
+    
+    func didTapMessage(in cell: MessageCollectionViewCell<UIView>) {
+        print("Message tapped")
+    }
+    
+    func didTapTopLabel(in cell: MessageCollectionViewCell<UIView>) {
+        print("Top label tapped")
+    }
+    
+    func didTapBottomLabel(in cell: MessageCollectionViewCell<UIView>) {
+        print("Bottom label tapped")
+    }
+    
+}
+
+// MARK: - MessageLabelDelegate
+
+extension NewChatViewController: MessageLabelDelegate {
+    
+    func didSelectAddress(_ addressComponents: [String : String]) {
+        print("Address Selected: \(addressComponents)")
+    }
+    
+    func didSelectDate(_ date: Date) {
+        print("Date Selected: \(date)")
+    }
+    
+    func didSelectPhoneNumber(_ phoneNumber: String) {
+        print("Phone Number Selected: \(phoneNumber)")
+    }
+    
+    func didSelectURL(_ url: URL) {
+        print("URL Selected: \(url)")
+    }
+    
+}
+
+// MARK: - MessageInputBarDelegate
+
+extension NewChatViewController: MessageInputBarDelegate {
+    
+    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        let itemRef = messageRef.childByAutoId()
+        
+        let messageItem = [
+            "senderId": myUserId!,
+            "senderName": myDisplayName!,
+            "text": text,
+            "date": dateToString(date: Date())
+        ]
+        
+        itemRef.setValue(messageItem)
+        inputBar.inputTextView.text = String()
     }
     
 }

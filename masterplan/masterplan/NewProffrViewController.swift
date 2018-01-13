@@ -254,7 +254,6 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
     func segueToNewChannel(channel: ProffrChannel){
         let chatVc: NewChatViewController = NewChatViewController()
         
-        chatVc.senderDisplayName = senderDisplayName
         chatVc.myDisplayName = senderDisplayName
         chatVc.channel = channel
         chatVc.channelRef = channelRef.child(channel.id)

@@ -144,33 +144,5 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
         })
         dataTask?.resume()
     }
-    
-/*
-    
-    func persistToUser(request: requestInfo) {
-        let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
-        let url = URL(string: (users + "newreq/" + myUserId))
-        print(url?.absoluteString)
-        //1
-        var networkrequest = URLRequest(url: url!)
-        networkrequest.httpMethod = "PUT"
-        //2
-        let data: Data? = try? JSONSerialization.data(withJSONObject: request.longToDictionary(), options: [])
-        //3
-        networkrequest.httpBody = data
-        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
-            //5
-            if error == nil {
-                os_log("Successfully posted to User")
-            }
-        })
-        dataTask?.resume()
-    }
-*/
-
 
 }

@@ -91,6 +91,7 @@ class EditProfileViewController: FormViewController {
         let proffrsVc = proffrsNavVc.viewControllers.first as! MyProffrsViewController
         proffrsVc.myUserId = self.userId
         proffrsVc.userLocation = self.userLocation
+        proffrsVc.myDisplayName = self.userName
         proffrsVc.myPhotoUrl = self.myPhotoUrl
         let nav2 = navVc.viewControllers?[2] as! UINavigationController
         let newVc = nav2.viewControllers.first as! NewRequestPlaceholderVC

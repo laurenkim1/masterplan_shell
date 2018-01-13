@@ -37,6 +37,7 @@
 		478298951F47F44F0044519A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478298941F47F44F0044519A /* Profile.swift */; };
 		478298961F47F44F0044519A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478298941F47F44F0044519A /* Profile.swift */; };
 		479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */; };
+		47AA8C7C20097D0200C5F295 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AA8C7B20097D0200C5F295 /* ChatMessage.swift */; };
 		47B798931F1473FF00F67BEA /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798921F1473FF00F67BEA /* TagListViewController.swift */; };
 		47B798951F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */; };
 		47C37EFF1F298174007FC639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47C37EFE1F298174007FC639 /* GoogleService-Info.plist */; };
@@ -113,6 +114,7 @@
 		478298901F47F3EC0044519A /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		478298941F47F44F0044519A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
+		47AA8C7B20097D0200C5F295 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		47B798921F1473FF00F67BEA /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListViewController.swift; path = masterplan/TagListViewController.swift; sourceTree = "<group>"; };
 		47B798941F14803A00F67BEA /* TagListItemViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TagListItemViewCollectionViewCell.swift; path = masterplan/TagListItemViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		47C37EFE1F298174007FC639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -229,8 +231,8 @@
 				47408CA11F188A3C0097C957 /* HomePageViewController.swift */,
 				47E24B2A1F42872600F0F723 /* NewProffrViewController.swift */,
 				479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */,
-				47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */,
 				47C37F011F2981AA007FC639 /* ChatViewController.swift */,
+				47C57A8B1F29A78900BC1D06 /* MyProffrsViewController.swift */,
 				47E24B151F381EC400F0F723 /* NotificationsTableViewController.swift */,
 				47408CA51F19F69F0097C957 /* NewRequestPlaceholder.swift */,
 				47C889191F10873B003ED4F7 /* NewRequestViewController.swift */,
@@ -268,6 +270,7 @@
 				47C57A911F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift */,
 				47E24B181F3820F200F0F723 /* NotificationsTableViewCell.swift */,
 				47DD354B1F76AC0000E71D40 /* ProfileTableViewCell.swift */,
+				47AA8C7B20097D0200C5F295 /* ChatMessage.swift */,
 			);
 			name = cellModels;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				47DD354C1F76AC0000E71D40 /* ProfileTableViewCell.swift in Sources */,
 				4726BEEC1F65DFEA0030A1EB /* PaymentViewController.swift in Sources */,
 				47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */,
+				47AA8C7C20097D0200C5F295 /* ChatMessage.swift in Sources */,
 				47C889181F0F3E13003ED4F7 /* DistancePageViewController.swift in Sources */,
 				47E24B161F381EC400F0F723 /* NotificationsTableViewController.swift in Sources */,
 				47C57A921F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift in Sources */,

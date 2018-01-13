@@ -40,6 +40,7 @@ class TabBarController: UITabBarController {
         let ProffrsVC = MyProffrsViewController()
         ProffrsVC.myUserId = myUserId
         ProffrsVC.myPhotoUrl = myPhotoUrl
+        ProffrsVC.myDisplayName = myDisplayName
         nav2.viewControllers = [ProffrsVC]
         nav2.tabBarItem.title = "Proffrs"
         nav2.tabBarItem.image = UIImage(named: "icons8-Price Tag Filled-50")
