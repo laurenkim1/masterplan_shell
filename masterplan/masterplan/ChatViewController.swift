@@ -368,7 +368,7 @@ class ChatViewController: MessagesViewController {
         }
         return fetchedImage
     }
-     */
+*/
     
     func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: String!) {
         // 1
@@ -621,14 +621,26 @@ extension ChatViewController: MessagesDataSource {
     func setMessageData(data: String, contentType: String, messageIndex: Int) -> MessageData {
         if contentType.range(of:"image") != nil {
             let imageView = ImageView()
-            let url = URL(string: data)!
+            imageView.contentMode = .scaleAspectFill
             imageView.kf.indicatorType = .activity
-            imageView.kf.setImage(with: url, completionHandler: {
-                (image, error, cacheType, imageUrl) in
-                if (image != nil) {
-                    self.reloadMessage(messageIndex, MessageData.photo(image!))
+            let storageRef = Storage.storage().reference(forURL: data)
+            storageRef.getData(maxSize: INT64_MAX){ (imagedata, error) in
+                if let error = error {
+                    print("Error downloading image data: \(error)")
+                    return
                 }
-            })
+                
+                storageRef.getMetadata(completion: { (metadata, metadataErr) in
+                    if let error = metadataErr {
+                        print("Error downloading metadata: \(error)")
+                        return
+                    }
+                    if let image = UIImage.init(data: imagedata!){
+                        self.reloadMessage(messageIndex, MessageData.photo(image))
+                        imageView.image = UIImage.init(data: imagedata!)
+                    }
+                })
+            }
             if (imageView.image != nil) {
                 return MessageData.photo(imageView.image!)
             }
@@ -797,7 +809,6 @@ extension ChatViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let itemRef = messageRef.childByAutoId()
         
-        // 2
         let messageItem = [
             "senderId": myUserId!,
             "senderName": myDisplayName!,
@@ -805,16 +816,8 @@ extension ChatViewController: MessageInputBarDelegate {
             "date": dateToString(date: Date())
         ]
         
-        // 3
         itemRef.setValue(messageItem)
-        //
-        
-        let attributedText = NSAttributedString(string: text, attributes: nil)
-        let id = UUID().uuidString
-        let message = ChatMessage(attributedText: attributedText, sender: currentSender(), messageId: id, date: Date())
-        messageList.append(message)
         inputBar.inputTextView.text = String()
-        messagesCollectionView.insertSections([messageList.count - 1])
         messagesCollectionView.scrollToBottom()
     }
     
