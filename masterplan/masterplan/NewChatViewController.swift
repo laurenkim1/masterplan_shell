@@ -618,7 +618,6 @@ extension NewChatViewController: MessageInputBarDelegate {
         
         itemRef.setValue(messageItem)
         inputBar.inputTextView.text = String()
-        messagesCollectionView.scrollToBottom()
     }
     
 }
