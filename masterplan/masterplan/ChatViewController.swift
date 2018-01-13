@@ -601,6 +601,12 @@ extension ChatViewController: MessagesDataSource {
         return messageList[indexPath.section]
     }
     
+    func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
+        let initial = message.sender.displayName.first
+        let str = String(describing: initial)
+        return Avatar(image: nil, initals: str)
+    }
+    
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let name = message.sender.displayName
         return NSAttributedString(string: name, attributes: nil)
@@ -621,7 +627,10 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func setMessageData(data: String, contentType: String, messageIndex: Int) -> MessageData {
+        var messageData: MessageData!
         if contentType.range(of:"image") != nil {
+            let loading = UIImage(named: "loading")
+            messageData = MessageData.photo(loading!)
             let imageView = ImageView()
             imageView.contentMode = .scaleAspectFill
             imageView.kf.indicatorType = .activity
@@ -638,8 +647,8 @@ extension ChatViewController: MessagesDataSource {
                         return
                     }
                     if let image = UIImage.init(data: imagedata!){
-                        self.reloadMessage(messageIndex, MessageData.photo(image))
                         imageView.image = UIImage.init(data: imagedata!)
+                        self.reloadMessage(messageIndex, MessageData.photo(image))
                     }
                 })
             }
@@ -649,8 +658,10 @@ extension ChatViewController: MessagesDataSource {
         } else if contentType.range(of:"video") != nil {
             let url = URL(string: data)!
             return MessageData.video(file: url, thumbnail: UIImage(named: "videoThumbnail")!)
+        } else {
+            return MessageData.text(data)
         }
-        return MessageData.text(data)
+        return messageData
     }
     
     func reloadMessage(_ messageIndex: Int,_ messageData :MessageData) -> Void {
@@ -663,7 +674,6 @@ extension ChatViewController: MessagesDataSource {
                 date: oldMessage.sentDate
             )
             self.messagesCollectionView.reloadData()
-            self.messagesCollectionView.scrollToBottom()
         }
     }
 }
@@ -692,6 +702,8 @@ extension ChatViewController: MessagesDisplayDelegate {
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) : UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
     }
+    
+    
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
         //        let configurationClosure = { (view: MessageContainerView) in}
@@ -761,6 +773,10 @@ extension ChatViewController: MessagesLayoutDelegate {
     func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         return 200
     }
+    
+}
+
+extension ChatViewController: MediaMessageLayoutDelegate {
     
     func widthForMedia(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         return (view.frame.width / 3) * 2
