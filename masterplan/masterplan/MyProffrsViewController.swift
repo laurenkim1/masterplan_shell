@@ -16,6 +16,7 @@ class MyProffrsViewController: UITableViewController {
     // MARK: Properties
     
     var myPhotoUrl: String!
+    var myDisplayName: String!
     var myUserId: String!
     var userLocation: CLLocation!
     private var incomingChannels: [ProffrChannel] = []
@@ -202,6 +203,7 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.requestTitle = channel.subTitle
         proffrChatVc.userLocation = self.userLocation
         proffrChatVc.myPhotoUrl = self.myPhotoUrl
+        proffrChatVc.myDisplayName = self.myDisplayName
         proffrChatVc.outgoing = showAccept
         /*
         if channel.proffrerId == self.myUserId {

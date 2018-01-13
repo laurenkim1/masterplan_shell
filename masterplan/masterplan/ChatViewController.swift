@@ -45,11 +45,9 @@ class ChatViewController: MessagesViewController {
     var myUserId: String!
     var myDisplayName: String!
     
-    private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
-    private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
+    lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
+    lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
     fileprivate lazy var storageRef = Storage.storage().reference(forURL: "gs://proffr-d0848.appspot.com/")
-    private lazy var userIsTypingRef: DatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
-    private lazy var usersTypingQuery: DatabaseQuery = self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
     
     private var newMessageRefHandle: DatabaseHandle?
     private var updatedMessageRefHandle: DatabaseHandle?
@@ -60,16 +58,6 @@ class ChatViewController: MessagesViewController {
     var channel: ProffrChannel? {
         didSet {
             title = channel?.name
-        }
-    }
-    
-    var isTyping: Bool {
-        get {
-            return localTyping
-        }
-        set {
-            localTyping = newValue
-            userIsTypingRef.setValue(newValue)
         }
     }
     
@@ -357,7 +345,7 @@ class ChatViewController: MessagesViewController {
             self.messagesCollectionView.reloadData()
         })
     }
-    
+    /*
     private func fetchImageDataAtURL(_ photoURL: String, clearsPhotoMessageMapOnSuccessForKey key: String?) -> UIImage {
         let storageRef = self.storageRef.storage.reference(forURL: photoURL)
         var fetchedImage: UIImage!
@@ -380,6 +368,7 @@ class ChatViewController: MessagesViewController {
         }
         return fetchedImage
     }
+     */
     
     func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: String!) {
         // 1
@@ -395,7 +384,6 @@ class ChatViewController: MessagesViewController {
         
         // 3
         itemRef.setValue(messageItem)
-        isTyping = false
     }
     
     func sendPhotoMessage() -> String? {
@@ -404,7 +392,7 @@ class ChatViewController: MessagesViewController {
         let messageItem = [
             "photoURL": imageURLNotSetKey,
             "senderId": myUserId!,
-            "senderName": senderDisplayName!,
+            "senderName": myDisplayName!,
             "date": dateToString(date: Date())
             ]
         
@@ -613,7 +601,7 @@ extension ChatViewController: MessagesDataSource {
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let name = message.sender.displayName
-        return NSAttributedString(string: name, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption1)])
+        return NSAttributedString(string: name, attributes: nil)
     }
     
     func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
@@ -627,7 +615,7 @@ extension ChatViewController: MessagesDataSource {
         }
         let formatter = ConversationDateFormatter.formatter
         let dateString = formatter.string(from: message.sentDate)
-        return NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2)])
+        return NSAttributedString(string: dateString, attributes: nil)
     }
     
     func setMessageData(data: String, contentType: String, messageIndex: Int) -> MessageData {
@@ -807,6 +795,20 @@ extension ChatViewController: MessageLabelDelegate {
 extension ChatViewController: MessageInputBarDelegate {
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        let itemRef = messageRef.childByAutoId()
+        
+        // 2
+        let messageItem = [
+            "senderId": myUserId!,
+            "senderName": myDisplayName!,
+            "text": text,
+            "date": dateToString(date: Date())
+        ]
+        
+        // 3
+        itemRef.setValue(messageItem)
+        //
+        
         let attributedText = NSAttributedString(string: text, attributes: nil)
         let id = UUID().uuidString
         let message = ChatMessage(attributedText: attributedText, sender: currentSender(), messageId: id, date: Date())
