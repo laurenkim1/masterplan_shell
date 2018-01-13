@@ -197,8 +197,6 @@ class MyProffrsViewController: UITableViewController {
     
     func cellSelected(channel: ProffrChannel, showAccept: Int){
         let proffrChatVc: ChatViewController = ChatViewController()
-        
-        proffrChatVc.senderDisplayName = channel.name
         proffrChatVc.channel = channel
         proffrChatVc.requestId = channel.requestId
         proffrChatVc.requestTitle = channel.subTitle

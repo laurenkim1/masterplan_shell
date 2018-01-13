@@ -19,6 +19,7 @@ target 'masterplan' do
   pod 'XLActionController'
   pod 'XLActionController/Periscope'
   pod 'SwiftMessages'
+  pod 'Kingfisher', '~> 3.0'
   pod 'MessageKit'
 
     post_install do |installer|

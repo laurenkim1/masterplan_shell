@@ -15,6 +15,8 @@ import XLActionController
 import CoreLocation
 import SwiftMessages
 import MessageKit
+import Kingfisher
+import MapKit
 
 private let kBaseURL: String = "http://18.221.170.199/"
 private let kRequests: String = "requests/"
@@ -40,7 +42,8 @@ class ChatViewController: MessagesViewController {
     var acceptedId: String!
     var alreadyAccepted: Int!
     var button: UIBarButtonItem!
-    var senderId: String!
+    var myUserId: String!
+    var myDisplayName: String!
     
     private lazy var accepted: DatabaseReference = self.channelRef!.child("Accepted")
     private lazy var messageRef: DatabaseReference = self.channelRef!.child("messages")
@@ -51,8 +54,7 @@ class ChatViewController: MessagesViewController {
     private var newMessageRefHandle: DatabaseHandle?
     private var updatedMessageRefHandle: DatabaseHandle?
     
-    private var messageList: [ChatMessage] = []
-    private var photoMessageMap = [String: JSQPhotoMediaItem]()
+    var messageList: [ChatMessage] = []
     
     private var localTyping = false
     var channel: ProffrChannel? {
@@ -75,7 +77,7 @@ class ChatViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.senderId = Auth.auth().currentUser?.uid
+        self.myUserId = Auth.auth().currentUser?.uid
         observeMessages()
         self.setNavBar()
         
@@ -262,7 +264,7 @@ class ChatViewController: MessagesViewController {
         let photoUrl = channelSnapshot["requesterPhotoUrl"] as! String
         
         let notification = notificationModel(userID: userId, requestTitle: requestTitle, requestPrice: requestPrice, requestId: requestId, requesterId: requesterId, requesterName: requesterName, photoUrl: photoUrl)
-        let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary()!, options: [])
+        let data: Data? = try? JSONSerialization.data(withJSONObject: notification?.toDictionary()! as Any, options: [])
         //3
         networkrequest.httpBody = data
         networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -305,20 +307,29 @@ class ChatViewController: MessagesViewController {
         // messages being written to the Firebase DB
         newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
             let messageData = snapshot.value as! Dictionary<String, String>
+            let messageId = snapshot.key as String
+            let senderId = messageData["senderId"] as String!
+            let senderName = messageData["senderName"] as String!
+            let dateString = messageData["date"] as String!
+            let date: Date = self.stringToDate(date: dateString!) as Date
+            let sender = Sender(id: senderId!, displayName: senderName!)
             
-            if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String! {
-                self.addMessage(withId: id, name: name, text: text)
-            } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
-                if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-                    self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
-                    
-                    if photoURL.hasPrefix("gs://") {
-                        self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
-                    }
+            if let text = messageData["text"] as String! {
+                let messageIndex = self.messageList.count
+                let data: MessageData = self.setMessageData(data: text, contentType: "text", messageIndex: messageIndex)
+                let message = ChatMessage(data: data, sender: sender, messageId: messageId, date: date)
+                self.messageList.append(message)
+            } else if let photoURL = messageData["photoURL"] as String! {
+                if photoURL.hasPrefix("gs://") {
+                    let messageIndex = self.messageList.count
+                    let data: MessageData = self.setMessageData(data: photoURL, contentType: "image", messageIndex: messageIndex)
+                    let message = ChatMessage(data: data, sender: sender, messageId: messageId, date: date)
+                    self.messageList.append(message)
                 }
             } else {
                 print("Error! Could not decode message data")
             }
+            self.messagesCollectionView.reloadData()
         })
         
         // We can also use the observer method to listen for
@@ -326,20 +337,30 @@ class ChatViewController: MessagesViewController {
         // We use this to be notified when a photo has been stored
         // to the Firebase Storage, so we can update the message data
         updatedMessageRefHandle = messageRef.observe(.childChanged, with: { (snapshot) in
-            let key = snapshot.key
             let messageData = snapshot.value as! Dictionary<String, String>
+            let messageId = snapshot.key as String
+            let senderId = messageData["senderId"] as String!
+            let senderName = messageData["senderName"] as String!
+            let dateString = messageData["date"] as String!
+            let date: Date = self.stringToDate(date: dateString!) as Date
+            let sender = Sender(id: senderId!, displayName: senderName!)
             
             if let photoURL = messageData["photoURL"] as String! {
                 // The photo has been updated.
-                if let mediaItem = self.photoMessageMap[key] {
-                    self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
+                if photoURL.hasPrefix("gs://") {
+                    let messageIndex = self.messageList.count
+                    let data: MessageData = self.setMessageData(data: photoURL, contentType: "image", messageIndex: messageIndex)
+                    let message = ChatMessage(data: data, sender: sender, messageId: messageId, date: date)
+                    self.messageList.append(message)
                 }
             }
+            self.messagesCollectionView.reloadData()
         })
     }
     
-    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
+    private func fetchImageDataAtURL(_ photoURL: String, clearsPhotoMessageMapOnSuccessForKey key: String?) -> UIImage {
         let storageRef = self.storageRef.storage.reference(forURL: photoURL)
+        var fetchedImage: UIImage!
         storageRef.getData(maxSize: INT64_MAX){ (data, error) in
             if let error = error {
                 print("Error downloading image data: \(error)")
@@ -351,19 +372,16 @@ class ChatViewController: MessagesViewController {
                     print("Error downloading metadata: \(error)")
                     return
                 }
-                
-                mediaItem.image = UIImage.init(data: data!)
-                self.collectionView.reloadData()
-                
+                fetchedImage = UIImage.init(data: data!)
                 guard key != nil else {
                     return
                 }
-                self.photoMessageMap.removeValue(forKey: key!)
             })
         }
+        return fetchedImage
     }
     
-    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+    func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: String!) {
         // 1
         let itemRef = messageRef.childByAutoId()
         
@@ -372,16 +390,11 @@ class ChatViewController: MessagesViewController {
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
+            "date": date
             ]
         
         // 3
         itemRef.setValue(messageItem)
-        
-        // 4
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        // 5
-        finishSendingMessage()
         isTyping = false
     }
     
@@ -390,12 +403,13 @@ class ChatViewController: MessagesViewController {
         
         let messageItem = [
             "photoURL": imageURLNotSetKey,
-            "senderId": senderId!,
+            "senderId": myUserId!,
+            "senderName": senderDisplayName!,
+            "date": dateToString(date: Date())
             ]
         
         itemRef.setValue(messageItem)
         
-        finishSendingMessage()
         return itemRef.key
     }
     
@@ -406,28 +420,29 @@ class ChatViewController: MessagesViewController {
     
     // MARK: UI and User Interaction
     
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
+    func stringToDate(date:String) -> NSDate {
+        let formatter = DateFormatter()
+        
+        // Format 1
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let parsedDate = formatter.date(from: date) {
+            return parsedDate as NSDate
         }
+        return NSDate()
     }
     
-    private func addPhotoMessage(withId id: String, key: String, mediaItem: JSQPhotoMediaItem) {
-        if let message = JSQMessage(senderId: id, displayName: "", media: mediaItem) {
-            messages.append(message)
-            
-            if (mediaItem.image == nil) {
-                photoMessageMap[key] = mediaItem
-            }
-            
-            collectionView.reloadData()
-        }
+    func dateToString(date: Date) -> String {
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSZ"
+        let myString = formatter.string(from: date)
+        return myString
     }
     
     func iMessage() {
         defaultStyle()
         messageInputBar.isTranslucent = false
-        messageInputBar.backgroundView.backgroundColor = .white
+        // messageInputBar.backgroundView.backgroundColor = .white
         messageInputBar.separatorLine.isHidden = true
         messageInputBar.inputTextView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         messageInputBar.inputTextView.placeholderTextColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
@@ -584,9 +599,8 @@ extension ChatViewController: UIImagePickerControllerDelegate {
 // MARK: - MessagesDataSource
 
 extension ChatViewController: MessagesDataSource {
-    
     func currentSender() -> Sender {
-        return SampleData.shared.currentSender
+        return Sender(id: self.myUserId, displayName: self.myDisplayName)
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -595,10 +609,6 @@ extension ChatViewController: MessagesDataSource {
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messageList[indexPath.section]
-    }
-    
-    func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
-        return SampleData.shared.getAvatarFor(sender: message.sender)
     }
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
@@ -620,6 +630,40 @@ extension ChatViewController: MessagesDataSource {
         return NSAttributedString(string: dateString, attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .caption2)])
     }
     
+    func setMessageData(data: String, contentType: String, messageIndex: Int) -> MessageData {
+        if contentType.range(of:"image") != nil {
+            let imageView = ImageView()
+            let url = URL(string: data)!
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(with: url, completionHandler: {
+                (image, error, cacheType, imageUrl) in
+                if (image != nil) {
+                    self.reloadMessage(messageIndex, MessageData.photo(image!))
+                }
+            })
+            if (imageView.image != nil) {
+                return MessageData.photo(imageView.image!)
+            }
+        } else if contentType.range(of:"video") != nil {
+            let url = URL(string: data)!
+            return MessageData.video(file: url, thumbnail: UIImage(named: "videoThumbnail")!)
+        }
+        return MessageData.text(data)
+    }
+    
+    func reloadMessage(_ messageIndex: Int,_ messageData :MessageData) -> Void {
+        if messageIndex < self.messageList.count {
+            let oldMessage = self.messageList[messageIndex]
+            self.messageList[messageIndex] = ChatMessage(
+                data: messageData,
+                sender: oldMessage.sender,
+                messageId: oldMessage.messageId,
+                date: oldMessage.sentDate
+            )
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToBottom()
+        }
+    }
 }
 
 // MARK: - MessagesDisplayDelegate
@@ -631,10 +675,11 @@ extension ChatViewController: MessagesDisplayDelegate {
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? .white : .darkText
     }
-    
+    /*
     func detectorAttributes(for detector: DetectorType, and message: MessageType, at indexPath: IndexPath) -> [NSAttributedStringKey : Any] {
         return MessageLabel.defaultAttributes
     }
+    */
     
     func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
         return [.url, .address, .phoneNumber, .date]
@@ -647,10 +692,11 @@ extension ChatViewController: MessagesDisplayDelegate {
     }
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-        return .bubbleTail(corner, .curved)
         //        let configurationClosure = { (view: MessageContainerView) in}
         //        return .custom(configurationClosure)
+        
+        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+        return .bubbleTail(corner, .curved)
     }
     
     // MARK: - Location Messages
@@ -678,10 +724,6 @@ extension ChatViewController: MessagesDisplayDelegate {
 // MARK: - MessagesLayoutDelegate
 
 extension ChatViewController: MessagesLayoutDelegate {
-    
-    func avatarPosition(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> AvatarPosition {
-        return AvatarPosition(horizontal: .natural, vertical: .messageBottom)
-    }
     
     func messagePadding(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
         if isFromCurrentSender(message: message) {
@@ -724,10 +766,6 @@ extension ChatViewController: MessagesLayoutDelegate {
 
 extension ChatViewController: MessageCellDelegate {
     
-    func didTapAvatar(in cell: MessageCollectionViewCell<UIView>) {
-        print("Avatar tapped")
-    }
-    
     func didTapMessage(in cell: MessageCollectionViewCell<UIView>) {
         print("Message tapped")
     }
@@ -769,9 +807,9 @@ extension ChatViewController: MessageLabelDelegate {
 extension ChatViewController: MessageInputBarDelegate {
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 8), .foregroundColor: UIColor.blue])
+        let attributedText = NSAttributedString(string: text, attributes: nil)
         let id = UUID().uuidString
-        let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: id, date: Date())
+        let message = ChatMessage(attributedText: attributedText, sender: currentSender(), messageId: id, date: Date())
         messageList.append(message)
         inputBar.inputTextView.text = String()
         messagesCollectionView.insertSections([messageList.count - 1])
