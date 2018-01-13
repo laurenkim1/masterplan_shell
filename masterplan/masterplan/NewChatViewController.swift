@@ -142,6 +142,7 @@ class NewChatViewController: MessagesViewController {
                 print("Error! Could not decode message data")
             }
             self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToBottom()
         })
         
         // We can also use the observer method to listen for
@@ -167,6 +168,7 @@ class NewChatViewController: MessagesViewController {
                 }
             }
             self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToBottom()
         })
     }
     /*
@@ -548,6 +550,14 @@ extension NewChatViewController: MessagesLayoutDelegate {
     
     func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         return 200
+    }
+    
+    func widthForMedia(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return (view.frame.width / 3) * 2
+    }
+    
+    func heightForMedia(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return (view.frame.width / 3) * 2
     }
     
 }
