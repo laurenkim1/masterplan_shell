@@ -66,6 +66,13 @@ class NewChatViewController: JSQMessagesViewController {
         observeMessages()
         self.setNavBar()
         
+        // iphone X fix
+        if #available(iOS 11.0, *){
+            self.collectionView.contentInsetAdjustmentBehavior = .never
+            self.collectionView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
+            self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset
+        }
+        
         // No avatars
         collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
         collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
