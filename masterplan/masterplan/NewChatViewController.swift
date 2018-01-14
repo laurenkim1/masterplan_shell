@@ -10,7 +10,6 @@ import UIKit
 import Photos
 import Firebase
 import FirebaseStorage
-import JSQMessagesViewController
 import Kingfisher
 import MapKit
 import MessageKit

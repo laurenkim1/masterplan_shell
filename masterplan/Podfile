@@ -12,7 +12,6 @@ target 'masterplan' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Messaging’
-  pod 'JSQMessagesViewController'
   pod 'CircleMenu', '~> 2.0.1'
   pod 'Eureka’
   pod 'AMTagListView'

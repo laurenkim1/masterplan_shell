@@ -72,9 +72,6 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
-  - JSQMessagesViewController (7.3.4):
-    - JSQSystemSoundPlayer (~> 2.0.1)
-  - JSQSystemSoundPlayer (2.0.1)
   - Kingfisher (3.13.1)
   - MessageKit (0.10.2)
   - Protobuf (3.4.0)
@@ -95,7 +92,6 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Messaging
   - Firebase/Storage
-  - JSQMessagesViewController
   - Kingfisher (~> 3.0)
   - MessageKit
   - SwiftMessages
@@ -121,14 +117,12 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
-  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
-  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   MessageKit: 2642b9641290691650cfa2612ad672512799a71c
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
 
-PODFILE CHECKSUM: 7a803720044edabccebad005df35f95b1f0fd628
+PODFILE CHECKSUM: 0d90b875095d5a74e9c4528ce1e99970590e4c3f
 
 COCOAPODS: 1.2.1
