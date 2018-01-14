@@ -11,13 +11,17 @@ import Firebase
 import Photos
 import SwiftMessages
 import FirebaseStorage
+import os.log
 
 private let kBaseURL: String = "http://18.221.170.199/"
+private let kRequests: String = "requests/"
+private let kNotifications: String = "notifications/"
+private let kUsers: String = "users/"
 
 class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate {
     
     // MARK: Properties
-    
+    lazy var notificationChannelRef: DatabaseReference = Database.database().reference().child("notifications")
     let semaphore = DispatchSemaphore(value: 1)
     
     private let imageURLNotSetKey = "NOTSET"
@@ -252,8 +256,8 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
     // MARK: - Navigation
     
     func segueToNewChannel(channel: ProffrChannel){
+        self.getFcmTokenSend(id: (self.request?.userID)!)
         let chatVc: NewChatViewController = NewChatViewController()
-        
         chatVc.myDisplayName = senderDisplayName
         chatVc.channel = channel
         chatVc.channelRef = channelRef.child(channel.id)
@@ -268,12 +272,52 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
                                                  animated: true)
     }
     
-     /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Mark: Get recipient fcmToken and update badge
+    
+    func getFcmTokenSend(id: String) {
+        let users: String = kBaseURL + kUsers + "badge/"
+        let parameterString: String = id
+        let url = URL(string: (users + parameterString))
+        print(url as Any)
+        //1
+        var networkrequest = URLRequest(url: url!)
+        networkrequest.httpMethod = "PUT"
+        
+        let data: Data? = try? JSONSerialization.data(withJSONObject: badgeToDict(), options: [])
+        networkrequest.httpBody = data
+        networkrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let dataTask: URLSessionDataTask? = session.dataTask(with: networkrequest, completionHandler: {(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void in
+            //5
+            if error == nil {
+                os_log("Success")
+                //let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
+                let responseDict = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                //let responseDict = response?[0] as! NSDictionary
+                guard let fcmToken = responseDict!["fcmToken"] as? String else {
+                    os_log("Unable to decode the fcmToken for a user.", log: OSLog.default, type: .debug)
+                    return
+                }
+                let noti: NSMutableDictionary! = NSMutableDictionary()
+                noti.setValue(fcmToken, forKey: "registrationToken")
+                noti.setValue(self.senderId, forKey: "message")
+                if let badgeCount = responseDict!["badgeCount"] as? Int {
+                    noti.setValue(badgeCount, forKey: "badgeCount")
+                } else {
+                    noti.setValue(1, forKey: "badgeCount")
+                }
+                
+                let newChannelRef = self.notificationChannelRef.childByAutoId() // 2
+                newChannelRef.setValue(noti)
+            }
+        })
+        dataTask?.resume()
     }
-    */
-
+    
+    func badgeToDict() -> NSDictionary! {
+        let jsonable = NSMutableDictionary()
+        jsonable.setValue(1, forKey: "badgeCount")
+        return jsonable
+    }
 }
