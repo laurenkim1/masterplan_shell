@@ -120,7 +120,7 @@ class RequestDetailsViewController: UIViewController {
         } else {
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
-            timeLabel.text = formatter.string(from: request.postTime as! Date)
+            timeLabel.text = formatter.string(from: request.postTime! as Date)
             inlabel.text = "on"
         }
         

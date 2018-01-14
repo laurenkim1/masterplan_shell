@@ -136,7 +136,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 print(error)
             case .cancelled:
                 print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+            case .success(_, _, let accessToken):
                 print("Logged in!")
                 
                 let cover = UIView(frame: UIScreen.main.bounds)
@@ -360,7 +360,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     func updateUserToken() {
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         let url = URL(string: users + "/fcmtoken/" + self.myUserId)
-        print(url)
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "PUT"
@@ -377,10 +376,8 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                print(response)
             } else {
-                print(error)
+                os_log("Error")
             }
         })
         dataTask?.resume()

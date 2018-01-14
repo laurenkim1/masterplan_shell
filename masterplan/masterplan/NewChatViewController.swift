@@ -76,7 +76,7 @@ class NewChatViewController: MessagesViewController {
                         asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
                             _ = contentEditingInput?.fullSizeImageURL
                             // 5
-                            let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(proffrPhotoUrl?.lastPathComponent)"
+                            let path = "\(String(describing: Auth.auth().currentUser?.uid))/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(String(describing: proffrPhotoUrl?.lastPathComponent))"
                             
                             // 6
                             self.storageRef.child(path).putData(self.imageData, metadata: nil) { (metadata, error) in

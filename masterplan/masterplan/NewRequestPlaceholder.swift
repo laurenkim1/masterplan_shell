@@ -59,6 +59,7 @@ class NewRequestPlaceholderVC: UIViewController {
         newRequestVc.myUserId = myUserId
         newRequestVc.myDisplayName = myDisplayName
         newRequestVc.myPhotoUrl = myPhotoUrl
+        newRequestVc.userLocation = userLocation
         navVc.viewControllers = [newRequestVc]
         self.present(navVc, animated: true, completion: nil)
     }

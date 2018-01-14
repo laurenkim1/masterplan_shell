@@ -242,7 +242,6 @@ class PaymentViewController: UIViewController {
         }
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         let url = URL(string: users + "/rating/" + self.proffrerId)
-        print(url)
         //1
         var networkrequest = URLRequest(url: url!)
         networkrequest.httpMethod = "PUT"
@@ -259,8 +258,6 @@ class PaymentViewController: UIViewController {
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                print(response)
             }
         })
         dataTask?.resume()
