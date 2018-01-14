@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor.flatYellow
         UINavigationBar.appearance().tintColor = UIColor.black
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white, NSFontAttributeName:UIFont(name: "Ubuntu-Bold", size: 24)!]
         
         UITabBar.appearance().barTintColor = UIColor.white
         
