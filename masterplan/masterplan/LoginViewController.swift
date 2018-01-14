@@ -191,20 +191,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 } else {
                     let responseDict = response?[0] as! NSDictionary
                     self.user = Profile(dict: responseDict)
-                    /*
-                    
-                    guard let geoloc = responseDict["userLocation"] as? NSDictionary else {
-                        os_log("Unable to decode the location for a user.", log: OSLog.default, type: .debug)
-                        return
-                    }
-                    guard let coordinates = geoloc["coordinates"] as? Array<Double> else {
-                        os_log("Unable to decode the coordinates for a user.", log: OSLog.default, type: .debug)
-                        return
-                    }
-                    let location = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
-                    self.userLocation = location
- */
-                    
                     self.FBGraphRequest(graphPath: "\(id)", exist: true)
                 }
             }

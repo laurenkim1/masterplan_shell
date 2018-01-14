@@ -45,17 +45,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         if (!internet) {
             self.warning()
         }
-        
-        /*
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-        }
-        */
         self.getNearbyRequests(userLocation, 1)
 
         searchController.searchResultsUpdater = self
@@ -87,31 +76,6 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         errorConfig.duration = .seconds(seconds: 10)
         SwiftMessages.show(config: errorConfig, view: error)
     }
-    
-    // MARK: - UICLocationManagerDelegate
-    /*
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.userLocation = locations[0] as CLLocation
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        
-        manager.stopUpdatingLocation()
-        
-        print("user latitude = \(self.userLocation.coordinate.latitude)")
-        print("user longitude = \(self.userLocation.coordinate.longitude)")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error \(error)")
-    }
-    
-    // MARK: - UISearchBarDelegate
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
- */
     
     // MARK: - UISearchResultsUpdating
     

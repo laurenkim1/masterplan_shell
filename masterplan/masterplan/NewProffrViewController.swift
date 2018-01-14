@@ -292,9 +292,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
             //5
             if error == nil {
                 os_log("Success")
-                //let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
                 let responseDict = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
-                //let responseDict = response?[0] as! NSDictionary
                 guard let fcmToken = responseDict!["fcmToken"] as? String else {
                     os_log("Unable to decode the fcmToken for a user.", log: OSLog.default, type: .debug)
                     return

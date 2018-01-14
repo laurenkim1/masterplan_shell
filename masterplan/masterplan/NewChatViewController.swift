@@ -170,32 +170,7 @@ class NewChatViewController: MessagesViewController {
             self.messagesCollectionView.scrollToBottom()
         })
     }
-    /*
-    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
-        let storageRef = Storage.storage().reference(forURL: photoURL)
-        storageRef.getData(maxSize: INT64_MAX){ (data, error) in
-            if let error = error {
-                print("Error downloading image data: \(error)")
-                return
-            }
-            
-            storageRef.getMetadata(completion: { (metadata, metadataErr) in
-                if let error = metadataErr {
-                    print("Error downloading metadata: \(error)")
-                    return
-                }
-                
-                mediaItem.image = UIImage.init(data: data!)
-                self.collectionView.reloadData()
-                
-                guard key != nil else {
-                    return
-                }
-                self.photoMessageMap.removeValue(forKey: key!)
-            })
-        }
-    }
-    */
+    
     func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: String!) {
         // 1
         let itemRef = messageRef.childByAutoId()

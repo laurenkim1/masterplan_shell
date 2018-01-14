@@ -63,11 +63,6 @@ class NewRequestViewController: FormViewController {
     }
     
     func setNavigationBar() {
-        // let cancelImage = UIButton(type: .custom)
-        // cancelImage.setImage(UIImage(named: "icon_close"), for: .normal)
-        //let cancelButton = UIBarButtonItem(customView: cancelImage)
-        //cancelButton.target = self
-        //cancelButton.action = #selector(cancel)
         let cancelButton = UIBarButtonItem(image: UIImage(named: "icons8-Cancel-50"), style: .plain, target: self, action: #selector(cancel))
         self.navigationItem.leftBarButtonItem = cancelButton
         

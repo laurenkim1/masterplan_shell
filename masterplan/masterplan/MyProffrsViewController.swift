@@ -52,8 +52,6 @@ class MyProffrsViewController: UITableViewController {
         self.tableView.allowsSelection = true
         self.tableView.allowsSelectionDuringEditing = true
         self.tableView.isUserInteractionEnabled = true
-        
-        //self.refreshControl?.addTarget(self, action: #selector(MyProffrsViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
         observeIncomingChannels()
         observeOutgoingChannels()
     }
@@ -183,17 +181,6 @@ class MyProffrsViewController: UITableViewController {
         print("CustomTitleViewController IBAction invoked!")
         self.tableView.reloadData()
     }
-    
-    /*
-    func handleRefresh(refreshControl: UIRefreshControl) -> Void {
-        // Do some reloading of data and update the table view's data source
-        // Fetch more objects from a web service, for example...
-        
-        self.observeChannels()
-        self.tableView.reloadData()
-        refreshControl.endRefreshing()
-    }
- */
 
     // MARK: Navigation
     
@@ -206,14 +193,6 @@ class MyProffrsViewController: UITableViewController {
         proffrChatVc.myPhotoUrl = self.myPhotoUrl
         proffrChatVc.myDisplayName = self.myDisplayName
         proffrChatVc.outgoing = showAccept
-        /*
-        if channel.proffrerId == self.myUserId {
-            proffrChatVc.outgoing = 1
-        } else {
-            proffrChatVc.outgoing = 0
-        }
- */
-        // proffrChatVc.alreadyAccepted = channel.alreadyAccepted
         let channeldataref = channelRef.child(channel.id)
         proffrChatVc.channelRef = channeldataref
         proffrChatVc.hidesBottomBarWhenPushed = true
@@ -221,30 +200,5 @@ class MyProffrsViewController: UITableViewController {
         navigationController?.pushViewController(proffrChatVc,
                                                  animated: false)
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let proffrChatVc = segue.destination as? ChatViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        
-        guard let selectedProffrCell = sender as? MyProffrsTableViewCell else {
-            fatalError("Unexpected sender: \(sender)")
-        }
-        
-        guard let indexPath = tableView.indexPath(for: selectedProffrCell) else {
-            fatalError("The selected cell is not being displayed by the table")
-        }
-        
-        let channel = channels[indexPath.row]
-        
-        proffrChatVc.senderDisplayName = channel.name
-        proffrChatVc.channel = channel
-        let channeldataref = channelRef.child(channel.id)
-        proffrChatVc.channelRef = channeldataref
-        proffrChatVc.hidesBottomBarWhenPushed = true
-    }
- */
 
 }

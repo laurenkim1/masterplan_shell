@@ -39,12 +39,6 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    /*
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        tagListView.addTag(textField.text!)
-        textField.text = ""
-        return false;
-    }*/
     
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -135,7 +129,6 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
                 request.requestID = response?["_id"] as? String
                 
                 request.postTimeString = response?["createdAt"] as? String
-                // self.persistToUser(request: request)
             }
         })
         dataTask?.resume()

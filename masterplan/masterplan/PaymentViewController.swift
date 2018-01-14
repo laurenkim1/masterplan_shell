@@ -73,8 +73,6 @@ class PaymentViewController: UIViewController {
     }
     
     @objc func doneButtonTapped(){
-        // guard let controllers = navigationController?.viewControllers else { return }
-        // guard let homeViewController = controllers[0] as? HomePageViewController else { return }
         self.updateUser()
         navigationController?.popToRootViewController(animated: true)
     }

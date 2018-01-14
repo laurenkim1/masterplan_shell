@@ -132,8 +132,6 @@ class ChatViewController: MessagesViewController {
                     self.sendNotification(recipientId: self.acceptedId, channelSnapshot: channelData as NSDictionary)
                     self.getFcmTokenSend(id: self.acceptedId, channelSnapshot: channelData as NSDictionary)
                     self.updateRequest(requestId: self.requestId)
-                    
-                    // self.deleteOtherProffrs(requestId: requestId, acceptedId: self.acceptedId)
                     self.accepted.setValue(1)
                     self.getRequest(nxt: 0)
                 } else {
@@ -348,36 +346,10 @@ class ChatViewController: MessagesViewController {
             self.messagesCollectionView.scrollToBottom()
         })
     }
-    /*
-    private func fetchImageDataAtURL(_ photoURL: String, clearsPhotoMessageMapOnSuccessForKey key: String?) -> UIImage {
-        let storageRef = self.storageRef.storage.reference(forURL: photoURL)
-        var fetchedImage: UIImage!
-        storageRef.getData(maxSize: INT64_MAX){ (data, error) in
-            if let error = error {
-                print("Error downloading image data: \(error)")
-                return
-            }
-            
-            storageRef.getMetadata(completion: { (metadata, metadataErr) in
-                if let error = metadataErr {
-                    print("Error downloading metadata: \(error)")
-                    return
-                }
-                fetchedImage = UIImage.init(data: data!)
-                guard key != nil else {
-                    return
-                }
-            })
-        }
-        return fetchedImage
-    }
-*/
     
     func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: String!) {
-        // 1
         let itemRef = messageRef.childByAutoId()
         
-        // 2
         let messageItem = [
             "senderId": senderId!,
             "senderName": senderDisplayName!,
@@ -385,7 +357,6 @@ class ChatViewController: MessagesViewController {
             "date": date
             ]
         
-        // 3
         itemRef.setValue(messageItem)
     }
     
@@ -433,7 +404,6 @@ class ChatViewController: MessagesViewController {
     func iMessage() {
         defaultStyle()
         messageInputBar.isTranslucent = false
-        // messageInputBar.backgroundView.backgroundColor = .white
         messageInputBar.separatorLine.isHidden = true
         messageInputBar.inputTextView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         messageInputBar.inputTextView.placeholderTextColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
@@ -557,9 +527,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
             //5
             if error == nil {
                 os_log("Success")
-                //let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
                 let responseDict = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
-                //let responseDict = response?[0] as! NSDictionary
                 guard let fcmToken = responseDict!["fcmToken"] as? String else {
                     os_log("Unable to decode the fcmToken for a user.", log: OSLog.default, type: .debug)
                     return

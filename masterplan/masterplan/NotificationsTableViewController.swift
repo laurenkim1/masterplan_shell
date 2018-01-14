@@ -34,13 +34,6 @@ class NotificationsTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(self.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -230,7 +223,6 @@ class NotificationsTableViewController: UITableViewController {
             //5
             if error == nil {
                 os_log("Success")
-                //let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! Array<Any>
                 _ = try? JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
                 DispatchQueue.main.async { // Correct
                     UIApplication.shared.applicationIconBadgeNumber = 0
