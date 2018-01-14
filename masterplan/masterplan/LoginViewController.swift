@@ -42,7 +42,6 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
-        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
@@ -268,6 +267,11 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                     UIApplication.shared.keyWindow?.rootViewController = navVc
                     self.dismiss(animated: true, completion: nil)
                 } else {
+                    if CLLocationManager.locationServicesEnabled() {
+                        self.locationManager.startUpdatingLocation()
+                    } else {
+                        self.userLocation = CLLocation(latitude: -71.1167, longitude: 42.3770)
+                    }
                     
                     self.myDisplayName = response.dictionaryValue?["name"] as! String
                     self.firstName = response.dictionaryValue?["first_name"] as! String
