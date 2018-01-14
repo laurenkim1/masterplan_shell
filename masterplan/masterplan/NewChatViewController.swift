@@ -62,6 +62,7 @@ class NewChatViewController: MessagesViewController {
         
         messageInputBar.sendButton.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
         scrollsToBottomOnKeybordBeginsEditing = true // default false
+        iMessage()
         
         if let navController = self.parent as! UINavigationController? {
             let parentVCIndex = navController.viewControllers.count - 2
