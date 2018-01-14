@@ -50,7 +50,6 @@
 		47C888F61F0A169D003ED4F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C888F51F0A169D003ED4F7 /* AppDelegate.swift */; };
 		47C888FB1F0A169D003ED4F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47C888F91F0A169D003ED4F7 /* Main.storyboard */; };
 		47C888FD1F0A169D003ED4F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47C888FC1F0A169D003ED4F7 /* Assets.xcassets */; };
-		47C889001F0A169D003ED4F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47C888FE1F0A169D003ED4F7 /* LaunchScreen.storyboard */; };
 		47C8890B1F0A169D003ED4F7 /* masterplanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C8890A1F0A169D003ED4F7 /* masterplanTests.swift */; };
 		47C889161F0C8939003ED4F7 /* RequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889151F0C8939003ED4F7 /* RequestInfo.swift */; };
 		47C889181F0F3E13003ED4F7 /* DistancePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C889171F0F3E12003ED4F7 /* DistancePageViewController.swift */; };
@@ -127,7 +126,6 @@
 		47C888F51F0A169D003ED4F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47C888FA1F0A169D003ED4F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		47C888FC1F0A169D003ED4F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		47C888FF1F0A169D003ED4F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47C889011F0A169D003ED4F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47C889061F0A169D003ED4F7 /* masterplanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = masterplanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47C8890A1F0A169D003ED4F7 /* masterplanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = masterplanTests.swift; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 				47C57A931F2C28C200BC1D06 /* Models */,
 				47C888F91F0A169D003ED4F7 /* Main.storyboard */,
 				47C888FC1F0A169D003ED4F7 /* Assets.xcassets */,
-				47C888FE1F0A169D003ED4F7 /* LaunchScreen.storyboard */,
 				47C889011F0A169D003ED4F7 /* Info.plist */,
 				47C37EFE1F298174007FC639 /* GoogleService-Info.plist */,
 				47E24B2C1F4287EF00F0F723 /* Obsolete */,
@@ -414,7 +411,6 @@
 				4782987D1F46AD480044519A /* Ubuntu-BI.ttf in Resources */,
 				478298851F46AD480044519A /* Ubuntu-M.ttf in Resources */,
 				478298871F46AD480044519A /* Ubuntu-MI.ttf in Resources */,
-				47C889001F0A169D003ED4F7 /* LaunchScreen.storyboard in Resources */,
 				4782987B1F46AD480044519A /* Ubuntu-B.ttf in Resources */,
 				47C37EFF1F298174007FC639 /* GoogleService-Info.plist in Resources */,
 				478298891F46AD480044519A /* Ubuntu-R.ttf in Resources */,
@@ -605,14 +601,6 @@
 				47C888FA1F0A169D003ED4F7 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		47C888FE1F0A169D003ED4F7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				47C888FF1F0A169D003ED4F7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
