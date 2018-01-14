@@ -39,6 +39,7 @@
 		479513AF1F2EF2AD00559BD3 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */; };
 		47AA8C7C20097D0200C5F295 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AA8C7B20097D0200C5F295 /* ChatMessage.swift */; };
 		47AAA2EB200B21C9008408AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47AAA2EA200B21C9008408AA /* LaunchScreen.storyboard */; };
+		47AAA2ED200B4166008408AA /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AAA2EC200B4166008408AA /* LaunchScreenViewController.swift */; };
 		47C37EFF1F298174007FC639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47C37EFE1F298174007FC639 /* GoogleService-Info.plist */; };
 		47C37F001F298174007FC639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47C37EFE1F298174007FC639 /* GoogleService-Info.plist */; };
 		47C37F021F2981AA007FC639 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C37F011F2981AA007FC639 /* ChatViewController.swift */; };
@@ -112,6 +113,7 @@
 		479513AE1F2EF2AD00559BD3 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		47AA8C7B20097D0200C5F295 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		47AAA2EA200B21C9008408AA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		47AAA2EC200B4166008408AA /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		47C37EFE1F298174007FC639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47C37F011F2981AA007FC639 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		47C37F031F29847F007FC639 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				47E24B111F3577F800F0F723 /* NotificationModel.swift */,
 				478298941F47F44F0044519A /* Profile.swift */,
 				476B57EE1F78811E0057FEE1 /* RatingControl.swift */,
+				47AAA2EC200B4166008408AA /* LaunchScreenViewController.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				47408CA81F1B35130097C957 /* NearbyRequestTableViewCell.swift in Sources */,
 				47AA8C7C20097D0200C5F295 /* ChatMessage.swift in Sources */,
 				47E24B161F381EC400F0F723 /* NotificationsTableViewController.swift in Sources */,
+				47AAA2ED200B4166008408AA /* LaunchScreenViewController.swift in Sources */,
 				47C57A921F2C16CA00BC1D06 /* MyProffrsTableViewCell.swift in Sources */,
 				47C37F021F2981AA007FC639 /* ChatViewController.swift in Sources */,
 				47E24B291F41853000F0F723 /* TagsViewController.swift in Sources */,
