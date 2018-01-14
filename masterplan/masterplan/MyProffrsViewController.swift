@@ -41,6 +41,7 @@ class MyProffrsViewController: UITableViewController {
         segmentedControl = UISegmentedControl(items: segmentTextContent)
         segmentedControl.autoresizingMask = .flexibleWidth
         segmentedControl.frame = CGRect(x: 0, y: 0, width: 400, height: 30)
+        segmentedControl.setTitleTextAttributes([NSFontAttributeName:UIFont(name: "Ubuntu", size: 18)!], for: .normal)
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(action(_:)), for: .valueChanged)
         
