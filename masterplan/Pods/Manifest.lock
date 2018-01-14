@@ -6,7 +6,9 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - CircleMenu (2.0.5)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - Eureka (4.0.1)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
@@ -84,7 +86,7 @@ PODS:
 
 DEPENDENCIES:
   - AMTagListView
-  - CircleMenu (~> 2.0.1)
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Eureka
   - FacebookCore
   - FacebookLogin
@@ -98,10 +100,19 @@ DEPENDENCIES:
   - XLActionController
   - XLActionController/Periscope
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
 SPEC CHECKSUMS:
   AMTagListView: 08ab67466c67152f6299bc29a13a907783b0046f
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  CircleMenu: 7cef16b4401de5b545e5f06d720cb202ec64800d
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
@@ -123,6 +134,6 @@ SPEC CHECKSUMS:
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   XLActionController: 57fe0ce1642e2eed971b188b490762345fdbf963
 
-PODFILE CHECKSUM: 0d90b875095d5a74e9c4528ce1e99970590e4c3f
+PODFILE CHECKSUM: 15c1ae729b2748af01e308816c9232fe0cf690d4
 
 COCOAPODS: 1.2.1

@@ -27,7 +27,7 @@ class NotificationsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = "Notifications"
         tableView.register(NotificationsTableViewCell.self, forCellReuseIdentifier: "notificationCell")
         tableView.rowHeight = 80
         self.getNotifications()

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreLocation
+import ChameleonFramework
 
 class MyProffrsViewController: UITableViewController {
     

@@ -75,7 +75,7 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messageCellDelegate = (self as MessageCellDelegate)
         messageInputBar.delegate = (self as MessageInputBarDelegate)
         
-        messageInputBar.sendButton.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+        messageInputBar.sendButton.tintColor = UIColor.flatYellow
         scrollsToBottomOnKeybordBeginsEditing = true // default false
         iMessage()
     }
@@ -446,7 +446,7 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         messageInputBar.setRightStackViewWidthConstant(to: 36, animated: true)
         messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: true)
-        messageInputBar.sendButton.imageView?.backgroundColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+        messageInputBar.sendButton.imageView?.backgroundColor = UIColor.flatYellow
         messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         messageInputBar.sendButton.setSize(CGSize(width: 36, height: 36), animated: true)
         messageInputBar.sendButton.image = #imageLiteral(resourceName: "ic_up")
@@ -458,7 +458,7 @@ class ChatViewController: MessagesViewController {
     
     func defaultStyle() {
         let newMessageInputBar = MessageInputBar()
-        newMessageInputBar.sendButton.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+        newMessageInputBar.sendButton.tintColor = UIColor.flatYellow
         newMessageInputBar.delegate = self
         messageInputBar = newMessageInputBar
         reloadInputViews()
@@ -473,7 +473,7 @@ class ChatViewController: MessagesViewController {
                 $0.image = UIImage(named: named)?.withRenderingMode(.alwaysTemplate)
                 $0.setSize(CGSize(width: 30, height: 30), animated: true)
             }.onSelected {
-                $0.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
+                $0.tintColor = UIColor.flatYellow
             }.onDeselected {
                 $0.tintColor = UIColor.lightGray
             }.onTouchUpInside { _ in
@@ -701,7 +701,7 @@ extension ChatViewController: MessagesDisplayDelegate {
     // MARK: - All Messages
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) : UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        return isFromCurrentSender(message: message) ? UIColor.flatYellow : UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
     }
     
     

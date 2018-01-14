@@ -38,7 +38,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserProfile.updatesOnAccessTokenChange = true
-        self.view.backgroundColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1)
+        self.view.backgroundColor = UIColor.flatYellow
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -58,7 +58,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         
         // Add a custom login button to your app
         let myLoginButton = UIButton(type: .custom)
-        myLoginButton.backgroundColor = UIColor(red: 59/255, green: 89/225, blue: 152/255, alpha: 1)
+        myLoginButton.backgroundColor = UIColor.flatBlue
         myLoginButton.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
         myLoginButton.center = view.center;
         myLoginButton.setTitle("Login with Facebook", for: .normal)
@@ -72,7 +72,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         
         let cover = UIView(frame: UIScreen.main.bounds)
         cover.center = view.center
-        cover.layer.backgroundColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1).cgColor
+        cover.layer.backgroundColor = UIColor.flatYellow.cgColor
         let proffrlabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
         proffrlabel2.text = "Proffr"
         proffrlabel2.center = self.view.center
@@ -141,7 +141,7 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
                 
                 let cover = UIView(frame: UIScreen.main.bounds)
                 cover.center = self.view.center
-                cover.layer.backgroundColor = UIColor(red: 255/255, green: 224/225, blue: 23/255, alpha: 1).cgColor
+                cover.layer.backgroundColor = UIColor.flatYellow.cgColor
                 let proffrlabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 80))
                 proffrlabel2.text = "Proffr"
                 proffrlabel2.center = self.view.center

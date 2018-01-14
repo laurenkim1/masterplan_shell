@@ -367,6 +367,7 @@
 					47C888F11F0A169D003ED4F7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 657S22D82Y;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -380,6 +381,7 @@
 					47C889051F0A169D003ED4F7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 657S22D82Y;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 47C888F11F0A169D003ED4F7;
 					};

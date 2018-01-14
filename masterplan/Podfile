@@ -12,12 +12,12 @@ target 'masterplan' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Messaging’
-  pod 'CircleMenu', '~> 2.0.1'
   pod 'Eureka’
   pod 'AMTagListView'
   pod 'XLActionController'
   pod 'XLActionController/Periscope'
   pod 'SwiftMessages'
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   pod 'Kingfisher', '~> 3.0'
   pod 'MessageKit'
 
