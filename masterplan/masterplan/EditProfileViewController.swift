@@ -124,10 +124,6 @@ class EditProfileViewController: FormViewController {
     }
     
     func updateUser(_ user: Profile) {
-        if user.userId == nil {
-            return
-            //input safety check
-        }
         let users: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kUsers).absoluteString
         let url = URL(string: users + self.userId)
         //1
@@ -145,8 +141,6 @@ class EditProfileViewController: FormViewController {
             //5
             if error == nil {
                 os_log("Success")
-                let response = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                print(response)
             }
         })
         dataTask?.resume()

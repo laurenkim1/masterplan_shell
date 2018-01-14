@@ -114,10 +114,6 @@ class TagsViewController: UIViewController, UITextFieldDelegate, AMTagListDelega
     }
     
     func persist(_ request: requestInfo) {
-        if request == nil || request.requestTitle == nil || request.requestPrice == 0 {
-            return
-            //input safety check
-        }
         let requests: String = URL(fileURLWithPath: kBaseURL).appendingPathComponent(kRequests).absoluteString
         let url = URL(string: requests)
         //1

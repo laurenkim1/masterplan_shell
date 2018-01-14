@@ -120,7 +120,7 @@ class RequestDetailsViewController: UIViewController {
         } else {
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
-            timeLabel.text = formatter.string(from: request.postTime as! Date)
+            timeLabel.text = formatter.string(from: (request.postTime as Date?)!)
             inlabel.text = "on"
         }
         
@@ -172,7 +172,7 @@ class RequestDetailsViewController: UIViewController {
         var profButtonBool = 0
         
         let viewControllers = self.navigationController?.viewControllers
-        let count = viewControllers?.count as! Int
+        let count: Int = viewControllers?.count as! Int
         if count > 1 {
             if let _ = viewControllers?[count-2] as? UserProfileViewController {
                 profButtonBool = 1
