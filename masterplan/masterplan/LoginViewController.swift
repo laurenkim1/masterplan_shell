@@ -58,11 +58,15 @@ class LogInViewController: UIViewController, CLLocationManagerDelegate {
         
         // Add a custom login button to your app
         let myLoginButton = UIButton(type: .custom)
-        myLoginButton.backgroundColor = UIColor.flatBlue
-        myLoginButton.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
+        myLoginButton.backgroundColor = UIColor.flatYellow
+        myLoginButton.layer.borderColor = UIColor.white.cgColor
+        myLoginButton.layer.borderWidth = 1.0
+        myLoginButton.frame = CGRect(x: 0, y: 0, width: 250, height: 75)
         myLoginButton.center = view.center;
-        myLoginButton.setTitle("Login with Facebook", for: .normal)
-        myLoginButton.layer.cornerRadius = 5
+        myLoginButton.titleLabel?.font = UIFont(name: "Ubuntu", size: 20)
+        myLoginButton.titleLabel?.textColor = UIColor.white
+        myLoginButton.setTitle("Sign in with Facebook", for: .normal)
+        myLoginButton.layer.cornerRadius = 10
         
         // Handle clicks on the button
         myLoginButton.addTarget(self, action: #selector(self.loginButtonClicked), for: .touchUpInside)
