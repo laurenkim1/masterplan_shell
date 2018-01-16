@@ -72,7 +72,7 @@ class NotificationsTableViewCell: UITableViewCell {
         timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(timeLabel)
         
-        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: acceptlabel.frame.origin.y+acceptlabel.frame.size.height-5, width: 200, height: CellHeight/3)
+        requestTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: acceptlabel.frame.origin.y+acceptlabel.frame.size.height-5, width: 250, height: CellHeight/3)
         contentView.addSubview(requestTitle)
     }
     
