@@ -51,7 +51,7 @@ class MyProffrsTableViewCell: UITableViewCell {
         ProfilePhoto.clipsToBounds = true
         contentView.addSubview(ProfilePhoto)
         
-        senderLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 200, height: CellHeight/2-10)
+        senderLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 10, width: 250, height: CellHeight/2-10)
         contentView.addSubview(senderLabel)
         
         let forlabel = UILabel(frame: CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: senderLabel.frame.origin.y+senderLabel.frame.size.height, width: 40, height: CellHeight/2-10))
@@ -60,7 +60,7 @@ class MyProffrsTableViewCell: UITableViewCell {
         forlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(forlabel)
         
-        subTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10+forlabel.frame.width, y: senderLabel.frame.origin.y+senderLabel.frame.size.height, width: 100, height: CellHeight/2-10)
+        subTitle.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10+forlabel.frame.width, y: senderLabel.frame.origin.y+senderLabel.frame.size.height, width: 250, height: CellHeight/2-10)
         contentView.addSubview(subTitle)
     }
     
