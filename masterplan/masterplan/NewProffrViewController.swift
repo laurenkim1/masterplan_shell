@@ -236,7 +236,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
         gestureRecognizer.delegate = self
         photoImageView.addGestureRecognizer(gestureRecognizer)
         
-        self.doneButton = UIButton(frame: CGRect(x: 20, y: self.navigationController!.navigationBar.frame.maxY + 25+messageTextField.frame.height+photoLabel.frame.height+photoImageView.frame.height, width: self.view.frame.width-40, height: 40))
+        self.doneButton = UIButton(frame: CGRect(x: 20, y: self.navigationController!.navigationBar.frame.maxY + 25+messageTextField.frame.height+photoLabel.frame.height+photoImageView.frame.height, width: self.view.frame.width-40, height: 50))
         doneButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
         doneButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
         doneButton.layer.cornerRadius = 5

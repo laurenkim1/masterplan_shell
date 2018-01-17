@@ -63,6 +63,13 @@ class RequestDetailsViewController: UIViewController {
         return view
     }()
     
+    lazy var rentbuyLabel: UILabel = {
+        let view = UILabel()
+        view.backgroundColor = .clear
+        view.textAlignment = .left
+        return view
+    }()
+    
     lazy var timeLabel: UILabel = {
         let view = UILabel()
         view.backgroundColor = .clear
@@ -164,6 +171,17 @@ class RequestDetailsViewController: UIViewController {
         timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
         view.addSubview(timeLabel)
         
+        rentbuyLabel.frame = CGRect(x: 50, y: inlabel.frame.origin.y+inlabel.frame.size.height, width: 100, height: 30)
+        if request.rent == 1 {
+            rentbuyLabel.text = "Rent"
+            rentbuyLabel.textColor = UIColor.flatBlue
+        } else if request.rent == 0 {
+            rentbuyLabel.text = "Buy"
+            rentbuyLabel.textColor = UIColor.flatRed
+        }
+        rentbuyLabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
+        view.addSubview(rentbuyLabel)
+        
         distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+20, y: nameLabel.frame.origin.y+nameLabel.frame.height, width: 100, height: 30)
         distanceLabel.textColor = UIColor.lightGray
         distanceLabel.font = UIFont(name: "Ubuntu", size: 20)
@@ -198,7 +216,7 @@ class RequestDetailsViewController: UIViewController {
         if let navController = self.parent as! UINavigationController? {
             let parentVCIndex = navController.viewControllers.count - 2
             if navController.viewControllers[parentVCIndex] is HomePageViewController {
-                self.proffrButton = UIButton(frame: CGRect(x: 40, y: inlabel.frame.height+inlabel.frame.origin.y+20, width: self.view.frame.width-80, height: 40))
+                self.proffrButton = UIButton(frame: CGRect(x: 40, y: rentbuyLabel.frame.height+rentbuyLabel.frame.origin.y+30, width: self.view.frame.width-80, height: 50))
                 proffrButton.addTarget(self, action: #selector(self.createProffr(_:)), for: .touchUpInside)
                 proffrButton.layer.backgroundColor = UIColor(red:0.12, green:0.55, blue:0.84, alpha:1).cgColor
                 proffrButton.layer.cornerRadius = 5
