@@ -129,7 +129,7 @@ class RequestDetailsViewController: UIViewController {
         let _distanceString: String = "(" + String(format:"%.2f", _distance) + " mi)"
         distanceLabel.text = _distanceString
         
-        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+20 , y: 110, width: 200, height: 30)
+        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+20 , y: 110, width: 200, height: 35)
         nameLabel.textColor = UIColor.darkGray
         nameLabel.font = UIFont(name: "Ubuntu-Bold", size: 30)
         view.addSubview(nameLabel)

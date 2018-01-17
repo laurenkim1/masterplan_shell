@@ -148,7 +148,7 @@ class PaymentViewController: UIViewController {
         itemprice.textAlignment = .center
         self.view.addSubview(itemprice)
         
-        let namelabel = UILabel(frame: CGRect(x: centerpoint.x-100, y: 140+myProfilePhoto.frame.height+150, width: 200, height: 50))
+        let namelabel = UILabel(frame: CGRect(x: centerpoint.x-125, y: 140+myProfilePhoto.frame.height+150, width: 250, height: 50))
         namelabel.text = self.proffrerName
         namelabel.font = UIFont(name: "Arial", size: 30)
         namelabel.textAlignment = .center

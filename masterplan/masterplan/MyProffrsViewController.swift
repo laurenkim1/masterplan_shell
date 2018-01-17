@@ -164,11 +164,11 @@ class MyProffrsViewController: UITableViewController {
         channelRefHandle = channelRef.observe(.childAdded, with: { (snapshot) -> Void in // 1
             let channelData = snapshot.value as! Dictionary<String, AnyObject> // 2
             let id = snapshot.key
-            if let name = channelData["proffererName"] as! String!{ // 3
+            if let name = channelData["requesterName"] as! String!{ // 3
                 let senderId: String = channelData["proffrerId"] as! String
                 if senderId == self.myUserId {
-                    let photoUrl: String = channelData["proffrerPhotoUrl"] as! String
-                    self.outgoingChannels.insert(ProffrChannel(id: id, proffrerId: channelData["proffrerId"] as! String, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
+                    let photoUrl: String = channelData["requesterPhotoUrl"] as! String
+                    self.outgoingChannels.insert(ProffrChannel(id: id, proffrerId: channelData["requesterId"] as! String, name: name, subTitle: channelData["subTitle"] as! String, photoUrl: photoUrl, requestId: channelData["requestId"] as! String, alreadyAccepted: channelData["Accepted"] as! Int), at: 0)
                 }
                 self.tableView.reloadData()
             } else {

@@ -44,6 +44,7 @@ class NewProffrViewController: UIViewController, UITextFieldDelegate, UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        self.navigationItem.title = "New Proffr"
         self.setView()
         self.updateCreateProffrButtonState()
 
