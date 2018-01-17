@@ -58,7 +58,7 @@ class NotificationsTableViewCell: UITableViewCell {
         ProfilePhoto.contentMode = UIViewContentMode.scaleAspectFill
         contentView.addSubview(ProfilePhoto)
         
-        requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 160, height: CellHeight/3)
+        requesterName.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: UIScreen.main.bounds.maxX-85 - (ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10), height: CellHeight/3)
         contentView.addSubview(requesterName)
         
         acceptlabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: requesterName.frame.origin.y+requesterName.frame.size.height-5, width: 200, height: CellHeight/3)
@@ -67,7 +67,7 @@ class NotificationsTableViewCell: UITableViewCell {
         acceptlabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(acceptlabel)
         
-        timeLabel.frame = CGRect(x: self.bounds.maxX-120, y: 5, width: 120, height: CellHeight/3)
+        timeLabel.frame = CGRect(x: UIScreen.main.bounds.maxX-85, y: 5, width: 60, height: CellHeight/3)
         timeLabel.textColor = UIColor.darkGray
         timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(timeLabel)
