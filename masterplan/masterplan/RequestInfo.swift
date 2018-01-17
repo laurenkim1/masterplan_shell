@@ -29,6 +29,7 @@ class requestInfo: NSObject, NSCoding {
     var postTime: NSDate?
     var photoUrl: URL
     var postTimeString: String?
+    var rent: Int
     
     //MARK: Types
     
@@ -46,12 +47,13 @@ class requestInfo: NSObject, NSCoding {
         static let location = "location"
         static let tagString = "tagString"
         static let photoUrl = "photoUrl"
+        static let rent = "rent"
     }
     
     
     //MARK: Initialization
     
-    init?(userID: String, userName: String, requestTitle: String, requestPrice: Double, pickUp: Int, location: CLLocation, photoUrl: String) {
+    init?(userID: String, userName: String, requestTitle: String, requestPrice: Double, pickUp: Int, location: CLLocation, photoUrl: String, rent: Int) {
         
         // Initialization should fail if there is no name or if the price is negative.
         guard !requestTitle.isEmpty else {
@@ -71,6 +73,7 @@ class requestInfo: NSObject, NSCoding {
         self.requestPrice = requestPrice
         self.pickUp = pickUp
         self.location = location
+        self.rent = rent
         self.fulfilled = false
         self.fulfillerID = -1
         self.requestTags = []
@@ -101,6 +104,10 @@ class requestInfo: NSObject, NSCoding {
         }
         guard let pickUp = dict["pickUp"] as? Int else {
             os_log("Unable to decode the pickUp bool for a request.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        guard let rent = dict["rent"] as? Int else {
+            os_log("Unable to decode the rent bool for a request.", log: OSLog.default, type: .debug)
             return nil
         }
         guard let tagString = dict["requestTags"] as? String else {
@@ -139,7 +146,7 @@ class requestInfo: NSObject, NSCoding {
         }
         
         //let dateTime = stringToDate(date: date)
-        self.init(userID: userID, userName: userName, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location, photoUrl: photoUrl)
+        self.init(userID: userID, userName: userName, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location, photoUrl: photoUrl, rent: rent)
         self.tagString = tagString
         self.postTime = stringToDate(date: date)
         self.requestID = requestId
@@ -177,6 +184,7 @@ class requestInfo: NSObject, NSCoding {
         jsonable.setValue(tags, forKey: "requestTags")
         jsonable.setValue(distance, forKey: "distance")
         jsonable.setValue(photoURL, forKey: "photoUrl")
+        jsonable.setValue(rent, forKey: "rent")
         return jsonable
     }
     
@@ -204,6 +212,7 @@ class requestInfo: NSObject, NSCoding {
         jsonable.setValue(tags, forKey: "requestTags")
         jsonable.setValue(distance, forKey: "distance")
         jsonable.setValue(photoURL, forKey: "photoUrl")
+        jsonable.setValue(rent, forKey: "rent")
         return jsonable
     }
     
@@ -221,6 +230,7 @@ class requestInfo: NSObject, NSCoding {
         aCoder.encode(distance, forKey: PropertyKey.distance)
         aCoder.encode(location, forKey: PropertyKey.location)
         aCoder.encode(photoUrl, forKey: PropertyKey.photoUrl)
+        aCoder.encode(rent, forKey: PropertyKey.rent)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -261,8 +271,13 @@ class requestInfo: NSObject, NSCoding {
             return nil
         }
         
+        guard let rent = aDecoder.decodeObject(forKey: PropertyKey.rent) as? Int else {
+            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
         // Must call designated initializer.
-        self.init(userID: userID, userName: userName, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location, photoUrl: photoUrl)
+        self.init(userID: userID, userName: userName, requestTitle: requestTitle, requestPrice: requestPrice, pickUp: pickUp, location: location, photoUrl: photoUrl, rent: rent)
         
     }
 }

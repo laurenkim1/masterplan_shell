@@ -187,6 +187,13 @@ class HomePageViewController: UITableViewController, UISearchBarDelegate, UISear
         cell.requestTitle.text = nearbyRequest.requestTitle
         cell.nameLabel.text = nearbyRequest.userName
         cell.requestPrice.text = "$" + String(format:"%.2f", nearbyRequest.requestPrice)
+        if nearbyRequest.rent == 1 {
+            cell.rentbuyLabel.text = "Rent"
+            cell.rentbuyLabel.textColor = UIColor.flatBlue
+        } else if nearbyRequest.rent == 0 {
+            cell.rentbuyLabel.text = "Buy"
+            cell.rentbuyLabel.textColor = UIColor.flatRed
+        }
         
         let _meterDistance: CLLocationDistance = userLocation.distance(from: nearbyRequest.location)
         let _distance: Double = _meterDistance/1609.34

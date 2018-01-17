@@ -41,12 +41,17 @@ class NewRequestViewController: FormViewController {
                 $0.title = "For ($):"
                 $0.placeholder = "2.00"
             }
+            <<< SegmentedRow<String>("rentbuy"){
+                $0.title = "Rent or Buy:"
+                $0.options = ["Rent", "Buy"]
+                $0.value = "Rent"
+            }
             <<< SegmentedRow<String>("pickUp"){
                 $0.title = "Delivery Required:"
                 $0.options = ["Yes", "No"]
                 $0.value = "Yes"
-        }
-            +++ Section("PickUpDistance")
+            }
+            +++ Section("Pick Up Distance")
             <<< DecimalRow("Distance") {
                 $0.title = "I can travel (mi):"
                 $0.placeholder = "0.5"
@@ -93,6 +98,14 @@ class NewRequestViewController: FormViewController {
         let pricerow: DecimalRow = form.rowBy(tag: "price")!
         let _price: Double! = pricerow.value
         
+        let rentbuyrow: SegmentedRow<String> = form.rowBy(tag: "rentbuy")!
+        let _rent: Int!
+        if rentbuyrow.value == "Rent" {
+            _rent = 1
+        } else {
+            _rent = 0
+        }
+        
         let row: SegmentedRow<String> = form.rowBy(tag: "pickUp")!
         let _pickup: Int!
         if row.value == "Yes" {
@@ -104,7 +117,7 @@ class NewRequestViewController: FormViewController {
         if request != nil {
         }
         else {
-            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: userLocation, photoUrl: myPhotoUrl)
+            request = requestInfo(userID: myUserId, userName: myDisplayName, requestTitle: _title, requestPrice: _price, pickUp: _pickup, location: userLocation, photoUrl: myPhotoUrl, rent: _rent)
             
             if _pickup == 0 {
                 let distancerow: DecimalRow = form.rowBy(tag: "Distance")!

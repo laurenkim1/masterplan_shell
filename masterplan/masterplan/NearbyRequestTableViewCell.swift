@@ -45,7 +45,13 @@ class NearbyRequestTableViewCell: UITableViewCell {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .left
-        //view.font = .systemFont(ofSize: 17)
+        return view
+    }()
+    
+    lazy var rentbuyLabel: UILabel = {
+        let view = UILabel()
+        view.backgroundColor = .clear
+        view.textAlignment = .left
         return view
     }()
     
@@ -74,7 +80,7 @@ class NearbyRequestTableViewCell: UITableViewCell {
         needslabel.text = "needs:"
         forlabel.text = "for"
         
-        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: 160, height: CellHeight/3)
+        nameLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10 , y: 5, width: UIScreen.main.bounds.maxX - 100 - (ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10), height: CellHeight/3)
         nameLabel.textColor = UIColor.darkGray
         nameLabel.font = UIFont(name: "Ubuntu-Bold", size: 20)
         contentView.addSubview(nameLabel)
@@ -84,10 +90,15 @@ class NearbyRequestTableViewCell: UITableViewCell {
         needslabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(needslabel)
         
-        requestTitle.frame = CGRect(x: needslabel.frame.origin.x+ProfilePhoto.frame.width, y: nameLabel.frame.origin.y+nameLabel.frame.size.height-5, width: 250, height: CellHeight/3)
+        requestTitle.frame = CGRect(x: needslabel.frame.origin.x-5+ProfilePhoto.frame.width, y: nameLabel.frame.origin.y+nameLabel.frame.size.height-5, width: UIScreen.main.bounds.maxX - 65-(needslabel.frame.origin.x-5+ProfilePhoto.frame.width), height: CellHeight/3)
         requestTitle.textColor = UIColor.darkGray
         requestTitle.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(requestTitle)
+        
+        rentbuyLabel.frame = CGRect(x: UIScreen.main.bounds.maxX - 65, y: nameLabel.frame.origin.y+nameLabel.frame.size.height-5, width: 40, height: CellHeight/3)
+        rentbuyLabel.textAlignment = .right
+        rentbuyLabel.font = UIFont(name: "Ubuntu", size: 16)
+        contentView.addSubview(rentbuyLabel)
         
         forlabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+10, y: needslabel.frame.origin.y+needslabel.frame.size.height-5, width: 30, height: CellHeight/3)
         forlabel.textColor = UIColor.lightGray
@@ -109,7 +120,8 @@ class NearbyRequestTableViewCell: UITableViewCell {
         timeLabel.font = UIFont(name: "Ubuntu-Bold", size: 16)
         contentView.addSubview(timeLabel)
         
-        distanceLabel.frame = CGRect(x: ProfilePhoto.frame.origin.x+ProfilePhoto.frame.width+nameLabel.frame.width, y: 5, width: 100, height: CellHeight/3)
+        distanceLabel.frame = CGRect(x: UIScreen.main.bounds.maxX - 100, y: 5, width: 75, height: CellHeight/3)
+        distanceLabel.textAlignment = .right
         distanceLabel.textColor = UIColor.lightGray
         distanceLabel.font = UIFont(name: "Ubuntu", size: 16)
         contentView.addSubview(distanceLabel)

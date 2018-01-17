@@ -27,6 +27,8 @@ class EditProfileViewController: FormViewController {
     var lastName: String!
     var rating: Float!
     var numRatings: Int!
+    var button: UIButton!
+    var doneButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,8 @@ class EditProfileViewController: FormViewController {
     }
     
     @objc func finishSegue() {
+        self.button.isEnabled = false
+        self.doneButton.isEnabled = false
         
         let firstnamerow: TextRow = form.rowBy(tag: "firstName")!
         let lastnamerow: TextRow = form.rowBy(tag: "lastName")!
@@ -118,8 +122,15 @@ class EditProfileViewController: FormViewController {
     }
     
     func setNavigationBar() {
-        let doneButton = UIBarButtonItem(image: UIImage(named: "icons8-Ok-50"), style: .plain, target: self, action: #selector(finishSegue))
+        button = UIButton(frame: CGRect(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.maxY-75, width: UIScreen.main.bounds.width, height: 75))
+        button.setTitle("Sign Up", for: .normal)
+        button.backgroundColor = UIColor.flatYellow
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Ubuntu-Bold", size: 30)
+        button.addTarget(self, action: #selector(finishSegue), for: .touchUpInside)
+        self.view.addSubview(button)
         
+        doneButton = UIBarButtonItem(image: UIImage(named: "icons8-Ok-50"), style: .plain, target: self, action: #selector(finishSegue))
         self.navigationItem.rightBarButtonItem = doneButton
     }
     
